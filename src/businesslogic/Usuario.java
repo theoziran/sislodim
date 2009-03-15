@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import db.DAOUsuario;
+
 @SuppressWarnings("serial")
 @Entity
 public class Usuario implements Serializable {
@@ -41,8 +43,4 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 	
-	
-	 
-	
-
 }
