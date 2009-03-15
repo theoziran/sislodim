@@ -13,7 +13,7 @@ public class DAOFactory<T> {
 
 	public static EntityManager getManager() {
 		if (manager == null) {
-			EntityManagerFactory factory = Persistence.createEntityManagerFactory("controle-academico");
+			EntityManagerFactory factory = Persistence.createEntityManagerFactory("sislodim");
 			manager = factory.createEntityManager();
 		}
 		return manager;
@@ -36,6 +36,7 @@ public class DAOFactory<T> {
 		manager.merge(obj);
 		manager.getTransaction().commit();
 	}
+	
 
 
 
