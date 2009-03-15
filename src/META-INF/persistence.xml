@@ -9,7 +9,6 @@
 <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver" />
 <property name="toplink.jdbc.password" value="" />
 <!--
-@author Theoziran Lima  
 Essa propriedade será ativa com colocar o sistema em produção -->
 <!-- property name="toplink.ddl-generation" value="none" /-->
 <property name="toplink.ddl-generation" value="create-tables" />
