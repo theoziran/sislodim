@@ -37,7 +37,9 @@ public class DAOFactory<T> {
 		manager.getTransaction().commit();
 	}
 	
-
+	public T find(Class<T> classe, Object chave){
+		return manager.find(classe, chave);
+	}
 
 
 }
