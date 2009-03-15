@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence">
-<persistence-unit name="controle-academico" transaction-type="RESOURCE_LOCAL">
+<persistence-unit name="sislodim" transaction-type="RESOURCE_LOCAL">
 <provider>oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider</provider>
-<!-- class>dbobjects.Aluno</class-->
+<class>businesslogic.Usuario</class>
 <properties>
 <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/sislodim" />
 <property name="toplink.jdbc.user" value="root" />
