@@ -8,10 +8,9 @@
    xmlns:rich="http://richfaces.org/rich">
    
 <div class="form">
-<fieldset>
-<label>Nome </label><h:inputText id="nome" />
-<label>Login </label><h:inputText id="login" />
-<label>Senha </label><h:inputSecret id="senha" />
+<h:outputLabel value="Nome" /><h:inputText id="nome" />
+<h:outputLabel value="Login" /><h:inputText id="login" />
+<h:outputLabel value="Senha" /><h:inputSecret id="senha" />
 <h:commandButton action="cadastrar" value="Cadastrar" />
 </fieldset>
 </div>
