@@ -11,7 +11,7 @@
 
 	<context-param>
 		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
-		<param-value>.php</param-value>
+		<param-value>.xhtml</param-value>
 	</context-param>
 
 	<!-- Special Debug Output for Development -->

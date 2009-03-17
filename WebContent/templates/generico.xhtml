@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title><ui:insert name="title">Sislodim - Administrador</ui:insert></title>
+
+<ui:insert name="head">
+<link href="css/estilo.css" rel="stylesheet" type="text/css" media="screen" />
+</ui:insert>
+
+</head>
+<body>
+<div id="geral">
+	<div id="topo"><img src="images/topo.gif" width="770" height="150" alt="Sislodim - Módulo administrativo" /></div>
+<div id="info"><ui:insert name="info"></ui:insert></div>
+
+		
+	<div id="menu">
+	<ui:insert name="menu">
+		<ul>
+			<li><img src="images/icon-setor.gif" width="32" height="32" alt="" /><a href="#">Setor</a></li>
+			<li><img src="images/icon-police.gif" width="32" height="32" alt="" /><a href="#">Viaturas</a></li>
+			<li><img src="images/icon-users.gif" width="32" height="32" alt="" /><a href="#">Usuários</a></li>
+			<li><img src="images/icon-chart.gif" width="32" height="32" alt="" /><a href="#">Relatórios</a></li>			
+		</ul>
+		</ui:insert>
+	</div>
+	<div id="conteudo">
+	<ui:insert name="conteudo">
+		<div class="form">
+				<fieldset>
+						<label>Nome: </label><input name="name" type="text" />
+						<label>Endereço: </label><input name="name" type="text" />
+						<label>Estado: </label><input name="name" type="text" />
+						<label>Cidade: </label><input name="name" type="text" />
+						<label>Nome: </label><input name="name" type="text" />
+						<label>Endereço: </label><input name="name" type="text" />
+						<label>Estado: </label><input name="name" type="text" />
+						<label>Cidade: </label><input name="name" type="text" />
+						<label>Nome: </label><input name="name" type="text" />
+						<label>Endereço: </label><input name="name" type="text" />
+						<label>Estado: </label><input name="name" type="text" />
+						<label>Cidade: </label><input name="name" type="text" />	
+						<input type="submit" class="button" value="Cadastrar" />											
+				</fieldset>
+		</div>
+		</ui:insert>
+	</div>
+<div id="rodape">
+		<img src="images/idez.gif" width="182" height="62" alt="" />
+	</div>
+</div>
+
+</body>
+</html>

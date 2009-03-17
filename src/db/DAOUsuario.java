@@ -1,6 +1,6 @@
 package db;
 
-import businesslogic.Usuario;
+import entity.Usuario;
 
 public class DAOUsuario extends DAOFactory<Usuario> {
 	public DAOUsuario() {
