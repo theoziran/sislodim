@@ -63,6 +63,10 @@ input.button{
 	float:left;
 	margin-right:5px;
 }
+#geral #conteudo div.form h1{
+	font-size:18px;
+	float:left;
+}
 #geral #conteudo div.form label{
 	font-size:11px;
 	font-weight:bold;
@@ -76,12 +80,14 @@ input.button{
 	font-size:11px;
 	border:2px solid #999999;
 }
-#geral #conteudo div.form fieldset{	
+#geral #conteudo div.form fieldset{
+	float:left;
 	width:500px;
 	margin:20px auto;
 	font-size:11px;
 }
 #geral #rodape{
+	clear:both;
 	padding:10px;
 	text-align:right;
 }

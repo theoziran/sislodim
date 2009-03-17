@@ -24,36 +24,28 @@
 	<div id="menu">
 	<ui:insert name="menu">
 		<ul>
-			<li><img src="images/icon-setor.gif" width="32" height="32" alt="" /><a href="#">Setor</a></li>
-			<li><img src="images/icon-police.gif" width="32" height="32" alt="" /><a href="#">Viaturas</a></li>
-			<li><img src="images/icon-users.gif" width="32" height="32" alt="" /><a href="#">Usuários</a></li>
-			<li><img src="images/icon-chart.gif" width="32" height="32" alt="" /><a href="#">Relatórios</a></li>			
+			<li><img src="images/icon-setor.gif" width="32" height="32" alt="Setores" /><a href="#">Setor</a></li>
+			<li><img src="images/icon-police.gif" width="32" height="32" alt="Viaturas" /><a href="#">Viaturas</a></li>
+			<li><img src="images/icon-users.gif" width="32" height="32" alt="Usuários" /><a href="#">Usuários</a></li>
+			<li><img src="images/icon-chart.gif" width="32" height="32" alt="Relatórios" /><a href="#">Relatórios</a></li>			
 		</ul>
 		</ui:insert>
 	</div>
 	<div id="conteudo">
 	<ui:insert name="conteudo">
+					
 		<div class="form">
+			<h1>Autenticação</h1>
 				<fieldset>
-						<label>Nome: </label><input name="name" type="text" />
-						<label>Endereço: </label><input name="name" type="text" />
-						<label>Estado: </label><input name="name" type="text" />
-						<label>Cidade: </label><input name="name" type="text" />
-						<label>Nome: </label><input name="name" type="text" />
-						<label>Endereço: </label><input name="name" type="text" />
-						<label>Estado: </label><input name="name" type="text" />
-						<label>Cidade: </label><input name="name" type="text" />
-						<label>Nome: </label><input name="name" type="text" />
-						<label>Endereço: </label><input name="name" type="text" />
-						<label>Estado: </label><input name="name" type="text" />
-						<label>Cidade: </label><input name="name" type="text" />	
-						<input type="submit" class="button" value="Cadastrar" />											
+					<label for="login">Usuário</label><h:inputText id="login" alt="login" />
+					<label for="password">Senha:</label><h:inputSecret id="password" alt="password" />
+					<h:commandButton value="Cadastrar" action="logar" styleClass="button" />						
 				</fieldset>
 		</div>
 		</ui:insert>
 	</div>
 <div id="rodape">
-		<img src="images/idez.gif" width="182" height="62" alt="" />
+		<img src="images/idez.gif" width="182" height="62" alt="Faculdade iDEZ" />
 	</div>
 </div>
 
