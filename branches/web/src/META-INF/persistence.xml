@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence">
+<persistence-unit name="sislodim" transaction-type="RESOURCE_LOCAL">
+<provider>oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider</provider>
+<class>businesslogic.Usuario</class>
+<properties>
+<property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/sislodim" />
+<property name="toplink.jdbc.user" value="root" />
+<property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver" />
+<property name="toplink.jdbc.password" value="" />
+<!--
+Essa propriedade será ativa com colocar o sistema em produção -->
+<!-- property name="toplink.ddl-generation" value="none" /-->
+<property name="toplink.ddl-generation" value="create-tables" />
+</properties>
+</persistence-unit>
+</persistence>
