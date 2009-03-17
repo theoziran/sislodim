@@ -16,7 +16,7 @@ input,textarea{
 }
 input.button{
 	clear:both;
-	border:none;
+	border:0;
 	background:url(../images/bg-button.gif) repeat-x;
 	height:35px;
 	color:#fff;
@@ -63,8 +63,24 @@ input.button{
 	float:left;
 	margin-right:5px;
 }
-#geral #conteudo div.form h1{
-	font-size:18px;
+#geral #conteudo div.auth h1{
+	font-size:20px;
+	text-align:center;
+}
+#geral #conteudo div.auth fieldset{	
+	width:350px;
+	margin:0 auto;
+}
+#geral #conteudo div.auth label{	
+	float:left;
+	clear:left;
+	width: 100px;
+	margin-bottom:20px;
+}
+#geral #conteudo div.auth input{
+	margin-bottom:20px;	
+}
+#geral #conteudo div.auth input.button{
 	float:left;
 }
 #geral #conteudo div.form label{
