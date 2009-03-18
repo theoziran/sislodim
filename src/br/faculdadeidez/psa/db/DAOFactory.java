@@ -1,8 +1,11 @@
 package br.faculdadeidez.psa.db;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class DAOFactory<T> {
 	private static EntityManager manager;
@@ -37,9 +40,19 @@ public class DAOFactory<T> {
 		manager.getTransaction().commit();
 	}
 	
-	public T find(Class<T> classe, Object chave){
+	T find(Class<T> classe, Object chave){
 		return manager.find(classe, chave);
 	}
 
+	List<T> findAll(Class<T> classe) {
+		Query query = manager.createQuery("select a from "+classe.getName()+" a");
+		return (List<T>) query.getResultList();
+	}
+
+	List<T> findByField(Class<T> classe, String campo, String valor) {
+		Query query = manager.createQuery("select a from "+classe.getName()+" a " + "where a."
+				+ campo + " = \"" + valor + "\"");
+		return (List<T>) query.getResultList();
+	}
 
 }
