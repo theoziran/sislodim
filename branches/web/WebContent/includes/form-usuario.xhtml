@@ -11,10 +11,10 @@
 <rich:panel>
 <fieldset>
 <h:form>
-<h:outputLabel value="Nome" /><h:inputText id="nome" />
-<h:outputLabel value="Login" /><h:inputText id="login" />
-<h:outputLabel value="Senha" /><h:inputSecret id="senha" />
-<h:commandButton action="cadastrar" value="Cadastrar" />
+<h:outputLabel value="Nome" /><h:inputText id="nome" value="#{usuarioBean.nome}"/>
+<h:outputLabel value="Login" /><h:inputText id="login" value="#{usuarioBean.login}"/>
+<h:outputLabel value="Senha" /><h:inputSecret id="senha" value="#{usuarioBean.senha}"/>
+<h:commandButton action="#{usuarioBean.create}" value="Cadastrar" />
 </h:form>
 </fieldset>
 </rich:panel>

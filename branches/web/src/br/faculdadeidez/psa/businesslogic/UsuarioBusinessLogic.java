@@ -7,7 +7,26 @@ import br.faculdadeidez.psa.entity.Usuario;
 
 public class UsuarioBusinessLogic {
 
-	public String logar(String nome, String senha) {
+	private final Usuario convertUsuario(String nome, String login, String senha, int id){
+		Usuario user = new Usuario();
+		user.setLogin(login);
+		user.setNome(nome);
+		user.setSenha(senha);
+		user.setId(id);
+		return user;
+		
+	}
+	
+	private final Usuario convertUsuario(String nome, String login, String senha){
+		Usuario user = new Usuario();
+		user.setLogin(login);
+		user.setNome(nome);
+		user.setSenha(senha);
+		return user;
+		
+	}
+	
+	public String logon(String nome, String senha) {
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
 			List<Usuario> usuarios = dUsuario.findByField("nome", nome);
@@ -24,9 +43,10 @@ public class UsuarioBusinessLogic {
 		}
 	}
 
-	public String excluir(Usuario user){
+	public String delete(String nome, String login, String senha, int id){
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
+			Usuario user = convertUsuario(nome, login, senha, id);
 			dUsuario.remove(user);
 			return "removido";
 		} catch (Exception e) {
@@ -35,5 +55,28 @@ public class UsuarioBusinessLogic {
 		}
 	}
 	
+	public String update(String nome, String login, String senha, int id){
+		try {
+			DAOUsuario dUsuario = new DAOUsuario();
+			Usuario user = convertUsuario(nome, login, senha, id);
+			dUsuario.update(user);
+			return "atualizado";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "problemaAtualizar";
+		}
+	}
+	
+	public String create(String nome, String login, String senha){
+		try {
+			DAOUsuario dUsuario = new DAOUsuario();
+			Usuario user = convertUsuario(nome, login, senha);
+			dUsuario.persist(user);
+			return "inserido";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "problemaInserir";
+		}
+	}
 	
 }
