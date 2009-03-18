@@ -6,14 +6,18 @@
    xmlns:h="http://java.sun.com/jsf/html"
    xmlns:a4j="http://richfaces.org/a4j"
    xmlns:rich="http://richfaces.org/rich">
-   
+   <ui:composition>
 <div class="form">
 <rich:panel>
 <fieldset>
+<h:form>
 <h:outputLabel value="Nome" /><h:inputText id="nome" />
 <h:outputLabel value="Login" /><h:inputText id="login" />
 <h:outputLabel value="Senha" /><h:inputSecret id="senha" />
 <h:commandButton action="cadastrar" value="Cadastrar" />
+</h:form>
 </fieldset>
 </rich:panel>
 </div>
+</ui:composition>
+</html>

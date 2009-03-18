@@ -11,34 +11,34 @@
 <title><ui:insert name="title">Sislodim - Administrador</ui:insert></title>
 
 <ui:insert name="head">
-<link href="css/estilo.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="#{facesContext.externalContext.request.contextPath}/css/estilo.css" rel="stylesheet" type="text/css" media="screen" />
 </ui:insert>
-
 </head>
 <body>
 <div id="geral">
-	<div id="topo"><img src="images/topo.gif" width="770" height="150" alt="Sislodim - Módulo administrativo" /></div>
+	<div id="topo"><h:graphicImage value="/images/topo.gif" width="770" height="150" alt="Sislodim - Módulo administrativo" /></div>
 <div id="info"><ui:insert name="info"></ui:insert></div>
 
 		
 	<div id="menu">
-	<ui:insert name="menu"></ui:insert>
+	<ui:insert name="menu"><ui:include src="/includes/menu.xhtml"/></ui:insert>
 	</div>
 	<div id="conteudo">
 	<ui:insert name="conteudo">
 					
 		<div class="auth">
-			<h1>Autenticação</h1>
+			<h1>Autenticação </h1>
 				<fieldset>
-					<label for="login">Usuário</label><h:inputText id="login" alt="login" />
-					<label for="password">Senha:</label><h:inputSecret id="password" alt="password" />
-					<h:commandButton value="Cadastrar" action="logar" styleClass="button" />						
+					<h:outputLabel value="Usuário" for="login"/><h:inputText id="login" alt="login" />
+					<h:outputLabel value="Senha" for="password"/><h:inputSecret id="password" alt="password" />
+					<h:commandButton value="Entrar" action="logar" styleClass="button" />						
 				</fieldset>
 		</div>
 		</ui:insert>
 	</div>
 <div id="rodape">
-		<img src="images/idez.gif" width="182" height="62" alt="Faculdade iDEZ" />
+		<h:graphicImage value="/images/idez.gif" width="182" height="62" alt="Faculdade iDEZ" />
+		
 	</div>
 </div>
 
