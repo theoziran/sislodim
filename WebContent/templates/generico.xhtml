@@ -29,7 +29,7 @@
 		<div class="auth">
 			<h1>Autenticação </h1>
 				<fieldset>
-					<h:outputLabel value="Usuário" for="login"/><h:inputText id="login" alt="login" />
+					<h:outputLabel value="Usuário" for="login"/><h:inputText id="login" alt="login" value="#{usuarioBean.login}" />
 					<h:outputLabel value="Senha" for="password"/><h:inputSecret id="password" alt="password" />
 					<h:commandButton value="Entrar" action="logar" styleClass="button" />						
 				</fieldset>

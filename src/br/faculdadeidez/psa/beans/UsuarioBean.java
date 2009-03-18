@@ -1,6 +1,6 @@
 package br.faculdadeidez.psa.beans;
 
-public class UsuarioBean {
+public class UsuarioBean extends GenericoBean{
 	private int id;
 	private String nome;
 	private String login;
@@ -29,5 +29,21 @@ public class UsuarioBean {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public String logon() {
+		return getFachada().logon(getNome(), getSenha());
+	}
+
+	public String delete(){
+		return getFachada().delete(getNome(), getLogin(), getSenha(), getId());
+	}
+	
+	public String update(){
+		return getFachada().update(getNome(), getLogin(), getSenha(), getId());
+	}
+	
+	public String create(){
+		return getFachada().create(getNome(), getLogin(), getSenha());
 	}
 }
