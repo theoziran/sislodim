@@ -7,7 +7,11 @@ public class UsuarioBean extends GenericoBean{
 	private String nome;
 	private String login;
 	private String senha;
-	private List usuarios;
+	private List listaTudo;
+	public UsuarioBean() {
+		setLinkEditar("editaUsuario");
+	}
+	
 	
 	public int getId() {
 		return id;
@@ -49,12 +53,16 @@ public class UsuarioBean extends GenericoBean{
 	public String create(){
 		return getFachada().create(getNome(), getLogin(), getSenha());
 	}
-	
-	public List getUsuarios(){
-		getFachada().chargeUsuarios(usuarios);
-		return this.usuarios;
+
+
+	public List getListaTudo() {
+		if (this.listaTudo.isEmpty())
+			this.listaTudo = getFachada().listaUsuarios();
+		return this.listaTudo;
 	}
 	
-	
-	
+	public void setListaTudo(List listaTudo) {
+		this.listaTudo = listaTudo;
+	}
+
 }

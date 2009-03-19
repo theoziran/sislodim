@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:composition template="/templates/generico.xhtml">
+	<ui:define name="conteudo">
+		<h:panelGrid columns="3">
+			<a4j:form>
+				<h:outputText value="Busca por nome: " />
+				<h:inputText required="true" size="30"
+					value="#{atualBean.valorBusca}" />
+				<h:commandButton value="Buscar" />
+			</a4j:form>
+		</h:panelGrid>
+		<h:form>
+			<h:panelGrid class="lista" columns="1" width="520">
+				<rich:dataTable
+					onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+					onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+					cellpadding="0" cellspacing="0" width="518" border="0" var="elementoDaVez"
+					value="#{atualBean.listaTudo}" id="generica">
+					<!--t:updateActionListener property="" value="" /-->
+
+					<f:facet name="header">
+						<rich:columnGroup>
+
+							<rich:column colspan="3">
+								<ui:insert name="tituloTabela"></ui:insert>
+							</rich:column>
+							<rich:column rowspan="2" colspan="2">
+								<h:outputText value="Ações" />
+							</rich:column>
+
+							<rich:column breakBefore="true">
+								<ui:insert name="campo1"></ui:insert>
+							</rich:column>
+							<rich:column>
+								<ui:insert name="campo2"></ui:insert>
+							</rich:column>
+							<rich:column>
+								<ui:insert name="campo3"></ui:insert>
+							</rich:column>
+
+						</rich:columnGroup>
+					</f:facet>
+					<rich:columnGroup>
+						<rich:column breakBefore="true">
+							<ui:insert name="campo11"></ui:insert>
+						</rich:column>
+						<rich:column>
+							<ui:insert name="campo21"></ui:insert>
+						</rich:column>
+						<rich:column>
+							<ui:insert name="campo31"></ui:insert>
+						</rich:column>
+
+						<rich:column>
+							<h:commandButton value="Editar"
+								action="#{atualBean.linkEditar}">
+								<f:setPropertyActionListener value="#{elementoDaVez}"
+									target="#{atualBean.elementoSelecionado}" />
+
+							</h:commandButton>
+						</rich:column>
+
+						<rich:column>
+							<h:commandButton value="Apagar" action="#{atualBean.delete}"
+								immediate="true" onclick="return confirm('Deseja mesmo deletar este item?');">
+								<f:setPropertyActionListener value="#{elementoDaVez}"
+									target="#{atualBean.elementoSelecionado}" />
+
+							</h:commandButton>
+						</rich:column>
+					</rich:columnGroup>
+
+				</rich:dataTable>
+				<rich:datascroller align="left" for="generica" maxPages="10" />
+				<rich:spacer height="30" />
+			</h:panelGrid>
+		</h:form>
+
+
+</ui:define>
+	</ui:composition>
+
+	</html>
