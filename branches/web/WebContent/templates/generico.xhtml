@@ -29,9 +29,11 @@
 		<div class="auth">
 			<h1>Autenticação </h1>
 				<fieldset>
+				<h:form id="autentica">
 					<h:outputLabel value="Usuário" for="login"/><h:inputText id="login" alt="login" value="#{usuarioBean.login}" />
-					<h:outputLabel value="Senha" for="password"/><h:inputSecret id="password" alt="password" />
-					<h:commandButton value="Entrar" action="logar" styleClass="button" />						
+					<h:outputLabel value="Senha" for="password"/><h:inputSecret id="password" alt="password" value="#{usuarioBean.senha}"/>
+					<h:commandButton value="Entrar" action="#{usuarioBean.logon}" styleClass="button" />
+				</h:form>						
 				</fieldset>
 		</div>
 		</ui:insert>

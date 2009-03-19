@@ -45,12 +45,12 @@ public class DAOFactory<T> {
 	}
 
 	List<T> findAll(Class<T> classe) {
-		Query query = manager.createQuery("select a from "+classe.getName()+" a");
+		Query query = manager.createQuery("select a from "+classe.getSimpleName()+" a");
 		return (List<T>) query.getResultList();
 	}
 
 	List<T> findByField(Class<T> classe, String campo, String valor) {
-		Query query = manager.createQuery("select a from "+classe.getName()+" a " + "where a."
+		Query query = manager.createQuery("select a from "+classe.getSimpleName()+" a " + "where a."
 				+ campo + " = \"" + valor + "\"");
 		return (List<T>) query.getResultList();
 	}
