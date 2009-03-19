@@ -1,10 +1,13 @@
 package br.faculdadeidez.psa.beans;
 
+import java.util.List;
+
 public class UsuarioBean extends GenericoBean{
 	private int id;
 	private String nome;
 	private String login;
 	private String senha;
+	private List usuarios;
 	
 	public int getId() {
 		return id;
@@ -46,4 +49,12 @@ public class UsuarioBean extends GenericoBean{
 	public String create(){
 		return getFachada().create(getNome(), getLogin(), getSenha());
 	}
+	
+	public List getUsuarios(){
+		getFachada().chargeUsuarios(usuarios);
+		return this.usuarios;
+	}
+	
+	
+	
 }
