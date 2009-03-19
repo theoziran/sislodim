@@ -1,5 +1,8 @@
 package br.faculdadeidez.psa.businesslogic;
 
+import java.util.List;
+
+
 
 public class Fachada {
 	
@@ -35,6 +38,11 @@ public class Fachada {
 	public String create(String nome, String login, String senha){
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
 		return logicaUsuario.create(nome, login, senha);
+	}
+	
+	public void chargeUsuarios(List usuarios){
+		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
+		logicaUsuario.chargeUsuarios(usuarios);
 	}
 
 }
