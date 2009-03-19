@@ -17,9 +17,9 @@ public class Fachada {
 		return INSTANCE;
 	}
 	
-	public String logon(String nome, String senha) {
+	public String logon(String login, String senha) {
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
-		return logicaUsuario.logon(nome, senha);
+		return logicaUsuario.logon(login, senha);
 	}
 
 	public String delete(String nome, String login, String senha, int id){

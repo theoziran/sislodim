@@ -32,7 +32,7 @@ public class UsuarioBean extends GenericoBean{
 	}
 	
 	public String logon() {
-		return getFachada().logon(getNome(), getSenha());
+		return getFachada().logon(getLogin(), getSenha());
 	}
 
 	public String delete(){

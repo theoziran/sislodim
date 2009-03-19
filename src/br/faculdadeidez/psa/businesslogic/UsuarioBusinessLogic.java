@@ -26,15 +26,16 @@ public class UsuarioBusinessLogic {
 		
 	}
 	
-	public String logon(String nome, String senha) {
+	public String logon(String login, String senha) {
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
-			List<Usuario> usuarios = dUsuario.findByField("nome", nome);
+			List<Usuario> usuarios = dUsuario.findByField("login", login);
 			if (usuarios.isEmpty())
 				throw new Exception();
 			for (Usuario obj : usuarios) {
-				if (obj.getSenha().equals(senha))
+				if (obj.getSenha().equals(senha)){
 					return "logado";
+				}
 			}
 			throw new Exception();
 		} catch (Exception e) {
