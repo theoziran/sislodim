@@ -3,7 +3,6 @@ package br.faculdadeidez.psa.businesslogic;
 import java.util.List;
 
 
-
 public class Fachada {
 	
 	private static Fachada INSTANCE;
@@ -40,9 +39,11 @@ public class Fachada {
 		return logicaUsuario.create(nome, login, senha);
 	}
 	
-	public void chargeUsuarios(List usuarios){
-		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
-		logicaUsuario.chargeUsuarios(usuarios);
-	}
 
+	public List	listaUsuarios(){
+		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
+		return  logicaUsuario.listar();
+		
+		
+	}
 }
