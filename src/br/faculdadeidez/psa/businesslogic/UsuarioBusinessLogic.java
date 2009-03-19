@@ -1,11 +1,13 @@
 package br.faculdadeidez.psa.businesslogic;
 
 
+
 import java.util.ArrayList;
 import java.util.List;
-
 import br.faculdadeidez.psa.db.DAOUsuario;
 import br.faculdadeidez.psa.entity.Usuario;
+import br.faculdadeidez.psa.beans.UsuarioBean;
+
 
 public class UsuarioBusinessLogic {
 
@@ -82,11 +84,27 @@ public class UsuarioBusinessLogic {
 		}
 	}
 	
+
 	public List<Usuario> listar(){
 		DAOUsuario dUsuario = new DAOUsuario();
 		List<Usuario> usuarios = dUsuario.findAll();
 		return usuarios;
 		
 	}
+	
+	public ArrayList<UsuarioBean> findAll(){
+		ArrayList<UsuarioBean> usuariosBean = new ArrayList<UsuarioBean>();
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		
+		DAOUsuario daoUsuario = new DAOUsuario();
+		usuarios  = daoUsuario.findAll();
+		for (Usuario usuario : usuarios)
+			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha()));
+				
+		return usuariosBean;
+	}
+
+	
+
 	
 }
