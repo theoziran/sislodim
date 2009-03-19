@@ -1,5 +1,7 @@
 package br.faculdadeidez.psa.businesslogic;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.DAOUsuario;
@@ -78,6 +80,11 @@ public class UsuarioBusinessLogic {
 			// TODO: handle exception
 			return "problemaInserir";
 		}
+	}
+	
+	public void chargeUsuarios(List usuarios){
+			DAOUsuario daoUsuario = new DAOUsuario();
+			usuarios = daoUsuario.findAll();
 	}
 	
 }
