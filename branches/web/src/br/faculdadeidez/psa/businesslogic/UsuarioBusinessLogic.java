@@ -1,7 +1,6 @@
 package br.faculdadeidez.psa.businesslogic;
 
-import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.List;
 
 import br.faculdadeidez.psa.db.DAOUsuario;
