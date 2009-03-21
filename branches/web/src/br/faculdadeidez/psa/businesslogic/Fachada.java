@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.faculdadeidez.psa.beans.UsuarioBean;
-import br.faculdadeidez.psa.db.DAOUsuario;
 import br.faculdadeidez.psa.entity.Usuario;
 
 

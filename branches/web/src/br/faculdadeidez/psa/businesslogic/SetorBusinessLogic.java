@@ -1,6 +1,7 @@
 package br.faculdadeidez.psa.businesslogic;
 
-import persistence.antlr.collections.List;
+import java.util.List;
+
 import br.faculdadeidez.psa.db.DAOSetor;
 import br.faculdadeidez.psa.entity.Setor;
 

@@ -1,8 +1,9 @@
 package br.faculdadeidez.psa.db;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
-import persistence.antlr.collections.List;
 import br.faculdadeidez.psa.entity.Setor;
 
 public class DAOSetor extends DAOFactory<Setor> {
