@@ -1,5 +1,7 @@
 package br.faculdadeidez.psa.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,17 +18,17 @@ public class Setor implements Serializable {
 	private int codigo;
 	@Basic @Column (name="SET_NOME") private String nome;
 	
-	public void Setor()
+	public Setor()
 	{
 		
 	}
 	
-	public void Setor(String nome)
+	public Setor(String nome)
 	{
 		this.nome = nome;
 	}
 	
-	public void Setor(int codigo, String nome)
+	public Setor(int codigo, String nome)
 	{
 		this.codigo = codigo;
 		this.nome = nome;
