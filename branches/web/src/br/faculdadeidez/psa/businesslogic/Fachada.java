@@ -1,6 +1,11 @@
 package br.faculdadeidez.psa.businesslogic;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import br.faculdadeidez.psa.beans.UsuarioBean;
+import br.faculdadeidez.psa.db.DAOUsuario;
+import br.faculdadeidez.psa.entity.Usuario;
 
 
 public class Fachada {
@@ -24,14 +29,14 @@ public class Fachada {
 		return logicaUsuario.logon(login, senha);
 	}
 
-	public String delete(String nome, String login, String senha, int id){
+	public String delete(int id){
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
-		return logicaUsuario.delete(nome, login, senha, id);
+		return logicaUsuario.delete(id);
 	}
 	
-	public String update(String nome, String login, String senha, int id){
+	public String update(String nome, String login, String senha, int id, int ativo){
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
-		return logicaUsuario.update(nome, login, senha, id);
+		return logicaUsuario.update(nome, login, senha, id, ativo);
 	}
 	
 	public String create(String nome, String login, String senha){
@@ -40,10 +45,36 @@ public class Fachada {
 	}
 	
 
-	public List	listaUsuarios(){
+	public List<UsuarioBean> listaUsuariosAtivos(){
+		ArrayList<UsuarioBean> usuariosBean = new ArrayList<UsuarioBean>();
+		List<Usuario> usuarios;
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
-		return  logicaUsuario.listar();
+		usuarios =  logicaUsuario.listarAtivos();
+		for (Usuario usuario : usuarios)
+			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha(),usuario.getAtivo()));
+		return usuariosBean;
 		
+	}
+	
+	public List<UsuarioBean> listaUsuarios(){
+		ArrayList<UsuarioBean> usuariosBean = new ArrayList<UsuarioBean>();
+		List<Usuario> usuarios;
+		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
+		usuarios =  logicaUsuario.listar();
+		for (Usuario usuario : usuarios)
+			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha(),usuario.getAtivo()));
+		return usuariosBean;
+		
+	}
+	
+	public List<UsuarioBean> listaUsuariosInativos(){
+		ArrayList<UsuarioBean> usuariosBean = new ArrayList<UsuarioBean>();
+		List<Usuario> usuarios;
+		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
+		usuarios =  logicaUsuario.listarInativos();
+		for (Usuario usuario : usuarios)
+			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha(),usuario.getAtivo()));
+		return usuariosBean;
 		
 	}
 }

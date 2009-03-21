@@ -16,6 +16,20 @@
         <managed-bean-class>br.faculdadeidez.psa.beans.UsuarioBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    
+    <!-- Navegação global -->
+    <navigation-rule>  
+        <navigation-case>  
+             <from-outcome>cadastroUsuario</from-outcome>
+             <to-view-id>/pages/cadastroUsuario.xhtml</to-view-id>
+         </navigation-case>    
+     </navigation-rule>
+     <navigation-rule>  
+        <navigation-case>  
+             <from-outcome>adminUsuario</from-outcome>
+             <to-view-id>/pages/adminUsuario.xhtml</to-view-id>
+         </navigation-case>    
+     </navigation-rule>
 	
 
 </faces-config>
