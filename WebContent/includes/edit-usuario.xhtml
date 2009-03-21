@@ -6,9 +6,20 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
-
 <ui:composition template="/templates/manter.xhtml">
 	
-</ui:composition>
+	<ui:define name="tituloEdit">
+		<h:outputText value="Editar usuários" />
+	</ui:define>
 
+	<ui:define name="camposEdit">
+		<h:outputLabel value="Ativo" />
+		<h:inputText value="#{usuarioBean.elementoSelecionado.ativo}" />
+		<h:outputLabel value="Nome" />
+		<h:inputText value="#{usuarioBean.elementoSelecionado.nome}" />
+		<h:outputLabel value="Senha" />
+		<h:inputSecret value="#{usuarioBean.elementoSelecionado.senha}" />
+	</ui:define>
+
+</ui:composition>
 </html>

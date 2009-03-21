@@ -8,22 +8,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 
 @SuppressWarnings("serial")
-@Entity (name="SIS_USUARIO")
-@NamedQueries( {
-		@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-})
+@Entity 
+@Table (name="SIS_USUARIO")
 public class Usuario implements Serializable {
 		
-	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) private int id;
-	@Basic private String nome;
-	@Basic @Column (unique=true) private String login;
-	@Basic private String senha;
+	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) 
+	@Column (name="USU_CODIGO")
+	private int id;
+	@Basic @Column (name="USU_NOME") private String nome;
+	@Basic @Column (unique=true, name="USU_LOGIN") private String login;
+	@Basic @Column (name="USU_SENHA") private String senha;
+	@Basic @Column (name="USU_ATIVO") private int ativo;
 	
 	public int getId() {
 		return id;
@@ -48,6 +48,12 @@ public class Usuario implements Serializable {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public int getAtivo() {
+		return ativo;
+	}
+	public void setAtivo(int ativo) {
+		this.ativo = ativo;
 	}
 	
 }

@@ -2,21 +2,24 @@ package br.faculdadeidez.psa.businesslogic;
 
 
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
 import br.faculdadeidez.psa.db.DAOUsuario;
 import br.faculdadeidez.psa.entity.Usuario;
-import br.faculdadeidez.psa.beans.UsuarioBean;
 
 
 public class UsuarioBusinessLogic {
 
-	private final Usuario convertUsuario(String nome, String login, String senha, int id){
+	private final Usuario convertUsuario(String nome, String login, String senha, int id, int ativo){
 		Usuario user = new Usuario();
 		user.setLogin(login);
 		user.setNome(nome);
 		user.setSenha(senha);
 		user.setId(id);
+		user.setAtivo(ativo);
 		return user;
 		
 	}
@@ -38,7 +41,13 @@ public class UsuarioBusinessLogic {
 				throw new Exception();
 			for (Usuario obj : usuarios) {
 				if (obj.getSenha().equals(senha)){
-					return "logado";
+					if (obj.getAtivo()==1){
+						FacesContext context = FacesContext.getCurrentInstance();  
+						HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
+						session.setAttribute("userLogin", true);
+						System.out.println("Logado com sucesso");
+						return "logado";
+					}
 				}
 			}
 			throw new Exception();
@@ -48,11 +57,12 @@ public class UsuarioBusinessLogic {
 		}
 	}
 
-	public String delete(String nome, String login, String senha, int id){
+	public String delete(int id){
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
-			Usuario user = convertUsuario(nome, login, senha, id);
-			dUsuario.remove(user);
+			Usuario user = dUsuario.find( id );
+			user.setAtivo(0);
+			dUsuario.update(user);
 			return "removido";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -60,10 +70,13 @@ public class UsuarioBusinessLogic {
 		}
 	}
 	
-	public String update(String nome, String login, String senha, int id){
+	public String update(String nome, String login, String senha, int id, int ativo){
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
-			Usuario user = convertUsuario(nome, login, senha, id);
+			Usuario user = convertUsuario(nome, login, senha, id, ativo);
+			if (user.getSenha().equals("")){
+				user.setSenha(dUsuario.find(user.getId()).getSenha());
+			}
 			dUsuario.update(user);
 			return "atualizado";
 		} catch (Exception e) {
@@ -76,6 +89,7 @@ public class UsuarioBusinessLogic {
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
 			Usuario user = convertUsuario(nome, login, senha);
+			user.setAtivo(1);
 			dUsuario.persist(user);
 			return "inserido";
 		} catch (Exception e) {
@@ -85,26 +99,27 @@ public class UsuarioBusinessLogic {
 	}
 	
 
-	public List<Usuario> listar(){
+	public List listar(){
 		DAOUsuario dUsuario = new DAOUsuario();
-		List<Usuario> usuarios = dUsuario.findAll();
+		List usuarios = dUsuario.findAll();
 		return usuarios;
 		
 	}
 	
-	public ArrayList<UsuarioBean> findAll(){
-		ArrayList<UsuarioBean> usuariosBean = new ArrayList<UsuarioBean>();
-		List<Usuario> usuarios = new ArrayList<Usuario>();
+	public List listarAtivos(){
+		DAOUsuario dUsuario = new DAOUsuario();
+		List usuarios = dUsuario.findAllActive();
+		return usuarios;
 		
-		DAOUsuario daoUsuario = new DAOUsuario();
-		usuarios  = daoUsuario.findAll();
-		for (Usuario usuario : usuarios)
-			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha()));
-				
-		return usuariosBean;
 	}
 
 	
+	public List listarInativos(){
+		DAOUsuario dUsuario = new DAOUsuario();
+		List usuarios = dUsuario.findAllInactive();
+		return usuarios;
+		
+	}
 
 	
 }

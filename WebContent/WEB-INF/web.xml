@@ -84,8 +84,6 @@
 
 	</filter>
 
-
-
 	<filter-mapping>
 
 		<filter-name>richfaces</filter-name>
@@ -100,6 +98,16 @@
 
 	</filter-mapping>
 
+ <!-- Filtro de sessao   -->  
+    <!-- filter>  
+         <filter-name>VerificaSession</filter-name>  
+         <filter-class>br.faculdadeidez.psa.servlets.FiltroSeguranca</filter-class>  
+    </filter>  
+     <filter-mapping>  
+         <filter-name>VerificaSession</filter-name>  
+         <url-pattern>adminUsuario.st</url-pattern>  
+     </filter-mapping -->
+        
 
 
 

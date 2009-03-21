@@ -46,7 +46,9 @@ public class DAOFactory<T> {
 
 	List<T> findAll(Class<T> classe) {
 		Query query = manager.createQuery("select a from "+classe.getSimpleName()+" a");
-		return (List<T>) query.getResultList();
+		List<T> result = null;
+		result = query.getResultList();
+		return  result;
 	}
 
 	List<T> findByField(Class<T> classe, String campo, String valor) {
@@ -55,4 +57,6 @@ public class DAOFactory<T> {
 		return (List<T>) query.getResultList();
 	}
 
+	
+	
 }
