@@ -42,8 +42,10 @@ public class UsuarioBusinessLogic {
 	public String delete(int id){
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
-			Usuario user = dUsuario.find( id );
+			
+			Usuario user = dUsuario.find(id);
 			user.setAtivo(0);
+			
 			dUsuario.update(user);
 			return "removido";
 		} catch (Exception e) {
@@ -52,10 +54,9 @@ public class UsuarioBusinessLogic {
 		}
 	}
 	
-	public String update(String nome, String login, String senha, int id, int ativo){
+	public String update(Usuario user){
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
-			Usuario user = new Usuario(nome, login, senha, id, ativo);
 			if (user.getSenha().equals("")){
 				user.setSenha(dUsuario.find(user.getId()).getSenha());
 			}
@@ -67,10 +68,9 @@ public class UsuarioBusinessLogic {
 		}
 	}
 	
-	public String create(String nome, String login, String senha){
+	public String create(Usuario user){
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
-			Usuario user = new Usuario(nome, login, senha);
 			user.setAtivo(1);
 			dUsuario.persist(user);
 			return "inserido";

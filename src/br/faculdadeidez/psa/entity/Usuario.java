@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-
 @SuppressWarnings("serial")
 @Entity 
 @Table (name="SIS_USUARIO")
@@ -25,21 +23,19 @@ public class Usuario implements Serializable {
 	@Basic @Column (name="USU_SENHA") private String senha;
 	@Basic @Column (name="USU_ATIVO") private int ativo;
 	
-	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Usuario(String nome, String login, String senha, int id, int ativo) {
-		setAtivo(ativo);
-		setId(id);
+		
+	public Usuario(String nome, String login, String senha) {		
 		setSenha(senha);
 		setLogin(login);
 		setNome(nome);
 	}
 	
-	public Usuario(String nome, String login, String senha) {
-		
+	public Usuario(String nome, String login, String senha, int id, int ativo) {
+		setAtivo(ativo);
+		setId(id);
 		setSenha(senha);
 		setLogin(login);
 		setNome(nome);
