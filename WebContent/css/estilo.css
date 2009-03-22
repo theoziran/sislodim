@@ -23,7 +23,7 @@ input.button{
 	font-weight:bold;
 }
 
-.span{
+.obrigatorio{
 	float: right;
 	color: #FF0000;
 }
