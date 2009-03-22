@@ -25,6 +25,7 @@ public class Usuario implements Serializable {
 	@Basic @Column (name="USU_SENHA") private String senha;
 	@Basic @Column (name="USU_ATIVO") private int ativo;
 	
+	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}
