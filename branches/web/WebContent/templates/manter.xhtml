@@ -25,6 +25,7 @@
 								<rich:column colspan="3">
 									<ui:insert name="tituloTabela"></ui:insert>
 								</rich:column>
+								
 								<rich:column rowspan="2" colspan="2">
 									<h:outputText value="Ações" />
 								</rich:column>
@@ -32,28 +33,30 @@
 								<rich:column breakBefore="true">
 									<ui:insert name="campo1"></ui:insert>
 								</rich:column>
+								
 								<rich:column>
 									<ui:insert name="campo2"></ui:insert>
 								</rich:column>
+								
 								<rich:column>
 									<ui:insert name="campo3"></ui:insert>
-								</rich:column>
-
+								</rich:column>								
 							</rich:columnGroup>
 						</f:facet>
 						<rich:columnGroup>
 							<rich:column breakBefore="true">
 								<ui:insert name="campo11" id="campo11"></ui:insert>
 							</rich:column>
+							
 							<rich:column>
 								<ui:insert name="campo21" id="campo21"></ui:insert>
 							</rich:column>
+							
 							<rich:column>
 								<ui:insert name="campo31" id="campo31"></ui:insert>
 							</rich:column>
-
+							
 							<rich:column>
-
 								<a4j:commandButton value="Editar"
 									oncomplete="#{rich:component('editPanel')}.show()"
 									ajaxSingle="true" reRender="generica">
@@ -72,8 +75,8 @@
 								</h:commandButton>
 							</rich:column>
 						</rich:columnGroup>
-
 					</rich:dataTable>
+					
 					<rich:datascroller align="left" for="generica" maxPages="10" />
 					<rich:spacer height="30" />
 
@@ -99,12 +102,19 @@
 				<h:panelGrid columns="1">
 					<a4j:outputPanel ajaxRendered="true">
 						<h:panelGrid columns="2">
-							<ui:insert name="camposEdit">
-							</ui:insert>
+							<ui:insert name="camposEdit"></ui:insert>
 						</h:panelGrid>
 					</a4j:outputPanel>
+					
+					<h:panelGrid columns="2">
+					
 					<a4j:commandButton value="Editar" action="#{atualBean.update}"
-						oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('editPanel')}.hide();" reRender="generica"/>
+						oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('editPanel')}.hide();" reRender="generica"/>						
+					
+					<a4j:commandButton value="Cancelar" onclick="#{rich:component('editPanel')}.hide(); return false;" />
+					
+					</h:panelGrid>
+					
 				</h:panelGrid>
 			</h:form>
 		</rich:modalPanel>
