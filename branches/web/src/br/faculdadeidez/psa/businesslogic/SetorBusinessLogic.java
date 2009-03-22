@@ -9,8 +9,8 @@ public class SetorBusinessLogic {
 	public String delete(int codigo){
 		try {
 			DAOSetor dSetor = new DAOSetor();
-			Setor setor = dSetor.find( codigo );
-			dSetor.remove(setor);
+			Setor set = dSetor.find(codigo);			
+			dSetor.remove(set);
 			return "removido";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -18,11 +18,10 @@ public class SetorBusinessLogic {
 		}
 	}
 	
-	public String update(String nome){
+	public String update(Setor objeto){
 		try {
-			DAOSetor dSetor = new DAOSetor();
-			Setor setor = new Setor(nome);
-			dSetor.update(setor);
+			DAOSetor dSetor = new DAOSetor();							
+			dSetor.update(objeto);
 			return "atualizado";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -30,11 +29,10 @@ public class SetorBusinessLogic {
 		}
 	}
 	
-	public String create(String nome){
+	public String create(Setor objeto){
 		try {
 			DAOSetor dSetor = new DAOSetor();
-			Setor setor = new Setor(nome);
-			dSetor.persist(setor);
+			dSetor.persist(objeto);
 			return "inserido";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -43,10 +41,8 @@ public class SetorBusinessLogic {
 	}
 	
 
-	public List listar(){
+	public List<Setor> listar(){
 		DAOSetor dSetor = new DAOSetor();
-		List setores = dSetor.findAll();
-		return setores;
-		
+		return dSetor.findAll();		
 	}
 }

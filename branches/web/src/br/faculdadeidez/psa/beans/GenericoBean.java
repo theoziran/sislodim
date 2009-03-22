@@ -4,27 +4,21 @@ import br.faculdadeidez.psa.businesslogic.Fachada;
 
 public abstract class GenericoBean {
 
-	private GenericoBean elementoSelecionado;
+	private Object elementoSelecionado;
 	private String linkEditar;
 	private String valorBusca;
-	
 	
 	Fachada getFachada(){
 		return Fachada.getFachada();
 	}
-	
-	
-
 
 	public String getValorBusca() {
 		return valorBusca;
 	}
 
-
 	public void setValorBusca(String valorBusca) {
 		this.valorBusca = valorBusca;
 	}
-
 
 	public String getLinkEditar() {
 		return linkEditar;
@@ -34,13 +28,11 @@ public abstract class GenericoBean {
 		this.linkEditar = linkEditar;
 	}
 	
-	public GenericoBean getElementoSelecionado() {
+	public Object getElementoSelecionado() {
 		return elementoSelecionado;
 	}
 
-	public void setElementoSelecionado(GenericoBean elementoSelecionado) {
+	public void setElementoSelecionado(Object elementoSelecionado) {
 		this.elementoSelecionado = elementoSelecionado;
-	}
-
-	
+	}	
 }

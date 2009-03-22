@@ -14,13 +14,12 @@ import javax.persistence.Table;
 @Entity 
 @Table (name="SIS_SETOR")
 public class Setor implements Serializable {	
-	
-	
-	
+		
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) 
 	@Column (name="SET_CODIGO")
 	private int codigo;
-	@Basic @Column (name="SET_NOME") private String nome;
+	@Basic @Column (name="SET_NOME") 
+	private String nome;
 	
 	public Setor() {
 		// TODO Auto-generated constructor stub
@@ -28,13 +27,18 @@ public class Setor implements Serializable {
 	
 	public Setor(String nome)
 	{
-		this.nome = nome;
+		setNome(nome);
+	}
+	
+	public Setor(int codigo)
+	{
+		setCodigo(codigo);
 	}
 	
 	public Setor(int codigo, String nome)
 	{
-		this.codigo = codigo;
-		this.nome = nome;
+		setCodigo(codigo);
+		setNome(nome);
 	}
 
 	public int getCodigo() {

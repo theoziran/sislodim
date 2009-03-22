@@ -21,20 +21,5 @@ public class DAOSetor extends DAOFactory<Setor> {
 	
 	public List<Setor> findAll(){
 		return super.findAll(Setor.class);
-	}
-	
-	public List<Setor> findAllActive(){
-		Query query = getManager().createQuery("select a from SIS_SETOR a");
-		List<Setor> result;
-		result = query.getResultList();
-		return  result;
-	}
-	
-	public List<Setor> findAllInactive(){
-		Query query = getManager().createQuery("select a from SIS_SETOR a");
-		List<Setor> result;
-		result = query.getResultList();
-		return  result;
-	}
-	
+	}	
 }
