@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich"> 
+
+<ui:composition template="/includes/edit-setor.xhtml">
+ 	<ui:param name="atualBean" value="#{setorBean}" />    
+ 	<ui:define name="tituloTabela">Dados básicos</ui:define>
+ 	                      
+    <ui:define name="campo1"><h:outputText value="Código" /></ui:define>
+    <ui:define name="campo2"><h:outputText value="Nome" /></ui:define>
+    
+    <ui:define name="campo11"><h:outputText value="#{elementoDaVez.codigo}"/></ui:define>
+    <ui:define name="campo21"><h:outputText value="#{elementoDaVez.nome}" /></ui:define>             
+</ui:composition>
+</html>

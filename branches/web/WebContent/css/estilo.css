@@ -88,6 +88,9 @@ input.button{
 #geral #conteudo div.auth input.button{
 	float:left;
 }
+#geral #conteudo div.form {
+	margin-top: 15px;
+}
 #geral #conteudo div.form label{
 	font-size:11px;
 	font-weight:bold;

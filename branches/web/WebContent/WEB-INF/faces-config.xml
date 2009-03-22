@@ -16,6 +16,16 @@
         <managed-bean-class>br.faculdadeidez.psa.beans.UsuarioBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+	<managed-bean>
+		<managed-bean-name>setorBean</managed-bean-name>
+		<managed-bean-class>br.faculdadeidez.psa.beans.SetorBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>viaturaBean</managed-bean-name>
+		<managed-bean-class>br.faculdadeidez.psa.beans.ViaturaBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>	
     
     <!-- Navegação global -->
     <navigation-rule>  
@@ -30,6 +40,38 @@
              <to-view-id>/pages/adminUsuario.xhtml</to-view-id>
          </navigation-case>    
      </navigation-rule>
+          
+     <!-- setor  -->     
+     <navigation-rule>  
+        <navigation-case>  
+             <from-outcome>cadastroSetor</from-outcome>
+             <to-view-id>/pages/cadastroSetor.xhtml</to-view-id>
+         </navigation-case>    
+     </navigation-rule>
+     <navigation-rule>  
+        <navigation-case>  
+             <from-outcome>adminSetor</from-outcome>
+             <to-view-id>/pages/adminSetor.xhtml</to-view-id>
+         </navigation-case>    
+     </navigation-rule>
+     
+     <!-- /setor -->
+     
+      <!-- viatura  -->     
+     <navigation-rule>  
+        <navigation-case>  
+             <from-outcome>cadastroViatura</from-outcome>
+             <to-view-id>/pages/cadastroViatura.xhtml</to-view-id>
+         </navigation-case>    
+     </navigation-rule>
+     <navigation-rule>  
+        <navigation-case>  
+             <from-outcome>adminViatura</from-outcome>
+             <to-view-id>/pages/adminViatura.xhtml</to-view-id>
+         </navigation-case>    
+     </navigation-rule>
+     
+     <!-- /viatura -->
 	
 
 </faces-config>

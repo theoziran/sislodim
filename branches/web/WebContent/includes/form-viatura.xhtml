@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<ui:composition>
+		<div class="form">
+
+			<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Código da viatura" />
+				<h:inputText id="codigo" value="#{viaturaBean.codigo}" />
+				<h:commandButton action="#{viaturaBean.create}" value="Cadastrar" />
+				<h:commandLink action="adminViatura" value="Administrar" />
+			</h:panelGrid>
+			</h:form>
+		</div>
+	</ui:composition>
+	</html>
