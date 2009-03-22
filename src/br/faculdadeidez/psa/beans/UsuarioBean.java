@@ -75,16 +75,16 @@ public class UsuarioBean extends GenericoBean{
 
 	public String delete(){
 		UsuarioBean usuarioDaVez = (UsuarioBean) getElementoSelecionado();
-		return getFachada().delete(usuarioDaVez.getId());
+		return getFachada().deleteUsuario(usuarioDaVez.getId());
 	}
 	
 	public String update(){
 		UsuarioBean usuarioDaVez = (UsuarioBean) getElementoSelecionado();
-		return getFachada().update(usuarioDaVez.getNome(), usuarioDaVez.getLogin(), usuarioDaVez.getSenha(), usuarioDaVez.getId(), usuarioDaVez.getAtivo());
+		return getFachada().updateUsuario(usuarioDaVez.getNome(), usuarioDaVez.getLogin(), usuarioDaVez.getSenha(), usuarioDaVez.getId(), usuarioDaVez.getAtivo());
 	}
 	
 	public String create(){
-		return getFachada().create(getNome(), getLogin(), getSenha());
+		return getFachada().createUsuario(getNome(), getLogin(), getSenha());
 	}
 
 

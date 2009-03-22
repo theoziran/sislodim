@@ -10,9 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity 
 @Table (name="SIS_SETOR")
 public class Setor implements Serializable {	
+	
+	
+	
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) 
 	@Column (name="SET_CODIGO")
 	private int codigo;

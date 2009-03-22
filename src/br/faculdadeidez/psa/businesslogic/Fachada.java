@@ -28,17 +28,17 @@ public class Fachada {
 		return logicaUsuario.logon(login, senha);
 	}
 
-	public String delete(int id){
+	public String deleteUsuario(int id){
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
 		return logicaUsuario.delete(id);
 	}
 	
-	public String update(String nome, String login, String senha, int id, int ativo){
+	public String updateUsuario(String nome, String login, String senha, int id, int ativo){
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
 		return logicaUsuario.update(nome, login, senha, id, ativo);
 	}
 	
-	public String create(String nome, String login, String senha){
+	public String createUsuario(String nome, String login, String senha){
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
 		return logicaUsuario.create(nome, login, senha);
 	}
