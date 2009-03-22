@@ -13,25 +13,7 @@ import br.faculdadeidez.psa.entity.Usuario;
 
 public class UsuarioBusinessLogic {
 
-	private final Usuario convertUsuario(String nome, String login, String senha, int id, int ativo){
-		Usuario user = new Usuario();
-		user.setLogin(login);
-		user.setNome(nome);
-		user.setSenha(senha);
-		user.setId(id);
-		user.setAtivo(ativo);
-		return user;
-		
-	}
 	
-	private final Usuario convertUsuario(String nome, String login, String senha){
-		Usuario user = new Usuario();
-		user.setLogin(login);
-		user.setNome(nome);
-		user.setSenha(senha);
-		return user;
-		
-	}
 	
 	public String logon(String login, String senha) {
 		try {
@@ -73,7 +55,7 @@ public class UsuarioBusinessLogic {
 	public String update(String nome, String login, String senha, int id, int ativo){
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
-			Usuario user = convertUsuario(nome, login, senha, id, ativo);
+			Usuario user = new Usuario(nome, login, senha, id, ativo);
 			if (user.getSenha().equals("")){
 				user.setSenha(dUsuario.find(user.getId()).getSenha());
 			}
@@ -88,7 +70,7 @@ public class UsuarioBusinessLogic {
 	public String create(String nome, String login, String senha){
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
-			Usuario user = convertUsuario(nome, login, senha);
+			Usuario user = new Usuario(nome, login, senha);
 			user.setAtivo(1);
 			dUsuario.persist(user);
 			return "inserido";
