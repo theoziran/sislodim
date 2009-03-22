@@ -91,13 +91,9 @@ public class UsuarioBean extends GenericoBean {
 	}
 
 	public List getListaTudo() {
-		/*if (listaTudo==null || listaTudo.isEmpty())
-			setListaTudo(getFachada().listaUsuarios());*/
-		/* removido o código acima pois quando a lista era preenchida e algum registro
-		 * era adicionado, a listagem não era atualizada.  
-		 */
-				
-		return getFachada().listaUsuarios();
+		if (listaTudo==null || listaTudo.isEmpty() || (!listaTudo.equals(getFachada().listaUsuarios())))
+			setListaTudo(getFachada().listaUsuarios());
+		return listaTudo;
 	}
 
 	public void setListaTudo(List listaTudo) {
