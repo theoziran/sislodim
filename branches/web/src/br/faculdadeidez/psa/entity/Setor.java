@@ -18,9 +18,8 @@ public class Setor implements Serializable {
 	private int codigo;
 	@Basic @Column (name="SET_NOME") private String nome;
 	
-	public Setor()
-	{
-		
+	public Setor() {
+		// TODO Auto-generated constructor stub
 	}
 	
 	public Setor(String nome)
