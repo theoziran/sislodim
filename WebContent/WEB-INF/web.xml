@@ -31,71 +31,40 @@
 		</context-param>
 
 	<!-- Plugging the "Blue Sky" skin into the project -->
-
 	<context-param>
-
 		<param-name>org.ajax4jsf.VIEW_HANDLERS</param-name>
-
 		<param-value>com.sun.facelets.FaceletViewHandler</param-value>
-
 	</context-param>
-
-
 
 	<context-param>
-
 		<param-name>org.richfaces.SKIN</param-name>
-
 		<param-value>blueSky</param-value>
-
 	</context-param>
-
-
 
 	<!-- Making the RichFaces skin spread to standard HTML controls -->
-
 	<context-param>
-
 		<param-name>org.richfaces.CONTROL_SKINNING</param-name>
-
 		<param-value>enable</param-value>
-
 	</context-param>
-
 
 	<context-param>
-
 		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-
 		<param-value>server</param-value>
-
 	</context-param>
-
 
 	<!-- Defining and mapping the RichFaces filter -->
-
 	<filter>
-
 		<display-name>RichFaces Filter</display-name>
-
 		<filter-name>richfaces</filter-name>
-
 		<filter-class>org.ajax4jsf.Filter</filter-class>
-
 	</filter>
 
 	<filter-mapping>
-
 		<filter-name>richfaces</filter-name>
-
 		<servlet-name>Faces Servlet</servlet-name>
-
 		<dispatcher>REQUEST</dispatcher>
-
 		<dispatcher>FORWARD</dispatcher>
-
 		<dispatcher>INCLUDE</dispatcher>
-
 	</filter-mapping>
 
  <!-- Filtro de sessao   -->  
@@ -108,13 +77,6 @@
          <url-pattern>adminUsuario.st</url-pattern>  
      </filter-mapping -->
         
-
- 	<session-config>
-        <session-timeout>30</session-timeout>
-    </session-config>
-
-
-
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
