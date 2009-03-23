@@ -73,7 +73,11 @@ public class UsuarioBean extends GenericoBean {
 	}
 	
 	public String logon() {
-		return getFachada().logon(getLogin(), getSenha());
+		String mensagem=getFachada().logon(getLogin(), getSenha());
+		if (mensagem.equals("logado")){
+			adicionarMensagem("Logado com sucesso");
+		}
+		return mensagem;
 	}
 
 	public String delete(){

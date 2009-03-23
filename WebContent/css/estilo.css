@@ -27,6 +27,10 @@ input.button{
 	float: right;
 	color: #FF0000;
 }
+.mensagens{
+list-style: none;
+font-weight: bold;
+}
 #geral{
 	width:770px;
 	min-height:500px;
