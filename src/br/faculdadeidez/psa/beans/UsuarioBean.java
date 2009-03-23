@@ -8,6 +8,9 @@ public class UsuarioBean extends GenericoBean {
 	private String login;
 	private String senha;
 	private int ativo;
+	private String cpf;
+	private String rg;
+	private String orgExpeditor;
 	private List listaTudo;
 	private int tipoLista;	
 
@@ -62,7 +65,31 @@ public class UsuarioBean extends GenericoBean {
 
 	public void setAtivo(int ativo) {
 		this.ativo = ativo;
-	}	
+	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+	public String getOrgExpeditor() {
+		return orgExpeditor;
+	}
+
+	public void setOrgExpeditor(String orgExpeditor) {
+		this.orgExpeditor = orgExpeditor;
+	}
 
 	public int getTipoLista() {
 		return tipoLista;

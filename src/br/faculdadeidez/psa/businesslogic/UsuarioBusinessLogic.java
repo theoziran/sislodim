@@ -73,9 +73,19 @@ public class UsuarioBusinessLogic {
 			DAOUsuario dUsuario = new DAOUsuario();
 			
 			if(dUsuario.findByField("login", user.getLogin()) == null){
-				user.setAtivo(1);
-				dUsuario.persist(user);
-				return "inserido";
+				if(dUsuario.findByField("cpf", user.getCpf()) == null){
+					if((dUsuario.findByField("rg", user.getRg()) == null)  && (dUsuario.findByField("orgExpeditor", user.getOrgExpeditor()) == null)){
+						user.setAtivo(1);
+						dUsuario.persist(user);
+						return "inserido";
+					}
+					else{
+						return "rgExistente";
+					}
+				}
+				else{
+					return "cpfExistente";
+				}
 			}
 			else{
 				return "usuarioExistente";

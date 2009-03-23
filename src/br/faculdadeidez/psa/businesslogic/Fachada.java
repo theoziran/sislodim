@@ -28,7 +28,7 @@ public class Fachada {
 	}
 	
 	/*
-	 * Métodos para os Usuários
+	 * Mï¿½todos para os Usuï¿½rios
 	 */
 	
 	public String logon(String login, String senha) {
@@ -45,7 +45,7 @@ public class Fachada {
 	
 	public String updateUsuario(UsuarioBean originalBean){
 		UsuarioBean bean = originalBean;
-		Usuario ent = new Usuario(bean.getNome(), bean.getLogin(), bean.getSenha(), bean.getId(), bean.getAtivo());
+		Usuario ent = new Usuario(bean.getNome(), bean.getLogin(), bean.getSenha(), bean.getId(), bean.getAtivo(),bean.getCpf(), bean.getRg(), bean.getOrgExpeditor());
 		
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
 		return logicaUsuario.update(ent);
@@ -53,7 +53,7 @@ public class Fachada {
 	
 	public String createUsuario(UsuarioBean originalBean){
 		UsuarioBean bean = originalBean;
-		Usuario ent = new Usuario(bean.getNome(), bean.getLogin(), bean.getSenha());
+		Usuario ent = new Usuario(bean.getNome(), bean.getLogin(), bean.getSenha(), bean.getCpf(), bean.getRg(), bean.getOrgExpeditor());
 		
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
 		return logicaUsuario.create(ent);
@@ -93,7 +93,7 @@ public class Fachada {
 	}
 	
 	/*
-	 * Métodos para os Setores
+	 * Mï¿½todos para os Setores
 	 */
 	
 	public String deleteSetor(SetorBean bean){		
@@ -127,7 +127,7 @@ public class Fachada {
 	}	
 	
 	/*
-	 * Métodos para as Viaturas
+	 * Mï¿½todos para as Viaturas
 	 */
 	
 	public String deleteViatura(ViaturaBean bean){		
