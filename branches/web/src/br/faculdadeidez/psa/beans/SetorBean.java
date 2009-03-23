@@ -62,6 +62,16 @@ public class SetorBean extends GenericoBean {
 	
 	public String create()
 	{
+		String mensagem = getFachada().createSetor(this);
+		
+		if(mensagem.equals("setorExistente")){
+			
+			adicionarMensagem("Setor já existente");
+			
+		}else if (mensagem.equals("problemaInserir")) {
+			
+			adicionarMensagem("Error...");
+		}
 		return getFachada().createSetor(this);
 	}
 }

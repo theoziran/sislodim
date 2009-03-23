@@ -62,6 +62,17 @@ public class ViaturaBean extends GenericoBean {
 	
 	public String create()
 	{
-		return getFachada().createViatura(this);
+		String mensagem = getFachada().createViatura(this);
+		
+		if(mensagem.equals("viaturaExistente")){
+			
+			adicionarMensagem("Viatura já existe");
+			
+		}else if (mensagem.equals("problemaInserir")) {
+			
+			adicionarMensagem("Error...");
+			
+		}
+		return mensagem;
 	}
 }
