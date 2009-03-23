@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12369044727503" configfile="/Sislodim/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="*" id="pf12374706509843" outlinks="pf12374708735788 pf12374708735789" path="*"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/adminUsuario" id="pf123747087357810" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf12374708735788" path="/pages/adminUsuario.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/cadastroUsuario" id="pf123747087357811" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf12374708735789" path="/pages/cadastroUsuario.xhtml"/>
-  <links id="pf12374708735788" target="pf123747087357810" source="pf12374706509843" outcome="adminUsuario"/>
-  <links id="pf12374708735789" target="pf123747087357811" source="pf12374706509843" outcome="cadastroUsuario"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1138" id="pf12374706509843" outlinks="pf12377811723900 pf12377811723901 pf12377811723902 pf12377811723903 pf12377811723904 pf12377811723905" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/cadastroUsuario" id="pf12377811723906" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf12377811723900" path="/pages/cadastroUsuario.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/adminUsuario" id="pf12377811723907" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf12377811723901" path="/pages/adminUsuario.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/cadastroSetor" id="pf12377811723908" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf12377811723902" path="/pages/cadastroSetor.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/adminSetor" id="pf12377811723909" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf12377811723903" path="/pages/adminSetor.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/cadastroViatura" id="pf123778117239010" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf12377811723904" path="/pages/cadastroViatura.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/adminViatura" id="pf123778117239011" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf12377811723905" path="/pages/adminViatura.xhtml"/>
+  <links id="pf12377811723900" target="pf12377811723906" source="pf12374706509843" outcome="cadastroUsuario"/>
+  <links id="pf12377811723901" target="pf12377811723907" source="pf12374706509843" outcome="adminUsuario"/>
+  <links id="pf12377811723902" target="pf12377811723908" source="pf12374706509843" outcome="cadastroSetor"/>
+  <links id="pf12377811723903" target="pf12377811723909" source="pf12374706509843" outcome="adminSetor"/>
+  <links id="pf12377811723904" target="pf123778117239010" source="pf12374706509843" outcome="cadastroViatura"/>
+  <links id="pf12377811723905" target="pf123778117239011" source="pf12374706509843" outcome="adminViatura"/>
 </pageflow:Pageflow>
