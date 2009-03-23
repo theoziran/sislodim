@@ -118,7 +118,17 @@ public class UsuarioBean extends GenericoBean {
 	}
 	
 	public String create(){
-		return getFachada().createUsuario(this);
+		String mensagem = getFachada().createUsuario(this);
+		
+		if(mensagem.equals("usuarioExistente")){
+			
+			adicionarMensagem("Já existe um usuário com este login");
+			
+		}else if (mensagem.equals("problemaInserir")) {
+			
+			adicionarMensagem("Error...");
+		}
+		return mensagem;	
 	}
 
 	public List getListaTudo() {
