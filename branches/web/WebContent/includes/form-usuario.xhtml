@@ -13,6 +13,12 @@
 			<h:panelGrid columns="2">
 				<h:outputLabel value="* Nome"/>
 				<h:inputText id="nome" value="#{usuarioBean.nome}" required="true"/>		
+				<h:outputLabel value="*CPF" />
+				<h:inputText id="cpf" value="#{usuarioBean.cpf}" required="true"/>
+				<h:outputLabel value="*RG" />
+				<h:inputText id="rg" value="#{usuarioBean.rg}" required="true"/>
+				<h:outputLabel value="*Órgão Expeditor" />
+				<h:inputText id="orgExpeditor" value="#{usuarioBean.orgExpeditor}" required="true"/>
 				<h:outputLabel value="*Login" />
 				<h:inputText id="login" value="#{usuarioBean.login}" required="true"/>
 				<h:outputLabel value="*Senha" />
