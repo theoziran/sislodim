@@ -32,8 +32,14 @@ public class SetorBusinessLogic {
 	public String create(Setor objeto){
 		try {
 			DAOSetor dSetor = new DAOSetor();
-			dSetor.persist(objeto);
-			return "inserido";
+			
+			if(dSetor.findByField("nome",objeto.getNome()) == null){
+				dSetor.persist(objeto);
+				return "inserido";
+			}else{
+				return "setorExistente";
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			return "problemaInserir";

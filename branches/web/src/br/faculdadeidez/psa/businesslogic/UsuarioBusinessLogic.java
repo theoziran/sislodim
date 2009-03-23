@@ -34,7 +34,7 @@ public class UsuarioBusinessLogic {
 			}
 			throw new Exception();
 		} catch (Exception e) {
-			System.out.println("Usuário não existe ou senha incorreta");
+			System.out.println("Usuï¿½rio nï¿½o existe ou senha incorreta");
 			return "naoEncontrado";
 		}
 	}
@@ -71,9 +71,16 @@ public class UsuarioBusinessLogic {
 	public String create(Usuario user){
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
-			user.setAtivo(1);
-			dUsuario.persist(user);
-			return "inserido";
+			
+			if(dUsuario.findByField("login", user.getLogin()) == null){
+				user.setAtivo(1);
+				dUsuario.persist(user);
+				return "inserido";
+			}
+			else{
+				return "usuarioExistente";
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			return "problemaInserir";
