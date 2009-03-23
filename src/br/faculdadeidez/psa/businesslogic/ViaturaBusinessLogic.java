@@ -32,8 +32,14 @@ public class ViaturaBusinessLogic {
 	public String create(Viatura objeto){
 		try {
 			DAOViatura dViatura = new DAOViatura();
-			dViatura.persist(objeto);
-			return "inserido";
+			
+			if(dViatura.find(objeto.getCodigo()) == null){
+				dViatura.persist(objeto);
+				return "inserido";
+			}else{
+				return "viaturaExistente";
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			return "problemaInserir";

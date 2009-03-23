@@ -11,12 +11,12 @@
 
 			<h:form>
 			<h:panelGrid columns="2">
-				<h:outputLabel value="* Nome" />
-				<h:inputText id="nome" value="#{usuarioBean.nome}" />		
-				<h:outputLabel value="Login" />
-				<h:inputText id="login" value="#{usuarioBean.login}" />
-				<h:outputLabel value="Senha" />
-				<h:inputSecret id="senha" value="#{usuarioBean.senha}" />
+				<h:outputLabel value="* Nome"/>
+				<h:inputText id="nome" value="#{usuarioBean.nome}" required="true"/>		
+				<h:outputLabel value="*Login" />
+				<h:inputText id="login" value="#{usuarioBean.login}" required="true"/>
+				<h:outputLabel value="*Senha" />
+				<h:inputSecret id="senha" value="#{usuarioBean.senha}" required="true"/>
 				<h:commandButton action="#{usuarioBean.create}" value="Cadastrar" />
 				<h:commandLink action="adminUsuario" value="Administrar" />
 			</h:panelGrid>
