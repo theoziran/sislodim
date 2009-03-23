@@ -1,3 +1,4 @@
+package br.faculdadeidez.psa.tests;
 import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
 import br.faculdadeidez.psa.entity.Usuario;
 import junit.framework.TestCase;
