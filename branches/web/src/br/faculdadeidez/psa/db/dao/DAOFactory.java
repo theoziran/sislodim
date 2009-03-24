@@ -1,4 +1,4 @@
-package br.faculdadeidez.psa.db;
+package br.faculdadeidez.psa.db.dao;
 
 import java.util.List;
 
@@ -47,7 +47,7 @@ public class DAOFactory<T> {
 	List<T> findAll(Class<T> classe) {
 		Query query = manager.createQuery("select a from "+classe.getSimpleName()+" a");
 		List<T> result = null;
-		result = query.getResultList();
+		result = query.getResultList();					
 		return  result;
 	}
 
@@ -55,8 +55,5 @@ public class DAOFactory<T> {
 		Query query = manager.createQuery("select a from "+classe.getSimpleName()+" a " + "where a."
 				+ campo + " = \"" + valor + "\"");
 		return (List<T>) query.getResultList();
-	}
-
-	
-	
+	}	
 }

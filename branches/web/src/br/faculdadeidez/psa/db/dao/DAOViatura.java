@@ -1,9 +1,9 @@
-package br.faculdadeidez.psa.db;
+package br.faculdadeidez.psa.db.dao;
 
 import java.util.List;
 
-import br.faculdadeidez.psa.entity.Setor;
-import br.faculdadeidez.psa.entity.Viatura;
+import br.faculdadeidez.psa.db.entity.Setor;
+import br.faculdadeidez.psa.db.entity.Viatura;
 
 public class DAOViatura extends DAOFactory<Viatura> {
 	public DAOViatura() {

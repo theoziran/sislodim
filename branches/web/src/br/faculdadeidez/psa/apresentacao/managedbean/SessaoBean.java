@@ -1,4 +1,4 @@
-package br.faculdadeidez.psa.beans;
+package br.faculdadeidez.psa.apresentacao.managedbean;
 
 
 

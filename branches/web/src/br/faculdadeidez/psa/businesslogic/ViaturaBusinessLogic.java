@@ -2,8 +2,8 @@ package br.faculdadeidez.psa.businesslogic;
 
 import java.util.List;
 
-import br.faculdadeidez.psa.db.DAOViatura;
-import br.faculdadeidez.psa.entity.Viatura;
+import br.faculdadeidez.psa.db.dao.DAOViatura;
+import br.faculdadeidez.psa.db.entity.Viatura;
 
 public class ViaturaBusinessLogic {
 	public String delete(String codigo){

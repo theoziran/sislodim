@@ -2,14 +2,15 @@ package br.faculdadeidez.psa.businesslogic;
 
 import java.util.List;
 
-import br.faculdadeidez.psa.db.DAOSetor;
-import br.faculdadeidez.psa.entity.Setor;
+import br.faculdadeidez.psa.db.dao.DAOSetor;
+import br.faculdadeidez.psa.db.entity.Setor;
+import br.faculdadeidez.psa.vo.SetorVO;
 
 public class SetorBusinessLogic {
-	public String delete(int codigo){
+	public String delete(SetorVO vo){
 		try {
 			DAOSetor dSetor = new DAOSetor();
-			Setor set = dSetor.find(codigo);			
+			SetorVO set = dSetor.find(vo.getCodigo());			
 			dSetor.remove(set);
 			return "removido";
 		} catch (Exception e) {
@@ -18,10 +19,10 @@ public class SetorBusinessLogic {
 		}
 	}
 	
-	public String update(Setor objeto){
+	public String update(SetorVO vo){
 		try {
 			DAOSetor dSetor = new DAOSetor();							
-			dSetor.update(objeto);
+			dSetor.update(vo);
 			return "atualizado";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -29,12 +30,12 @@ public class SetorBusinessLogic {
 		}
 	}
 	
-	public String create(Setor objeto){
+	public String create(SetorVO vo){
 		try {
 			DAOSetor dSetor = new DAOSetor();
 			
-			if(dSetor.findByField("nome",objeto.getNome()) == null){
-				dSetor.persist(objeto);
+			if(dSetor.findByField("nome",vo.getNome()) == null){
+				dSetor.persist(vo);
 				return "inserido";
 			}else{
 				return "setorExistente";
@@ -47,7 +48,7 @@ public class SetorBusinessLogic {
 	}
 	
 
-	public List<Setor> listar(){
+	public List<SetorVO> listar(){
 		DAOSetor dSetor = new DAOSetor();
 		return dSetor.findAll();		
 	}

@@ -1,14 +1,16 @@
-package br.faculdadeidez.psa.businesslogic;
+package br.faculdadeidez.psa.facade;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.faculdadeidez.psa.beans.SetorBean;
-import br.faculdadeidez.psa.beans.UsuarioBean;
-import br.faculdadeidez.psa.beans.ViaturaBean;
-import br.faculdadeidez.psa.entity.Setor;
-import br.faculdadeidez.psa.entity.Usuario;
-import br.faculdadeidez.psa.entity.Viatura;
+import br.faculdadeidez.psa.apresentacao.managedbean.UsuarioBean;
+import br.faculdadeidez.psa.apresentacao.managedbean.ViaturaBean;
+import br.faculdadeidez.psa.businesslogic.SetorBusinessLogic;
+import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
+import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
+import br.faculdadeidez.psa.db.entity.Usuario;
+import br.faculdadeidez.psa.db.entity.Viatura;
+import br.faculdadeidez.psa.vo.SetorVO;
 
 
 public class Fachada {
@@ -28,7 +30,7 @@ public class Fachada {
 	}
 	
 	/*
-	 * Mï¿½todos para os Usuï¿½rios
+	 * Métodos para os Usuários
 	 */
 	
 	public String logon(String login, String senha) {
@@ -93,41 +95,28 @@ public class Fachada {
 	}
 	
 	/*
-	 * Mï¿½todos para os Setores
+	 * Métodos para os Setores
 	 */
 	
-	public String deleteSetor(SetorBean bean){		
-		SetorBusinessLogic logica = new SetorBusinessLogic();
-		return logica.delete(bean.getCodigo());
+	public String deleteSetor(SetorVO vo){		
+		return new SetorBusinessLogic().delete(vo);
 	}
 	
-	public String updateSetor(SetorBean bean){
-		Setor ent = new Setor(bean.getCodigo(), bean.getNome());
-		
-		SetorBusinessLogic logica = new SetorBusinessLogic();
-		return logica.update(ent);
+	public String updateSetor(SetorVO vo){
+		return new SetorBusinessLogic().update(vo);
 	}
 	
-	public String createSetor(SetorBean bean){
-		Setor ent = new Setor(bean.getCodigo(), bean.getNome());
-		
-		SetorBusinessLogic logica = new SetorBusinessLogic();
-		return logica.create(ent);
+	public String createSetor(SetorVO vo){
+		return new SetorBusinessLogic().create(vo);
 	}
 	
-	public List<SetorBean> listarSetores()
+	public List<SetorVO> listarSetores()
 	{
-		ArrayList<SetorBean> beanLista = new ArrayList<SetorBean>();		
-		SetorBusinessLogic logica = new SetorBusinessLogic();
-		
-		for (Setor objeto : logica.listar())
-			beanLista.add(new SetorBean(objeto.getCodigo(), objeto.getNome()));
-		
-		return beanLista;
+		return new SetorBusinessLogic().listar();
 	}	
 	
 	/*
-	 * Mï¿½todos para as Viaturas
+	 * Métodos para as Viaturas
 	 */
 	
 	public String deleteViatura(ViaturaBean bean){		
