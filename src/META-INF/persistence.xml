@@ -2,9 +2,9 @@
 <persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence">
 <persistence-unit name="sislodim" transaction-type="RESOURCE_LOCAL">
 <provider>oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider</provider>
-<class>br.faculdadeidez.psa.entity.Usuario</class>
-<class>br.faculdadeidez.psa.entity.Setor</class>
-<class>br.faculdadeidez.psa.entity.Viatura</class>
+<class>br.faculdadeidez.psa.db.entity.Usuario</class>
+<class>br.faculdadeidez.psa.db.entity.Setor</class>
+<class>br.faculdadeidez.psa.db.entity.Viatura</class>
 <properties>
 <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/sislodim" />
 <property name="toplink.jdbc.user" value="root" />
