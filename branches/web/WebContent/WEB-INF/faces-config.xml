@@ -8,19 +8,16 @@
 	<application>
 		<!-- tell JSF to use Facelets -->
 		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
-
-
 	</application>
-
 
 	<application>
 		<locale-config>
 			<default-locale>br</default-locale>
 		</locale-config>
-		<message-bundle>br.faculdadeidez.psa.bundle.messages</message-bundle>
-<resource-bundle>
-            <base-name>br.faculdadeidez.psa.bundle.messages</base-name>
-            <var>msgs</var>            
+		<message-bundle>br.faculdadeidez.psa.apresentacao.bundle.messages</message-bundle>
+		<resource-bundle>
+        	<base-name>br.faculdadeidez.psa.apresentacao.bundle.messages</base-name>
+        	<var>msgs</var>            
         </resource-bundle>
 	</application>
 
@@ -28,21 +25,21 @@
 	<managed-bean>
 		<managed-bean-name>usuarioBean</managed-bean-name>
 		<managed-bean-class>
-			br.faculdadeidez.psa.beans.UsuarioBean
+			br.faculdadeidez.psa.apresentacao.managedbean.UsuarioBean
 		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>setorBean</managed-bean-name>
 		<managed-bean-class>
-			br.faculdadeidez.psa.beans.SetorBean
+			br.faculdadeidez.psa.apresentacao.managedbean.SetorBean
 		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>viaturaBean</managed-bean-name>
 		<managed-bean-class>
-			br.faculdadeidez.psa.beans.ViaturaBean
+			br.faculdadeidez.psa.apresentacao.managedbean.ViaturaBean
 		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>

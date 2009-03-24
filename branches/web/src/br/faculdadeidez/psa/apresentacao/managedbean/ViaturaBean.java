@@ -2,15 +2,6 @@ package br.faculdadeidez.psa.apresentacao.managedbean;
 
 import java.util.List;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import br.faculdadeidez.psa.businesslogic.SetorBusinessLogic;
-import br.faculdadeidez.psa.db.entity.Setor;
-
 public class ViaturaBean extends GenericoBean {
 	private List<ViaturaBean> listaTudo = null;
 	
