@@ -1,4 +1,4 @@
-package br.faculdadeidez.psa.servlets;
+package br.faculdadeidez.psa.apresentacao.servlets;
 
 import java.io.IOException;
 
