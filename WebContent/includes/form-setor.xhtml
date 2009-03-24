@@ -12,7 +12,7 @@
 			<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="*Nome do setor"/>
-				<h:inputText id="nome" value="#{setorBean.nome}" required="true"/>
+				<h:inputText id="nome" value="#{setorBean.setor.nome}" required="true"/>
 				<h:commandButton action="#{setorBean.create}" value="Cadastrar" />
 				<h:commandLink action="adminSetor" value="Administrar" />
 				<h:messages styleClass="mensagens" showDetail="false" />
