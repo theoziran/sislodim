@@ -1,4 +1,4 @@
-package br.faculdadeidez.psa.entity;
+package br.faculdadeidez.psa.db.entity;
 
 import java.io.Serializable;
 
@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.faculdadeidez.psa.vo.SetorVO;
+
 @SuppressWarnings("serial")
 @Entity 
 @Table (name="SIS_SETOR")
@@ -20,6 +22,19 @@ public class Setor implements Serializable {
 	private int codigo;
 	@Basic @Column (name="SET_NOME") 
 	private String nome;
+	
+	/*********************************************************/
+	/******** Conversão do objeto Setor para o SetorVO *******/
+	/*********************************************************/
+	public Setor(SetorVO vo) {
+		this.codigo = vo.getCodigo();
+		this.nome = vo.getNome();
+	}
+	
+	public static SetorVO VO(Setor obj){
+		return new SetorVO(obj.getCodigo(), obj.getNome());
+	}
+	/*********************************************************/
 	
 	public Setor() {
 		// TODO Auto-generated constructor stub

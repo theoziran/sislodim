@@ -1,0 +1,48 @@
+package br.faculdadeidez.psa.db.dao;
+
+import java.util.List;
+import java.util.Vector;
+
+import br.faculdadeidez.psa.db.entity.Setor;
+import br.faculdadeidez.psa.vo.SetorVO;
+
+public class DAOSetor extends DAOFactory<Setor> {
+	public DAOSetor() {
+		super();
+	}
+	
+	public SetorVO find(int chave){		
+		return Setor.VO(super.find(Setor.class, chave));
+	}
+	
+	public List<SetorVO> findByField(String campo, String valor){
+		return ConvertList(super.findByField(Setor.class, campo, valor));
+	}
+	
+	public List<SetorVO> findAll(){
+		return ConvertList(super.findAll(Setor.class));
+	}
+	
+	public void update(SetorVO vo){		
+		super.update(new Setor(vo));
+	}
+	
+	public void persist(SetorVO vo){		
+		super.persist(new Setor(vo));
+	}
+	
+	public void remove(SetorVO vo){		
+		super.remove(new Setor(vo));
+	}
+	
+	/*
+	 * Converte um List<Tipo1> para um List<Tipo2>
+	 */
+	private List<SetorVO> ConvertList(List<Setor> lista)
+	{
+		List<SetorVO> newLista = new Vector<SetorVO>();
+		for(Setor set : lista)
+			newLista.add(Setor.VO(set));		
+		return newLista;
+	}
+}

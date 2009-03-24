@@ -1,4 +1,4 @@
-package br.faculdadeidez.psa.entity;
+package br.faculdadeidez.psa.db.entity;
 
 import java.io.Serializable;
 

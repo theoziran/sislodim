@@ -1,9 +1,9 @@
-package br.faculdadeidez.psa.beans;
+package br.faculdadeidez.psa.apresentacao.managedbean;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import br.faculdadeidez.psa.businesslogic.Fachada;
+import br.faculdadeidez.psa.facade.Fachada;
 
 public abstract class GenericoBean {
 

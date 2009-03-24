@@ -1,10 +1,10 @@
-package br.faculdadeidez.psa.db;
+package br.faculdadeidez.psa.db.dao;
 
 import java.util.List;
 
 import javax.persistence.Query;
 
-import br.faculdadeidez.psa.entity.Usuario;
+import br.faculdadeidez.psa.db.entity.Usuario;
 
 public class DAOUsuario extends DAOFactory<Usuario> {
 	public DAOUsuario() {
