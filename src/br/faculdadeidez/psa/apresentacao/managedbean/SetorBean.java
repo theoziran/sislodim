@@ -6,7 +6,7 @@ import br.faculdadeidez.psa.vo.SetorVO;
 
 public class SetorBean extends GenericoBean {
 	private List<SetorBean> listaTudo = null;
-	private SetorVO setor;
+	private SetorVO setor = new SetorVO();
 
 	public SetorVO getSetor() {
 		return setor;
