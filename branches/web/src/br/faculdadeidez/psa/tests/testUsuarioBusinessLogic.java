@@ -1,8 +1,8 @@
 package br.faculdadeidez.psa.tests;
 
-import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
-import br.faculdadeidez.psa.entity.Usuario;
 import junit.framework.TestCase;
+import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
+import br.faculdadeidez.psa.db.entity.Usuario;
 
 public class testUsuarioBusinessLogic extends TestCase {
 
