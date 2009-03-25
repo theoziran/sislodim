@@ -23,7 +23,8 @@ public class UsuarioBusinessLogic {
 								.getCurrentInstance();
 						HttpSession session = (HttpSession) context
 								.getExternalContext().getSession(false);
-						session.setAttribute("userLogin", true);
+						session.setAttribute("logado", true);
+						session.setAttribute("currentUser", obj);
 						System.out.println("Logado com sucesso");
 						return "logado";
 					}

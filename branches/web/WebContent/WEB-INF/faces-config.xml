@@ -1,50 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <faces-config xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
 	version="1.2">
-
 	<application>
 		<!-- tell JSF to use Facelets -->
 		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
 	</application>
-
 	<application>
 		<locale-config>
 			<default-locale>br</default-locale>
 		</locale-config>
 		<message-bundle>br.faculdadeidez.psa.apresentacao.bundle.messages</message-bundle>
 		<resource-bundle>
-        	<base-name>br.faculdadeidez.psa.apresentacao.bundle.messages</base-name>
-        	<var>msgs</var>            
-        </resource-bundle>
+			<base-name>br.faculdadeidez.psa.apresentacao.bundle.messages</base-name>
+			<var>msgs</var>
+		</resource-bundle>
 	</application>
 
 	<!-- Registro dos manageds beans -->
 	<managed-bean>
 		<managed-bean-name>usuarioBean</managed-bean-name>
 		<managed-bean-class>
-			br.faculdadeidez.psa.apresentacao.managedbean.UsuarioBean
+			br.faculdadeidez.psa.apresentacao.managedbean.UsuarioBean 
 		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>setorBean</managed-bean-name>
 		<managed-bean-class>
-			br.faculdadeidez.psa.apresentacao.managedbean.SetorBean
+			br.faculdadeidez.psa.apresentacao.managedbean.SetorBean 
 		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>viaturaBean</managed-bean-name>
 		<managed-bean-class>
-			br.faculdadeidez.psa.apresentacao.managedbean.ViaturaBean
+			br.faculdadeidez.psa.apresentacao.managedbean.ViaturaBean 
 		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 
 	<!-- Navegação global -->
+	<lifecycle>
+		<phase-listener>br.faculdadeidez.psa.apresentacao.servlets.GerenciadorAutorizacao</phase-listener>
+	</lifecycle>
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>loginPage</from-outcome>
+			<to-view-id>/inicio.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>cadastroUsuario</from-outcome>
@@ -89,6 +97,4 @@
 	</navigation-rule>
 
 	<!-- /viatura -->
-
-
 </faces-config>
