@@ -14,6 +14,10 @@ public class GerenciadorAutorizacao implements PhaseListener {
 	public void afterPhase(PhaseEvent event) {
 		FacesContext facesContext = event.getFacesContext();
 		String currentPage = facesContext.getViewRoot().getViewId();
+		System.out.println("Página solicitada estática: "+FacesContext.getCurrentInstance().getViewRoot().getViewId());
+		
+		System.out.println("Página solicitada: "+ currentPage);
+		
 		Boolean isLoginPage = (currentPage.lastIndexOf("inicio.xhtml") > -1);
 		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 		Boolean isLogado;
@@ -28,6 +32,9 @@ public class GerenciadorAutorizacao implements PhaseListener {
 			NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
 			nh.handleNavigation(facesContext, null, "loginPage");
 		}
+		
+		System.out.println("Fase Id "+event.getPhaseId());
+		
 	}
 
 	@Override
@@ -38,7 +45,7 @@ public class GerenciadorAutorizacao implements PhaseListener {
 
 	@Override
 	public PhaseId getPhaseId() {
-		return PhaseId.RESTORE_VIEW;
+		return PhaseId.INVOKE_APPLICATION;
 	}
 
 }
