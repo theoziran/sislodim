@@ -11,7 +11,16 @@ public class UsuarioVO implements Serializable {
 	private String cpf;
 	private String rg;
 	private String orgExpeditor;
+	private int tipoPermissao;
 		
+	public int getTipoPermissao() {
+		return tipoPermissao;
+	}
+
+	public void setTipoPermissao(int tipoPermissao) {
+		this.tipoPermissao = tipoPermissao;
+	}
+
 	public UsuarioVO() {
 		// TODO Auto-generated constructor stub
 	}
