@@ -11,6 +11,8 @@ public class UsuarioBean extends GenericoBean {
 	private String cpf;
 	private String rg;
 	private String orgExpeditor;
+	private int tipoPermissao;
+
 	private List listaTudo;
 	private int tipoLista;	
 
@@ -18,14 +20,24 @@ public class UsuarioBean extends GenericoBean {
 		setLinkEditar("editaUsuario");
 	}
 	
-	public UsuarioBean(int id, String login, String nome, String senha, int ativo ) {
+	public UsuarioBean(int id, String login, String nome, String senha, int ativo , int tipoPermissao) {
 		setAtivo(ativo);
 		setLinkEditar("editaUsuario");
 		setId(id);
 		setLogin(login);
 		setNome(nome);
 		setSenha(senha);
+		setTipoPermissao(tipoPermissao);
 	}	
+	
+	public int getTipoPermissao() {
+		return tipoPermissao;
+	}
+
+	public void setTipoPermissao(int tipoPermissao) {
+		this.tipoPermissao = tipoPermissao;
+	}
+	
 	
 	public int getId() {
 		return id;
