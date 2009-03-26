@@ -48,9 +48,7 @@ public class Usuario implements Serializable {
 		setCpf(cpf);
 		setRg(rg);
 		setOrgExpeditor(orgExpeditor);
-	}
-	
-	
+	}	
 	
 	public int getId() {
 		return id;

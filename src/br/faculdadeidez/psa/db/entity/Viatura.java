@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.faculdadeidez.psa.vo.ViaturaVO;
+
 @SuppressWarnings("serial")
 @Entity 
 @Table (name="SIS_VIATURA")
@@ -17,6 +19,19 @@ public class Viatura implements Serializable {
 	private String codigo;
 	@Basic @Column (name="VIA_OCUPADA")
 	private Boolean ocupada = false;
+	
+	/*********************************************************/
+	/******** Conversão do objeto Setor para o SetorVO *******/
+	/*********************************************************/
+	public Viatura(ViaturaVO vo) {
+		this.codigo = vo.getCodigo();
+		this.ocupada = vo.getOcupada();
+	}
+	
+	public static ViaturaVO VO(Viatura obj){
+		return new ViaturaVO(obj.getCodigo(), obj.getOcupada());
+	}
+	/*********************************************************/
 	
 	public Viatura()
 	{
