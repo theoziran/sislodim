@@ -2,67 +2,45 @@ package br.faculdadeidez.psa.apresentacao.managedbean;
 
 import java.util.List;
 
+import br.faculdadeidez.psa.vo.ViaturaVO;
+
 public class ViaturaBean extends GenericoBean {
 	private List<ViaturaBean> listaTudo = null;
-	
-	private String codigo;
-	private Boolean ocupada;
-	
-	public ViaturaBean() {
+	private ViaturaVO viatura =  new ViaturaVO();
 		
+	public ViaturaVO getViatura() {
+		return viatura;
 	}
 	
-	public ViaturaBean(String codigo, Boolean ocupada)
-	{
-		setCodigo(codigo);
-		setOcupada(ocupada);
-	}
-		
-	public String getCodigo() {
-		return codigo;
+	public void setViatura(ViaturaVO viatura) {
+		this.viatura = viatura;
 	}
 	
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-	
-	public Boolean getOcupada() {
-		return ocupada;
-	}
-	
-	public void setOcupada(Boolean ocupada) {
-		this.ocupada = ocupada;
-	}	
-	
-	public List<ViaturaBean> getListaTudo()
+	public List<ViaturaVO> getListaTudo()
 	{	
 		return getFachada().listarViaturas();
 	}
 		
 	public String delete()
 	{
-		ViaturaBean viaturaDaVez = (ViaturaBean)getElementoSelecionado();
+		ViaturaVO viaturaDaVez = (ViaturaVO)getElementoSelecionado();
 		return getFachada().deleteViatura(viaturaDaVez);
 	}
 	
 	public String update()
 	{
-		ViaturaBean viaturaDaVez = (ViaturaBean)getElementoSelecionado();
+		ViaturaVO viaturaDaVez = (ViaturaVO)getElementoSelecionado();
 		return getFachada().updateViatura(viaturaDaVez);
 	}
 	
 	public String create()
 	{
-		String mensagem = getFachada().createViatura(this);
+		String mensagem = getFachada().createViatura(viatura);
 		
-		if(mensagem.equals("viaturaExistente")){
-			
-			adicionarMensagem("Viatura já existe");
-			
-		}else if (mensagem.equals("problemaInserir")) {
-			
-			adicionarMensagem("Error...");
-			
+		if(mensagem.equals("viaturaExistente")){			
+			adicionarMensagem("Viatura já existe");			
+		}else if (mensagem.equals("problemaInserir")) {			
+			adicionarMensagem("Error...");			
 		}
 		return mensagem;
 	}

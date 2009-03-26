@@ -3,13 +3,13 @@ package br.faculdadeidez.psa.businesslogic;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOViatura;
-import br.faculdadeidez.psa.db.entity.Viatura;
+import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class ViaturaBusinessLogic {
-	public String delete(String codigo){
+	public String delete(ViaturaVO vo){
 		try {
 			DAOViatura dViatura = new DAOViatura();			
-			Viatura via = dViatura.find(codigo);						
+			ViaturaVO via = dViatura.find(vo.getCodigo());						
 			dViatura.remove(via);
 			return "removido";
 		} catch (Exception e) {
@@ -18,10 +18,10 @@ public class ViaturaBusinessLogic {
 		}
 	}
 	
-	public String update(Viatura objeto){
+	public String update(ViaturaVO vo){
 		try {
 			DAOViatura dViatura = new DAOViatura();							
-			dViatura.update(objeto);
+			dViatura.update(vo);
 			return "atualizado";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -29,17 +29,11 @@ public class ViaturaBusinessLogic {
 		}
 	}
 	
-	public String create(Viatura objeto){
+	public String create(ViaturaVO vo){
 		try {
-			DAOViatura dViatura = new DAOViatura();
-			
-			if(dViatura.find(objeto.getCodigo()) == null){
-				dViatura.persist(objeto);
-				return "inserido";
-			}else{
-				return "viaturaExistente";
-			}
-			
+			DAOViatura dViatura = new DAOViatura();			
+			dViatura.persist(vo);
+			return "inserido";			
 		} catch (Exception e) {
 			// TODO: handle exception
 			return "problemaInserir";
@@ -47,7 +41,7 @@ public class ViaturaBusinessLogic {
 	}
 	
 
-	public List<Viatura> listar(){
+	public List<ViaturaVO> listar(){
 		DAOViatura dViatura = new DAOViatura();
 		return dViatura.findAll();		
 	}

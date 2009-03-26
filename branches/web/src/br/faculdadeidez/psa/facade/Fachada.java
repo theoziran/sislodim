@@ -11,6 +11,7 @@ import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
 import br.faculdadeidez.psa.db.entity.Usuario;
 import br.faculdadeidez.psa.db.entity.Viatura;
 import br.faculdadeidez.psa.vo.SetorVO;
+import br.faculdadeidez.psa.vo.ViaturaVO;
 
 
 public class Fachada {
@@ -119,33 +120,20 @@ public class Fachada {
 	 * Métodos para as Viaturas
 	 */
 	
-	public String deleteViatura(ViaturaBean bean){		
-		ViaturaBusinessLogic logica = new ViaturaBusinessLogic();
-		return logica.delete(bean.getCodigo());
+	public String deleteViatura(ViaturaVO vo){		
+		return new ViaturaBusinessLogic().delete(vo);
 	}
 	
-	public String updateViatura(ViaturaBean bean){
-		Viatura ent = new Viatura(bean.getCodigo(), bean.getOcupada());
-		
-		ViaturaBusinessLogic logica = new ViaturaBusinessLogic();
-		return logica.update(ent);
+	public String updateViatura(ViaturaVO vo){
+		return new ViaturaBusinessLogic().update(vo);
 	}
 	
-	public String createViatura(ViaturaBean bean){
-		Viatura ent = new Viatura(bean.getCodigo(), bean.getOcupada());
-		
-		ViaturaBusinessLogic logica = new ViaturaBusinessLogic();
-		return logica.create(ent);
+	public String createViatura(ViaturaVO vo){
+		return new ViaturaBusinessLogic().create(vo);
 	}
 	
-	public List<ViaturaBean> listarViaturas()
+	public List<ViaturaVO> listarViaturas()
 	{
-		ArrayList<ViaturaBean> beanLista = new ArrayList<ViaturaBean>();		
-		ViaturaBusinessLogic logica = new ViaturaBusinessLogic();
-		
-		for (Viatura objeto : logica.listar())
-			beanLista.add(new ViaturaBean(objeto.getCodigo(), objeto.getOcupada()));
-		
-		return beanLista;
+		return new ViaturaBusinessLogic().listar();
 	}	
 }

@@ -22,6 +22,8 @@ public class GerenciadorAutorizacao implements PhaseListener {
 		else
 			isLogado = true;
 		
+		System.out.println(isLogado);
+		
 		if (!isLogado && !isLoginPage){
 			NavigationHandler nh = facesContext.getApplication().getNavigationHandler();
 			nh.handleNavigation(facesContext, null, "loginPage");

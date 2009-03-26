@@ -12,7 +12,7 @@
 			<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="*Código da viatura" />
-				<h:inputText id="codigo" value="#{viaturaBean.codigo}" required="true"/>
+				<h:inputText id="codigo" value="#{viaturaBean.viatura.codigo}" required="true"/>
 				<h:commandButton action="#{viaturaBean.create}" value="Cadastrar" />
 				<h:commandLink action="adminViatura" value="Administrar" />
 				<h:messages styleClass="mensagens" showDetail="false" />
