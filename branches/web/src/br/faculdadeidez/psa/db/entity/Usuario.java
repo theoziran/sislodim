@@ -25,6 +25,17 @@ public class Usuario implements Serializable {
 	@Basic @Column (unique=true, name="USU_CPF") private String cpf;
 	@Basic @Column (name="USU_RG") private String rg;
 	@Basic @Column (name="USU_ORGAO_EXPED") private String orgExpeditor;
+	@Basic @Column (name="USU_PERMISSAO") private int tipoPermissao;	
+	
+	public int getTipoPermissao() {
+		return tipoPermissao;
+	}
+
+	public void setTipoPermissao(int tipoPermissao) {
+		this.tipoPermissao = tipoPermissao;
+	}
+
+
 		
 	public Usuario() {
 		// TODO Auto-generated constructor stub
