@@ -122,7 +122,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			 * Test case - TC1.1.4
 			 **/
 
-			u = new Usuario();
+			u = new UsuarioVO();
 
 			u.setLogin("testLogin3");
 			u.setNome("testName3");
