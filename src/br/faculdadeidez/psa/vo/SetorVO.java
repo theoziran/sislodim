@@ -1,23 +1,24 @@
 package br.faculdadeidez.psa.vo;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
+
 
 import br.faculdadeidez.psa.db.entity.Bairro;
 
 public class SetorVO implements Serializable {
 	
-	public Set<Bairro> getBairros() {
+	public List<Bairro> getBairros() {
 		return bairros;
 	}
 
-	public void setBairros(Set<Bairro> bairros) {
+	public void setBairros(List<Bairro> bairros) {
 		this.bairros = bairros;
 	}
 
 	private int codigo;
 	private String nome;
-	private Set<Bairro> bairros;
+	private List<Bairro> bairros;
 	
 	public SetorVO() {
 		// TODO Auto-generated constructor stub

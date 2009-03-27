@@ -1,18 +1,18 @@
 package br.faculdadeidez.psa.vo;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 import br.faculdadeidez.psa.db.entity.Setor;
 
 public class BairroVO implements Serializable {
 	private int codigo;
 	private String nome;
-	private Set<Setor> setores;
+	private List<Setor> setores;
 	
-	public Set<Setor> getSetores() {
+	public List<Setor> getSetores() {
 		return setores;
 	}
-	public void setSetores(Set<Setor> setores) {
+	public void setSetores(List<Setor> setores) {
 		this.setores = setores;
 	}
 	public BairroVO(int codigo, String nome) {
