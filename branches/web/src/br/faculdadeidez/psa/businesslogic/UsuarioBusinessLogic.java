@@ -6,7 +6,6 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import br.faculdadeidez.psa.db.dao.DAOUsuario;
-import br.faculdadeidez.psa.db.entity.Usuario;
 import br.faculdadeidez.psa.vo.UsuarioVO;
 
 public class UsuarioBusinessLogic {
