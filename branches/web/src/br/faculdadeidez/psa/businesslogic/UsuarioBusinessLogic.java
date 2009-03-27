@@ -7,16 +7,17 @@ import javax.servlet.http.HttpSession;
 
 import br.faculdadeidez.psa.db.dao.DAOUsuario;
 import br.faculdadeidez.psa.db.entity.Usuario;
+import br.faculdadeidez.psa.vo.UsuarioVO;
 
 public class UsuarioBusinessLogic {
 
 	public String logon(String login, String senha) {
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
-			List<Usuario> usuarios = dUsuario.findByField("login", login);
+			List<UsuarioVO> usuarios = dUsuario.findByField("login", login);
 			if (usuarios.isEmpty())
 				throw new Exception();
-			for (Usuario obj : usuarios) {
+			for (UsuarioVO obj : usuarios) {
 				if (obj.getSenha().equals(senha)) {
 					if (obj.getAtivo() == 1) {
 						FacesContext context = FacesContext
@@ -32,7 +33,6 @@ public class UsuarioBusinessLogic {
 			}
 			throw new Exception();
 		} catch (Exception e) {
-			System.out.println("Usu�rio n�o existe ou senha incorreta");
 			return "naoEncontrado";
 		}
 	}
@@ -41,7 +41,7 @@ public class UsuarioBusinessLogic {
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
 
-			Usuario user = dUsuario.find(id);
+			UsuarioVO user = dUsuario.find(id);
 			user.setAtivo(0);
 
 			dUsuario.update(user);
@@ -52,7 +52,7 @@ public class UsuarioBusinessLogic {
 		}
 	}
 
-	public String update(Usuario user) {
+	public String update(UsuarioVO user) {
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
 			if (user.getSenha().equals("")) {
@@ -66,7 +66,7 @@ public class UsuarioBusinessLogic {
 		}
 	}
 
-	public String create(Usuario user) {
+	public String create(UsuarioVO user) {
 	
 
 		try {
@@ -95,25 +95,20 @@ public class UsuarioBusinessLogic {
 		}
 	}
 
-	public List listar() {
+	public List<UsuarioVO> listar() {
 		DAOUsuario dUsuario = new DAOUsuario();
-		List usuarios = dUsuario.findAll();
+		List<UsuarioVO> usuarios = dUsuario.findAll();
 		return usuarios;
 
 	}
 
-	public List listarAtivos() {
+	public List<UsuarioVO> pesquisar(String valor){
 		DAOUsuario dUsuario = new DAOUsuario();
-		List usuarios = dUsuario.findAllActive();
-		return usuarios;
-
-	}
-
-	public List listarInativos() {
-		DAOUsuario dUsuario = new DAOUsuario();
-		List usuarios = dUsuario.findAllInactive();
-		return usuarios;
-
+		List<UsuarioVO> retorno = dUsuario.findByField("nome", valor);
+		retorno.addAll(dUsuario.findByField("login", valor));
+		retorno.addAll(dUsuario.findByField("cpf", valor));
+		retorno.addAll(dUsuario.findByField("rg", valor));
+		return retorno;
 	}
 
 }

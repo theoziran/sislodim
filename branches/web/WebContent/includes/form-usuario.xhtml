@@ -9,25 +9,33 @@
 	<ui:composition>
 		<div class="form">
 
+			<h:panelGrid columns="1">
+			
 			<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="* Nome"/>
-				<h:inputText id="nome" value="#{usuarioBean.nome}" required="true"/>		
-				<h:outputLabel value="*CPF" />
-				<h:inputText id="cpf" value="#{usuarioBean.cpf}" required="true"/>
-				<h:outputLabel value="*RG" />
-				<h:inputText id="rg" value="#{usuarioBean.rg}" required="true"/>
-				<h:outputLabel value="*Orgão Expeditor" />
-				<h:inputText id="orgExpeditor" value="#{usuarioBean.orgExpeditor}" required="true"/>
-				<h:outputLabel value="*Login" />
-				<h:inputText id="login" value="#{usuarioBean.login}" required="true"/>
-				<h:outputLabel value="*Senha" />
-				<h:inputSecret id="senha" value="#{usuarioBean.senha}" required="true"/>
+				<h:inputText id="nome" value="#{usuarioBean.usuario.nome}" required="true"/>		
+				<h:outputLabel value="* CPF" />
+				<h:inputText id="cpf" value="#{usuarioBean.usuario.cpf}" required="true"/>
+				<h:outputLabel value="* RG" />
+				<h:inputText id="rg" value="#{usuarioBean.usuario.rg}" required="true"/>
+				<h:outputLabel value="* Orgão Expeditor" />
+				<h:inputText id="orgExpeditor" value="#{usuarioBean.usuario.orgExpeditor}" required="true"/>
+				<h:outputLabel value="* Login" />
+				<h:inputText id="login" value="#{usuarioBean.usuario.login}" required="true"/>
+				<h:outputLabel value="* Senha" />
+				<h:inputSecret id="senha" value="#{usuarioBean.usuario.senha}" required="true"/>
 				<h:commandButton action="#{usuarioBean.create}" value="Cadastrar" />
-				<h:commandLink action="adminUsuario" value="Administrar" />
 				<h:messages styleClass="mensagens" showDetail="false" />
-			</h:panelGrid>
+				</h:panelGrid>
 			</h:form>
+			
+			<h:form>
+				<h:commandLink action="adminUsuario" value="Administrar" />
+			</h:form>
+				
+			</h:panelGrid>
+			
 		</div>
 	</ui:composition>
 	</html>

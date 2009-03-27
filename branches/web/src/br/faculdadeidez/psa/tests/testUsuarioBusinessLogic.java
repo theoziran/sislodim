@@ -1,13 +1,13 @@
 package br.faculdadeidez.psa.tests;
 
-import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
-import br.faculdadeidez.psa.db.entity.Usuario;
 import junit.framework.TestCase;
+import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
+import br.faculdadeidez.psa.vo.UsuarioVO;
 
 public class testUsuarioBusinessLogic extends TestCase {
 
 	public void testCreate() {
-		Usuario u;
+		UsuarioVO u;
 		UsuarioBusinessLogic ubl = new UsuarioBusinessLogic();
 
 		{
@@ -15,7 +15,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			 * Test case - TC1.1.1
 			 **/
 
-			u = new Usuario();
+			u = new UsuarioVO();
 
 			u.setLogin("testLogin1");
 			u.setNome("testName1");
@@ -27,7 +27,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 
 			assertEquals("inserido", ubl.create(u));
 
-			u = new Usuario();
+			u = new UsuarioVO();
 
 			u.setLogin("testLogin2");
 			u.setNome("testName2");
@@ -36,7 +36,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u.setRg("1234502");
 			u.setOrgExpeditor("SSP-PB");
 			u.setAtivo(1);
-
+			u.setTipoPermissao(1);
 			assertEquals("inserido", ubl.create(u));
 		}
 
@@ -45,7 +45,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			 * Test case - TC1.1.2
 			 **/
 
-			u = new Usuario();
+			u = new UsuarioVO();
 
 			u.setLogin("testLogin3");
 			u.setNome("testName3");
@@ -54,7 +54,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u.setRg("1234503");
 			u.setOrgExpeditor("SSP-PB");
 			u.setAtivo(1);
-
+			u.setTipoPermissao(1);
 			// login nulo
 			u.setLogin(null);
 			assertEquals("problemaInserir", ubl.create(u));
@@ -91,7 +91,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			 * Test case - TC1.1.3
 			 **/
 
-			u = new Usuario();
+			u = new UsuarioVO();
 
 			u.setLogin("testLogin3");
 			u.setNome("testName3");

@@ -25,7 +25,7 @@ public class UsuarioVO implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 		
-	public UsuarioVO(String nome, String login, String senha, String cpf, String rg, String orgExpeditor) {		
+	public UsuarioVO(String nome, String login, String senha, String cpf, String rg, String orgExpeditor, String tipoPermissao) {		
 		setSenha(senha);
 		setLogin(login);
 		setNome(nome);
@@ -34,7 +34,7 @@ public class UsuarioVO implements Serializable {
 		setOrgExpeditor(orgExpeditor);
 	}
 	
-	public UsuarioVO(String nome, String login, String senha, int id, int ativo, String cpf, String rg, String orgExpeditor) {
+	public UsuarioVO(String nome, String login, String senha, int id, int ativo, String cpf, String rg, String orgExpeditor, String tipoPermissao) {
 		setAtivo(ativo);
 		setId(id);
 		setSenha(senha);

@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.faculdadeidez.psa.vo.UsuarioVO;
+
 @SuppressWarnings("serial")
 @Entity 
 @Table (name="SIS_USUARIO")
@@ -27,13 +29,7 @@ public class Usuario implements Serializable {
 	@Basic @Column (name="USU_ORGAO_EXPED") private String orgExpeditor;
 	@Basic @Column (name="USU_PERMISSAO") private int tipoPermissao;	
 	
-	public int getTipoPermissao() {
-		return tipoPermissao;
-	}
-
-	public void setTipoPermissao(int tipoPermissao) {
-		this.tipoPermissao = tipoPermissao;
-	}
+	
 
 
 		
@@ -41,25 +37,41 @@ public class Usuario implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 		
-	public Usuario(String nome, String login, String senha, String cpf, String rg, String orgExpeditor) {		
-		setSenha(senha);
-		setLogin(login);
-		setNome(nome);
-		setCpf(cpf);
-		setRg(rg);
-		setOrgExpeditor(orgExpeditor);
+	public Usuario(UsuarioVO user) {		
+		setSenha(user.getSenha());
+		setLogin(user.getLogin());
+		setNome(user.getNome());
+		setCpf(user.getCpf());
+		setRg(user.getRg());
+		setOrgExpeditor(user.getOrgExpeditor());
+		setTipoPermissao(user.getTipoPermissao());
+		setAtivo(user.getAtivo());
+		if (user.getId()!=0){
+			setId(user.getId());
+		}
 	}
 	
-	public Usuario(String nome, String login, String senha, int id, int ativo, String cpf, String rg, String orgExpeditor) {
-		setAtivo(ativo);
-		setId(id);
-		setSenha(senha);
-		setLogin(login);
-		setNome(nome);
-		setCpf(cpf);
-		setRg(rg);
-		setOrgExpeditor(orgExpeditor);
-	}	
+	public UsuarioVO toVO() {		
+		UsuarioVO user = new UsuarioVO();
+		user.setAtivo(getAtivo());
+		user.setCpf(getCpf());
+		user.setId(getId());
+		user.setLogin(getLogin());
+		user.setNome(getNome());
+		user.setOrgExpeditor(getOrgExpeditor());
+		user.setRg(getRg());
+		user.setSenha(getSenha());
+		user.setTipoPermissao(getTipoPermissao());
+		return user;
+	}
+	
+	public int getTipoPermissao() {
+		return tipoPermissao;
+	}
+
+	public void setTipoPermissao(int tipoPermissao) {
+		this.tipoPermissao = tipoPermissao;
+	}
 	
 	public int getId() {
 		return id;

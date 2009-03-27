@@ -2,117 +2,21 @@ package br.faculdadeidez.psa.apresentacao.managedbean;
 
 import java.util.List;
 
+import br.faculdadeidez.psa.vo.UsuarioVO;
+
 public class UsuarioBean extends GenericoBean {
-	private int id;
-	private String nome;
-	private String login;
-	private String senha;
-	private int ativo;
-	private String cpf;
-	private String rg;
-	private String orgExpeditor;
-	private int tipoPermissao;
+	private UsuarioVO usuario = new UsuarioVO();
+	private String termoPesquisa;
 
 	private List listaTudo;
-	private int tipoLista;	
 
 	public UsuarioBean() {
 		setLinkEditar("cadastroUsuario");
 	}
 	
-	public UsuarioBean(int id, String login, String nome, String senha, int ativo , int tipoPermissao) {
-		setAtivo(ativo);
-		setLinkEditar("cadastroUsuario");
-		setId(id);
-		setLogin(login);
-		setNome(nome);
-		setSenha(senha);
-		setTipoPermissao(tipoPermissao);
-	}	
-	
-	public int getTipoPermissao() {
-		return tipoPermissao;
-	}
 
-	public void setTipoPermissao(int tipoPermissao) {
-		this.tipoPermissao = tipoPermissao;
-	}
-	
-	
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public String getNome() {
-		return nome;
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	public String getLogin() {
-		return login;
-	}
-	
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	
-	public String getSenha() {
-		return senha;
-	}
-	
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-	
-	public int getAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(int ativo) {
-		this.ativo = ativo;
-	}
-	
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getRg() {
-		return rg;
-	}
-
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-
-	public String getOrgExpeditor() {
-		return orgExpeditor;
-	}
-
-	public void setOrgExpeditor(String orgExpeditor) {
-		this.orgExpeditor = orgExpeditor;
-	}
-
-	public int getTipoLista() {
-		return tipoLista;
-	}
-
-	public void setTipoLista(int tipoLista) {
-		this.tipoLista = tipoLista;
-	}
-	
 	public String logon() {
-		String mensagem=getFachada().logon(getLogin(), getSenha());
+		String mensagem=getFachada().logon(getUsuario().getLogin(), getUsuario().getSenha());
 		if (mensagem.equals("logado")){
 			adicionarMensagem("Logado com sucesso");
 		}
@@ -120,21 +24,21 @@ public class UsuarioBean extends GenericoBean {
 	}
 
 	public String delete(){
-		UsuarioBean usuarioDaVez = (UsuarioBean) getElementoSelecionado();
+		UsuarioVO usuarioDaVez = (UsuarioVO) getElementoSelecionado();
 		return getFachada().deleteUsuario(usuarioDaVez);
 	}
 	
 	public String update(){
-		UsuarioBean usuarioDaVez = (UsuarioBean) getElementoSelecionado();
+		UsuarioVO usuarioDaVez = (UsuarioVO) getElementoSelecionado();
 		return getFachada().updateUsuario(usuarioDaVez);
 	}
 	
 	public String create(){
-		String mensagem = getFachada().createUsuario(this);
+		String mensagem = getFachada().createUsuario(getUsuario());
 		
 		if(mensagem.equals("usuarioExistente")){
 			
-			adicionarMensagem("J√° existe um usu√°rio com este login");
+			adicionarMensagem("J· existe um usu·rio com este login");
 			
 		}else if (mensagem.equals("problemaInserir")) {
 			
@@ -142,9 +46,21 @@ public class UsuarioBean extends GenericoBean {
 		}
 		return mensagem;	
 	}
+	
+	public void pesquisar(){
+		List<UsuarioVO> usuarios = getFachada().pesquisa(getTermoPesquisa());
+		setListaTudo(usuarios);
+	}
 
 	public List getListaTudo() {
-		if (listaTudo==null || listaTudo.isEmpty() || (!listaTudo.equals(getFachada().listaUsuarios())))
+		if (listaTudo==null)
+			System.out.println("lista nula");else
+		if (listaTudo.isEmpty())
+			System.out.println("lista vazia");else
+		if (!listaTudo.equals(getFachada().listaUsuarios()))
+			System.out.println("lista diferente");
+		
+		if (listaTudo==null || listaTudo.isEmpty() )
 			setListaTudo(getFachada().listaUsuarios());
 		return listaTudo;
 	}
@@ -153,25 +69,22 @@ public class UsuarioBean extends GenericoBean {
 		this.listaTudo = listaTudo;
 	}	
 	
-	public void atualizarLista(){
-		if (getTipoLista()==1)
-			listarAtivos();
-			else if(getTipoLista()==2)
-				listarInativos();
-			else
-				listarTudo();
-				
-	}
-	
-	public void listarTudo(){
-		setListaTudo(getFachada().listaUsuarios());
+
+	public String getTermoPesquisa() {
+		return termoPesquisa;
 	}
 
-	public void listarAtivos(){
-		setListaTudo(getFachada().listaUsuariosAtivos());
+	public void setTermoPesquisa(String termoPesquisa) {
+		this.termoPesquisa = termoPesquisa;
 	}
-	
-	public void listarInativos(){
-		setListaTudo(getFachada().listaUsuarios());
+
+
+	public UsuarioVO getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(UsuarioVO usuario) {
+		this.usuario = usuario;
 	}
 }

@@ -32,9 +32,9 @@
 				<fieldset>
 				<h:form id="autentica">
 					<h:outputLabel value="Usuário" for="login"/>
-					<h:inputText id="login" alt="login" value="#{usuarioBean.login}" required="true"/>
+					<h:inputText id="login" alt="login" value="#{usuarioBean.usuario.login}" required="true"/>
 					<h:outputLabel value="Senha" for="password"/>
-					<h:inputSecret id="password" alt="password" value="#{usuarioBean.senha}" required="true" requiredMessage="#{msgs.erro}"/>
+					<h:inputSecret id="password" alt="password" value="#{usuarioBean.usuario.senha}" required="true" requiredMessage="#{msgs.erro}"/>
 					<h:commandButton value="Entrar" action="#{usuarioBean.logon}" styleClass="button" />
 					<h:messages styleClass="mensagens" showDetail="false" />
 				</h:form>						
