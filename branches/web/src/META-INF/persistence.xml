@@ -5,13 +5,14 @@
 <class>br.faculdadeidez.psa.db.entity.Usuario</class>
 <class>br.faculdadeidez.psa.db.entity.Setor</class>
 <class>br.faculdadeidez.psa.db.entity.Viatura</class>
+<class>br.faculdadeidez.psa.db.entity.Bairro</class>
 <properties>
 <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/sislodim" />
 <property name="toplink.jdbc.user" value="root" />
 <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver" />
 <property name="toplink.jdbc.password" value="" />
 <!--Essa propriedade será ativa quando colocar o sistema em produção -->
-<property name="toplink.ddl-generation" value="none" />
+<property name="toplink.ddl-generation" value="drop-and-create-tables" />
 </properties>
 </persistence-unit>
 </persistence>
