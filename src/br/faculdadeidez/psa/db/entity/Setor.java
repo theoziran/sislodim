@@ -1,7 +1,7 @@
 package br.faculdadeidez.psa.db.entity;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -26,7 +27,7 @@ public class Setor implements Serializable {
 	private int codigo;
 	@Basic @Column (name="SET_NOME") 
 	private String nome;
-    @ManyToMany
+    @ManyToMany(cascade={CascadeType.ALL} )
     @JoinTable(name="SIS_BAIRRO_SETOR",
             joinColumns=
                 @JoinColumn(name="BAS_SET_CODIGO", referencedColumnName="SET_CODIGO"),
@@ -34,13 +35,13 @@ public class Setor implements Serializable {
                 @JoinColumn(name="BAI_CODIGO", referencedColumnName="BAI_CODIGO")
             )	
       
-    private Set<Bairro> bairros; 
+    private List<Bairro> bairros; 
 	
-	public Set<Bairro> getBairros() {
+	public List<Bairro> getBairros() {
 		return bairros;
 	}
 
-	public void setBairros(Set<Bairro> bairros) {
+	public void setBairros(List<Bairro> bairros) {
 		this.bairros = bairros;
 	}
 
