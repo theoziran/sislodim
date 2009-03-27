@@ -1,6 +1,7 @@
 package br.faculdadeidez.psa.db.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -8,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import br.faculdadeidez.psa.vo.SetorVO;
@@ -22,7 +26,23 @@ public class Setor implements Serializable {
 	private int codigo;
 	@Basic @Column (name="SET_NOME") 
 	private String nome;
+    @ManyToMany
+    @JoinTable(name="SIS_BAIRRO_SETOR",
+            joinColumns=
+                @JoinColumn(name="BAS_SET_CODIGO", referencedColumnName="SET_CODIGO"),
+            inverseJoinColumns=
+                @JoinColumn(name="BAI_CODIGO", referencedColumnName="BAI_CODIGO")
+            )	
+    private Set<Bairro> bairros; 
 	
+	public Set<Bairro> getBairros() {
+		return bairros;
+	}
+
+	public void setBairros(Set<Bairro> bairros) {
+		this.bairros = bairros;
+	}
+
 	/*********************************************************/
 	/******** Conversão do objeto Setor para o SetorVO *******/
 	/*********************************************************/
