@@ -3,7 +3,6 @@ package br.faculdadeidez.psa.businesslogic;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOSetor;
-import br.faculdadeidez.psa.db.entity.Setor;
 import br.faculdadeidez.psa.vo.SetorVO;
 
 public class SetorBusinessLogic {
