@@ -45,4 +45,10 @@ public class ViaturaBusinessLogic {
 		DAOViatura dViatura = new DAOViatura();
 		return dViatura.findAll();		
 	}
+	
+	public List<ViaturaVO> pesquisar(String valor){
+		DAOViatura dViatura = new DAOViatura();
+		List<ViaturaVO> retorno = dViatura.findByField("nome", valor);
+		return retorno;
+	}
 }

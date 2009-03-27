@@ -20,14 +20,22 @@ public class Usuario implements Serializable {
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) 
 	@Column (name="USU_CODIGO")
 	private int id;
-	@Basic @Column (name="USU_NOME") private String nome;
-	@Basic @Column (unique=true, name="USU_LOGIN") private String login;
-	@Basic @Column (name="USU_SENHA") private String senha;
-	@Basic @Column (name="USU_ATIVO") private int ativo;
-	@Basic @Column (unique=true, name="USU_CPF") private String cpf;
-	@Basic @Column (name="USU_RG") private String rg;
-	@Basic @Column (name="USU_ORGAO_EXPED") private String orgExpeditor;
-	@Basic @Column (name="USU_PERMISSAO") private int tipoPermissao;	
+	@Basic @Column (name="USU_NOME", nullable=false) 
+	private String nome;
+	@Basic @Column (unique=true, name="USU_LOGIN", nullable=false) 
+	private String login;
+	@Basic @Column (name="USU_SENHA", nullable=false) 
+	private String senha;
+	@Basic @Column (name="USU_ATIVO") 
+	private int ativo;
+	@Basic @Column (unique=true, name="USU_CPF", nullable=false) 
+	private String cpf;
+	@Basic @Column (name="USU_RG", nullable=false) 
+	private String rg;
+	@Basic @Column (name="USU_ORGAO_EXPED", nullable=false) 
+	private String orgExpeditor;
+	@Basic @Column (name="USU_PERMISSAO", nullable=false) 
+	private int tipoPermissao;	
 	
 	
 

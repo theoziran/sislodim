@@ -25,14 +25,17 @@
 				<h:inputText id="login" value="#{usuarioBean.usuario.login}" required="true"/>
 				<h:outputLabel value="* Senha" />
 				<h:inputSecret id="senha" value="#{usuarioBean.usuario.senha}" required="true"/>
+				<h:outputLabel value="* Tipo de usuário" />
+				<h:selectOneMenu id="placa" value="#{usuarioBean.usuario.tipoPermissao}"> 
+				<f:selectItem itemLabel="Administrador" itemValue="3"/>
+				<f:selectItem itemLabel="Coordenador" itemValue="2"/>
+				<f:selectItem itemLabel="Operador" itemValue="1"/>
+				</h:selectOneMenu>
 				<h:commandButton action="#{usuarioBean.create}" value="Cadastrar" />
 				<h:messages styleClass="mensagens" showDetail="false" />
 				</h:panelGrid>
 			</h:form>
 			
-			<h:form>
-				<h:commandLink action="adminUsuario" value="Administrar" />
-			</h:form>
 				
 			</h:panelGrid>
 			

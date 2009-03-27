@@ -9,13 +9,27 @@
 
 <ui:composition template="/includes/edit-usuario.xhtml">
  <ui:param name="atualBean" value="#{usuarioBean}" />
-             <ui:define name="tituloTabela">Dados pessoais</ui:define>
+             <ui:define name="tituloTabela">
+             <!-- coloque o número de colunas necessárias -->
+ 		<rich:column colspan="3">
+             Dados pessoais</rich:column>
+             </ui:define>
              <ui:define name="campo1"><h:outputText value="Ativo?" /></ui:define>
              <ui:define name="campo2"><h:outputText value="Nome" /></ui:define>
-             <ui:define name="campo3"><h:outputText value="Login" /></ui:define>
+             <ui:define name="colunasAdicionaisTitulos">
+             	<!-- campos sempre com rich:column -->
+             	<rich:column>
+             	<h:outputText value="Login" />
+             	</rich:column>
+             </ui:define>
              <ui:define name="campo11"><h:outputText value="#{elementoDaVez.ativo}"/></ui:define>
              <ui:define name="campo21"><h:outputText value="#{elementoDaVez.nome}" /></ui:define>
-             <ui:define name="campo31"><h:outputText value="#{elementoDaVez.login}" /></ui:define>
-             <ui:define name="linkNovoItem"><h:commandLink action="adminUsuario" value="Novo usuário" /></ui:define>
+             <ui:define name="colunasAdicionaisValores">
+             	<!-- campos sempre com rich:column -->
+             	<rich:column>
+             	<h:outputText value="#{elementoDaVez.login}" />
+             	</rich:column>
+             </ui:define>
+             <ui:define name="linkNovoItem"><h:commandLink action="cadastroUsuario" value="Novo usuário" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}"/></ui:define>
 </ui:composition>
 </html>

@@ -5,8 +5,9 @@ import java.util.List;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class ViaturaBean extends GenericoBean {
-	private List<ViaturaBean> listaTudo = null;
+	private List<ViaturaVO> listaTudo = null;
 	private ViaturaVO viatura =  new ViaturaVO();
+	private String termoPesquisa;
 		
 	public ViaturaVO getViatura() {
 		return viatura;
@@ -44,4 +45,22 @@ public class ViaturaBean extends GenericoBean {
 		}
 		return mensagem;
 	}
+	
+	public void pesquisar(){
+		List<ViaturaVO> viaturas = getFachada().pesquisaViatura(getTermoPesquisa());
+		setListaTudo(viaturas);
+	}
+
+	public void setListaTudo(List<ViaturaVO> listaTudo) {
+		this.listaTudo = listaTudo;
+	}
+
+	public String getTermoPesquisa() {
+		return termoPesquisa;
+	}
+
+	public void setTermoPesquisa(String termoPesquisa) {
+		this.termoPesquisa = termoPesquisa;
+	}
+	
 }

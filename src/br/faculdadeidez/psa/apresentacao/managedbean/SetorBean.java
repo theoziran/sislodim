@@ -5,9 +5,10 @@ import java.util.List;
 import br.faculdadeidez.psa.vo.SetorVO;
 
 public class SetorBean extends GenericoBean {
-	private List<SetorBean> listaTudo = null;
+	private List<SetorVO> listaTudo = null;
 	private SetorVO setor = new SetorVO();
-
+	private String termoPesquisa;
+	
 	public SetorVO getSetor() {
 		return setor;
 	}
@@ -18,7 +19,9 @@ public class SetorBean extends GenericoBean {
 	
 	public List<SetorVO> getListaTudo()
 	{	
-		return getFachada().listarSetores();
+		if (listaTudo==null || listaTudo.isEmpty() )
+			return getFachada().listarSetores();
+		return listaTudo;
 	}
 		
 	public String delete()
@@ -44,4 +47,22 @@ public class SetorBean extends GenericoBean {
 		}
 		return getFachada().createSetor(setor);
 	}
+	
+	public void pesquisar(){
+		List<SetorVO> setores = getFachada().pesquisaSetor(getTermoPesquisa());
+		setListaTudo(setores);
+	}
+
+	public void setListaTudo(List<SetorVO> listaTudo) {
+		this.listaTudo = listaTudo;
+	}
+
+	public String getTermoPesquisa() {
+		return termoPesquisa;
+	}
+
+	public void setTermoPesquisa(String termoPesquisa) {
+		this.termoPesquisa = termoPesquisa;
+	}
+	
 }

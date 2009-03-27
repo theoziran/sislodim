@@ -19,12 +19,13 @@
 					<h:inputText id="nome" value="#{atualBean.termoPesquisa}"
 						required="true" />
 					<a4j:commandButton value="Encontrar"
-                     action="#{atualBean.pesquisar}"
-                     reRender="generica"/>
+						action="#{atualBean.pesquisar}" reRender="generica" />
 				</h:panelGrid>
 				<a4j:status>
-        <f:facet name="start"><h:graphicImage value="/images/indicator.gif"/></f:facet>
-    </a4j:status>
+					<f:facet name="start">
+						<h:graphicImage value="/images/indicator.gif" />
+					</f:facet>
+				</a4j:status>
 			</h:form>
 			<h:form>
 				<h:panelGrid columns="1">
@@ -34,78 +35,69 @@
 		</h:panelGrid>
 
 
-			<a4j:form>
-				<h:panelGrid class="lista" columns="1" width="520">
+		<a4j:form>
+			<h:panelGrid class="lista" columns="1" width="520">
 
-					<rich:dataTable
-						onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
-						onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
-						cellpadding="0" cellspacing="0" width="518" border="0"
-						var="elementoDaVez" value="#{atualBean.listaTudo}" id="generica">
+				<rich:dataTable
+					onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+					onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+					cellpadding="0" cellspacing="0" width="518" border="0"
+					var="elementoDaVez" value="#{atualBean.listaTudo}" id="generica">
 
-						<f:facet name="header">
-							<rich:columnGroup>
-								<rich:column colspan="3">
-									<ui:insert name="tituloTabela"></ui:insert>
-								</rich:column>
-
-								<rich:column rowspan="2" colspan="2">
-									<h:outputText value="Ações" />
-								</rich:column>
-
-								<rich:column breakBefore="true">
-									<ui:insert name="campo1"></ui:insert>
-								</rich:column>
-
-								<rich:column>
-									<ui:insert name="campo2"></ui:insert>
-								</rich:column>
-
-								<rich:column>
-									<ui:insert name="campo3"></ui:insert>
-								</rich:column>
-							</rich:columnGroup>
-						</f:facet>
+					<f:facet name="header">
 						<rich:columnGroup>
+						<ui:insert name="tituloTabela"/>
+							<rich:column rowspan="2" colspan="2" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}">
+								<h:outputText value="Ações" />
+							</rich:column>
+
 							<rich:column breakBefore="true">
-								<ui:insert name="campo11" id="campo11"></ui:insert>
+								<ui:insert name="campo1"></ui:insert>
 							</rich:column>
 
 							<rich:column>
-								<ui:insert name="campo21" id="campo21"></ui:insert>
+								<ui:insert name="campo2"></ui:insert>
 							</rich:column>
-
-							<rich:column>
-								<ui:insert name="campo31" id="campo31"></ui:insert>
-							</rich:column>
-
-							<rich:column>
-								<a4j:commandButton value="Editar"
-									oncomplete="#{rich:component('editPanel')}.show()"
-									ajaxSingle="true" reRender="generica">
-									<f:setPropertyActionListener value="#{elementoDaVez}"
-										target="#{atualBean.elementoSelecionado}" />
-								</a4j:commandButton>
-							</rich:column>
-
-							<rich:column>
-								<h:commandButton value="Apagar" action="#{atualBean.delete}"
-									immediate="true"
-									onclick="return confirm('Deseja mesmo deletar este item?');">
-									<f:setPropertyActionListener value="#{elementoDaVez}"
-										target="#{atualBean.elementoSelecionado}" />
-
-								</h:commandButton>
-							</rich:column>
+							<ui:insert name="colunasAdicionaisTitulos" />
 						</rich:columnGroup>
-					</rich:dataTable>
+					</f:facet>
+					<rich:columnGroup>
+						<rich:column breakBefore="true">
+							<ui:insert name="campo11" id="campo11"></ui:insert>
+						</rich:column>
 
-					<rich:datascroller align="left" for="generica" maxPages="10" id="datascroller"/>
+						<rich:column>
+							<ui:insert name="campo21" id="campo21"></ui:insert>
+						</rich:column>
+						<ui:insert name="colunasAdicionaisValores" />
+						<rich:column rendered="#{sessaoBean.coordenador or sessaoBean.moderador}">
+							<a4j:commandButton value="Editar"
+								oncomplete="#{rich:component('editPanel')}.show()"
+								ajaxSingle="true" reRender="generica">
+								<f:setPropertyActionListener value="#{elementoDaVez}"
+									target="#{atualBean.elementoSelecionado}" />
+							</a4j:commandButton>
+						</rich:column>
 
-					<rich:spacer height="30" />
-					
-				</h:panelGrid>
-			</a4j:form>
+						<rich:column rendered="#{sessaoBean.coordenador or sessaoBean.moderador}">
+							<h:commandButton value="Apagar" action="#{atualBean.delete}"
+								immediate="true"
+								onclick="return confirm('Deseja mesmo deletar este item?');">
+								<f:setPropertyActionListener value="#{elementoDaVez}"
+									target="#{atualBean.elementoSelecionado}" />
+
+							</h:commandButton>
+						</rich:column>
+					</rich:columnGroup>
+				</rich:dataTable>
+
+				<rich:datascroller align="left" for="generica" maxPages="10"
+					id="datascroller" />
+
+				<rich:spacer height="30" />
+
+			</h:panelGrid>
+		</a4j:form>
 		<rich:modalPanel id="editPanel" autosized="true" width="450">
 			<f:facet name="header">
 				<ui:insert name="tituloEdit">

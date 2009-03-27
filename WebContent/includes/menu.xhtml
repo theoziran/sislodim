@@ -1,17 +1,31 @@
 <?xml version='1.0' encoding='ISO-8859-1' ?>
 <html xmlns:ui="http://java.sun.com/jsf/facelets"
-   xmlns:f="http://java.sun.com/jsf/core"
-   xmlns:h="http://java.sun.com/jsf/html"
-   xmlns:a4j="http://richfaces.org/a4j"
-   xmlns:rich="http://richfaces.org/rich">
-		 <ui:composition>
-		<ul>
-		<h:form>
-			<li><h:graphicImage value="/images/icon-setor.gif" width="32" height="32" alt="Setores" /><h:commandLink value="Setor" action="adminSetor" /></li>
-			<li><h:graphicImage value="/images/icon-police.gif" width="32" height="32" alt="Viaturas" /><h:commandLink value="Viaturas" action="adminViatura" /></li>
-			<li><h:graphicImage value="/images/icon-users.gif" width="32" height="32" alt="Usuários" /><h:commandLink value="Usuários" action="adminUsuario" /></li>
-			<li><h:graphicImage value="/images/icon-chart.gif" width="32" height="32" alt="Relatórios" /><h:commandLink value="Relatórios" action="paginaRelatorios" /></li>
-		</h:form>	
-		</ul>
-		 </ui:composition>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+	<ul>
+		<h:form rendered="#{sessaoBean.logado}">
+			<li><h:graphicImage value="/images/icon-setor.gif" width="32"
+				height="32" alt="Setores" /><h:commandLink value="Setor"
+				action="adminSetor" /></li>
+			<h:panelGroup
+				rendered="#{sessaoBean.coordenador or sessaoBean.moderador}">
+			<li><h:graphicImage value="/images/icon-police.gif" width="32"
+				height="32" alt="Viaturas" /><h:commandLink value="Viaturas"
+				action="adminViatura" /></li>
+			</h:panelGroup>
+			<h:panelGroup
+				rendered="#{sessaoBean.coordenador or sessaoBean.moderador}">
+				<li><h:graphicImage value="/images/icon-users.gif" width="32"
+					height="32" alt="Usuários" /><h:commandLink value="Usuários"
+					action="adminUsuario" /></li>
+			</h:panelGroup>
+			<li><h:graphicImage value="/images/icon-chart.gif" width="32"
+				height="32" alt="Relatórios" /><h:commandLink value="Relatórios"
+				action="paginaRelatorios" /></li>
+		</h:form>
+	</ul>
+</ui:composition>
 </html>
