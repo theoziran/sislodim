@@ -1,16 +1,12 @@
 package br.faculdadeidez.psa.facade;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import br.faculdadeidez.psa.apresentacao.managedbean.UsuarioBean;
-import br.faculdadeidez.psa.apresentacao.managedbean.ViaturaBean;
 import br.faculdadeidez.psa.businesslogic.SetorBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
-import br.faculdadeidez.psa.db.entity.Usuario;
-import br.faculdadeidez.psa.db.entity.Viatura;
 import br.faculdadeidez.psa.vo.SetorVO;
+import br.faculdadeidez.psa.vo.UsuarioVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 
@@ -39,57 +35,37 @@ public class Fachada {
 		return logicaUsuario.logon(login, senha);
 	}
 
-	public String deleteUsuario(UsuarioBean originalBean){
-		UsuarioBean bean = originalBean;
+	public String deleteUsuario(UsuarioVO userVO){
 				
 		UsuarioBusinessLogic logica = new UsuarioBusinessLogic();
-		return logica.delete(bean.getId());
+		return logica.delete(userVO.getId());
 	}
 	
-	public String updateUsuario(UsuarioBean originalBean){
-		UsuarioBean bean = originalBean;
-		Usuario ent = new Usuario(bean.getNome(), bean.getLogin(), bean.getSenha(), bean.getId(), bean.getAtivo(),bean.getCpf(), bean.getRg(), bean.getOrgExpeditor());
+	public String updateUsuario(UsuarioVO userVO){
 		
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
-		return logicaUsuario.update(ent);
+		return logicaUsuario.update(userVO);
 	}
 	
-	public String createUsuario(UsuarioBean originalBean){
-		UsuarioBean bean = originalBean;
-		Usuario ent = new Usuario(bean.getNome(), bean.getLogin(), bean.getSenha(), bean.getCpf(), bean.getRg(), bean.getOrgExpeditor());
-		
+	public String createUsuario(UsuarioVO userVO){
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
-		return logicaUsuario.create(ent);
+		return logicaUsuario.create(userVO);
 	}	
 
-	public List<UsuarioBean> listaUsuariosAtivos(){
-		ArrayList<UsuarioBean> usuariosBean = new ArrayList<UsuarioBean>();
-		List<Usuario> usuarios;
+
+	
+	public List<UsuarioVO> listaUsuarios(){
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
-		usuarios =  logicaUsuario.listarAtivos();
-		for (Usuario usuario : usuarios)
-			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha(),usuario.getAtivo(), usuario.getTipoPermissao()));
-		return usuariosBean;		
+		return  logicaUsuario.listar();
+		
 	}
 	
-	public List<UsuarioBean> listaUsuarios(){
-		ArrayList<UsuarioBean> usuariosBean = new ArrayList<UsuarioBean>();
-		List<Usuario> usuarios;
-		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
-		usuarios =  logicaUsuario.listar();
-		for (Usuario usuario : usuarios)
-			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha(),usuario.getAtivo(), usuario.getTipoPermissao()));
-		return usuariosBean;		
-	}
 	
-	public List<UsuarioBean> listaUsuariosInativos(){
-		ArrayList<UsuarioBean> usuariosBean = new ArrayList<UsuarioBean>();
-		List<Usuario> usuarios;
+	
+	public List<UsuarioVO> pesquisa(String nome){
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
-		usuarios =  logicaUsuario.listarInativos();
-		for (Usuario usuario : usuarios)
-			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha(),usuario.getAtivo(), usuario.getTipoPermissao()));
-		return usuariosBean;		
+		return  logicaUsuario.pesquisar(nome);
+		
 	}
 	
 	/*

@@ -16,17 +16,6 @@
              <ui:define name="campo11"><h:outputText value="#{elementoDaVez.ativo}"/></ui:define>
              <ui:define name="campo21"><h:outputText value="#{elementoDaVez.nome}" /></ui:define>
              <ui:define name="campo31"><h:outputText value="#{elementoDaVez.login}" /></ui:define>
-             <!--ui:define name="filtroBusca">
-		< h:panelGrid columns="2">
-			<h:form>
-				<h:selectOneRadio value="#{atualBean.tipoLista}">
-					<a4j:support event="onclick"  action="#{atualBean.atualizarLista}" reRender="generica"/>
-					<f:selectItem itemLabel="Ativos" itemValue="1" />
-					<f:selectItem itemLabel="Inativos" itemValue="2" />
-					<f:selectItem itemLabel="Todos" itemValue="3" />
-				</h:selectOneRadio>
-			</h:form>
-		</h:panelGrid >
-	</ui:define-->
+             <ui:define name="linkNovoItem"><h:commandLink action="adminUsuario" value="Novo usuário" /></ui:define>
 </ui:composition>
 </html>

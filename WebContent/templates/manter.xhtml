@@ -9,9 +9,32 @@
 
 <ui:composition template="/templates/generico.xhtml">
 	<ui:define name="conteudo">
-		<ui:insert name="filtroBusca"></ui:insert>
-		<h:form>
-			<a4j:region>
+
+
+		<h:panelGrid columns="2" width="520">
+
+			<h:form>
+				<h:panelGrid columns="3">
+					<h:outputText value="Pesquisar" />
+					<h:inputText id="nome" value="#{atualBean.termoPesquisa}"
+						required="true" />
+					<a4j:commandButton value="Encontrar"
+                     action="#{atualBean.pesquisar}"
+                     reRender="generica"/>
+				</h:panelGrid>
+				<a4j:status>
+        <f:facet name="start"><h:graphicImage value="/images/indicator.gif"/></f:facet>
+    </a4j:status>
+			</h:form>
+			<h:form>
+				<h:panelGrid columns="1">
+					<ui:insert name="linkNovoItem"></ui:insert>
+				</h:panelGrid>
+			</h:form>
+		</h:panelGrid>
+
+
+			<a4j:form>
 				<h:panelGrid class="lista" columns="1" width="520">
 
 					<rich:dataTable
@@ -25,7 +48,7 @@
 								<rich:column colspan="3">
 									<ui:insert name="tituloTabela"></ui:insert>
 								</rich:column>
-								
+
 								<rich:column rowspan="2" colspan="2">
 									<h:outputText value="Ações" />
 								</rich:column>
@@ -33,29 +56,29 @@
 								<rich:column breakBefore="true">
 									<ui:insert name="campo1"></ui:insert>
 								</rich:column>
-								
+
 								<rich:column>
 									<ui:insert name="campo2"></ui:insert>
 								</rich:column>
-								
+
 								<rich:column>
 									<ui:insert name="campo3"></ui:insert>
-								</rich:column>								
+								</rich:column>
 							</rich:columnGroup>
 						</f:facet>
 						<rich:columnGroup>
 							<rich:column breakBefore="true">
 								<ui:insert name="campo11" id="campo11"></ui:insert>
 							</rich:column>
-							
+
 							<rich:column>
 								<ui:insert name="campo21" id="campo21"></ui:insert>
 							</rich:column>
-							
+
 							<rich:column>
 								<ui:insert name="campo31" id="campo31"></ui:insert>
 							</rich:column>
-							
+
 							<rich:column>
 								<a4j:commandButton value="Editar"
 									oncomplete="#{rich:component('editPanel')}.show()"
@@ -76,16 +99,13 @@
 							</rich:column>
 						</rich:columnGroup>
 					</rich:dataTable>
-					
-					<h:panelGrid columns="2">					
-					<rich:datascroller align="left" for="generica" maxPages="10" />
-					<h:commandLink action="#{atualBean.linkEditar}" value="Novo" />
-					</h:panelGrid>
+
+					<rich:datascroller align="left" for="generica" maxPages="10" id="datascroller"/>
+
 					<rich:spacer height="30" />
 					
 				</h:panelGrid>
-			</a4j:region>
-		</h:form>
+			</a4j:form>
 		<rich:modalPanel id="editPanel" autosized="true" width="450">
 			<f:facet name="header">
 				<ui:insert name="tituloEdit">
@@ -108,16 +128,18 @@
 							<ui:insert name="camposEdit"></ui:insert>
 						</h:panelGrid>
 					</a4j:outputPanel>
-					
+
 					<h:panelGrid columns="2">
-					
-					<a4j:commandButton value="Editar" action="#{atualBean.update}"
-						oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('editPanel')}.hide();" reRender="generica"/>						
-					
-					<a4j:commandButton value="Cancelar" onclick="#{rich:component('editPanel')}.hide(); return false;" />
-					
+
+						<a4j:commandButton value="Editar" action="#{atualBean.update}"
+							oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('editPanel')}.hide();"
+							reRender="generica" />
+
+						<a4j:commandButton value="Cancelar"
+							onclick="#{rich:component('editPanel')}.hide(); return false;" />
+
 					</h:panelGrid>
-					
+
 				</h:panelGrid>
 			</h:form>
 		</rich:modalPanel>
