@@ -1,6 +1,7 @@
 package br.faculdadeidez.psa.db.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import br.faculdadeidez.psa.vo.BairroVO;
@@ -22,6 +24,17 @@ public class Bairro implements Serializable {
 	private int codigo;
 	@Basic @Column (name="BAI_NOME") 
 	private String nome;
+	@ManyToMany(mappedBy="bairros")
+	private Set<Setor> setores;
+	
+	public Set<Setor> getSetores() {
+		return setores;
+	}
+
+	public void setSetores(Set<Setor> setores) {
+		this.setores = setores;
+	}
+	
 	
 	/*********************************************************/
 	/******** Conversão do objeto Bairro para o BairroVO *******/
