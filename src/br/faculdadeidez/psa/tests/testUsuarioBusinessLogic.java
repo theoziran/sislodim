@@ -23,6 +23,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u.setCpf("22616487403");
 			u.setRg("1234501");
 			u.setOrgExpeditor("SSP-PB");
+			u.setTipoPermissao(1);
 			u.setAtivo(1);
 
 			assertEquals("inserido", ubl.create(u));
@@ -36,7 +37,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u.setRg("1234502");
 			u.setOrgExpeditor("SSP-PB");
 			u.setAtivo(1);
-			u.setTipoPermissao(1);
+			u.setTipoPermissao(2);
 			assertEquals("inserido", ubl.create(u));
 		}
 
@@ -55,6 +56,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u.setOrgExpeditor("SSP-PB");
 			u.setAtivo(1);
 			u.setTipoPermissao(1);
+			
 			// login nulo
 			u.setLogin(null);
 			assertEquals("problemaInserir", ubl.create(u));
@@ -107,7 +109,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 
 			// cpf duplicado
 			u.setLogin("testLogin3");
-			u.setCpf("26151813600");
+			u.setCpf("22616487403");
 			assertEquals("cpfExistente", ubl.create(u));
 
 			// rg duplicado
@@ -130,6 +132,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u.setCpf("93235080716");
 			u.setRg("1234503");
 			u.setOrgExpeditor("SSP-PB");
+			u.setTipoPermissao(2);
 			u.setAtivo(1);
 
 			// login inválido
@@ -197,6 +200,10 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u.setCpf("234*¬");
 			assertEquals("dadoInvalido", ubl.create(u));
 
+			// tipo de permissao inválido
+			u.setOrgExpeditor("93235080716");
+			u.setTipoPermissao(0);
+			assertEquals("dadoInvalido", ubl.create(u));
 		}
 	}
 }
