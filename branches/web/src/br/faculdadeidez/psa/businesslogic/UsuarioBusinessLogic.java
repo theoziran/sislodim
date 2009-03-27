@@ -70,7 +70,9 @@ public class UsuarioBusinessLogic {
 
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
-
+			if (user.getLogin()==null || user.getCpf()==null || user.getNome()==null || user.getRg()==null || user.getSenha()==null || user.getOrgExpeditor()==null){
+				throw new Exception();
+			}
 			if (dUsuario.findByField("login", user.getLogin()).isEmpty()) {
 				if (dUsuario.findByField("cpf", user.getCpf()).isEmpty()) {
 					if (dUsuario.existsRg(user.getRg(), user.getOrgExpeditor())
