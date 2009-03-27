@@ -17,12 +17,12 @@ public class UsuarioBean extends GenericoBean {
 	private int tipoLista;	
 
 	public UsuarioBean() {
-		setLinkEditar("editaUsuario");
+		setLinkEditar("cadastroUsuario");
 	}
 	
 	public UsuarioBean(int id, String login, String nome, String senha, int ativo , int tipoPermissao) {
 		setAtivo(ativo);
-		setLinkEditar("editaUsuario");
+		setLinkEditar("cadastroUsuario");
 		setId(id);
 		setLogin(login);
 		setNome(nome);

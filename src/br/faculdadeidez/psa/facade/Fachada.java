@@ -68,9 +68,8 @@ public class Fachada {
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
 		usuarios =  logicaUsuario.listarAtivos();
 		for (Usuario usuario : usuarios)
-			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha(),usuario.getAtivo()));
-		return usuariosBean;
-		
+			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha(),usuario.getAtivo(), usuario.getTipoPermissao()));
+		return usuariosBean;		
 	}
 	
 	public List<UsuarioBean> listaUsuarios(){
@@ -79,9 +78,8 @@ public class Fachada {
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
 		usuarios =  logicaUsuario.listar();
 		for (Usuario usuario : usuarios)
-			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha(),usuario.getAtivo()));
-		return usuariosBean;
-		
+			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha(),usuario.getAtivo(), usuario.getTipoPermissao()));
+		return usuariosBean;		
 	}
 	
 	public List<UsuarioBean> listaUsuariosInativos(){
@@ -90,9 +88,8 @@ public class Fachada {
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
 		usuarios =  logicaUsuario.listarInativos();
 		for (Usuario usuario : usuarios)
-			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha(),usuario.getAtivo()));
-		return usuariosBean;
-		
+			usuariosBean.add(new UsuarioBean(usuario.getId(),usuario.getLogin(),usuario.getNome(),usuario.getSenha(),usuario.getAtivo(), usuario.getTipoPermissao()));
+		return usuariosBean;		
 	}
 	
 	/*
