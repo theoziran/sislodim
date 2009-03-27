@@ -33,6 +33,7 @@ public class Setor implements Serializable {
             inverseJoinColumns=
                 @JoinColumn(name="BAI_CODIGO", referencedColumnName="BAI_CODIGO")
             )	
+      
     private Set<Bairro> bairros; 
 	
 	public Set<Bairro> getBairros() {
