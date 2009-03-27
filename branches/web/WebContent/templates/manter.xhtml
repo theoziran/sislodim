@@ -77,9 +77,12 @@
 						</rich:columnGroup>
 					</rich:dataTable>
 					
+					<h:panelGrid columns="2">					
 					<rich:datascroller align="left" for="generica" maxPages="10" />
+					<h:commandLink action="#{atualBean.linkEditar}" value="Novo" />
+					</h:panelGrid>
 					<rich:spacer height="30" />
-
+					
 				</h:panelGrid>
 			</a4j:region>
 		</h:form>
