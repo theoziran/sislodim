@@ -40,6 +40,13 @@
 		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>sessaoBean</managed-bean-name>
+		<managed-bean-class>
+			br.faculdadeidez.psa.apresentacao.managedbean.SessaoBean 
+		</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 
 	<!-- Navegação global -->
 	<lifecycle>
@@ -57,6 +64,12 @@
 		<navigation-case>
 			<from-outcome>cadastroUsuario</from-outcome>
 			<to-view-id>/pages/cadastroUsuario.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>logado</from-outcome>
+			<to-view-id>/pages/mapa.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>

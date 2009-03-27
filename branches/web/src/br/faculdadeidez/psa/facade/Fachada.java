@@ -62,7 +62,7 @@ public class Fachada {
 	
 	
 	
-	public List<UsuarioVO> pesquisa(String nome){
+	public List<UsuarioVO> pesquisaUsuario(String nome){
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
 		return  logicaUsuario.pesquisar(nome);
 		
@@ -89,6 +89,12 @@ public class Fachada {
 		return new SetorBusinessLogic().listar();
 	}	
 	
+	public List<SetorVO> pesquisaSetor(String nome){
+		SetorBusinessLogic logicaSetor = new SetorBusinessLogic();
+		return  logicaSetor.pesquisar(nome);
+		
+	}
+	
 	/*
 	 * Métodos para as Viaturas
 	 */
@@ -109,4 +115,10 @@ public class Fachada {
 	{
 		return new ViaturaBusinessLogic().listar();
 	}	
+	
+	public List<ViaturaVO> pesquisaViatura(String nome){
+		ViaturaBusinessLogic logicaViatura = new ViaturaBusinessLogic();
+		return  logicaViatura.pesquisar(nome);
+		
+	}
 }

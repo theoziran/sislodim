@@ -45,4 +45,10 @@ public class SetorBusinessLogic {
 		DAOSetor dSetor = new DAOSetor();
 		return dSetor.findAll();		
 	}
+	
+	public List<SetorVO> pesquisar(String valor){
+		DAOSetor dSetor = new DAOSetor();
+		List<SetorVO> retorno = dSetor.findByField("nome", valor);
+		return retorno;
+	}
 }
