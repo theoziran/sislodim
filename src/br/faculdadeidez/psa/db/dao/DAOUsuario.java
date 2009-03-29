@@ -14,7 +14,10 @@ public class DAOUsuario extends DAOFactory<Usuario> {
 	}
 
 	public UsuarioVO find(int chave) {
-		return super.find(Usuario.class, chave).toVO();
+		Usuario user = super.find(Usuario.class, chave);
+		if (user!=null)
+		 return user.toVO();
+		return null;
 	}
 
 	public void update(UsuarioVO vo){		
