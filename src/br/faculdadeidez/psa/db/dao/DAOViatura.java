@@ -31,8 +31,9 @@ public class DAOViatura extends DAOFactory<Viatura> {
 		super.persist(new Viatura(vo));
 	}
 	
-	public void remove(ViaturaVO vo){		
-		super.remove(new Viatura(vo));
+	public void remove(ViaturaVO vo){
+		Viatura viatura = super.find(Viatura.class, vo.getCodigo());
+		super.remove(viatura);
 	}
 	
 	/*
