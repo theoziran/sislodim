@@ -26,9 +26,11 @@ public class DAOFactory<T> {
 		manager.getTransaction().begin();
 		manager.persist(obj);
 		manager.getTransaction().commit();
+		
 	}
 
 	public void remove(T obj) {
+		if (!manager.getTransaction().isActive())
 		manager.getTransaction().begin();
 		manager.remove(obj);
 		manager.getTransaction().commit();

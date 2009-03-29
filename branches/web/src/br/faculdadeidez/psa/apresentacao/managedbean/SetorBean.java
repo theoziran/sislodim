@@ -7,7 +7,7 @@ import br.faculdadeidez.psa.vo.SetorVO;
 public class SetorBean extends GenericoBean {
 	private List<SetorVO> listaTudo = null;
 	private SetorVO setor = new SetorVO();
-	private String termoPesquisa;
+	private String termoPesquisa = new String();
 	
 	public SetorVO getSetor() {
 		return setor;
@@ -19,8 +19,10 @@ public class SetorBean extends GenericoBean {
 	
 	public List<SetorVO> getListaTudo()
 	{	
-		if (listaTudo==null || listaTudo.isEmpty() )
-			return getFachada().listarSetores();
+		if (listaTudo==null || listaTudo.isEmpty() || getTermoPesquisa().isEmpty() )
+			setListaTudo(getFachada().listarSetores());
+		else
+			setTermoPesquisa(new String());
 		return listaTudo;
 	}
 		
@@ -44,13 +46,18 @@ public class SetorBean extends GenericoBean {
 			adicionarMensagem("Setor já existente");			
 		}else if (mensagem.equals("problemaInserir")) {			
 			adicionarMensagem("Error...");
-		}
+		}else
+			setSetor(new SetorVO());
 		return getFachada().createSetor(setor);
 	}
 	
 	public void pesquisar(){
+		if (getTermoPesquisa().isEmpty()){
+			setListaTudo(getFachada().listarSetores());
+		}else{
 		List<SetorVO> setores = getFachada().pesquisaSetor(getTermoPesquisa());
 		setListaTudo(setores);
+		}
 	}
 
 	public void setListaTudo(List<SetorVO> listaTudo) {

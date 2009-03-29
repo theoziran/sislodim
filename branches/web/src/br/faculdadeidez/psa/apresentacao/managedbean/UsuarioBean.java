@@ -6,9 +6,8 @@ import br.faculdadeidez.psa.vo.UsuarioVO;
 
 public class UsuarioBean extends GenericoBean {
 	private UsuarioVO usuario = new UsuarioVO();
-	private String termoPesquisa;
-
-	private List listaTudo;
+	private String termoPesquisa= new String();
+	private List<UsuarioVO> listaTudo;
 
 	public UsuarioBean() {
 		setLinkEditar("cadastroUsuario");
@@ -50,8 +49,10 @@ public class UsuarioBean extends GenericoBean {
 		}else if (mensagem.equals("problemaInserir")) {
 			
 			adicionarMensagem("Error...");
-		}
+		}else{
 		adicionarMensagem("Cadastrado com sucesso!");
+		setUsuario(new UsuarioVO());
+		}
 		return mensagem;	
 	}
 	
@@ -66,18 +67,21 @@ public class UsuarioBean extends GenericoBean {
 		this.usuario = usuario;
 	}
 
-	public List getListaTudo() {		
-		if (listaTudo==null || listaTudo.isEmpty() )
+	public List<UsuarioVO> getListaTudo() {
+		
+		if (listaTudo==null || listaTudo.isEmpty() || getTermoPesquisa().isEmpty() )
 			setListaTudo(getFachada().listaUsuarios());
+		else
+			setTermoPesquisa(new String());
 		return listaTudo;
 	}
 
-	public void setListaTudo(List listaTudo) {
+	public void setListaTudo(List<UsuarioVO> listaTudo) {
 		this.listaTudo = listaTudo;
 	}	
 	
 	public void pesquisar(){
-		if (getTermoPesquisa().equals("")){
+		if (getTermoPesquisa().isEmpty()){
 			setListaTudo(getFachada().listaUsuarios());
 		}else{
 		List<UsuarioVO> usuarios = getFachada().pesquisaUsuario(getTermoPesquisa());

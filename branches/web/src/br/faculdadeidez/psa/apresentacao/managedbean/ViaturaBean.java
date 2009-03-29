@@ -7,7 +7,7 @@ import br.faculdadeidez.psa.vo.ViaturaVO;
 public class ViaturaBean extends GenericoBean {
 	private List<ViaturaVO> listaTudo = null;
 	private ViaturaVO viatura =  new ViaturaVO();
-	private String termoPesquisa;
+	private String termoPesquisa = new String();
 		
 	public ViaturaVO getViatura() {
 		return viatura;
@@ -19,7 +19,11 @@ public class ViaturaBean extends GenericoBean {
 	
 	public List<ViaturaVO> getListaTudo()
 	{	
-		return getFachada().listarViaturas();
+		if (listaTudo==null || listaTudo.isEmpty() || getTermoPesquisa().isEmpty() )
+			setListaTudo(getFachada().listarViaturas());
+		else
+			setTermoPesquisa(new String());
+		return listaTudo;
 	}
 		
 	public String delete()
@@ -42,13 +46,18 @@ public class ViaturaBean extends GenericoBean {
 			adicionarMensagem("Viatura já existe");			
 		}else if (mensagem.equals("problemaInserir")) {			
 			adicionarMensagem("Error...");			
-		}
+		}else
+			setViatura(new ViaturaVO());
 		return mensagem;
 	}
 	
 	public void pesquisar(){
+		if (getTermoPesquisa().isEmpty()){
+			setListaTudo(getFachada().listarViaturas());
+		}else{
 		List<ViaturaVO> viaturas = getFachada().pesquisaViatura(getTermoPesquisa());
 		setListaTudo(viaturas);
+		}
 	}
 
 	public void setListaTudo(List<ViaturaVO> listaTudo) {
