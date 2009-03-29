@@ -38,17 +38,18 @@ public class SetorBean extends GenericoBean {
 		return getFachada().updateSetor(setorDaVez);
 	}
 	
-	public String create()
+	public void create()
 	{
 		String mensagem = getFachada().createSetor(setor);
 		
 		if(mensagem.equals("setorExistente")){			
 			adicionarMensagem("Setor já existente");			
-		}else if (mensagem.equals("problemaInserir")) {			
+		} else if (mensagem.equals("problemaInserir")) {			
 			adicionarMensagem("Error...");
-		}else
-			setSetor(new SetorVO());
-		return getFachada().createSetor(setor);
+		} else {						
+			setSetor(new SetorVO());			
+			redirecionaPagina("adminSetor.st?id=1", mensagem);
+		}
 	}
 	
 	public void pesquisar(){
