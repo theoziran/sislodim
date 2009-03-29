@@ -20,7 +20,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u = new UsuarioVO();
 
 			u.setLogin("testLogin1");
-			u.setNome("testName1");
+			u.setNome("testNameUm");
 			u.setSenha("testPassword1");
 			u.setCpf("22616487403");
 			u.setRg("1234501");
@@ -33,7 +33,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u = new UsuarioVO();
 
 			u.setLogin("testLogin2");
-			u.setNome("testName2");
+			u.setNome("testNameDois");
 			u.setSenha("testPassword2");
 			u.setCpf("71741487510");
 			u.setRg("1234502");
@@ -45,7 +45,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u = new UsuarioVO();
 
 			u.setLogin("testLogin4");
-			u.setNome("testName4");
+			u.setNome("testNameQuatro");
 			u.setSenha("testPassword4");
 			u.setCpf("12345678904");
 			u.setRg("1234504");
@@ -63,7 +63,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u = new UsuarioVO();
 
 			u.setLogin("testLogin3");
-			u.setNome("testName3");
+			u.setNome("testNameTres");
 			u.setSenha("testPassword3");
 			u.setCpf("93235080716");
 			u.setRg("1234503");
@@ -110,7 +110,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u = new UsuarioVO();
 
 			u.setLogin("testLogin3");
-			u.setNome("testName3");
+			u.setNome("testNameTres");
 			u.setSenha("testPassword3");
 			u.setCpf("93235080716");
 			u.setRg("1234503");
@@ -141,7 +141,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u = new UsuarioVO();
 
 			u.setLogin("testLogin3");
-			u.setNome("testName3");
+			u.setNome("testNameTres");
 			u.setSenha("testPassword3");
 			u.setCpf("93235080716");
 			u.setRg("1234503");
@@ -260,7 +260,6 @@ public class testUsuarioBusinessLogic extends TestCase {
 			 * Test case - TC1.3.2
 			 **/
 			ls = ubl.pesquisar("testLogin2");
-
 			u = ls.get(0);
 			assertEquals("usuarioInexistente", ubl.update(u));
 		}
