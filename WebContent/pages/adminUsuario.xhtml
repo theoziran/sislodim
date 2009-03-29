@@ -30,6 +30,8 @@
              	<h:outputText value="#{elementoDaVez.login}" />
              	</rich:column>
              </ui:define>
-             <ui:define name="linkNovoItem"><h:commandLink action="cadastroUsuario" value="Novo usuário" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}"/></ui:define>
+	<ui:define name="linkNovoItem">
+    	<a4j:commandButton value="Novo usuário" action="cadastroUsuario" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}" />
+    </ui:define>
 </ui:composition>
 </html>
