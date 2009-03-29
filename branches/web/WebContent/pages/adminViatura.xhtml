@@ -30,7 +30,7 @@
 			disabled="true" />
 	</ui:define>
 	<ui:define name="linkNovoItem">
-		<h:commandLink action="cadastroViatura" value="Nova Viatura" />
-	</ui:define>
+    	<a4j:commandButton value="Novo viatura" action="cadastroViatura" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}" />
+    </ui:define>
 </ui:composition>
 </html>

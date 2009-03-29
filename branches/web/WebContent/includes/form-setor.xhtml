@@ -10,16 +10,13 @@
 		<div class="form">
 <h:panelGrid columns="1">
 			<h:form>
-			<h:panelGrid columns="2">
-				<h:outputLabel value="*Nome do setor"/>
-				<h:inputText id="nome" value="#{setorBean.setor.nome}" required="true"/>
-				<h:commandButton action="#{setorBean.create}" value="Cadastrar" />
+				<h:panelGrid columns="2">
+					<h:outputLabel value="*Nome do setor"/>
+					<h:inputText id="nome" value="#{setorBean.setor.nome}" required="true"/>
+					<h:commandButton action="#{setorBean.create}" value="Salvar" />
+					<h:messages styleClass="mensagens" showDetail="false" />					
+				</h:panelGrid>		
 				
-			</h:panelGrid>
-			</h:form>
-			<h:form>
-			<h:commandLink action="adminSetor" value="Administrar" />
-				<h:messages styleClass="mensagens" showDetail="false" />
 			</h:form>
 			</h:panelGrid>
 		</div>
