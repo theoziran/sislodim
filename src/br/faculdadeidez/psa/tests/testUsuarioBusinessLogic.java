@@ -231,14 +231,12 @@ public class testUsuarioBusinessLogic extends TestCase {
 		 **/
 		ls = ubl.pesquisar("testLogin2");
 		u = ls.get(0);
-		assertEquals("removido", u.getId());
+		assertEquals("removido", ubl.delete(u.getId()));
 
 		/**
 		 * Test case - TC1.2.3
 		 **/
-		ls = ubl.pesquisar("testLogin3");
-		u = ls.get(0);
-		assertEquals("usuarioInexistente", u.getId());
+		assertEquals("usuarioInexistente", ubl.delete(99999));
 	}
 
 	public void testUpdate() {
@@ -435,12 +433,12 @@ public class testUsuarioBusinessLogic extends TestCase {
 
 	public void testLogon() {
 		UsuarioBusinessLogic ubl = new UsuarioBusinessLogic();
-	
-		assertEquals("logado", ubl.logon("testeLogin1", "testPassword1"));
-		assertEquals("naoEncontrado", ubl.logon("testeLogin2", "testPassword2"));
-		assertEquals("naoEncontrado", ubl.logon("testeLogin1", "123456"));
-		assertEquals("camposEmBranco", ubl.logon(null, "testePassword1"));
-		assertEquals("camposEmBranco", ubl.logon("", "testePassword1"));
+
+		assertEquals("logado", ubl.logon("testLogin1", "testPassword1"));
+		assertEquals("naoEncontrado", ubl.logon("testLogin2", "testPassword2"));
+		assertEquals("naoEncontrado", ubl.logon("testLogin1", "123456"));
+		assertEquals("camposEmBranco", ubl.logon(null, "testPassword1"));
+		assertEquals("camposEmBranco", ubl.logon("", "testPassword1"));
 		assertEquals("camposEmBranco", ubl.logon("testLogin1", null));
 		assertEquals("camposEmBranco", ubl.logon("testLogin1", ""));
 
