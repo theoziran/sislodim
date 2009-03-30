@@ -16,8 +16,8 @@
 </head>
 <body>
 <div id="geral">
-	<div id="topo"><h:graphicImage value="/images/topo.gif" width="770" height="150" alt="Sislodim - Módulo administrativo" /></div>
-<div id="info"><ui:insert name="info"></ui:insert></div>
+	<div id="topo"><a href="#{facesContext.externalContext.request.contextPath}"><h:graphicImage value="/images/topo.gif" width="770" height="150" style="border:0;" alt="Sislodim - Módulo administrativo" /></a></div>
+	<div id="info"><ui:insert name="info">#{SessaoBean.usuario.nome}</ui:insert></div>
 
 		
 	<div id="menu">
