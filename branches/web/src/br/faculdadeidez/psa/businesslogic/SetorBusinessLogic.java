@@ -29,11 +29,17 @@ public class SetorBusinessLogic {
 		}
 	}
 	
-	public String create(SetorVO vo){
+	public String create(SetorVO setor){
 		try {
-			DAOSetor dSetor = new DAOSetor();
-			dSetor.persist(vo);
-			return "inserido";
+			DAOSetor daoSetor = new DAOSetor();
+			if(daoSetor.findByField("nome", setor.getNome()).isEmpty()){
+				daoSetor.persist(setor);
+				return "inserido";
+			}else
+				return "setorExistente";
+			
+			
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			return "problemaInserir";
