@@ -242,7 +242,6 @@ public class testUsuarioBusinessLogic extends TestCase {
 			 * Test case - TC1.3.1
 			 **/
 			ls = ubl.pesquisar("testLogin1");
-
 			u = ls.get(0);
 			assertEquals("atualizado", ubl.update(u));
 
@@ -252,8 +251,9 @@ public class testUsuarioBusinessLogic extends TestCase {
 			/**
 			 * Test case - TC1.3.2
 			 **/
-			ls = ubl.pesquisar("testLogin2");
-			u = ls.get(0);
+			ls = ubl.pesquisar("testLogin3");
+			if (ls.isEmpty())
+				u = null;
 			assertEquals("usuarioInexistente", ubl.update(u));
 		}
 
@@ -404,7 +404,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 		List<UsuarioVO> ls;
 
 		ls = ubl.listar();
-		assertEquals(2, ls.size());
+		assertEquals(3, ls.size());
 	}
 
 	public void testPesquisar() {
