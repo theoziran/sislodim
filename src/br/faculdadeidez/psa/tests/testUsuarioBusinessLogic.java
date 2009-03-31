@@ -219,19 +219,8 @@ public class testUsuarioBusinessLogic extends TestCase {
 	}
 
 	public void testDelete() {
-		List<UsuarioVO> ls;
-
-		/**
-		 * Test case - TC1.2.1
-		 **/
-		ls = ubl.pesquisar("testLogin2");
-		u = ls.get(0);
-		assertEquals("removido", ubl.delete(u.getId()));
-
-		/**
-		 * Test case - TC1.2.3
-		 **/
-		assertEquals("usuarioInexistente", ubl.delete(99999));
+		assertEquals("removido", ubl.delete(listUsuariosValidos.get(1).getId()));
+		assertEquals("usuarioInexistente", ubl.delete(usuarioInvalido.getId()));
 	}
 
 	public void testUpdate() {
@@ -401,10 +390,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 	}
 
 	public void testListar() {
-		List<UsuarioVO> ls;
-
-		ls = ubl.listar();
-		assertEquals(3, ls.size());
+		assertTrue(listUsuariosValidos.size() == ubl.listar().size());
 	}
 
 	public void testPesquisar() {
@@ -429,6 +415,5 @@ public class testUsuarioBusinessLogic extends TestCase {
 		assertEquals("camposEmBranco", ubl.logon("", "testPassword1"));
 		assertEquals("camposEmBranco", ubl.logon("testLogin1", null));
 		assertEquals("camposEmBranco", ubl.logon("testLogin1", ""));
-
 	}
 }
