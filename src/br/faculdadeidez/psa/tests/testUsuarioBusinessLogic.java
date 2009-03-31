@@ -1,5 +1,6 @@
 package br.faculdadeidez.psa.tests;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -7,223 +8,217 @@ import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
 import br.faculdadeidez.psa.vo.UsuarioVO;
 
 public class testUsuarioBusinessLogic extends TestCase {
+	UsuarioVO u;
+	UsuarioVO usuarioInvalido;
+	UsuarioBusinessLogic ubl = new UsuarioBusinessLogic();
+	List<UsuarioVO> listUsuariosValidos = new ArrayList<UsuarioVO>();
 
-	public void testCreate() {
-		UsuarioVO u;
-		UsuarioBusinessLogic ubl = new UsuarioBusinessLogic();
+	@Override
+	protected void setUp() throws Exception {
 
-		{
-			/**
-			 * Test case - TC1.1.1
-			 **/
+		u = new UsuarioVO();
 
-			u = new UsuarioVO();
+		u.setLogin("testLogin1");
+		u.setNome("testNameOne");
+		u.setSenha("testPassword1");
+		u.setCpf("22616487403");
+		u.setRg("1234501");
+		u.setOrgExpeditor("SSP-PB");
+		u.setTipoPermissao(1);
+		u.setAtivo(1);
 
-			u.setLogin("testLogin1");
-			u.setNome("testNameUm");
-			u.setSenha("testPassword1");
-			u.setCpf("22616487403");
-			u.setRg("1234501");
-			u.setOrgExpeditor("SSP-PB");
-			u.setTipoPermissao(1);
-			u.setAtivo(1);
+		listUsuariosValidos.add(u);
 
-			assertEquals("inserido", ubl.create(u));
+		u = new UsuarioVO();
 
-			u = new UsuarioVO();
+		u.setLogin("testLogin2");
+		u.setNome("testNameTwo");
+		u.setSenha("testPassword2");
+		u.setCpf("71741487510");
+		u.setRg("1234502");
+		u.setOrgExpeditor("SSP-PB");
+		u.setAtivo(1);
+		u.setTipoPermissao(2);
 
-			u.setLogin("testLogin2");
-			u.setNome("testNameDois");
-			u.setSenha("testPassword2");
-			u.setCpf("71741487510");
-			u.setRg("1234502");
-			u.setOrgExpeditor("SSP-PB");
-			u.setAtivo(1);
-			u.setTipoPermissao(2);
-			assertEquals("inserido", ubl.create(u));
+		listUsuariosValidos.add(u);
 
-			u = new UsuarioVO();
+		u = new UsuarioVO();
 
-			u.setLogin("testLogin4");
-			u.setNome("testNameQuatro");
-			u.setSenha("testPassword4");
-			u.setCpf("12345678904");
-			u.setRg("1234504");
-			u.setOrgExpeditor("SSP-PB");
-			u.setAtivo(1);
-			u.setTipoPermissao(2);
-			assertEquals("inserido", ubl.create(u));
-		}
+		u.setLogin("testLogin4");
+		u.setNome("testNameFour");
+		u.setSenha("testPassword4");
+		u.setCpf("12345678904");
+		u.setRg("1234504");
+		u.setOrgExpeditor("SSP-PB");
+		u.setAtivo(1);
+		u.setTipoPermissao(2);
 
-		{
-			/**
-			 * Test case - TC1.1.2
-			 **/
+		listUsuariosValidos.add(u);
 
-			u = new UsuarioVO();
+		usuarioInvalido = new UsuarioVO();
 
-			u.setLogin("testLogin3");
-			u.setNome("testNameTres");
-			u.setSenha("testPassword3");
-			u.setCpf("93235080716");
-			u.setRg("1234503");
-			u.setOrgExpeditor("SSP-PB");
-			u.setAtivo(1);
-			u.setTipoPermissao(1);
+		usuarioInvalido.setLogin("testLogin3");
+		usuarioInvalido.setNome("testNameTres");
+		usuarioInvalido.setSenha("testPassword3");
+		usuarioInvalido.setCpf("93235080716");
+		usuarioInvalido.setRg("1234503");
+		usuarioInvalido.setOrgExpeditor("SSP-PB");
+		usuarioInvalido.setAtivo(1);
+		usuarioInvalido.setTipoPermissao(1);
 
-			// login nulo
-			u.setLogin(null);
-			assertEquals("problemaInserir", ubl.create(u));
+	}
 
-			// nome nulo
-			u.setLogin("testLogin3");
-			u.setNome(null);
-			assertEquals("problemaInserir", ubl.create(u));
+	public void testCreateValido() {
+		/**
+		 * Test case - TC1.1.1 - Valores Válidos
+		 **/
 
-			// senha nula
-			u.setNome("testName3");
-			u.setSenha(null);
-			assertEquals("problemaInserir", ubl.create(u));
+		assertEquals("inserido", ubl.create(listUsuariosValidos.get(0)));
+		assertEquals("inserido", ubl.create(listUsuariosValidos.get(1)));
+		assertEquals("inserido", ubl.create(listUsuariosValidos.get(2)));
 
-			// cpf nulo
-			u.setSenha("testPassword3");
-			u.setCpf(null);
-			assertEquals("problemaInserir", ubl.create(u));
+	}
 
-			// rg nulo
-			u.setCpf("93235080716");
-			u.setRg(null);
-			assertEquals("problemaInserir", ubl.create(u));
+	public void testCreateNulos() {
+		/**
+		 * Test case - TC1.1.2 - Valores Nulos
+		 **/
 
-			// orgao expedidor nulo
-			u.setRg("1234503");
-			u.setOrgExpeditor(null);
-			assertEquals("problemaInserir", ubl.create(u));
+		u = usuarioInvalido;
 
-		}
+		// login nulo
+		u.setLogin(null);
+		assertEquals("problemaInserir", ubl.create(u));
 
-		{
-			/**
-			 * Test case - TC1.1.3
-			 **/
+		// nome nulo
+		u.setLogin("testLogin3");
+		u.setNome(null);
+		assertEquals("problemaInserir", ubl.create(u));
 
-			u = new UsuarioVO();
+		// senha nula
+		u.setNome("testName3");
+		u.setSenha(null);
+		assertEquals("problemaInserir", ubl.create(u));
 
-			u.setLogin("testLogin3");
-			u.setNome("testNameTres");
-			u.setSenha("testPassword3");
-			u.setCpf("93235080716");
-			u.setRg("1234503");
-			u.setOrgExpeditor("SSP-PB");
-			u.setAtivo(1);
+		// cpf nulo
+		u.setSenha("testPassword3");
+		u.setCpf(null);
+		assertEquals("problemaInserir", ubl.create(u));
 
-			// login duplicado
-			u.setLogin("testLogin1");
-			assertEquals("usuarioExistente", ubl.create(u));
+		// rg nulo
+		u.setCpf("93235080716");
+		u.setRg(null);
+		assertEquals("problemaInserir", ubl.create(u));
 
-			// cpf duplicado
-			u.setLogin("testLogin3");
-			u.setCpf("22616487403");
-			assertEquals("cpfExistente", ubl.create(u));
+		// orgao expedidor nulo
+		u.setRg("1234503");
+		u.setOrgExpeditor(null);
+		assertEquals("problemaInserir", ubl.create(u));
 
-			// rg duplicado
-			u.setCpf("93235080716");
-			u.setRg("1234501");
-			u.setOrgExpeditor("SSP-PB");
-			assertEquals("rgExistente", ubl.create(u));
-		}
+	}
 
-		{
-			/**
-			 * Test case - TC1.1.4
-			 **/
+	public void testCreateValoresExistentes() {
+		/**
+		 * Test case - TC1.1.3 - Valores Existentes
+		 **/
 
-			u = new UsuarioVO();
+		u = usuarioInvalido;
 
-			u.setLogin("testLogin3");
-			u.setNome("testNameTres");
-			u.setSenha("testPassword3");
-			u.setCpf("93235080716");
-			u.setRg("1234503");
-			u.setOrgExpeditor("SSP-PB");
-			u.setTipoPermissao(2);
-			u.setAtivo(1);
+		// login duplicado
+		u.setLogin("testLogin1");
+		assertEquals("usuarioExistente", ubl.create(u));
 
-			// login inválido
-			// string vazia
-			u.setLogin("");
-			assertEquals("dadoInvalido", ubl.create(u));
+		// cpf duplicado
+		u.setLogin("testLogin3");
+		u.setCpf("22616487403");
+		assertEquals("cpfExistente", ubl.create(u));
 
-			// string numérica
-			u.setLogin("123456");
-			assertEquals("dadoInvalido", ubl.create(u));
+		// rg duplicado
+		u.setCpf("93235080716");
+		u.setRg("1234501");
+		u.setOrgExpeditor("SSP-PB");
+		assertEquals("rgExistente", ubl.create(u));
+	}
 
-			u.setLogin("testLogin3");
+	public void testCreateInvalidos() {
+		/**
+		 * Test case - TC1.1.4
+		 **/
 
-			// nome inválido
-			// string vazia
-			u.setNome("");
-			assertEquals("dadoInvalido", ubl.create(u));
+		u = usuarioInvalido;
 
-			// string numérica
-			u.setNome("123456");
-			assertEquals("dadoInvalido", ubl.create(u));
+		// login inválido
+		// string vazia
+		u.setLogin("");
+		assertEquals("dadoInvalido", ubl.create(u));
 
-			// caracteres especiais
-			u.setNome("joao%* da silva");
-			assertEquals("dadoInvalido", ubl.create(u));
+		// string numérica
+		u.setLogin("123456");
+		assertEquals("dadoInvalido", ubl.create(u));
 
-			u.setNome("testName3");
+		u.setLogin("testLogin3");
 
-			// rg inválido
-			// string vazia
-			u.setRg("");
-			assertEquals("dadoInvalido", ubl.create(u));
+		// nome inválido
+		// string vazia
+		u.setNome("");
+		assertEquals("dadoInvalido", ubl.create(u));
 
-			// string com texto
-			u.setRg("testRg3");
-			assertEquals("dadoInvalido", ubl.create(u));
+		// string numérica
+		u.setNome("123456");
+		assertEquals("dadoInvalido", ubl.create(u));
 
-			// caracteres especiais
-			u.setRg("$gsdf%");
-			assertEquals("dadoInvalido", ubl.create(u));
+		// caracteres especiais
+		u.setNome("joao%* da silva");
+		assertEquals("dadoInvalido", ubl.create(u));
 
-			u.setRg("1234503");
+		u.setNome("testName3");
 
-			// orgão expedidor inválido
-			// string vazia
-			u.setOrgExpeditor("");
-			assertEquals("dadoInvalido", ubl.create(u));
+		// rg inválido
+		// string vazia
+		u.setRg("");
+		assertEquals("dadoInvalido", ubl.create(u));
 
-			// string numérica
-			u.setOrgExpeditor("12345");
-			assertEquals("dadoInvalido", ubl.create(u));
+		// string com texto
+		u.setRg("testRg3");
+		assertEquals("dadoInvalido", ubl.create(u));
 
-			u.setOrgExpeditor("SSP-PB");
+		// caracteres especiais
+		u.setRg("$gsdf%");
+		assertEquals("dadoInvalido", ubl.create(u));
 
-			// cpf inválido
-			// string vazia
-			u.setCpf("");
-			assertEquals("dadoInvalido", ubl.create(u));
+		u.setRg("1234503");
 
-			// string numérica
-			u.setCpf("testCpf1");
-			assertEquals("dadoInvalido", ubl.create(u));
+		// orgão expedidor inválido
+		// string vazia
+		u.setOrgExpeditor("");
+		assertEquals("dadoInvalido", ubl.create(u));
 
-			// caracteres especiais
-			u.setCpf("234*¬");
-			assertEquals("dadoInvalido", ubl.create(u));
+		// string numérica
+		u.setOrgExpeditor("12345");
+		assertEquals("dadoInvalido", ubl.create(u));
 
-			// tipo de permissao inválido
-			u.setOrgExpeditor("93235080716");
-			u.setTipoPermissao(0);
-			assertEquals("dadoInvalido", ubl.create(u));
-		}
+		u.setOrgExpeditor("SSP-PB");
+
+		// cpf inválido
+		// string vazia
+		u.setCpf("");
+		assertEquals("dadoInvalido", ubl.create(u));
+
+		// string numérica
+		u.setCpf("testCpf1");
+		assertEquals("dadoInvalido", ubl.create(u));
+
+		// caracteres especiais
+		u.setCpf("234*¬");
+		assertEquals("dadoInvalido", ubl.create(u));
+
+		// tipo de permissao inválido
+		u.setOrgExpeditor("93235080716");
+		u.setTipoPermissao(0);
+		assertEquals("dadoInvalido", ubl.create(u));
 	}
 
 	public void testDelete() {
-		UsuarioBusinessLogic ubl = new UsuarioBusinessLogic();
-		UsuarioVO u;
 		List<UsuarioVO> ls;
 
 		/**
@@ -240,8 +235,6 @@ public class testUsuarioBusinessLogic extends TestCase {
 	}
 
 	public void testUpdate() {
-		UsuarioBusinessLogic ubl = new UsuarioBusinessLogic();
-		UsuarioVO u;
 		List<UsuarioVO> ls;
 
 		{
@@ -408,7 +401,6 @@ public class testUsuarioBusinessLogic extends TestCase {
 	}
 
 	public void testListar() {
-		UsuarioBusinessLogic ubl = new UsuarioBusinessLogic();
 		List<UsuarioVO> ls;
 
 		ls = ubl.listar();
@@ -416,7 +408,6 @@ public class testUsuarioBusinessLogic extends TestCase {
 	}
 
 	public void testPesquisar() {
-		UsuarioBusinessLogic ubl = new UsuarioBusinessLogic();
 		List<UsuarioVO> ls;
 
 		ls = ubl.pesquisar("testLogin1");
@@ -431,8 +422,6 @@ public class testUsuarioBusinessLogic extends TestCase {
 	}
 
 	public void testLogon() {
-		UsuarioBusinessLogic ubl = new UsuarioBusinessLogic();
-
 		assertEquals("logado", ubl.logon("testLogin1", "testPassword1"));
 		assertEquals("naoEncontrado", ubl.logon("testLogin2", "testPassword2"));
 		assertEquals("naoEncontrado", ubl.logon("testLogin1", "123456"));
