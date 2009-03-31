@@ -2,6 +2,8 @@ package br.faculdadeidez.psa.apresentacao.managedbean;
 
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import br.faculdadeidez.psa.vo.UsuarioVO;
 
 public class UsuarioBean extends GenericoBean {
@@ -22,6 +24,10 @@ public class UsuarioBean extends GenericoBean {
 		}
 
 		return mensagem;
+	}
+	
+	public void logout(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
 	}
 
 	public String delete() {
