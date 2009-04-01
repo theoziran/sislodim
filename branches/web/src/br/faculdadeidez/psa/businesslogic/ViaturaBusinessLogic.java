@@ -30,6 +30,8 @@ public class ViaturaBusinessLogic {
 	}
 	
 	public String create(ViaturaVO vo){
+		if(vo.getCodigo() == null || vo.getOcupada() == null)
+			return "problemaInserir";
 		try {
 			DAOViatura dViatura = new DAOViatura();			
 			dViatura.persist(vo);
