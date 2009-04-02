@@ -5,8 +5,12 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.sun.istack.internal.NotNull;
 
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
@@ -17,11 +21,11 @@ public class Viatura implements Serializable {
 	
 	@Id @Column (name="VIA_CODIGO")
 	private String codigo;
-	@Basic @Column (name="VIA_OCUPADA")
+	@Basic @Column (name="VIA_OCUPADA", nullable=false)
 	private Boolean ocupada = false;
 	
 	/*********************************************************/
-	/******** Conversão do objeto Setor para o SetorVO *******/
+	/******** Conversï¿½o do objeto Setor para o SetorVO *******/
 	/*********************************************************/
 	public Viatura(ViaturaVO vo) {
 		this.codigo = vo.getCodigo();
