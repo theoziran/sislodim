@@ -5,7 +5,6 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
-import br.faculdadeidez.psa.vo.UsuarioVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class testViaturaBusinessLogic extends TestCase {
@@ -71,7 +70,7 @@ public class testViaturaBusinessLogic extends TestCase {
 	}
 	
 	public void testDelete() {
-		assertEquals("removido", vbl.delete(listViaturasValidas.get(1)));
+		assertEquals("removido", vbl.delete(listViaturasValidas.remove(1)));
 		v = new ViaturaVO("9999",false);
 		assertEquals("viaturaInexistente", vbl.delete(v));
 	}
@@ -96,7 +95,7 @@ public class testViaturaBusinessLogic extends TestCase {
 			ls = vbl.pesquisar("9999");
 			if (ls.isEmpty())
 				v = null;
-			assertEquals("viaturaInexistente", vbl.update(v));
+			assertEquals("viaturaInexistente", vbl.update(new ViaturaVO("9999",false)));
 		}
 
 		{
@@ -143,7 +142,7 @@ public class testViaturaBusinessLogic extends TestCase {
 	}
 	
 	public void testListar() {
-		assertTrue(listViaturasValidas.size() == vbl.listar().size());
+		assertTrue(1 == vbl.listar().size());
 	}
 
 	public void testPesquisar() {
