@@ -3,6 +3,7 @@ package br.faculdadeidez.psa.db.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.faculdadeidez.psa.db.entity.Usuario;
@@ -63,6 +64,15 @@ public class DAOUsuario extends DAOFactory<Usuario> {
 		}
 		return usersVO;
 	}
-
+	
+	public List<UsuarioVO> findAllActived(){
+		String strQuery = "SELECT u FROM Usuario u WHERE u.ativo =1";
+		EntityManager em = getManager();
+		Query query = em.createQuery(strQuery);
+		
+		List<UsuarioVO> resultList = (List<UsuarioVO>) query.getResultList();
+		
+		return resultList;
+	}
 
 }

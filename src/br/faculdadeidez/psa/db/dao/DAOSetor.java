@@ -3,6 +3,8 @@ package br.faculdadeidez.psa.db.dao;
 import java.util.List;
 import java.util.Vector;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import br.faculdadeidez.psa.db.entity.Setor;
 import br.faculdadeidez.psa.vo.SetorVO;
 
@@ -23,6 +25,15 @@ public class DAOSetor extends DAOFactory<Setor> {
 		return ConvertList(super.findAll(Setor.class));
 	}
 	
+	public List<SetorVO> findAllActived(){
+		String strQuery = "SELECT  s FROM Setor s WHERE s.ativo = 1";
+		EntityManager em = getManager();
+		Query query = em.createQuery(strQuery);
+		
+		List<SetorVO> resultList = (List<SetorVO>) query.getResultList();
+		
+		return resultList;
+	}
 	public void update(SetorVO vo){		
 		super.update(new Setor(vo));
 	}
@@ -31,7 +42,7 @@ public class DAOSetor extends DAOFactory<Setor> {
 		super.persist(new Setor(vo));
 	}
 	
-	public void remove(SetorVO vo){		
+	public void remove(SetorVO vo){	
 		super.remove(new Setor(vo));
 	}
 	

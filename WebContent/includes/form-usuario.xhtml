@@ -11,6 +11,16 @@
 
 		<h:form>
 			<h:panelGrid columns="2">
+<<<<<<< .mine
+				<h:outputLabel value="*Nome" />
+				<h:inputText id="nome" value="#{usuarioBean.nome}" required="true"/>		
+				<h:outputLabel value="*Login" />
+				<h:inputText id="login" value="#{usuarioBean.login}" required="true"/>
+				<h:outputLabel value="*Senha" />
+				<h:inputSecret id="senha" value="#{usuarioBean.senha}" required="true" />
+				<h:commandButton action="#{usuarioBean.create}" value="Cadastrar" />
+				<h:commandLink action="adminUsuario" value="Administrar" />
+=======
 				<h:outputLabel value="* Nome" />
 				<h:inputText id="nome" value="#{usuarioBean.usuario.nome}"
 					required="true" />
@@ -38,6 +48,7 @@
 				</h:selectOneMenu>
 				<h:commandButton action="#{usuarioBean.create}" value="Salvar" />
 				<h:messages styleClass="mensagens" showDetail="false" />
+>>>>>>> .r236
 			</h:panelGrid>
 		</h:form>
 

@@ -9,18 +9,30 @@
 
 <ui:composition template="/includes/edit-setor.xhtml">
 
-	 	<ui:param name="atualBean" value="#{setorBean}" />    
+	<ui:param name="atualBean" value="#{setorBean}" />    
  	<ui:define name="tituloTabela">
  		<!-- coloque o número de colunas necessárias -->
- 		<rich:column colspan="2">Dados básicos
+ 		<rich:column colspan="3">Dados básicos
  		</rich:column>
  	</ui:define>
  	                      
     <ui:define name="campo1"><h:outputText value="Código" /></ui:define>
     <ui:define name="campo2"><h:outputText value="Nome" /></ui:define>
+   
+    <ui:define name="colunasAdicionaisTitulos">
+       <rich:column>
+       <h:outputText value="Ativo?" />
+       </rich:column>
+    </ui:define>
     
     <ui:define name="campo11"><h:outputText value="#{elementoDaVez.codigo}"/></ui:define>
     <ui:define name="campo21"><h:outputText value="#{elementoDaVez.nome}" /></ui:define>
+    
+    <ui:define name="colunasAdicionaisValores">
+       <rich:column>
+       <h:outputText value="#{elementoDaVez.ativo}" />
+       </rich:column>
+    </ui:define>
     
     <ui:define name="linkNovoItem">
     	<a4j:commandButton value="Novo setor" action="cadastroSetor" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}" />

@@ -23,10 +23,6 @@ input.button{
 	font-weight:bold;
 }
 
-.obrigatorio{
-	float: right;
-	color: #FF0000;
-}
 .mensagens{
 list-style: none;
 font-weight: bold;
