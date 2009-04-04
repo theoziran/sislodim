@@ -136,7 +136,6 @@ public class UsuarioBusinessLogic {
 			} else {
 				return "usuarioExistente";
 			}
-
 		} catch (Exception e) {
 			// TODO: handle exception
 			return "problemaInserir";
@@ -148,6 +147,11 @@ public class UsuarioBusinessLogic {
 		List<UsuarioVO> usuarios = dUsuario.findAll();
 		return usuarios;
 
+	}
+	
+	public List<UsuarioVO> listarAtivos(){
+		DAOUsuario dUsuario = new DAOUsuario();
+		return dUsuario.findAllActived();
 	}
 
 	public List<UsuarioVO> pesquisar(String valor) {
@@ -173,5 +177,6 @@ public class UsuarioBusinessLogic {
 				"^[a-zA-ZÁÂÃÀÇÉÊÍÓÔÕÚÜáâãàçéêíóôõúü]*$")));
 		return erros;
 	}
+	
 	
 }

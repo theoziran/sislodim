@@ -9,8 +9,11 @@ public class SetorBusinessLogic {
 	public String delete(SetorVO vo){
 		try {
 			DAOSetor dSetor = new DAOSetor();
-			SetorVO set = dSetor.find(vo.getCodigo());			
-			dSetor.remove(set);
+			SetorVO set = dSetor.find(vo.getCodigo());
+			if(set == null)
+				return "setorInexistente";
+			set.setAtivo(0);
+			dSetor.update(set);
 			return "removido";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -50,6 +53,11 @@ public class SetorBusinessLogic {
 	public List<SetorVO> listar(){
 		DAOSetor dSetor = new DAOSetor();
 		return dSetor.findAll();		
+	}
+	
+	public List<SetorVO> listarAtivos(){
+		DAOSetor dSetor = new DAOSetor();
+		return dSetor.findAllActived();		
 	}
 	
 	public List<SetorVO> pesquisar(String valor){

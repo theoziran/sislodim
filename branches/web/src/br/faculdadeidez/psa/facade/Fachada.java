@@ -56,7 +56,7 @@ public class Fachada {
 	
 	public List<UsuarioVO> listaUsuarios(){
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
-		return  logicaUsuario.listar();
+		return  logicaUsuario.listarAtivos();
 		
 	}
 	
@@ -86,7 +86,7 @@ public class Fachada {
 	
 	public List<SetorVO> listarSetores()
 	{
-		return new SetorBusinessLogic().listar();
+		return new SetorBusinessLogic().listarAtivos();
 	}	
 	
 	public List<SetorVO> pesquisaSetor(String nome){

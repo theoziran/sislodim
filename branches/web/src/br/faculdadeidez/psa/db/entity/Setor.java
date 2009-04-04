@@ -36,6 +36,9 @@ public class Setor implements Serializable {
             )	
       
     private List<Bairro> bairros; 
+    @Basic 
+	@Column( name="SET_ATIVO")
+	private int ativo;
 	
 	public List<Bairro> getBairros() {
 		return bairros;
@@ -51,10 +54,11 @@ public class Setor implements Serializable {
 	public Setor(SetorVO vo) {
 		this.codigo = vo.getCodigo();
 		this.nome = vo.getNome();
+		this.ativo = vo.getAtivo();
 	}
 	
 	public static SetorVO VO(Setor obj){
-		return new SetorVO(obj.getCodigo(), obj.getNome());
+		return new SetorVO(obj.getCodigo(), obj.getNome(), obj.getAtivo());
 	}
 	/*********************************************************/
 	
@@ -92,5 +96,13 @@ public class Setor implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public int getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(int ativo) {
+		this.ativo = ativo;
 	}
 }
