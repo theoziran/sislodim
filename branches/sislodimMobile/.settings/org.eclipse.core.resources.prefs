@@ -1,7 +1,8 @@
-#Sat Apr 04 18:35:43 BRT 2009
+#Sun Apr 05 15:40:24 GMT-03:00 2009
 eclipse.preferences.version=1
 encoding//.processed/src/br/com/idez/Midlet.java=UTF-8
 encoding//.processed/src/br/com/idez/core/UIController.java=UTF-8
+encoding//.processed/src/br/com/idez/ui/ConectandoGPS.java=UTF-8
 encoding//.processed/src/br/com/idez/ui/GPSMain.java=UTF-8
 encoding//.processed/src/br/com/idez/ui/alert/Conectando.java=UTF-8
 encoding//.processed/src/br/com/idez/ui/alert/ErroConexao.java=UTF-8
