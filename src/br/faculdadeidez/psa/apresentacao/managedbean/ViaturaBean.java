@@ -28,12 +28,19 @@ public class ViaturaBean extends GenericoBean {
 
 	public String delete() {
 		ViaturaVO viaturaDaVez = (ViaturaVO) getElementoSelecionado();
-		return getFachada().deleteViatura(viaturaDaVez);
+		String mensagem= getFachada().deleteViatura(viaturaDaVez);
+		if (mensagem.equals("removido"))
+			adicionarMensagem("Deletado com sucesso!");
+		return mensagem;
+		
 	}
 
 	public String update() {
 		ViaturaVO viaturaDaVez = (ViaturaVO) getElementoSelecionado();
-		return getFachada().updateViatura(viaturaDaVez);
+		String mensagem=getFachada().updateViatura(viaturaDaVez);
+		if (mensagem.equals("atualizado"))
+			adicionarMensagem("Atualizado com sucesso!");
+		return mensagem;
 	}
 
 	public String create() {
@@ -44,8 +51,10 @@ public class ViaturaBean extends GenericoBean {
 		} else if (mensagem.equals("problemaInserir")) {
 			adicionarMensagem("Error...");
 		} else { 
+			adicionarMensagem("Viatura criada com sucesso!");
 			setViatura(new ViaturaVO());
-			redirecionaPagina("adminViatura.st?id=1", mensagem);
+			//redirecionaPagina("adminViatura.st?id=1", mensagem);
+			
 		}
 		return mensagem;
 	}
@@ -56,6 +65,8 @@ public class ViaturaBean extends GenericoBean {
 		} else {
 			List<ViaturaVO> viaturas = getFachada().pesquisaViatura(
 					getTermoPesquisa());
+			if (viaturas.isEmpty())
+				adicionarMensagem("Nenhuma viatura foi encontrada!");
 			setListaTudo(viaturas);
 		}
 	}

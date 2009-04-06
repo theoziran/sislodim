@@ -1,8 +1,7 @@
 package br.faculdadeidez.psa.vo;
 
-import java.io.Serializable;
 
-public class UsuarioVO implements Serializable {
+public class UsuarioVO{
 	private int id;
 	private String nome;
 	private String login;

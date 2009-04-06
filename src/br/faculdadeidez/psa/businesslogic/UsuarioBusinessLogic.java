@@ -68,12 +68,16 @@ public class UsuarioBusinessLogic {
 		try {
 			if (user == null)
 				return "usuarioInexistente";
+			DAOUsuario dUsuario = new DAOUsuario();
+			if (user.getSenha().equals("")) {
+				user.setSenha(dUsuario.find(user.getId()).getSenha());
+			}
 			// valida os dados inseridos
 			List<Boolean> erros = validaDados(user);
 			if (erros.contains(Boolean.valueOf(true)))
 				return "dadoInvalido";
 			ArrayList<Boolean> errosUserInexistente = new ArrayList<Boolean>();
-			DAOUsuario dUsuario = new DAOUsuario();
+			
 			UsuarioVO userFind = dUsuario.find(user.getId());
 			errosUserInexistente.add(Boolean.valueOf(userFind == null));
 			List<UsuarioVO> usuarios = dUsuario.findByField("login", user
@@ -98,9 +102,7 @@ public class UsuarioBusinessLogic {
 			if (rgExiste)
 				return "rgExistente";
 			if (!errosUserInexistente.contains(Boolean.valueOf(true))) {
-				if (user.getSenha().equals("")) {
-					user.setSenha(dUsuario.find(user.getId()).getSenha());
-				}
+				
 				dUsuario.update(user);
 				return "atualizado";
 			} else {

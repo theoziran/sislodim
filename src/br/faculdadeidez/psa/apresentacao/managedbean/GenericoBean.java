@@ -1,10 +1,7 @@
 package br.faculdadeidez.psa.apresentacao.managedbean;
 
-import java.io.IOException;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletResponse;
 
 import br.faculdadeidez.psa.facade.Fachada;
 
@@ -47,18 +44,9 @@ public abstract class GenericoBean {
     	FacesContext contexto = FacesContext.getCurrentInstance();
         FacesMessage message = new FacesMessage();
         message.setSummary(mensagem);
-        contexto.addMessage(null , message );
+        message.setSeverity(FacesMessage.SEVERITY_INFO);
+        contexto.addMessage(null , message);
     }
 	
-	public void redirecionaPagina(String pagina, String message){
-		FacesContext contexto = FacesContext.getCurrentInstance();
-		HttpServletResponse response = (HttpServletResponse)contexto.getExternalContext().getResponse();
-		
-		try {
-			response.sendRedirect(pagina);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 }

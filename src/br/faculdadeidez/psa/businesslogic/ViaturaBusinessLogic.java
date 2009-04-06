@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOViatura;
-import br.faculdadeidez.psa.vo.UsuarioVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class ViaturaBusinessLogic {
@@ -74,8 +73,7 @@ public class ViaturaBusinessLogic {
 		erros.add(Boolean.valueOf(vo.getCodigo().isEmpty()));
 		erros.add(Boolean.valueOf(vo.getCodigo().length() > 4));
 		//erros.add(Boolean.valueOf(vo.getCodigo().matches("[0-9a-zA-Z]*$")));
-		erros.add(Boolean.valueOf(!vo.getCodigo().matches(
-				"^[0-9a-zA-Z]*$")));
+		//erros.add(Boolean.valueOf(!vo.getCodigo().matches("^[0-9a-zA-Z]*$")));
 		return erros;
 	}
 }

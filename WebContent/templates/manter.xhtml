@@ -10,7 +10,26 @@
 <ui:composition template="/templates/generico.xhtml">
 	<ui:define name="conteudo">
 
-
+<rich:messages  style="width:500px" layout="table" globalOnly="true" showSummary="true"                    
+                            errorClass="erro" 
+                            infoClass="informacao" 
+                            fatalClass="erro" 
+                            warnClass="aviso" >   
+                             <f:facet name="errorMarker">
+                    <h:graphicImage url="../../imagens/erro.png"/>
+                </f:facet>
+                <f:facet name="infoMarker">
+                    <h:graphicImage url="../../imagens/informacao.png"/>
+                </f:facet>
+                <f:facet name="fatalMarker">
+                    <h:graphicImage url="../../imagens/erro.png"/>
+                </f:facet>
+                <f:facet name="warnMarker">
+                    <h:graphicImage url="../../imagens/aviso.png"/>
+                </f:facet>  
+                            
+                            
+                            </rich:messages> 
 		<h:panelGrid columns="2" width="520">
 
 			<h:form>
@@ -33,10 +52,12 @@
 				</h:panelGrid>
 			</h:form>
 		</h:panelGrid>
-
+ 
 		<a4j:form>
 						
 		<rich:panel>
+		
+		
 			<h:panelGrid class="lista" columns="1" width="520">
 
 				<rich:dataTable
@@ -113,7 +134,7 @@
 				</h:panelGroup>
 			</f:facet>
 			<h:form>
-				<rich:messages style="color:red;"></rich:messages>
+				
 				<h:panelGrid columns="1">
 					<a4j:outputPanel ajaxRendered="true">
 						<h:panelGrid columns="2">
