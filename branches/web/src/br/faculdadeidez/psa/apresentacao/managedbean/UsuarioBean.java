@@ -31,7 +31,8 @@ public class UsuarioBean extends GenericoBean {
 	}
 
 	public String delete() {
-		UsuarioVO usuarioDaVez = (UsuarioVO) getElementoSelecionado();
+		Object o = getElementoSelecionado();
+		UsuarioVO usuarioDaVez = (UsuarioVO) o;
 		String mensagem = getFachada().deleteUsuario(usuarioDaVez);
 		if (mensagem.equals("removido"))
 			adicionarMensagem("Deletado com sucesso!");
@@ -58,7 +59,7 @@ public class UsuarioBean extends GenericoBean {
 		} else {
 			adicionarMensagem("Cadastrado com sucesso!");
 			setUsuario(new UsuarioVO());			
-			redirecionaPagina("adminUsuario.st?id=1", mensagem);
+			//redirecionaPagina("adminUsuario.st?id=1", mensagem);
 		}
 		return mensagem;
 	}

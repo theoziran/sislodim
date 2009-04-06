@@ -47,8 +47,9 @@ public class SetorBean extends GenericoBean {
 		} else if (mensagem.equals("problemaInserir")) {			
 			adicionarMensagem("Error...");
 		} else {						
-			setSetor(new SetorVO());			
-			redirecionaPagina("adminSetor.st?id=1", mensagem);
+			setSetor(new SetorVO());	
+			adicionarMensagem("Setor criado com sucesso!");
+			//redirecionaPagina("adminSetor.st?id=1", mensagem);
 		}
 	}
 	

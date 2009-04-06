@@ -8,7 +8,7 @@
    xmlns:rich="http://richfaces.org/rich"> 
 
 <ui:composition template="/includes/edit-usuario.xhtml">
-<!--  <ui:param name="atualBean" value="#{usuarioBean}" /> --> 
+ 		<ui:param name="atualBean" value="#{usuarioBean}" />  
              <ui:define name="tituloTabela">
              <!-- coloque o número de colunas necessárias -->
  		<rich:column colspan="3">
@@ -31,7 +31,7 @@
              	</rich:column>
              </ui:define>
 	<ui:define name="linkNovoItem">
-    	<a4j:commandButton value="Novo usuário" action="cadastroUsuario" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}" />
+    	<h:commandButton value="Novo usuário" action="cadastroUsuario" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}" />
     </ui:define>
 </ui:composition>
 </html>

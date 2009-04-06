@@ -69,10 +69,12 @@ public class DAOUsuario extends DAOFactory<Usuario> {
 		String strQuery = "SELECT u FROM Usuario u WHERE u.ativo =1";
 		EntityManager em = getManager();
 		Query query = em.createQuery(strQuery);
-		
-		List<UsuarioVO> resultList = (List<UsuarioVO>) query.getResultList();
-		
-		return resultList;
+		List<Usuario> usuariosE =  query.getResultList();
+		List<UsuarioVO> usersVO=new ArrayList<UsuarioVO>();
+		for (Usuario usuario : usuariosE){
+			usersVO.add(usuario.toVO());
+		}
+		return usersVO;
 	}
 
 }

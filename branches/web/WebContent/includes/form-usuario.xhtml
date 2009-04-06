@@ -8,7 +8,6 @@
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition>
 	<div class="form"><h:panelGrid columns="1">
-
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="* Nome" />
@@ -37,10 +36,8 @@
 					<f:selectItem itemLabel="Operador" itemValue="1" />
 				</h:selectOneMenu>
 				<h:commandButton action="#{usuarioBean.create}" value="Salvar" />
-				<h:messages styleClass="mensagens" showDetail="false" />
 			</h:panelGrid>
 		</h:form>
-
 
 	</h:panelGrid></div>
 </ui:composition>

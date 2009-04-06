@@ -53,7 +53,6 @@
 		<phase-listener>br.faculdadeidez.psa.apresentacao.servlets.GerenciadorAutorizacao</phase-listener>
 	</lifecycle>
 	<navigation-rule>
-		<from-view-id>/*</from-view-id>
 		<navigation-case>
 			<from-outcome>loginPage</from-outcome>
 			<to-view-id>/inicio.xhtml</to-view-id>
@@ -110,4 +109,38 @@
 	</navigation-rule>
 
 	<!-- /viatura -->
+	
+	<!-- Navegação especializada -->
+	
+	
+	<navigation-rule>
+		<from-view-id>/pages/cadastroSetor.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>inserido</from-outcome>
+			<to-view-id>/pages/adminSetor.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<navigation-rule>
+		<from-view-id>/pages/cadastroUsuario.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>inserido</from-outcome>
+			<to-view-id>/pages/adminUsuario.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<navigation-rule>
+		<from-view-id>/pages/cadastroViatura.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>inserido</from-outcome>
+			<to-view-id>/pages/adminViatura.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	
 </faces-config>

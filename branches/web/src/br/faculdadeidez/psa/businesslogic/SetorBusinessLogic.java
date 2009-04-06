@@ -36,6 +36,7 @@ public class SetorBusinessLogic {
 		try {
 			DAOSetor daoSetor = new DAOSetor();
 			if(daoSetor.findByField("nome", setor.getNome()).isEmpty()){
+				setor.setAtivo(1);
 				daoSetor.persist(setor);
 				return "inserido";
 			}else

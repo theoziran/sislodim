@@ -30,7 +30,7 @@ public class DAOSetor extends DAOFactory<Setor> {
 		EntityManager em = getManager();
 		Query query = em.createQuery(strQuery);
 		
-		List<SetorVO> resultList = (List<SetorVO>) query.getResultList();
+		List<SetorVO> resultList = ConvertList( query.getResultList());
 		
 		return resultList;
 	}
