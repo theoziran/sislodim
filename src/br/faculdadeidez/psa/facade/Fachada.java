@@ -2,9 +2,11 @@ package br.faculdadeidez.psa.facade;
 
 import java.util.List;
 
+import br.faculdadeidez.psa.businesslogic.BairroBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.SetorBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
+import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.UsuarioVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
@@ -118,7 +120,11 @@ public class Fachada {
 	
 	public List<ViaturaVO> pesquisaViatura(String nome){
 		ViaturaBusinessLogic logicaViatura = new ViaturaBusinessLogic();
-		return  logicaViatura.pesquisar(nome);
-		
+		return logicaViatura.pesquisar(nome);
+	}
+	
+	public List<BairroVO> listarBairros(){
+		BairroBusinessLogic logicaBairro = new BairroBusinessLogic();
+		return logicaBairro.listar();
 	}
 }

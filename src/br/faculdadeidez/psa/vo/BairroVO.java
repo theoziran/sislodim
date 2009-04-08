@@ -9,6 +9,10 @@ public class BairroVO implements Serializable {
 	private String nome;
 	private List<Setor> setores;
 	
+	public BairroVO(){
+		
+	}
+	
 	public List<Setor> getSetores() {
 		return setores;
 	}
