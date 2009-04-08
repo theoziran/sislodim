@@ -19,9 +19,9 @@ public class Menu extends List implements CommandListener {
 		this.cmdExit = new Command("Exit", Command.BACK, 1);
 		this.cmdOk = new Command("Ok", Command.OK, 1);
 		
-		this.append("Consultar Veículos", null);
-		this.append("Consultar Condutores", null);
-		this.append("Consultar Ocorrências", null);
+		this.append("1. Consultar Veículos", null);
+		this.append("2. Consultar Condutores", null);
+		this.append("3. Consultar Ocorrências", null);
 		
 		this.addCommand(cmdExit);
 		this.addCommand(cmdOk);

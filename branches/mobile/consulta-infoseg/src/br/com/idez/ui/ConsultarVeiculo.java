@@ -17,7 +17,7 @@ public class ConsultarVeiculo extends Form implements CommandListener{
 	private ConsultarVeiculo(String title) {
 		super(title);
 		this.append("Digite a placa do veículo que deseja pesquisar: ");
-		this.append(new TextField("Placa do veículo: ",null,6,TextField.ANY));
+		this.append(new TextField("Placa do veículo: ", null, 7, TextField.ANY));
 		
 		this.cmdBack = new Command("Voltar", Command.BACK, 1);
 		this.cmdOk = new Command("Ok", Command.OK, 1);	
@@ -30,7 +30,7 @@ public class ConsultarVeiculo extends Form implements CommandListener{
 	
 	public static ConsultarVeiculo getInstance() {
 		if (instance == null) {
-			instance = new ConsultarVeiculo("Consultar veículo");
+			instance = new ConsultarVeiculo("1. Consultar Veículos");
 		}
 		return instance;		
 	}
