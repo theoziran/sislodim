@@ -17,7 +17,7 @@ public class ConsultarCondutor extends Form implements CommandListener{
 	private ConsultarCondutor(String title) {
 		super(title);
 		this.append("Digite o número de registro da CNH: ");
-		this.append(new TextField("Identificação CNH: ",null,6,TextField.ANY));
+		this.append(new TextField("Identificação CNH: ", null, 11, TextField.ANY));
 		
 		this.cmdBack = new Command("Voltar", Command.BACK, 1);
 		this.cmdOk = new Command("Ok", Command.OK, 1);
@@ -31,7 +31,7 @@ public class ConsultarCondutor extends Form implements CommandListener{
 	
 	public static ConsultarCondutor getInstance() {
 		if (instance == null) {
-			instance = new ConsultarCondutor("Consultar condutor");
+			instance = new ConsultarCondutor("2. Consultar Condutores");
 		}
 		return instance;		
 	}
