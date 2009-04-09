@@ -9,34 +9,41 @@
 <ui:composition>
 	<div class="form"><h:panelGrid columns="1">
 		<h:form>
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="3">
 				<h:outputLabel value="* Nome" />
-				<h:inputText id="nome" value="#{usuarioBean.usuario.nome}"
-					required="true" />
+				<h:inputText id="nome" value="#{usuarioBean.usuario.nome}" required="true" requiredMessage="O nome é obrigatório" />
+				<h:message for="nome" styleClass="mensagens"/>
+				
 				<h:outputLabel value="* CPF" />
-				<h:inputText id="cpf" value="#{usuarioBean.usuario.cpf}"
-					required="true" />
+				<h:inputText id="cpf" value="#{usuarioBean.usuario.cpf}" required="true" requiredMessage="O CPF é obrigatório" />
+				<h:message for="cpf" styleClass="mensagens"/>
+				
 				<h:outputLabel value="* RG" />
-				<h:inputText id="rg" value="#{usuarioBean.usuario.rg}"
-					required="true" />
+				<h:inputText id="rg" value="#{usuarioBean.usuario.rg}" required="true"  requiredMessage="O RG é obrigatório" />
+				<h:message for="rg" styleClass="mensagens"/>
+				
 				<h:outputLabel value="* Orgão Expeditor" />
-				<h:inputText id="orgExpeditor"
-					value="#{usuarioBean.usuario.orgExpeditor}" required="true" />
+				<h:inputText id="orgExpeditor" value="#{usuarioBean.usuario.orgExpeditor}" required="true"  requiredMessage="O órgão expeditor é obrigatório" />
+				<h:message for="orgExpeditor" styleClass="mensagens"/>
+				
 				<h:outputLabel value="* Login" />
-				<h:inputText id="login" value="#{usuarioBean.usuario.login}"
-					required="true" />
+				<h:inputText id="login" value="#{usuarioBean.usuario.login}" required="true"  requiredMessage="O login é obrigatório" />
+				<h:message for="login" styleClass="mensagens"/>
+				
 				<h:outputLabel value="* Senha" />
-				<h:inputSecret id="senha" value="#{usuarioBean.usuario.senha}"
-					required="true" />
+				<h:inputSecret id="senha" value="#{usuarioBean.usuario.senha}" required="true"  requiredMessage="A senha é obrigatória" />
+				<h:message for="senha" styleClass="mensagens"/>
+				
 				<h:outputLabel value="* Tipo de usuário" />
 				<h:selectOneMenu id="placa"
 					value="#{usuarioBean.usuario.tipoPermissao}">
 					<f:selectItem itemLabel="Administrador" itemValue="3" />
 					<f:selectItem itemLabel="Coordenador" itemValue="2" />
 					<f:selectItem itemLabel="Operador" itemValue="1" />
-				</h:selectOneMenu>
-				<h:commandButton action="#{usuarioBean.create}" value="Salvar" />
+				</h:selectOneMenu>				
 			</h:panelGrid>
+			
+			<h:commandButton action="#{usuarioBean.create}" value="Salvar" />
 		</h:form>
 
 	</h:panelGrid></div>

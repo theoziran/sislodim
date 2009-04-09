@@ -103,7 +103,9 @@ public class ViaturaBean extends GenericoBean {
 			adicionarMensagem("Viatura não existe no banco de dados");
 		}else if (mensagem.equals("problemaAtualizar")) {
 			adicionarMensagem("Houve um problema ao tentar atualizar,\n contacte o administrador");
-		} 
+		} else { 
+			adicionarMensagem(mensagem);
+		}
 	}
 
 }

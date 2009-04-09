@@ -25,10 +25,12 @@
 	<ui:define name="campo11">
 		<h:outputText value="#{elementoDaVez.codigo}" />
 	</ui:define>
+	
 	<ui:define name="campo21">
 		<h:selectBooleanCheckbox value="#{elementoDaVez.ocupada}"
 			disabled="true" />
 	</ui:define>
+	
 	<ui:define name="linkNovoItem">
     	<h:commandButton value="Novo viatura" action="cadastroViatura" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}" />
     </ui:define>

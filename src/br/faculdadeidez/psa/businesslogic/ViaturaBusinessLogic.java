@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOViatura;
+import br.faculdadeidez.psa.vo.MensagemValidacaoVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class ViaturaBusinessLogic {
@@ -24,9 +25,11 @@ public class ViaturaBusinessLogic {
 	public String update(ViaturaVO vo){
 		try {
 			// valida os dados inseridos
-			List<Boolean> erros = validaDados(vo);
-			if (erros.contains(Boolean.valueOf(true)))
-				return "dadoInvalido";
+			List<MensagemValidacaoVO> erros = validaDados(vo);
+			
+			if(!MensagemValidacao.isValido(erros))
+				return MensagemValidacao.getMensagensValidacao(erros);			
+			
 			DAOViatura dViatura = new DAOViatura();							
 			if(dViatura.findByField("codigo", vo.getCodigo()).isEmpty() && vo.getCodigo() != null)
 				return "viaturaInexistente";
@@ -41,9 +44,11 @@ public class ViaturaBusinessLogic {
 	public String create(ViaturaVO vo){
 		try {
 			// valida os dados inseridos
-			List<Boolean> erros = validaDados(vo);
-			if (erros.contains(Boolean.valueOf(true)))
-				return "dadoInvalido";
+			List<MensagemValidacaoVO> erros = validaDados(vo);
+			
+			if(!MensagemValidacao.isValido(erros))
+				return MensagemValidacao.getMensagensValidacao(erros);
+			
 			DAOViatura dViatura = new DAOViatura();	
 			if(dViatura.findByField("codigo", vo.getCodigo()).isEmpty()){	
 				dViatura.persist(vo);
@@ -68,11 +73,12 @@ public class ViaturaBusinessLogic {
 		return retorno;
 	}
 	
-	private List<Boolean> validaDados(ViaturaVO vo){
-		ArrayList<Boolean> erros = new ArrayList<Boolean>();
-		erros.add(Boolean.valueOf(vo.getCodigo().isEmpty()));
-		erros.add(Boolean.valueOf(vo.getCodigo().length() > 4));
-		erros.add(Boolean.valueOf(!vo.getCodigo().matches("^[0-9]*$")));
+	private List<MensagemValidacaoVO> validaDados(ViaturaVO vo){
+		ArrayList<MensagemValidacaoVO> erros = new ArrayList<MensagemValidacaoVO>();
+		
+		erros.add(new MensagemValidacaoVO("Código", "O código é obrigatório", Boolean.valueOf(vo.getCodigo().isEmpty())));
+		erros.add(new MensagemValidacaoVO("Código", "O código deve ser menor que 4 dígitos", Boolean.valueOf(vo.getCodigo().length() > 4)));
+		erros.add(new MensagemValidacaoVO("Código", "O código deve ser apenas dígitos", Boolean.valueOf(!vo.getCodigo().matches("^[0-9]*$"))));
 		return erros;
 	}
 }
