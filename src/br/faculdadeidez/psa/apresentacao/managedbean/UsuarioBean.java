@@ -18,49 +18,33 @@ public class UsuarioBean extends GenericoBean {
 	public String logon() {
 		String mensagem = getFachada().logon(getUsuario().getLogin(),
 				getUsuario().getSenha());
-		if (mensagem.equals("logado")) {
-			adicionarMensagem("Logado com sucesso");
-			setUsuario(new UsuarioVO());
-		}
-
+		adicionaMensagemUsuario(mensagem);
 		return mensagem;
 	}
-	
-	public void logout(){
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
+
+	public void logout() {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.clear();
 	}
 
 	public String delete() {
 		Object o = getElementoSelecionado();
 		UsuarioVO usuarioDaVez = (UsuarioVO) o;
 		String mensagem = getFachada().deleteUsuario(usuarioDaVez);
-		if (mensagem.equals("removido"))
-			adicionarMensagem("Deletado com sucesso!");
+		adicionaMensagemUsuario(mensagem);
 		return mensagem;
 	}
 
 	public String update() {
 		UsuarioVO usuarioDaVez = (UsuarioVO) getElementoSelecionado();
 		String mensagem = getFachada().updateUsuario(usuarioDaVez);
-		if (mensagem.equals("atualizado"))
-			adicionarMensagem("Atualizado com sucesso!");
+		adicionaMensagemUsuario(mensagem);
 		return mensagem;
 	}
 
 	public String create() {
 		String mensagem = getFachada().createUsuario(getUsuario());
-		if (mensagem.equals("usuarioExistente")) {
-
-			adicionarMensagem("Já existe um usuário com este login");
-
-		} else if (mensagem.equals("problemaInserir")) {
-
-			adicionarMensagem("Error...");
-		} else {
-			adicionarMensagem("Cadastrado com sucesso!");
-			setUsuario(new UsuarioVO());			
-			//redirecionaPagina("adminUsuario.st?id=1", mensagem);
-		}
+		adicionaMensagemUsuario(mensagem);
 		return mensagem;
 	}
 
@@ -92,7 +76,19 @@ public class UsuarioBean extends GenericoBean {
 		} else {
 			List<UsuarioVO> usuarios = getFachada().pesquisaUsuario(
 					getTermoPesquisa());
-			setListaTudo(usuarios);
+			if (usuarios.isEmpty())
+				adicionarMensagem("Usuário não encontrado");
+			else {
+				if (usuarios.size() > 1)
+					adicionarMensagem("Foram encontrados " + usuarios.size()
+							+ " resultados para a busca por "
+							+ getTermoPesquisa());
+				else
+					adicionarMensagem("Foi encontrado " + usuarios.size()
+							+ " resultado para a busca por "
+							+ getTermoPesquisa());
+				setListaTudo(usuarios);
+			}
 		}
 	}
 
@@ -102,6 +98,42 @@ public class UsuarioBean extends GenericoBean {
 
 	public void setTermoPesquisa(String termoPesquisa) {
 		this.termoPesquisa = termoPesquisa;
+	}
+
+	private void adicionaMensagemUsuario(String mensagem) {
+		if (mensagem.equals("atualizado"))
+			adicionarMensagem("Atualizado com sucesso!");
+		else if (mensagem.equals("usuarioInexistente")) {
+			adicionarMensagem("Usuário não existe no banco de dados");
+		} else if (mensagem.equals("dadoInvalido")) {
+			adicionarMensagem("Estes dados não são válidos");
+		} else if (mensagem.equals("cpfExistente")) {
+			adicionarMensagem("Este CPF já está cadastrado!");
+		} else if (mensagem.equals("rgExistente")) {
+			adicionarMensagem("Este RG já está cadastrado!");
+		} else if (mensagem.equals("usuarioExistente")) {
+			adicionarMensagem("Este login já existe");
+		} else if (mensagem.equals("problemaAtualizar")) {
+			adicionarMensagem("Houve um problema ao tentar atualizar,\n contacte o administrador");
+		} else if (mensagem.equals("problemaInserir")) {
+			adicionarMensagem("Houve um problema ao tentar criar o usuário,\n contacte o administrador");
+		} else if (mensagem.equals("inserido")) {
+			adicionarMensagem("Cadastrado com sucesso!");
+			setUsuario(new UsuarioVO());
+		}
+		if (mensagem.equals("removido"))
+			adicionarMensagem("Deletado com sucesso!");
+		else if (mensagem.equals("problemaRemover")) {
+			adicionarMensagem("Houve um problema ao tentar remover,\n contacte o administrador");
+		}
+		if (mensagem.equals("logado")) {
+			adicionarMensagem("Logado com sucesso");
+			setUsuario(new UsuarioVO());
+		} else if (mensagem.equals("camposEmBranco")) {
+			adicionarMensagem("Não é permitido campos em branco");
+		} else if (mensagem.equals("naoEncontrado")) {
+			adicionarMensagem("Usuário ou senha inválido");
+		}
 	}
 
 }

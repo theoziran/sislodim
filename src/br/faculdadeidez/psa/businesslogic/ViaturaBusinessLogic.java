@@ -72,8 +72,7 @@ public class ViaturaBusinessLogic {
 		ArrayList<Boolean> erros = new ArrayList<Boolean>();
 		erros.add(Boolean.valueOf(vo.getCodigo().isEmpty()));
 		erros.add(Boolean.valueOf(vo.getCodigo().length() > 4));
-		//erros.add(Boolean.valueOf(vo.getCodigo().matches("[0-9a-zA-Z]*$")));
-		//erros.add(Boolean.valueOf(!vo.getCodigo().matches("^[0-9a-zA-Z]*$")));
+		erros.add(Boolean.valueOf(!vo.getCodigo().matches("^[0-9]*$")));
 		return erros;
 	}
 }

@@ -8,6 +8,14 @@
    xmlns:rich="http://richfaces.org/rich"> 
 
 <ui:composition template="/templates/generico.xhtml">
-<ui:define name="conteudo"><ui:include src="/includes/form-usuario.xhtml"></ui:include></ui:define>
+
+<ui:define name="conteudo">
+<rich:messages style="width:500px" layout="table" globalOnly="true"
+			showSummary="true" infoClass="informacao">
+			<f:facet name="infoMarker">
+			</f:facet>
+		</rich:messages>
+<ui:include src="/includes/form-usuario.xhtml"></ui:include>
+</ui:define>
 </ui:composition>
 </html>
