@@ -12,11 +12,11 @@
 			<h:panelGrid columns="2">
 				<h:outputLabel value="*Código da viatura" />
 				<h:inputText id="codigo" value="#{viaturaBean.viatura.codigo}"
-					required="true" />
+					required="true" requiredMessage="Digite um código para a viatura" />
 				<h:commandButton action="#{viaturaBean.create}" value="Salvar" />
 
 			</h:panelGrid>
-		<h:message styleClass="mensagens" showDetail="false" for="codigo"/>
+			<h:message styleClass="mensagens" showDetail="false" for="codigo" />
 		</h:form>
 	</h:panelGrid></div>
 </ui:composition>

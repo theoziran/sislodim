@@ -28,34 +28,23 @@ public class ViaturaBean extends GenericoBean {
 
 	public String delete() {
 		ViaturaVO viaturaDaVez = (ViaturaVO) getElementoSelecionado();
-		String mensagem= getFachada().deleteViatura(viaturaDaVez);
-		if (mensagem.equals("removido"))
-			adicionarMensagem("Deletado com sucesso!");
+		String mensagem = getFachada().deleteViatura(viaturaDaVez);
+		adicionaMensagemUsuario(mensagem);
 		return mensagem;
-		
+
 	}
 
 	public String update() {
 		ViaturaVO viaturaDaVez = (ViaturaVO) getElementoSelecionado();
-		String mensagem=getFachada().updateViatura(viaturaDaVez);
-		if (mensagem.equals("atualizado"))
-			adicionarMensagem("Atualizado com sucesso!");
+		String mensagem = getFachada().updateViatura(viaturaDaVez);
+		adicionaMensagemUsuario(mensagem);
 		return mensagem;
 	}
 
 	public String create() {
 		String mensagem = getFachada().createViatura(viatura);
+		adicionaMensagemUsuario(mensagem);
 
-		if (mensagem.equals("viaturaExistente")) {
-			adicionarMensagem("Viatura jÃ¡ existe");
-		} else if (mensagem.equals("problemaInserir")) {
-			adicionarMensagem("Error...");
-		} else { 
-			adicionarMensagem("Viatura criada com sucesso!");
-			setViatura(new ViaturaVO());
-			//redirecionaPagina("adminViatura.st?id=1", mensagem);
-			
-		}
 		return mensagem;
 	}
 
@@ -67,7 +56,18 @@ public class ViaturaBean extends GenericoBean {
 					getTermoPesquisa());
 			if (viaturas.isEmpty())
 				adicionarMensagem("Nenhuma viatura foi encontrada!");
-			setListaTudo(viaturas);
+			else {
+				if (viaturas.size() > 1)
+					adicionarMensagem("Foram encontrados " + viaturas.size()
+							+ " resultados para a busca por "
+							+ getTermoPesquisa());
+				else
+					adicionarMensagem("Foi encontrado " + viaturas.size()
+							+ " resultado para a busca por "
+							+ getTermoPesquisa());
+				setListaTudo(viaturas);
+			}
+			
 		}
 	}
 
@@ -81,6 +81,29 @@ public class ViaturaBean extends GenericoBean {
 
 	public void setTermoPesquisa(String termoPesquisa) {
 		this.termoPesquisa = termoPesquisa;
+	}
+
+	private void adicionaMensagemUsuario(String mensagem) {
+		if (mensagem.equals("viaturaExistente")) {
+			adicionarMensagem("Viatura já existe");
+		} else if (mensagem.equals("problemaInserir")) {
+			adicionarMensagem("Houve um problema ao tentar criar a viatura,\n contacte o administrador");
+		} else if (mensagem.equals("inserido")) {
+			adicionarMensagem("Viatura criada com sucesso!");
+			setViatura(new ViaturaVO());
+		}else if (mensagem.equals("dadoInvalido")) {
+			adicionarMensagem("Estes dados não são válidos");
+		}else if (mensagem.equals("removido"))
+			adicionarMensagem("Deletado com sucesso!");
+		else if (mensagem.equals("problemaRemover")) {
+			adicionarMensagem("Houve um problema ao tentar remover,\n contacte o administrador");
+		}else if (mensagem.equals("atualizado"))
+			adicionarMensagem("Atualizado com sucesso!");
+		else if (mensagem.equals("viaturaInexistente")) {
+			adicionarMensagem("Viatura não existe no banco de dados");
+		}else if (mensagem.equals("problemaAtualizar")) {
+			adicionarMensagem("Houve um problema ao tentar atualizar,\n contacte o administrador");
+		} 
 	}
 
 }

@@ -15,7 +15,7 @@ public class testViaturaBusinessLogic extends TestCase {
 		
 	protected void setUp() throws Exception {
 		this.listViaturasValidas.add(new ViaturaVO("1234",false));
-		this.listViaturasValidas.add(new ViaturaVO("123A",true));
+		this.listViaturasValidas.add(new ViaturaVO("1235",true));
 	}
 	
 	public void testCreateValidos() {

@@ -9,6 +9,11 @@
 
 <ui:composition template="/templates/generico.xhtml">
 <ui:define name="conteudo">
+<rich:messages style="width:500px" layout="table" globalOnly="true"
+			showSummary="true" infoClass="informacao">
+			<f:facet name="infoMarker">
+			</f:facet>
+		</rich:messages>
 <h:graphicImage value="/images/mapa.jpg" alt="Mapa" width="500"/>
 
 </ui:define>

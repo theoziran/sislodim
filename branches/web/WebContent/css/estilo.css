@@ -26,6 +26,9 @@ input.button{
 .mensagens{
 list-style: none;
 font-weight: bold;
+color:red;
+font-size:11px;
+margin-left:5px;
 }
 
 

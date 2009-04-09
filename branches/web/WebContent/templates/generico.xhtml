@@ -25,18 +25,25 @@
 	</div>
 	<div id="conteudo">
 	<ui:insert name="conteudo">
-					
+		
 		<div class="auth">
 			<h1>Autenticação </h1>
-			
+			<rich:messages style="width:350px;margin:0 auto" layout="table" globalOnly="true"
+			showSummary="true" infoClass="informacao">
+			<f:facet name="infoMarker">
+			</f:facet>
+		</rich:messages>
 				<fieldset>
+				
 				<h:form id="autentica">
 					<h:outputLabel value="Usuário" for="login"/>
-					<h:inputText id="login" alt="login" value="#{usuarioBean.usuario.login}" required="true"/>
+					<h:inputText id="login" alt="login" value="#{usuarioBean.usuario.login}" required="true" requiredMessage="Digite seu login"/>
+					<h:message for="login" styleClass="mensagens"/>
 					<h:outputLabel value="Senha" for="password"/>
-					<h:inputSecret id="password" alt="password" value="#{usuarioBean.usuario.senha}" required="true" requiredMessage="#{msgs.erro}"/>
+					<h:inputSecret id="password" alt="password" value="#{usuarioBean.usuario.senha}" required="true" requiredMessage="Digite uma senha"/>
 					<h:commandButton value="Entrar" action="#{usuarioBean.logon}" styleClass="button" />
-					<h:messages styleClass="mensagens" showDetail="false" />
+					
+					<h:message for="password" styleClass="mensagens"/>
 				</h:form>						
 				</fieldset>
 		</div>
