@@ -7,6 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import br.faculdadeidez.psa.db.dao.DAOUsuario;
+import br.faculdadeidez.psa.vo.MensagemValidacaoVO;
 import br.faculdadeidez.psa.vo.UsuarioVO;
 
 public class UsuarioBusinessLogic {
@@ -73,9 +74,11 @@ public class UsuarioBusinessLogic {
 				user.setSenha(dUsuario.find(user.getId()).getSenha());
 			}
 			// valida os dados inseridos
-			List<Boolean> erros = validaDados(user);
-			if (erros.contains(Boolean.valueOf(true)))
-				return "dadoInvalido";
+			List<MensagemValidacaoVO> erros = validaDados(user);
+			
+			if(!MensagemValidacao.isValido(erros))
+				return MensagemValidacao.getMensagensValidacao(erros);
+			
 			ArrayList<Boolean> errosUserInexistente = new ArrayList<Boolean>();
 			
 			UsuarioVO userFind = dUsuario.find(user.getId());
@@ -118,9 +121,12 @@ public class UsuarioBusinessLogic {
 
 		try {
 			// valida os dados inseridos
-			List<Boolean> erros = validaDados(user);
-			if (erros.contains(Boolean.valueOf(true)))
-				return "dadoInvalido";
+			List<MensagemValidacaoVO> erros = validaDados(user);
+			
+			if(!MensagemValidacao.isValido(erros))
+				return MensagemValidacao.getMensagensValidacao(erros);
+						
+			// inserção
 			DAOUsuario dUsuario = new DAOUsuario();
 			if (dUsuario.findByField("login", user.getLogin()).isEmpty()) {
 				if (dUsuario.findByField("cpf", user.getCpf()).isEmpty()) {
@@ -165,18 +171,19 @@ public class UsuarioBusinessLogic {
 		return retorno;
 	}
 
-	private List<Boolean> validaDados(UsuarioVO user){
-		ArrayList<Boolean> erros = new ArrayList<Boolean>();
-		erros.add(Boolean.valueOf(user.getCpf().isEmpty()));
-		erros.add(Boolean.valueOf(user.getLogin().isEmpty()));
-		erros.add(Boolean.valueOf(user.getNome().isEmpty()));
-		erros.add(Boolean.valueOf(user.getRg().isEmpty()));
-		erros.add(Boolean.valueOf(user.getOrgExpeditor().isEmpty()));
-		erros.add(Boolean.valueOf(user.getSenha().isEmpty()));
-		erros.add(Boolean.valueOf(user.getLogin().matches("^[0-9]*$")));
-		erros.add(Boolean.valueOf(user.getNome().matches("^[0-9]*$")));
-		erros.add(Boolean.valueOf(!user.getNome().matches(
-				"^[a-zA-ZÁÂÃÀÇÉÊÍÓÔÕÚÜáâãàçéêíóôõúü]*$")));
+	private List<MensagemValidacaoVO> validaDados(UsuarioVO user){
+		ArrayList<MensagemValidacaoVO> erros = new ArrayList<MensagemValidacaoVO>();
+			
+		erros.add(new MensagemValidacaoVO("CPF", "O CPF é obrigatório", Boolean.valueOf(user.getCpf().isEmpty())));
+		erros.add(new MensagemValidacaoVO("Login", "O login é obrigatório", Boolean.valueOf(user.getLogin().isEmpty())));
+		erros.add(new MensagemValidacaoVO("Nome", "O CPF é obrigatório", Boolean.valueOf(user.getNome().isEmpty())));
+		erros.add(new MensagemValidacaoVO("RG", "O CPF é obrigatório", Boolean.valueOf(user.getRg().isEmpty())));
+		erros.add(new MensagemValidacaoVO("Órgão Expeditor", "O CPF é obrigatório", Boolean.valueOf(user.getOrgExpeditor().isEmpty())));
+		erros.add(new MensagemValidacaoVO("Senha", "O CPF é obrigatório", Boolean.valueOf(user.getSenha().isEmpty())));
+		erros.add(new MensagemValidacaoVO("Login", "O login não conter só números", Boolean.valueOf(user.getLogin().matches("^[0-9]*$"))));
+		erros.add(new MensagemValidacaoVO("Nome", "O nome não pode conter só números", Boolean.valueOf(user.getNome().matches("^[0-9]*$"))));
+		erros.add(new MensagemValidacaoVO("Nome", "O nome contém caracteres inválidos", Boolean.valueOf(!user.getNome().matches(
+				"^[a-zA-ZÁÂÃÀÇÉÊÍÓÔÕÚÜáâãàçéêíóôõúü]*$"))));
 		return erros;
 	}
 	

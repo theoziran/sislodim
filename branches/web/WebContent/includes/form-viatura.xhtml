@@ -9,14 +9,14 @@
 <ui:composition>
 	<div class="form"><h:panelGrid columns="1">
 		<h:form>
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="3">
 				<h:outputLabel value="*Código da viatura" />
 				<h:inputText id="codigo" value="#{viaturaBean.viatura.codigo}"
-					required="true" requiredMessage="Digite um código para a viatura" />
-				<h:commandButton action="#{viaturaBean.create}" value="Salvar" />
-
+					required="true" requiredMessage="Digite um código para a viatura" maxlenght="4" />
+				<h:message for="codigo" styleClass="mensagens"/>
 			</h:panelGrid>
-			<h:message styleClass="mensagens" showDetail="false" for="codigo" />
+			
+			<h:commandButton action="#{viaturaBean.create}" value="Salvar" />	
 		</h:form>
 	</h:panelGrid></div>
 </ui:composition>

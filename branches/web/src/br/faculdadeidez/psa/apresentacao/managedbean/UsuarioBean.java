@@ -120,19 +120,20 @@ public class UsuarioBean extends GenericoBean {
 		} else if (mensagem.equals("inserido")) {
 			adicionarMensagem("Cadastrado com sucesso!");
 			setUsuario(new UsuarioVO());
-		}
-		if (mensagem.equals("removido"))
+		} else if (mensagem.equals("removido")) { 
 			adicionarMensagem("Deletado com sucesso!");
+		}
 		else if (mensagem.equals("problemaRemover")) {
 			adicionarMensagem("Houve um problema ao tentar remover,\n contacte o administrador");
-		}
-		if (mensagem.equals("logado")) {
+		} else if (mensagem.equals("logado")) {
 			adicionarMensagem("Logado com sucesso");
 			setUsuario(new UsuarioVO());
 		} else if (mensagem.equals("camposEmBranco")) {
 			adicionarMensagem("Não é permitido campos em branco");
 		} else if (mensagem.equals("naoEncontrado")) {
 			adicionarMensagem("Usuário ou senha inválido");
+		} else { 
+			adicionarMensagem(mensagem);
 		}
 	}
 
