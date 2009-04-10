@@ -23,8 +23,20 @@ public class UsuarioBean extends GenericoBean {
 	}
 
 	public void logout() {
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-				.clear();
+		/**
+		 * É feito o processo reverso do logon, no atributo logado coloca falso
+		 * no objeto do usuário na sessão coloco null e depois
+		 * apago o mapeamento da sessão
+		 */
+		FacesContext context = FacesContext.getCurrentInstance();
+		if (context != null) {
+			HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
+			session.setAttribute("logado", false);
+			session.setAttribute("currentUser", null);
+			context.getExternalContext().getSessionMap().clear();
+			System.out.println("Logout efetuado com sucesso");
+		}
+		
 	}
 
 	public String delete() {
