@@ -3,6 +3,7 @@ package br.faculdadeidez.psa.apresentacao.managedbean;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import br.faculdadeidez.psa.vo.UsuarioVO;
 
