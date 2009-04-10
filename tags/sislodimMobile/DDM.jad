@@ -1,8 +1,0 @@
-MIDlet-1: Midlet,,br.com.idez.Midlet
-MIDlet-2: UIController,,br.com.idez.core.UIController
-MIDlet-Jar-URL: DDM.jar
-MIDlet-Name: DDM Midlet Suite
-MIDlet-Vendor: Midlet Suite Vendor
-MIDlet-Version: 1.0.0
-MicroEdition-Configuration: CLDC-1.1
-MicroEdition-Profile: MIDP-2.0
