@@ -55,6 +55,7 @@ public class Setor implements Serializable {
 		this.codigo = vo.getCodigo();
 		this.nome = vo.getNome();
 		this.ativo = vo.getAtivo();
+		this.bairros = vo.getBairros();
 	}
 	
 	public static SetorVO VO(Setor obj){
