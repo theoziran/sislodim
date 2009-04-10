@@ -1,7 +1,12 @@
 package br.faculdadeidez.psa.apresentacao.managedbean;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.component.UISelectMany;
+
+import br.faculdadeidez.psa.db.dao.DAOBairro;
+import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 
 public class SetorBean extends GenericoBean {
@@ -73,5 +78,17 @@ public class SetorBean extends GenericoBean {
 	public void setTermoPesquisa(String termoPesquisa) {
 		this.termoPesquisa = termoPesquisa;
 	}
+	
+	public void setBairrosSetor(List<String> listaBairros){
+		List<BairroVO> bairros = new ArrayList<BairroVO>();
+		for(String chave : listaBairros){
+			bairros.add(getFachada().pesquisaBairro(Integer.parseInt(chave)));
+		}
+		setor.setBairros(new DAOBairro().ConverteEntidade(bairros));
+	}
+	
+	public List getBairrosSetor(){
+			return new ArrayList();	
+	} 
 	
 }
