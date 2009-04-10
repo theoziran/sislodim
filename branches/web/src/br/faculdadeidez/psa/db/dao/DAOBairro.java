@@ -45,4 +45,12 @@ public class DAOBairro extends DAOFactory<Bairro> {
 			newLista.add(Bairro.VO(set));		
 		return newLista;
 	}
+	
+	public List<Bairro> ConverteEntidade(List<BairroVO> lista)
+	{
+		List<Bairro> newLista = new Vector<Bairro>();
+		for(BairroVO bairro : lista)
+			newLista.add(super.find(Bairro.class, bairro.getCodigo()));
+		return newLista;
+	}
 }
