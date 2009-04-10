@@ -46,4 +46,8 @@ public class BairroBusinessLogic {
 		DAOBairro dBairro = new DAOBairro();
 		return dBairro.findAll();		
 	}
+	
+	public BairroVO find(int chave){
+		return new DAOBairro().find(chave);
+	}
 }
