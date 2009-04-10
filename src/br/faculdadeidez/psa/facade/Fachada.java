@@ -123,8 +123,17 @@ public class Fachada {
 		return logicaViatura.pesquisar(nome);
 	}
 	
+	/**
+	 * Início da parte dos bairros
+	 * 
+	 * @return lista de bairros cadastrados
+	 */
 	public List<BairroVO> listarBairros(){
 		BairroBusinessLogic logicaBairro = new BairroBusinessLogic();
 		return logicaBairro.listar();
+	}
+	
+	public BairroVO pesquisaBairro(int chave){
+		return new BairroBusinessLogic().find(chave);
 	}
 }
