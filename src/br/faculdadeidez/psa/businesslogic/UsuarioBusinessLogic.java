@@ -183,7 +183,7 @@ public class UsuarioBusinessLogic {
 		erros.add(new MensagemValidacaoVO("Login", "O login não conter só números", Boolean.valueOf(user.getLogin().matches("^[0-9]*$"))));
 		erros.add(new MensagemValidacaoVO("Nome", "O nome não pode conter só números", Boolean.valueOf(user.getNome().matches("^[0-9]*$"))));
 		erros.add(new MensagemValidacaoVO("Nome", "O nome contém caracteres inválidos", Boolean.valueOf(!user.getNome().matches(
-				"^[a-zA-ZÁÂÃÀÇÉÊÍÓÔÕÚÜáâãàçéêíóôõúü]*$"))));
+				"^[a-zA-ZÁÂÃÀÇÉÊÍÓÔÕÚÜáâãàçéêíóôõúü\\s]*$"))));
 		return erros;
 	}
 	
