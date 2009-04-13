@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
@@ -22,10 +20,9 @@ import br.faculdadeidez.psa.vo.SetorVO;
 @Table (name="SIS_SETOR")
 public class Setor implements Serializable {	
 		
-	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) 
-	@Column (name="SET_CODIGO")
-	private int codigo;
-	@Basic @Column (name="SET_NOME") 
+	@Id @Column (name="SET_CODIGO")
+	private String codigo;
+	@Basic @Column (name="SET_NOME", nullable=false) 
 	private String nome;
     @ManyToMany(cascade={CascadeType.ALL} )
     @JoinTable(name="SIS_BAIRRO_SETOR",
@@ -35,10 +32,9 @@ public class Setor implements Serializable {
                 @JoinColumn(name="BAI_CODIGO", referencedColumnName="BAI_CODIGO")
             )	
       
-    private List<Bairro> bairros; 
-    @Basic 
-	@Column( name="SET_ATIVO")
-	private int ativo;
+    private List<Bairro> bairros;
+    @Basic @Column( name="SET_ATIVO", nullable=false)
+	private Boolean ativo;
 	
 	public List<Bairro> getBairros() {
 		return bairros;
@@ -71,23 +67,18 @@ public class Setor implements Serializable {
 	{
 		setNome(nome);
 	}
-	
-	public Setor(int codigo)
-	{
-		setCodigo(codigo);
-	}
-	
-	public Setor(int codigo, String nome)
+
+	public Setor(String codigo, String nome)
 	{
 		setCodigo(codigo);
 		setNome(nome);
 	}
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
@@ -99,11 +90,12 @@ public class Setor implements Serializable {
 		this.nome = nome;
 	}
 
-	public int getAtivo() {
+	public Boolean getAtivo() {
 		return ativo;
 	}
 
-	public void setAtivo(int ativo) {
+	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
+
 }

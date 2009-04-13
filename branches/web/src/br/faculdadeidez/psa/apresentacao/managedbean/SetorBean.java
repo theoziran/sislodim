@@ -28,7 +28,7 @@ public class SetorBean extends GenericoBean {
 		for(SetorVO setor : getFachada().listarSetores()){
 			SelectItem selectItem = new SelectItem();
 			selectItem.setLabel(setor.getNome());
-			selectItem.setValue(String.valueOf(setor.getCodigo()));
+			selectItem.setValue(setor.getCodigo());
 									
 			listaItensSetores.add(selectItem);
 		}

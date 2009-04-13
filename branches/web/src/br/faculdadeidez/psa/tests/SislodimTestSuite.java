@@ -8,8 +8,9 @@ public class SislodimTestSuite {
 	public static Test suite() {
 		TestSuite suite = new TestSuite("Test for br.faculdadeidez.psa.tests");
 		//$JUnit-BEGIN$
-		suite.addTestSuite(testUsuarioBusinessLogic.class);
-		suite.addTestSuite(testViaturaBusinessLogic.class);
+		//suite.addTestSuite(testUsuarioBusinessLogic.class);
+		//suite.addTestSuite(testViaturaBusinessLogic.class);
+		suite.addTestSuite(testSetorBusinessLogic.class);
 		//$JUnit-END$
 		return suite;
 	}

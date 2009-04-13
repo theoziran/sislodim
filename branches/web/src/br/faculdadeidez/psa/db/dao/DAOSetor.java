@@ -1,19 +1,22 @@
 package br.faculdadeidez.psa.db.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import br.faculdadeidez.psa.db.entity.Setor;
+import br.faculdadeidez.psa.db.entity.Usuario;
 import br.faculdadeidez.psa.vo.SetorVO;
+import br.faculdadeidez.psa.vo.UsuarioVO;
 
 public class DAOSetor extends DAOFactory<Setor> {
 	public DAOSetor() {
 		super();
 	}
 	
-	public SetorVO find(int chave){		
+	public SetorVO find(String chave){		
 		return Setor.VO(super.find(Setor.class, chave));
 	}
 	
@@ -25,7 +28,7 @@ public class DAOSetor extends DAOFactory<Setor> {
 		return ConvertList(super.findAll(Setor.class));
 	}
 	
-	public List<SetorVO> findAllActived(){
+	public List<SetorVO> findAllActivated(){
 		String strQuery = "SELECT  s FROM Setor s WHERE s.ativo = 1";
 		EntityManager em = getManager();
 		Query query = em.createQuery(strQuery);
@@ -56,4 +59,14 @@ public class DAOSetor extends DAOFactory<Setor> {
 			newLista.add(Setor.VO(set));		
 		return newLista;
 	}
+	
+	public Boolean existsActiveNomeSetor(String nomeSetor){
+		Query query = getManager().createQuery("select a from Setor a where a.nome=\""+nomeSetor+"\" and a.ativo=\""+1+"\"");
+		List<Setor> result = query.getResultList();
+		if(result.isEmpty())
+			return false;
+		else
+			return true;
+	}
+	
 }

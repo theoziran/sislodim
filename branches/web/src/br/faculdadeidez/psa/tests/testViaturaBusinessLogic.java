@@ -2,7 +2,6 @@ package br.faculdadeidez.psa.tests;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import junit.framework.TestCase;
 import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
 import br.faculdadeidez.psa.vo.ViaturaVO;
@@ -57,15 +56,15 @@ public class testViaturaBusinessLogic extends TestCase {
 		// codigo inválido
 		// string vazia
 		v = new ViaturaVO("",false, false);
-		assertEquals("dadoInvalido", vbl.create(v));
+		assertEquals("O código é obrigatório, ", vbl.create(v));
 
 		// string.length > 4
 		v.setCodigo("12345");
-		assertEquals("dadoInvalido", vbl.create(v));
+		assertEquals("O código deve ser menor que 4 dígitos, ", vbl.create(v));
 		
 		// caracteres especiais
 		v.setCodigo("#$%*");
-		assertEquals("dadoInvalido", vbl.create(v));
+		assertEquals("O código deve ser apenas dígitos, ", vbl.create(v));
 		
 	}
 	
@@ -127,17 +126,17 @@ public class testViaturaBusinessLogic extends TestCase {
 			// codigo inválido
 			// string vazia
 			v.setCodigo("");
-			assertEquals("dadoInvalido", vbl.update(v));
+			assertEquals("O código é obrigatório, ", vbl.update(v));
 
 			// codigo inválido
 			// string.length > 4
 			v.setCodigo("12345");
-			assertEquals("dadoInvalido", vbl.create(v));
+			assertEquals("O código deve ser menor que 4 dígitos, ", vbl.create(v));
 			
 			// codigo inválido			
 			// caracteres especiais
 			v.setCodigo("#$%&");
-			assertEquals("dadoInvalido", vbl.update(v));
+			assertEquals("O código deve ser apenas dígitos, ", vbl.update(v));
 		}
 	}
 	
