@@ -8,14 +8,6 @@ public class CoordenadaVO implements Serializable {
 	private int codigo;
 	private String latitude;
 	private String longitude;
-//	private List<Setor> setores;
-	
-//	public List<Setor> getSetores() {
-//		return setores;
-//	}
-//	public void setSetores(List<Setor> setores) {
-//		this.setores = setores;
-//	}
 
 	public CoordenadaVO(){
 		

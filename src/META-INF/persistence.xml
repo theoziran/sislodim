@@ -6,6 +6,7 @@
 <class>br.faculdadeidez.psa.db.entity.Setor</class>
 <class>br.faculdadeidez.psa.db.entity.Viatura</class>
 <class>br.faculdadeidez.psa.db.entity.Bairro</class>
+<class>br.faculdadeidez.psa.db.entity.Coordenada</class>
 <properties>
 <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/sislodim" />
 <property name="toplink.jdbc.user" value="root" />
