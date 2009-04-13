@@ -37,15 +37,14 @@ public class MIDServlet extends HttpServlet {
 		String longitude = (String) request.getAttribute("latitude");
 		
 		//pegar o bussnesslogic
-		Coordenada coo = new Coordenada();
+		CoordenadaVO coo = new CoordenadaVO();
 		
 		//setar os valores
 		coo.setLatitude(latitude);
 		coo.setLongitude(longitude);
-		CoordenadaVO cooVO = coo.toVO(coo);
 		//salvar no banco
 		CoordenadasBusinessLogic cooBL = new CoordenadasBusinessLogic();
-		cooBL.create(cooVO);
+		cooBL.create(coo);
 
 	}
 
