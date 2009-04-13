@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+
+	<div class="form"><h:panelGrid columns="1">
+		<h:form>
+			<h:panelGrid columns="3">
+				<h:outputLabel value="*Setor" />
+				
+				<h:selectOneMenu id="setor" value="#{escalaBean.escala.setor}" rendered="true">  
+             		<f:selectItems value="#{setorBean.listaItensSetores}"/>  
+         		</h:selectOneMenu>         		
+         		<h:message for="setor" styleClass="mensagens"/>  
+				
+				<h:outputLabel value="*Data inicial" />
+				<rich:calendar id="dataInicial" datePattern="dd/MM/yyyy" value="#{escalaBean.escala.dataInicial}" required="true"></rich:calendar>
+				<h:message for="dataInicial" styleClass="mensagens"/>
+				
+				<h:outputLabel value="*Data final" />
+				<rich:calendar id="dataFinal" datePattern="dd/MM/yyyy" value="#{escalaBean.escala.dataFinal}" required="true"></rich:calendar>
+				<h:message for="dataFinal" styleClass="mensagens"/>
+			</h:panelGrid>
+			
+			<h:commandButton action="#{escalaBean.create}" value="Salvar" />	
+		</h:form>
+	</h:panelGrid></div>
+</ui:composition>
+</html>

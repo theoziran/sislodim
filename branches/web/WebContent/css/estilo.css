@@ -35,7 +35,10 @@ margin-left:5px;
 .informacao
 {
   background: #def  no-repeat 10px 3px;
-  border: 1px solid #9cf;font-size:14px;height:25px;text-align: center
+  border: 1px solid #9cf;
+  font-size:14px;
+  height:25px;
+  text-align: center;
 }
 #geral{
 	width:770px;

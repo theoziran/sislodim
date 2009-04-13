@@ -56,8 +56,8 @@
 						<f:facet name="header">
 							<rich:columnGroup>
 								<ui:insert name="tituloTabela" />
-								<rich:column rowspan="2" colspan="2"
-									rendered="#{sessaoBean.coordenador or sessaoBean.moderador}">
+								
+								<rich:column rowspan="2" colspan="2" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}">
 									<h:outputText value="Ações" />
 								</rich:column>
 
@@ -68,6 +68,7 @@
 								<rich:column>
 									<ui:insert name="campo2"></ui:insert>
 								</rich:column>
+								
 								<ui:insert name="colunasAdicionaisTitulos" />
 							</rich:columnGroup>
 						</f:facet>
@@ -79,6 +80,7 @@
 							<rich:column>
 								<ui:insert name="campo21" id="campo21"></ui:insert>
 							</rich:column>
+														
 							<ui:insert name="colunasAdicionaisValores" />
 							<rich:column
 								rendered="#{sessaoBean.coordenador or sessaoBean.moderador}">
