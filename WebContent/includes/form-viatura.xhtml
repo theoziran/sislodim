@@ -7,13 +7,26 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition>
+
+	<script language="javascript" src="#{facesContext.externalContext.request.contextPath}/javascript/jquery.js"></script>		
+	<script language="javascript" src="#{facesContext.externalContext.request.contextPath}/javascript/jquery.maskedinput.js"></script>
+
+	<script language="javascript">
+	$(function() {
+		$(".codigo").mask("9999");
+	});
+	</script>
+		
 	<div class="form"><h:panelGrid columns="1">
 		<h:form>
 			<h:panelGrid columns="3">
 				<h:outputLabel value="*Código da viatura" />
-				<h:inputText id="codigo" value="#{viaturaBean.viatura.codigo}"
+				<h:inputText styleClass="codigo" id="codigo" value="#{viaturaBean.viatura.codigo}"
 					required="true" requiredMessage="Digite um código para a viatura" maxlenght="4" />
 				<h:message for="codigo" styleClass="mensagens"/>
+				
+				<h:outputLabel value="Ativo?" />
+				<h:selectBooleanCheckbox value="#{viaturaBean.viatura.ativo}"/>
 			</h:panelGrid>
 			
 			<h:commandButton action="#{viaturaBean.create}" value="Salvar" />	

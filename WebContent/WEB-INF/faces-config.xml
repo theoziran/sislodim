@@ -41,6 +41,13 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>escalaBean</managed-bean-name>
+		<managed-bean-class>
+			br.faculdadeidez.psa.apresentacao.managedbean.EscalaBean 
+		</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>sessaoBean</managed-bean-name>
 		<managed-bean-class>
 			br.faculdadeidez.psa.apresentacao.managedbean.SessaoBean 
@@ -114,12 +121,24 @@
 			<to-view-id>/pages/adminViatura.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-
 	<!-- /viatura -->
 	
-	<!-- Navegação especializada -->
+	<!-- escala  -->
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>cadastroEscala</from-outcome>
+			<to-view-id>/pages/cadastroEscala.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>adminEscala</from-outcome>
+			<to-view-id>/pages/adminEscala.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- /escala -->
 	
-	
+	<!-- Navegação especializada -->		
 	<navigation-rule>
 		<from-view-id>/pages/cadastroSetor.xhtml</from-view-id>
 		<navigation-case>
@@ -143,6 +162,14 @@
 		<navigation-case>
 			<from-outcome>inserido</from-outcome>
 			<to-view-id>/pages/adminViatura.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/pages/cadastroEscala.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>inserido</from-outcome>
+			<to-view-id>/pages/adminEscala.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	

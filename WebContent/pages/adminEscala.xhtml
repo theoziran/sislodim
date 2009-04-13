@@ -7,11 +7,11 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 
-<ui:composition template="/includes/edit-viatura.xhtml">
-	<ui:param name="atualBean" value="#{viaturaBean}" />
+<ui:composition template="/includes/edit-escala.xhtml">
+	<ui:param name="atualBean" value="#{escalaBean}" />
 	<ui:define name="tituloTabela">
 		<!-- coloque o número de colunas necessárias -->
-		<rich:column colspan="3">Dados básicos
+		<rich:column colspan="4">Dados básicos
  		</rich:column>
 	</ui:define>
 
@@ -20,32 +20,35 @@
 	</ui:define>
 	
 	<ui:define name="campo2">
-		<h:outputText value="Ocupada" />
+		<h:outputText value="Setor" />
 	</ui:define>
 	
 	<ui:define name="colunasAdicionaisTitulos">
        <rich:column>
-       <h:outputText value="Ativo?" />
+       	<h:outputText value="Data Inicial" />
+       </rich:column>
+       
+       <rich:column>
+       	<h:outputText value="Data Final" />
        </rich:column>
     </ui:define>
-
-	<ui:define name="campo11">
-		<h:outputText value="#{elementoDaVez.codigo}" />
-	</ui:define>
 	
-	<ui:define name="campo21">
-		<h:selectBooleanCheckbox value="#{elementoDaVez.ocupada}"
-			disabled="true" />
-	</ui:define>
+	<ui:define name="campo11"><h:outputText value="#{elementoDaVez.codigo}" /></ui:define>
+	
+	<ui:define name="campo21"><h:outputText value="#{elementoDaVez.setor}" /></ui:define>
 	
 	<ui:define name="colunasAdicionaisValores">
        <rich:column>
-       <h:outputText value="#{elementoDaVez.ativo}" />
+       	<h:outputText value="#{elementoDaVez.dataInicial}" />
+       </rich:column>
+       
+       <rich:column>
+       	<h:outputText value="#{elementoDaVez.dataFinal}" />
        </rich:column>
     </ui:define>
-	
+		
 	<ui:define name="linkNovoItem">
-    	<h:commandButton value="Nova viatura" action="cadastroViatura" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}" />
+    	<h:commandButton value="Nova escala" action="cadastroEscala" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}" />
     </ui:define>
 </ui:composition>
 </html>

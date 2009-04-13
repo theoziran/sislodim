@@ -7,6 +7,11 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition>
+
+	<script language="javascript" src="#{facesContext.externalContext.request.contextPath}/javascript/jquery.js"></script>		
+	<script language="javascript" src="#{facesContext.externalContext.request.contextPath}/javascript/jquery.maskedinput.js"></script>
+	<script language="javascript" src="#{facesContext.externalContext.request.contextPath}/javascript/jquery.sislodim.usuario.js"></script>
+
 	<div class="form"><h:panelGrid columns="1">
 		<h:form>
 			<h:panelGrid columns="3">
@@ -15,11 +20,11 @@
 				<h:message for="nome" styleClass="mensagens"/>
 				
 				<h:outputLabel value="* CPF" />
-				<h:inputText id="cpf" value="#{usuarioBean.usuario.cpf}" required="true" requiredMessage="O CPF é obrigatório" />
+				<h:inputText styleClass="cpf" id="cpf" value="#{usuarioBean.usuario.cpf}" required="true" requiredMessage="O CPF é obrigatório" />
 				<h:message for="cpf" styleClass="mensagens"/>
 				
 				<h:outputLabel value="* RG" />
-				<h:inputText id="rg" value="#{usuarioBean.usuario.rg}" required="true"  requiredMessage="O RG é obrigatório" />
+				<h:inputText styleClass="rg" id="rg" value="#{usuarioBean.usuario.rg}" required="true"  requiredMessage="O RG é obrigatório" />
 				<h:message for="rg" styleClass="mensagens"/>
 				
 				<h:outputLabel value="* Orgão Expeditor" />
@@ -37,8 +42,8 @@
 				<h:outputLabel value="* Tipo de usuário" />
 				<h:selectOneMenu id="placa"
 					value="#{usuarioBean.usuario.tipoPermissao}">
-					<f:selectItem itemLabel="Administrador" itemValue="3" />
-					<f:selectItem itemLabel="Coordenador" itemValue="2" />
+					<f:selectItem itemLabel="Coordenador" itemValue="3" />
+					<f:selectItem itemLabel="Moderador" itemValue="2" />
 					<f:selectItem itemLabel="Operador" itemValue="1" />
 				</h:selectOneMenu>				
 			</h:panelGrid>
