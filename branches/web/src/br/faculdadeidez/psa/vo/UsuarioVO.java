@@ -12,14 +12,6 @@ public class UsuarioVO{
 	private String orgExpeditor;
 	private int tipoPermissao;
 		
-	public int getTipoPermissao() {
-		return tipoPermissao;
-	}
-
-	public void setTipoPermissao(int tipoPermissao) {
-		this.tipoPermissao = tipoPermissao;
-	}
-
 	public UsuarioVO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -31,6 +23,7 @@ public class UsuarioVO{
 		setCpf(cpf);
 		setRg(rg);
 		setOrgExpeditor(orgExpeditor);
+		setTipoPermissao(Integer.parseInt(tipoPermissao));
 	}
 	
 	public UsuarioVO(String nome, String login, String senha, int id, int ativo, String cpf, String rg, String orgExpeditor, String tipoPermissao) {
@@ -42,9 +35,16 @@ public class UsuarioVO{
 		setCpf(cpf);
 		setRg(rg);
 		setOrgExpeditor(orgExpeditor);
+		setTipoPermissao(Integer.parseInt(tipoPermissao));
 	}
 	
-	
+	public int getTipoPermissao() {
+		return tipoPermissao;
+	}
+
+	public void setTipoPermissao(int tipoPermissao) {
+		this.tipoPermissao = tipoPermissao;
+	}
 	
 	public int getId() {
 		return id;

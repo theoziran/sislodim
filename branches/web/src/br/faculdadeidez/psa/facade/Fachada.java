@@ -3,10 +3,12 @@ package br.faculdadeidez.psa.facade;
 import java.util.List;
 
 import br.faculdadeidez.psa.businesslogic.BairroBusinessLogic;
+import br.faculdadeidez.psa.businesslogic.EscalaBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.SetorBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
 import br.faculdadeidez.psa.vo.BairroVO;
+import br.faculdadeidez.psa.vo.EscalaVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.UsuarioVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
@@ -121,6 +123,32 @@ public class Fachada {
 	public List<ViaturaVO> pesquisaViatura(String nome){
 		ViaturaBusinessLogic logicaViatura = new ViaturaBusinessLogic();
 		return logicaViatura.pesquisar(nome);
+	}
+	
+	/*
+	 * Métodos para as Escalas
+	 */
+	
+	public String deleteEscala(EscalaVO vo){		
+		return new EscalaBusinessLogic().delete(vo);
+	}
+	
+	public String updateEscala(EscalaVO vo){
+		return new EscalaBusinessLogic().update(vo);
+	}
+	
+	public String createEscala(EscalaVO vo){
+		return new EscalaBusinessLogic().create(vo);
+	}
+	
+	public List<EscalaVO> listarEscalas()
+	{
+		return new EscalaBusinessLogic().listar();
+	}	
+	
+	public List<EscalaVO> pesquisaEscala(int codigo){
+		EscalaBusinessLogic logicaEscala = new EscalaBusinessLogic();
+		return logicaEscala.pesquisar(codigo);
 	}
 	
 	/**

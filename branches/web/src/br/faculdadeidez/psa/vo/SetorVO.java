@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.faculdadeidez.psa.db.entity.Bairro;
 
+@SuppressWarnings("serial")
 public class SetorVO implements Serializable {
 	
 	public List<Bairro> getBairros() {
