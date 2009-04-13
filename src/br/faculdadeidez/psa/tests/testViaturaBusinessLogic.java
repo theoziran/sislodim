@@ -14,13 +14,13 @@ public class testViaturaBusinessLogic extends TestCase {
 	private ArrayList<ViaturaVO> listViaturasValidas = new ArrayList<ViaturaVO>();
 		
 	protected void setUp() throws Exception {
-		this.listViaturasValidas.add(new ViaturaVO("1234",false));
-		this.listViaturasValidas.add(new ViaturaVO("1235",true));
+		this.listViaturasValidas.add(new ViaturaVO("1234",false, false));
+		this.listViaturasValidas.add(new ViaturaVO("1235",true, true));
 	}
 	
 	public void testCreateValidos() {
 		/**
-		 * Test case - TC1.1.1 - Valores Vï¿½lidos
+		 * Test case - TC1.1.1 - Valores Válidos
 		 **/
 		assertEquals("inserido", vbl.create(this.listViaturasValidas.get(0)));
 		assertEquals("inserido", vbl.create(this.listViaturasValidas.get(1)));
@@ -32,7 +32,7 @@ public class testViaturaBusinessLogic extends TestCase {
 		 **/
 		
 		// codigo nulo
-		v = new ViaturaVO(null,false);
+		v = new ViaturaVO(null,false, false);
 		assertEquals("problemaInserir", vbl.create(v));
 
 		// ocupada nulo
@@ -46,7 +46,7 @@ public class testViaturaBusinessLogic extends TestCase {
 		 * Test case - TC1.1.3 - Valores Existentes
 		 **/
 		// codigo duplicado
-		v = new ViaturaVO("1234",false);
+		v = new ViaturaVO("1234",false, false);
 		assertEquals("viaturaExistente", vbl.create(v));
 	}
 	
@@ -54,9 +54,9 @@ public class testViaturaBusinessLogic extends TestCase {
 		/**
 		 * Test case - TC1.1.4
 		 **/
-		// codigo invï¿½lido
+		// codigo inválido
 		// string vazia
-		v = new ViaturaVO("",false);
+		v = new ViaturaVO("",false, false);
 		assertEquals("dadoInvalido", vbl.create(v));
 
 		// string.length > 4
@@ -71,7 +71,7 @@ public class testViaturaBusinessLogic extends TestCase {
 	
 	public void testDelete() {
 		assertEquals("removido", vbl.delete(listViaturasValidas.remove(1)));
-		v = new ViaturaVO("9999",false);
+		v = new ViaturaVO("9999",false, false);
 		assertEquals("viaturaInexistente", vbl.delete(v));
 	}
 
@@ -95,7 +95,7 @@ public class testViaturaBusinessLogic extends TestCase {
 			ls = vbl.pesquisar("9999");
 			if (ls.isEmpty())
 				v = null;
-			assertEquals("viaturaInexistente", vbl.update(new ViaturaVO("9999",false)));
+			assertEquals("viaturaInexistente", vbl.update(new ViaturaVO("9999",false, false)));
 		}
 
 		{
@@ -124,17 +124,17 @@ public class testViaturaBusinessLogic extends TestCase {
 			ls = vbl.pesquisar("1234");
 			v = ls.get(0);
 
-			// codigo invï¿½lido
+			// codigo inválido
 			// string vazia
 			v.setCodigo("");
 			assertEquals("dadoInvalido", vbl.update(v));
 
-			// codigo invï¿½lido
+			// codigo inválido
 			// string.length > 4
 			v.setCodigo("12345");
 			assertEquals("dadoInvalido", vbl.create(v));
 			
-			// codigo invï¿½lido			
+			// codigo inválido			
 			// caracteres especiais
 			v.setCodigo("#$%&");
 			assertEquals("dadoInvalido", vbl.update(v));

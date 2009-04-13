@@ -5,12 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.sun.istack.internal.NotNull;
 
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
@@ -23,17 +19,20 @@ public class Viatura implements Serializable {
 	private String codigo;
 	@Basic @Column (name="VIA_OCUPADA", nullable=false)
 	private Boolean ocupada = false;
+	@Basic @Column (name="VIA_ATIVO", nullable=false)
+	private Boolean ativo = false;
 	
 	/*********************************************************/
-	/******** Conversï¿½o do objeto Setor para o SetorVO *******/
+	/******** Conversão do objeto Setor para o SetorVO *******/
 	/*********************************************************/
 	public Viatura(ViaturaVO vo) {
 		this.codigo = vo.getCodigo();
 		this.ocupada = vo.getOcupada();
+		this.ativo = vo.getAtivo();
 	}
 	
 	public static ViaturaVO VO(Viatura obj){
-		return new ViaturaVO(obj.getCodigo(), obj.getOcupada());
+		return new ViaturaVO(obj.getCodigo(), obj.getOcupada(), obj.getAtivo());
 	}
 	/*********************************************************/
 	
@@ -67,5 +66,13 @@ public class Viatura implements Serializable {
 	
 	public void setOcupada(Boolean ocupada) {
 		this.ocupada = ocupada;
+	}
+	
+	public Boolean getAtivo() {
+		return ativo;
+	}
+	
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}	
 }

@@ -13,12 +13,8 @@ public class SessaoBean extends GenericoBean{
 	private boolean coordenador;
 	private boolean operador;
 
-
-	
-
 	public SessaoBean() {
 	}
-
 
 	public UsuarioBean getUsuarioBean() {
 		if (usuario==null){
@@ -29,7 +25,6 @@ public class SessaoBean extends GenericoBean{
 		}
 		return usuario;
 	}
-
 
 	public void setUsuario(UsuarioBean usuario) {
 		this.usuario = usuario;

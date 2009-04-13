@@ -3,7 +3,7 @@ package br.faculdadeidez.psa.apresentacao.managedbean;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.component.UISelectMany;
+import javax.faces.model.SelectItem;
 
 import br.faculdadeidez.psa.db.dao.DAOBairro;
 import br.faculdadeidez.psa.vo.BairroVO;
@@ -11,6 +11,7 @@ import br.faculdadeidez.psa.vo.SetorVO;
 
 public class SetorBean extends GenericoBean {
 	private List<SetorVO> listaTudo = null;
+	private List<SelectItem> listaItensSetores = null;
 	private SetorVO setor = new SetorVO();
 	private String termoPesquisa = new String();
 	
@@ -21,6 +22,22 @@ public class SetorBean extends GenericoBean {
 	public void setSetor(SetorVO setor) {
 		this.setor = setor;
 	}	
+	
+	public List<SelectItem> getListaItensSetores() {
+		List<SelectItem> listaItensSetores = new ArrayList<SelectItem>();
+		for(SetorVO setor : getFachada().listarSetores()){
+			SelectItem selectItem = new SelectItem();
+			selectItem.setLabel(setor.getNome());
+			selectItem.setValue(String.valueOf(setor.getCodigo()));
+									
+			listaItensSetores.add(selectItem);
+		}
+		return listaItensSetores;
+	}
+	
+	public void setListaItensSetores(List<SelectItem> lista) { 
+		this.listaItensSetores = lista;
+	}
 	
 	public List<SetorVO> getListaTudo()
 	{	
@@ -54,7 +71,6 @@ public class SetorBean extends GenericoBean {
 		} else {						
 			setSetor(new SetorVO());	
 			adicionarMensagem("Setor criado com sucesso!");
-			//redirecionaPagina("adminSetor.st?id=1", mensagem);
 		}
 	}
 	
