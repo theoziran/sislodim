@@ -1,0 +1,66 @@
+* Tour Guide {(Josafá, Samuel), (Paulo e Pablo)}
+1. Identificar pontos chaves da cidade automaticamente
+Milestones
+M.1 UI (Telas) do dispositivo (08/04/2009)
+M.2 Armazenamento das localizações (15/04)
+M.3 Captura da posição do dispositivo (29/04/2009)
+M.4 Notificação do usuário (06/05/2009)
+M.5 Apresentação multimidia da notificação (13/05/2009)
+
+--------------------------------------------------------
+
+* Consultar Base de Dados Infoseg {(Emanuel, Theoziran),(Leonardo, Glauco)}
+1. Realizar Consultas
+1.1. Consultar Veículos
+1.2. Consultar CPF
+1.3. Consultar Nome da Mãe
+1.4. Consultar Condutores
+1.5. Consultar Ocorrências
+
+2. Detalhes
+2.1. Veiculos
+2.2. Indivíduo
+
+Milestones
+M.1 UI (Telas) do dispositivo (08/04/2009)
+M.2 Requisições HTTP (22/04/2009)
+M.3 Parsing do XML (29/04/2009)
+M.4 Apresentação do relatório (06/05/2009)
+M.5 Detalhes no relatório (13/05/2009)
+
+--------------------------------------------------------
+
+
+3. Autenticação {(Kerlen, Mario)}
+3.1. Login
+3.2. Permissões
+
+Milestones
+M.1 UI (Telas) do dispositivo (08/04/2009)
+M.2 Requisições HTTP de login (22/04/2009)
+M.3 Parsing do XML (29/04/2009)
+M.4 Cotrole de Acesso (06/05/2009)
+
+--------------------------------------------------------
+
+4. Localizar {(Ricardo, Fábio)}
+4.1. Enviar Posição
+4.2. Localizar Reforço da Ocorrência (opcional)
+
+Milestones
+M.1 UI (Telas) do dispositivo (08/04/2009)
+M.2 Captura da Localização (Location API) (22/04/2009)
+M.3 Requisições HTTP de publicação da posição (29/04/2009)
+M.4 Agendar tarefa (TimerTask) e armazenar a conf (RMS) de sincronização (13/05/2009)
+
+--------------------------------------------------------
+
+5. Ocorrência {(Edmilson, Juliana)}
+5.2. Ficha de Ocorrências
+5.3. Consultar Ocorrências
+
+Milestones
+M.1 UI (Telas) do dispositivo (08/04/2009)
+M.2 Requisições HTTP (22/04/2009)
+M.3 Parsing do XML (29/04/2009)
+M.4 Apresentação do relatório (06/05/2009)
