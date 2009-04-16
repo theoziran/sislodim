@@ -2,6 +2,7 @@ package br.com.idez.ddm.tourguide.core;
 
 import java.util.Stack;
 
+import javax.microedition.lcdui.Alert;
 import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.midlet.MIDlet;
@@ -43,6 +44,11 @@ public class UIController {
 		this.display.setCurrent(displayable);
 	}
 
+	public void setCurrent(Alert alert, Displayable nextDisplayable) {
+		this.telas.push(nextDisplayable);
+		this.display.setCurrent(alert, nextDisplayable);
+	}
+
 	public void setDisplay(Display display) {
 		this.display = display;
 	}
@@ -55,18 +61,24 @@ public class UIController {
 		try {
 			((TourGuideMIDLet) midlet).destroyApp(false);
 			((TourGuideMIDLet) midlet).notifyDestroyed();
-
 		} catch (MIDletStateChangeException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void voltar() {
 		if (this.telas.size() > 1) {
 			this.telas.pop();
-			Displayable displayable = (Displayable)this.telas.pop();
+			Displayable displayable = (Displayable) this.telas.pop();
 			setCurrent(displayable);
 		}
+	}
+
+	public void saveConfigs(String maxTime, String multimedia, String sound,
+			String sync) {
+		Record.setConfigMaxTime(maxTime);
+		Record.setConfigMultimedia(multimedia);
+		Record.setConfigSound(sound);
+		Record.setConfigSync(sync);
 	}
 }
