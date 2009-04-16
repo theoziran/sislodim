@@ -1,5 +1,6 @@
 package br.com.idez.core;
 
+import javax.microedition.lcdui.Alert;
 import javax.microedition.location.Coordinates;
 import javax.microedition.location.Criteria;
 import javax.microedition.location.Location;
@@ -73,22 +74,24 @@ public class GPS extends Thread {
 	}
 
 	public void run() {
-		try {
+		
 			while(true){
-				this.sleep(5000);
-				localizacaoGPS();
+				try {
+					this.sleep(5000);
+					localizacaoGPS();
+				} catch (LocationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
-		} catch (LocationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 
 	public void localizacaoGPS() throws LocationException,
