@@ -11,9 +11,9 @@ public class SetorBusinessLogic {
 	public String delete(SetorVO vo){
 		try {
 			DAOSetor dSetor = new DAOSetor();
-			if(dSetor.findByField("codigo", vo.getCodigo()).isEmpty())
+			if(dSetor.findByField("codigo", String.valueOf(vo.getCodigo())).isEmpty())
 				return "setorInexistente";
-			SetorVO set = dSetor.find(vo.getCodigo());
+			SetorVO set = dSetor.find(String.valueOf(vo.getCodigo()));
 			set.setAtivo(false);
 			dSetor.update(set);
 			return "removido";
@@ -32,7 +32,7 @@ public class SetorBusinessLogic {
 				return MensagemValidacao.getMensagensValidacao(erros);
 			
 			DAOSetor dSetor = new DAOSetor();
-			if(dSetor.findByField("codigo", vo.getCodigo()).isEmpty() && vo.getCodigo() != null)
+			if(dSetor.findByField("codigo", String.valueOf(vo.getCodigo())).isEmpty() && vo.getCodigo() != 0)
 				return "setorInexistente";
 				
 			dSetor.update(vo);
@@ -54,7 +54,7 @@ public class SetorBusinessLogic {
 				return MensagemValidacao.getMensagensValidacao(erros);
 			
 			DAOSetor daoSetor = new DAOSetor();
-			if(daoSetor.findByField("codigo", setor.getCodigo()).isEmpty() && !daoSetor.existsActiveNomeSetor(setor.getNome()) ){
+			if(daoSetor.findByField("codigo", String.valueOf(setor.getCodigo())).isEmpty() && !daoSetor.existsActiveNomeSetor(setor.getNome()) ){
 				setor.setAtivo(true);
 				daoSetor.persist(setor);
 				return "inserido";
@@ -95,11 +95,11 @@ public class SetorBusinessLogic {
 	private List<MensagemValidacaoVO> validaDados(SetorVO vo){
 		ArrayList<MensagemValidacaoVO> erros = new ArrayList<MensagemValidacaoVO>();
 		
-		erros.add(new MensagemValidacaoVO("CÛdigo", "O cÛdigo deve ser apenas 4 dÌgitos", Boolean.valueOf(vo.getCodigo().length() != 4  || Boolean.valueOf(!vo.getCodigo().matches("\\d+")) ))); 
+		//erros.add(new MensagemValidacaoVO("CÛdigo", "O cÛdigo deve ser apenas 4 dÌgitos", Boolean.valueOf(vo.getCodigo().length() != 4  || Boolean.valueOf(!vo.getCodigo().matches("\\d+")) ))); 
 		//FIXME: N ta funcinando 
 		//erros.add(new MensagemValidacaoVO("Nome", "O nome È inv·lido", Boolean.valueOf(!vo.getCodigo().matches("[[:alnum:]]"))));
 		
-		
+		erros.add(new MensagemValidacaoVO("Nome", "O nome È inv·lido", Boolean.valueOf(!vo.getNome().matches("^[0-9a-zA-Z¡¬√¿«… Õ”‘’⁄‹·‚„‡ÁÈÍÌÛÙı˙¸\\s]*$"))));
 		
 		return erros;
 	}

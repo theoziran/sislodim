@@ -34,7 +34,9 @@ public class ViaturaBusinessLogic {
 			if(dViatura.findByField("codigo", vo.getCodigo()).isEmpty() && vo.getCodigo() != null)
 				return "viaturaInexistente";
 			dViatura.update(vo);
+			if (vo.getAtivo())
 			return "atualizado";
+			else return "atualizadoDeletado";
 		} catch (Exception e) {
 			// TODO: handle exception
 			return "problemaAtualizar";

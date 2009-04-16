@@ -2,6 +2,7 @@ package br.faculdadeidez.psa.vo;
 
 import java.io.Serializable;
 import java.util.List;
+
 import br.faculdadeidez.psa.db.entity.Setor;
 
 public class BairroVO implements Serializable {

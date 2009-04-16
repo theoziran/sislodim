@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
@@ -19,9 +21,9 @@ import br.faculdadeidez.psa.vo.SetorVO;
 @Entity 
 @Table (name="SIS_SETOR")
 public class Setor implements Serializable {	
-		
-	@Id @Column (name="SET_CODIGO")
-	private String codigo;
+	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) 
+	@Column (name="SET_CODIGO")
+	private int codigo;
 	@Basic @Column (name="SET_NOME", nullable=false) 
 	private String nome;
     @ManyToMany(cascade={CascadeType.ALL} )
@@ -68,17 +70,17 @@ public class Setor implements Serializable {
 		setNome(nome);
 	}
 
-	public Setor(String codigo, String nome)
+	public Setor(int codigo, String nome)
 	{
 		setCodigo(codigo);
 		setNome(nome);
 	}
 
-	public String getCodigo() {
+	public int getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 

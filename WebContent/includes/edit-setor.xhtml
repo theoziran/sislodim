@@ -7,14 +7,20 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition template="/templates/manter.xhtml">
-	
 	<ui:define name="tituloEdit">
 		<h:outputText value="Editar setores" />
 	</ui:define>
 
 	<ui:define name="camposEdit">
-		<h:outputLabel value="Nome do setor" />
-		<h:inputText value="#{setorBean.elementoSelecionado.nome}" />
+	<h:panelGrid columns="2">
+	<h:outputLabel value="*Nome do setor" />
+				<h:inputText id="nome" value="#{setorBean.elementoSelecionado.nome}"
+					/>
+				<h:outputLabel value="*Escolha os bairros do setor" />
+				<rich:pickList value="#{setorBean.bairrosSetor}" removeAllControlLabel="Remover todos" removeControlLabel="Remover bairro" copyAllControlLabel="Adicionar todos" copyControlLabel="Adicionar bairro">
+					<f:selectItems value="#{bairroBean.listBairros}" />
+				</rich:pickList>
+		</h:panelGrid>
 	</ui:define>
 	
 </ui:composition>

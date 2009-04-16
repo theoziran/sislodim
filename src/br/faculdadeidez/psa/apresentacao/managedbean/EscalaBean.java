@@ -19,7 +19,7 @@ public class EscalaBean extends GenericoBean {
 
 	public List<EscalaVO> getListaTudo() {
 		if (listaTudo == null || listaTudo.isEmpty()
-				|| getTermoPesquisa() == "")
+				|| getTermoPesquisa().isEmpty())
 			setListaTudo(getFachada().listarEscalas());
 		else
 			setTermoPesquisa("");

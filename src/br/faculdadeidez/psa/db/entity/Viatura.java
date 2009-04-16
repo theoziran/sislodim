@@ -1,11 +1,16 @@
 package br.faculdadeidez.psa.db.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import br.faculdadeidez.psa.vo.ViaturaVO;
@@ -21,7 +26,14 @@ public class Viatura implements Serializable {
 	private Boolean ocupada = false;
 	@Basic @Column (name="VIA_ATIVO", nullable=false)
 	private Boolean ativo = false;
-	
+	@ManyToMany(cascade={CascadeType.ALL} )
+    @JoinTable(name="SIS_ESCALA_VIATURA",
+            joinColumns=
+                @JoinColumn(name="ESV_VIA_CODIGO", referencedColumnName="SET_CODIGO"),
+            inverseJoinColumns=
+                @JoinColumn(name="ESV_ESC_CODIGO", referencedColumnName="ESC_CODIGO")
+            )	
+    private List<Escala> escalas;
 	/*********************************************************/
 	/******** Conversão do objeto Setor para o SetorVO *******/
 	/*********************************************************/
