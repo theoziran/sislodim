@@ -30,13 +30,12 @@ public class MIDServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String codVtr = (String) request.getAttribute("codVtr");
-		String latitude = (String) request.getAttribute("altitude");
-		String longitude = (String) request.getAttribute("latitude");
+		String codVtr = (String) req.getParameter("codVtr");
+		String latitude = (String) req.getParameter("latitude");
+		String longitude = (String) req.getParameter("longitude");
 		
-		//pegar o bussnesslogic
 		CoordenadaVO coo = new CoordenadaVO();
 		
 		//setar os valores
@@ -45,7 +44,7 @@ public class MIDServlet extends HttpServlet {
 		//salvar no banco
 		CoordenadasBusinessLogic cooBL = new CoordenadasBusinessLogic();
 		cooBL.create(coo);
-
+		
 	}
 
 

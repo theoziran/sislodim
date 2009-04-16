@@ -19,7 +19,7 @@ public class TransmissaoDados {
 	 * Essa classes foi testa com um script php e funcionou corretamente no
 	 * nosso caso só precisa substituir o endereço da URL
 	 */
-	private static final String servletHost = "http://localhost/sislodim/index.php?";
+	private static final String servletHost = "http://localhost/sislodim/MIDServlet?";
 	private static TransmissaoDados instance = null;
 
 	private TransmissaoDados() {
@@ -41,7 +41,7 @@ public class TransmissaoDados {
 		 */
 		HttpConnection conexao = (HttpConnection) Connector.open(servletHost
 				+ "longitude=" + longitude + "&latitude=" + latitude
-				+ "&viatura=" + viatura);
+				+ "&codVtr=" + viatura);
 
 		// Define o tipo de requisição
 		conexao.setRequestMethod(HttpConnection.GET);
