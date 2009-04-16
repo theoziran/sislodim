@@ -67,4 +67,14 @@
     <servlet-name>Setup</servlet-name>
     <url-pattern>/Setup</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MIDServlet</display-name>
+    <servlet-name>MIDServlet</servlet-name>
+    <servlet-class>br.faculdadeidez.psa.apresentacao.servlets.MIDServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MIDServlet</servlet-name>
+    <url-pattern>/MIDServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
