@@ -61,7 +61,7 @@
     <description></description>
     <display-name>Setup</display-name>
     <servlet-name>Setup</servlet-name>
-    <servlet-class>br.faculdadeidez.psa.apresentacao.servlets.Setup</servlet-class>
+    <servlet-class>br.faculdadeidez.psa.instalacao.Setup</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Setup</servlet-name>

@@ -2,6 +2,7 @@ package br.faculdadeidez.psa.vo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class EscalaVO implements Serializable {	
@@ -9,7 +10,10 @@ public class EscalaVO implements Serializable {
 	private int setor;
 	private Date dataInicial;
 	private Date dataFinal;
+	List<ViaturaVO> viaturas;
 		
+	
+
 	public EscalaVO(){
 		
 	}
@@ -23,6 +27,14 @@ public class EscalaVO implements Serializable {
 		setSetor(setor);
 		setDataInicial(dataInicial);
 		setDataFinal(dataFinal);
+	}
+	
+	public List<ViaturaVO> getViaturas() {
+		return viaturas;
+	}
+
+	public void setViaturas(List<ViaturaVO> viaturas) {
+		this.viaturas = viaturas;
 	}
 	
 	public int getCodigo() {

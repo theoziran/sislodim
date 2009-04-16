@@ -57,6 +57,7 @@ public class SetorBean extends GenericoBean {
 	public String update()
 	{
 		SetorVO setorDaVez = (SetorVO)getElementoSelecionado();
+		setorDaVez.setBairros(setor.getBairros());
 		return getFachada().updateSetor(setorDaVez);
 	}
 	

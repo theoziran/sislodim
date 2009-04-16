@@ -3,9 +3,6 @@ package br.faculdadeidez.psa.db.dao;
 import java.util.List;
 import java.util.Vector;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
 import br.faculdadeidez.psa.db.entity.Escala;
 import br.faculdadeidez.psa.vo.EscalaVO;
 

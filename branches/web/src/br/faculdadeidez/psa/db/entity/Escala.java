@@ -2,6 +2,7 @@ package br.faculdadeidez.psa.db.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +31,10 @@ public class Escala implements Serializable {
 	private Date dataInicial;
 	@Basic @Temporal(value = TemporalType.DATE) @Column (name="ESC_DATA_FIM")  
 	private Date dataFinal;    
-		
+	@ManyToMany(mappedBy="escalas")
+	private List<Viatura> viaturas;	
+	
+	
 	/*********************************************************/
 	/******** Conversão do objeto Escala para o EscalaVO *******/
 	/*********************************************************/

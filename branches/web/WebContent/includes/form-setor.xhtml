@@ -6,27 +6,22 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
-	<ui:composition>
-		<div class="form">
-<h:panelGrid columns="1">
-			<h:form>
-				<h:panelGrid columns="2">
-					<h:outputLabel value="*Nome do setor"/>
-					<h:inputText id="nome" value="#{setorBean.setor.nome}" required="true"/>
-        			<rich:pickList>
-						<f:selectItems value="#{bairroBean.listaTudo}"/>        			
-            			<!-- f:selectItem itemLabel="Option 1" itemValue="1"/>
-            			<f:selectItem itemLabel="Option 2" itemValue="2"/>
-            			<f:selectItem itemLabel="Option 3" itemValue="3"/>
-            			<f:selectItem itemLabel="Option 4" itemValue="4"/>
-            		<f:selectItem itemLabel="Option 5" itemValue="5"/ -->
-        </rich:pickList>					
-					<h:commandButton action="#{setorBean.create}" value="Salvar" />
-					<h:messages styleClass="mensagens" showDetail="false" />					
-				</h:panelGrid>		
-				
-			</h:form>
+<ui:composition>
+	<div class="form"><h:panelGrid columns="2">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="*Nome do setor" />
+				<h:inputText id="nome" value="#{setorBean.setor.nome}"
+					required="true" />
+				<h:outputLabel value="*Escolha os bairros do setor" />
+				<rich:pickList value="#{setorBean.bairrosSetor}" removeAllControlLabel="Remover todos" removeControlLabel="Remover bairro" copyAllControlLabel="Adicionar todos" copyControlLabel="Adicionar bairro">
+					<f:selectItems value="#{bairroBean.listBairros}" />
+				</rich:pickList>
+				<h:commandButton action="#{setorBean.create}" value="Salvar" />
+				<h:messages styleClass="mensagens" showDetail="false" />
 			</h:panelGrid>
-		</div>
-	</ui:composition>
-	</html>
+
+		</h:form>
+	</h:panelGrid></div>
+</ui:composition>
+</html>

@@ -17,7 +17,7 @@ public class SetorVO implements Serializable {
 		this.bairros = bairros;
 	}
 
-	private String codigo;
+	private int codigo;
 	private String nome;
 	private Boolean ativo;
 	private List<Bairro> bairros;
@@ -31,13 +31,13 @@ public class SetorVO implements Serializable {
 		setNome(nome);
 	}
 	
-	public SetorVO(String codigo, String nome)
+	public SetorVO(int codigo, String nome)
 	{
 		setCodigo(codigo);
 		setNome(nome);
 	}
 	
-	public SetorVO(String codigo, String nome, Boolean ativo)
+	public SetorVO(int codigo, String nome, Boolean ativo)
 	{
 		setCodigo(codigo);
 		setNome(nome);
@@ -49,11 +49,11 @@ public class SetorVO implements Serializable {
 		setAtivo(ativo);
 	}
 
-	public String getCodigo() {
+	public int getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 

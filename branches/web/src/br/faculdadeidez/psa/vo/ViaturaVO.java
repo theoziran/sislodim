@@ -1,12 +1,15 @@
 package br.faculdadeidez.psa.vo;
 
 import java.io.Serializable;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class ViaturaVO implements Serializable {	
 	private String codigo;
 	private Boolean ocupada = false;
 	private Boolean ativo = false;
+	private List<EscalaVO> escalas;
+	
 	
 	public ViaturaVO(){
 		
@@ -44,5 +47,13 @@ public class ViaturaVO implements Serializable {
 	
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public List<EscalaVO> getEscalas() {
+		return escalas;
+	}
+
+	public void setEscalas(List<EscalaVO> escalas) {
+		this.escalas = escalas;
 	}
 }

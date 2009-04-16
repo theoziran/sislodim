@@ -1,14 +1,20 @@
 package br.faculdadeidez.psa.apresentacao.managedbean;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.model.SelectItem;
+
+import br.faculdadeidez.psa.vo.EscalaVO;
+import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class ViaturaBean extends GenericoBean {
 	private List<ViaturaVO> listaTudo = null;
 	private ViaturaVO viatura = new ViaturaVO();
 	private String termoPesquisa = new String();
-
+	private List<SelectItem> listaEscalas;
+	
 	public ViaturaVO getViatura() {
 		return viatura;
 	}
@@ -28,7 +34,8 @@ public class ViaturaBean extends GenericoBean {
 
 	public String delete() {
 		ViaturaVO viaturaDaVez = (ViaturaVO) getElementoSelecionado();
-		String mensagem = getFachada().deleteViatura(viaturaDaVez);
+		viaturaDaVez.setAtivo(false);
+		String mensagem = getFachada().updateViatura(viaturaDaVez);
 		adicionaMensagemUsuario(mensagem);
 		return mensagem;
 
@@ -37,7 +44,7 @@ public class ViaturaBean extends GenericoBean {
 	public String update() {
 		ViaturaVO viaturaDaVez = (ViaturaVO) getElementoSelecionado();
 		String mensagem = getFachada().updateViatura(viaturaDaVez);
-		adicionaMensagemUsuario(mensagem);
+		adicionarMensagem(mensagem);
 		return mensagem;
 	}
 
@@ -93,7 +100,7 @@ public class ViaturaBean extends GenericoBean {
 			setViatura(new ViaturaVO());
 		}else if (mensagem.equals("dadoInvalido")) {
 			adicionarMensagem("Estes dados não são válidos");
-		}else if (mensagem.equals("removido"))
+		}else if (mensagem.equals("removido") || mensagem.equals("atualizadoDeletado"))
 			adicionarMensagem("Deletado com sucesso!");
 		else if (mensagem.equals("problemaRemover")) {
 			adicionarMensagem("Houve um problema ao tentar remover,\n contacte o administrador");
@@ -106,6 +113,21 @@ public class ViaturaBean extends GenericoBean {
 		} else { 
 			adicionarMensagem(mensagem);
 		}
+	}
+
+	public List<SelectItem> getListaEscalas() {
+		listaEscalas = new ArrayList<SelectItem>();
+		for(EscalaVO escala : getFachada().listarEscalas()){
+			SelectItem selectItem = new SelectItem();
+			selectItem.setLabel(escala.getDataFinal().toString());
+			selectItem.setValue(escala.getCodigo());
+			listaEscalas.add(selectItem);
+		}
+		return listaEscalas;
+	}
+
+	public void setListaEscalas(List<SelectItem> listaEscalas) {
+		this.listaEscalas = listaEscalas;
 	}
 
 }
