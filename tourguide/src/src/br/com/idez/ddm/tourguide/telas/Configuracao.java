@@ -1,5 +1,6 @@
 package br.com.idez.ddm.tourguide.telas;
 
+import javax.microedition.lcdui.AlertType;
 import javax.microedition.lcdui.ChoiceGroup;
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
@@ -85,14 +86,11 @@ public class Configuracao extends Form implements CommandListener {
 
 	public void commandAction(Command cmd, Displayable displayable) {
 		if (cmd.equals(cmdSalvar)) {
-			saveConfigs();
-			// Alerta.getInstance();
-			// Alerta.setTexto("Configurações Salvas com sucesso");
-			// Alerta.setTipo(AlertType.INFO);
-			// Alerta.getInstance().setTitulo("Configurações");
 
 			try {
-				UIController.getInstance().setCurrent(Alerta.getInstance());
+				saveConfigs();
+				UIController.getInstance().setCurrent(Alerta.getInstance(),
+						this);
 				UIController.getInstance().voltar();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -113,12 +111,37 @@ public class Configuracao extends Form implements CommandListener {
 	}
 
 	private void saveConfigs() {
-		Record.setConfigMaxTime(this.tfMaxTimeExecution.getString());
-		Record.setConfigMultimedia(this.cgMultimedia
-				.getString(this.cgMultimedia.getSelectedIndex()));
-		Record.setConfigSound(this.cgSons.getString(this.cgSons
-				.getSelectedIndex()));
-		Record.setConfigSync(this.cgSync.getString(this.cgSync
-				.getSelectedIndex()));
+		String maxTime, multimedia, sound, sync;
+		maxTime = tfMaxTimeExecution.getString();
+		multimedia = cgMultimedia.getString(cgMultimedia.getSelectedIndex());
+		sound = cgSons.getString(cgSons.getSelectedIndex());
+		sync = cgSync.getString(cgSync.getSelectedIndex());
+		try {
+			UIController.getInstance().saveConfigs(maxTime, multimedia, sound,
+					sync);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Alerta.getInstance().setTitle("Configurações");
+		Alerta.getInstance().setTexto("Configurações Salvas com sucesso");
+		Alerta.getInstance().setType(AlertType.INFO);
 	}
+
+	public ChoiceGroup getCgSons() {
+		return cgSons;
+	}
+
+	public ChoiceGroup getCgSync() {
+		return cgSync;
+	}
+
+	public ChoiceGroup getCgMultimedia() {
+		return cgMultimedia;
+	}
+
+	public TextField getTfMaxTimeExecution() {
+		return tfMaxTimeExecution;
+	}
+
 }
