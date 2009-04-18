@@ -7,6 +7,8 @@ import javax.microedition.rms.RecordStoreFullException;
 import javax.microedition.rms.RecordStoreNotFoundException;
 import javax.microedition.rms.RecordStoreNotOpenException;
 
+import br.com.idez.ddm.tourguide.PontoEstrategico;
+
 public class Record {
 
 	private static String key_record_store;
@@ -21,6 +23,9 @@ public class Record {
 	public static final String KEY_CFG_SYNC = "SYNC";
 	public static final String KEY_CFG_MAX_TIME = "MAXTIME";
 	public static final String KEY_CFG_MULTIMEDIA = "MULTIMEDIA";
+	public static final String KEY_PTO_LATITUDE = "LATI";
+	public static final String KEY_PTO_LONGITUDE = "LONG";
+	public static final String KEY_PTO_NOME = "NOME";
 
 	public static void openRecord(String recordStore)
 			throws RecordStoreFullException, RecordStoreNotFoundException,
@@ -36,20 +41,15 @@ public class Record {
 	public static void init(String recordStore) {
 		key_record_store = recordStore;
 		int count = 0;
-		// abrir o registro
 		try {
 			openRecord(key_record_store);
 			// TODO implementar RecordComparator
 			// TODO implementar RecordFilter
 			if (rs != null) {
 				RecordEnumeration re = rs.enumerateRecords(null, null, false);
-				// percorrer a record enumeration
-
 				while (re.hasNextElement()) {
 					count = re.nextRecordId();
-					// atribui o valor do registro
 					String str = new String(rs.getRecord(count));
-					// testar se é a chave procurada
 					if (str.startsWith(KEY_CFG_MAX_TIME)) {
 						ID_CFG_MAX_TIME = count;
 					} else if (str.startsWith(KEY_CFG_MULTIMEDIA)) {
@@ -60,14 +60,11 @@ public class Record {
 						ID_CFG_SYNC = count;
 					}
 				}
-			} else {
-				System.out.println("rs null");
 			}
 		} catch (Exception e) {
 			// TODO exibir Alert
 			System.out.println("exceção maldita");
 		} finally {
-			// fechar registro
 			try {
 				closeRecord();
 			} catch (Exception e) {
@@ -299,4 +296,89 @@ public class Record {
 		}
 	}
 
+	public static void addPontoEstrategico(PontoEstrategico ponto) {
+		try {
+			openRecord(key_record_store);
+
+			String recPontoID = Integer.toString(ponto.getId());
+
+			String recPontoNome = KEY_PTO_NOME + ":" + recPontoID + "="
+					+ ponto.getNome();
+			String recPontoLatitude = KEY_PTO_LATITUDE + ":" + recPontoID + "="
+					+ Double.toString(ponto.getLatitude());
+			String recPontoLongitude = KEY_PTO_LONGITUDE + ":" + recPontoID
+					+ "=" + Double.toString(ponto.getLongitude());
+
+			byte[] recBytes = recPontoNome.getBytes();
+			rs.addRecord(recBytes, 0, recBytes.length);
+
+			recBytes = recPontoLatitude.getBytes();
+			rs.addRecord(recBytes, 0, recBytes.length);
+
+			recBytes = recPontoLongitude.getBytes();
+			rs.addRecord(recBytes, 0, recBytes.length);
+
+		} catch (Exception e) {
+			// TODO exibir Alert
+		} finally {
+			try {
+				closeRecord();
+			} catch (Exception e) {
+				// TODO exibir Alert
+			}
+		}
+	}
+
+	public static PontoEstrategico getPontoEstrategico(int id) {
+		PontoEstrategico pontoEstrategico = new PontoEstrategico();
+		int count = 0;
+		try {
+			openRecord(key_record_store);
+
+			String recPontoID = Integer.toString(id);
+
+			String recPontoNome = null;
+			String recPontoLatitude = null;
+			String recPontoLongitude = null;
+
+			// executa a pesquisa pelo id informado
+			if (rs != null) {
+				RecordEnumeration re = rs.enumerateRecords(null, null, false);
+				while (re.hasNextElement()) {
+					count = re.nextRecordId();
+					String str = new String(rs.getRecord(count));
+					if (str.startsWith(KEY_PTO_NOME + ":" + recPontoID + "=")) {
+						recPontoNome = new String(rs.getRecord(count));
+					} else if (str.startsWith(KEY_PTO_LATITUDE + ":"
+							+ recPontoID + "=")) {
+						recPontoLatitude = new String(rs.getRecord(count));
+					} else if (str.startsWith(KEY_PTO_LONGITUDE + ":"
+							+ recPontoID + "=")) {
+						recPontoLongitude = new String(rs.getRecord(count));
+					}
+				}
+			}
+			pontoEstrategico.setId(id);
+			pontoEstrategico.setNome(recPontoNome.substring(recPontoNome
+					.indexOf("=") + 1, recPontoNome.length()));
+			pontoEstrategico.setLatitude(Double.parseDouble((recPontoLatitude
+					.substring(recPontoLatitude.indexOf("=") + 1,
+							recPontoLatitude.length()))));
+			pontoEstrategico.setLongitude(Double.parseDouble((recPontoLongitude
+					.substring(recPontoLongitude.indexOf("=") + 1,
+							recPontoLongitude.length()))));
+
+		} catch (Exception e) {
+			// TODO exibir Alert
+		} finally {
+			try {
+				closeRecord();
+			} catch (Exception e) {
+				// TODO exibir Alert
+			}
+		}
+
+		return pontoEstrategico;
+
+	}
 }
