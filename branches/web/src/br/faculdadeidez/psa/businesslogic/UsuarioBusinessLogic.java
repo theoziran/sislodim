@@ -211,21 +211,22 @@ public class UsuarioBusinessLogic {
 
 		if (!isCpf)
 			return false;
-		
+
 		if (n.equals("00000000000") || n.equals("11111111111")
 				|| n.equals("22222222222") || n.equals("33333333333")
 				|| n.equals("44444444444") || n.equals("55555555555")
 				|| n.equals("66666666666") || n.equals("77777777777")
-				|| n.equals("88888888888") || n.equals("99999999999")) {
+				|| n.equals("88888888888") || n.equals("99999999999")
+				|| n.equals("12345678909")) {
 			return false;
 		}
-		
+
 		int i;
-		int j; 
-		int digit; 
-		int coeficient; 
-		int sum; 
-		int[] foundDv = { 0, 0 }; 
+		int j;
+		int digit;
+		int coeficient;
+		int sum;
+		int[] foundDv = { 0, 0 };
 		int dv1 = Integer.parseInt(String.valueOf(n.charAt(n.length() - 2)));
 		int dv2 = Integer.parseInt(String.valueOf(n.charAt(n.length() - 1)));
 
