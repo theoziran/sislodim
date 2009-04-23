@@ -13,14 +13,17 @@ public class ConsultarCondutor extends Form implements CommandListener{
 
 	private Command cmdBack;
 	private Command cmdOk;
+	private TextField txtIdentificacaoCNH;
 	
 	private ConsultarCondutor(String title) {
 		super(title);
 		this.append("Digite o número de registro da CNH: ");
-		this.append(new TextField("Identificação CNH: ", null, 11, TextField.ANY));
-		
+
+		this.txtIdentificacaoCNH = new TextField("Identificação CNH: ", null, 11, TextField.ANY);		
 		this.cmdBack = new Command("Voltar", Command.BACK, 1);
 		this.cmdOk = new Command("Ok", Command.OK, 1);
+		
+		this.append(txtIdentificacaoCNH);
 		
 		this.addCommand(cmdBack);
 		this.addCommand(cmdOk);
@@ -44,7 +47,7 @@ public class ConsultarCondutor extends Form implements CommandListener{
 			 */
 			try {	
 				System.out.println("Iniciando consulta de condutor...");
-				//UIController.getInstance().login(tfLogin.getString(), tfSenha.getString());
+				UIController.getInstance().consultaCondutor(this.txtIdentificacaoCNH.getString());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

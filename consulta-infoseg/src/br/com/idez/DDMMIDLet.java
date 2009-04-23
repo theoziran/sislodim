@@ -34,8 +34,7 @@ public class DDMMIDLet extends MIDlet {
 		if (!started) {
 			this.controller = UIController.createInstance(this);
 			controller.setCurrent(Menu.getInstance());
-			//controller.setCurrent(Login.getInstance());
-			//controller.setCurrent(ConsultarVeiculo.getInstance());
+			//controller.setCurrent(Alerta.getInstance("Processando...", 0));		
 			started = true;
 		} else {
 			Displayable displayable = controller.getCurrentDisplayable();
