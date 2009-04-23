@@ -13,14 +13,17 @@ public class ConsultarOcorrencia extends Form implements CommandListener{
 	
 	private Command cmdBack;
 	private Command cmdOk;	
+	private TextField txtPlacaVeiculo;
 	
 	private ConsultarOcorrencia(String title) {
 		super(title);
 		this.append("Digite a placa do veículo para pesquisar ocorrências relacionadas ao veículo: ");
-		this.append(new TextField("Placa do veículo: ", null, 7, TextField.ANY));
-		
+
+		this.txtPlacaVeiculo = new TextField("Placa do veículo: ", null, 7, TextField.ANY);
 		this.cmdBack = new Command("Voltar", Command.BACK, 1);
 		this.cmdOk = new Command("Ok", Command.OK, 1);
+		
+		this.append(txtPlacaVeiculo);
 		
 		this.addCommand(cmdBack);
 		this.addCommand(cmdOk);	
@@ -43,7 +46,7 @@ public class ConsultarOcorrencia extends Form implements CommandListener{
 			 */
 			try {	
 				System.out.println("Iniciando consulta de ocorrência...");
-				//UIController.getInstance().login(tfLogin.getString(), tfSenha.getString());
+				UIController.getInstance().consultaOcorrencia(this.txtPlacaVeiculo.getString());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
