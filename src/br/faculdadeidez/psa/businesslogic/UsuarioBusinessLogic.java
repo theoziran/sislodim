@@ -177,7 +177,7 @@ public class UsuarioBusinessLogic {
 		erros.add(new MensagemValidacaoVO("CPF", "O CPF é obrigatório", Boolean
 				.valueOf(user.getCpf().isEmpty())));
 		erros.add(new MensagemValidacaoVO("CPF", "O CPF digitado é inválido",
-				validaCpf(user.getCpf())));
+				!validaCpf(user.getCpf())));
 		erros.add(new MensagemValidacaoVO("Login", "O login é obrigatório",
 				Boolean.valueOf(user.getLogin().isEmpty())));
 		erros.add(new MensagemValidacaoVO("Nome", "O nome é obrigatório",
@@ -190,7 +190,7 @@ public class UsuarioBusinessLogic {
 		erros.add(new MensagemValidacaoVO("Senha", "A senha é obrigatória",
 				Boolean.valueOf(user.getSenha().isEmpty())));
 		erros.add(new MensagemValidacaoVO("Login",
-				"O login não conter só números", Boolean.valueOf(user
+				"O login não pode conter só números", Boolean.valueOf(user
 						.getLogin().matches("^[0-9]*$"))));
 		erros.add(new MensagemValidacaoVO("Nome",
 				"O nome não pode conter só números", Boolean.valueOf(user
