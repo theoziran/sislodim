@@ -147,36 +147,36 @@ public class testUsuarioBusinessLogic extends TestCase {
 
 		u = usuarioInvalido;
 
-		// login invï¿½lido
+		// login inválido
 		// string vazia
 		u.setLogin("");
-		assertEquals("dadoInvalido", ubl.create(u));
+		assertEquals("O login é obrigatório", ubl.create(u));
 
-		// string numï¿½rica
+		// string numérica
 		u.setLogin("123456");
-		assertEquals("dadoInvalido", ubl.create(u));
+		assertEquals("O login não pode conter só números", ubl.create(u));
 
 		u.setLogin("testLogin3");
 
-		// nome invï¿½lido
+		// nome inválido
 		// string vazia
 		u.setNome("");
-		assertEquals("dadoInvalido", ubl.create(u));
+		assertEquals("O nome é obrigatório", ubl.create(u));
 
 		// string numï¿½rica
 		u.setNome("123456");
-		assertEquals("dadoInvalido", ubl.create(u));
+		assertEquals("O nome não pode conter só números", ubl.create(u));
 
 		// caracteres especiais
 		u.setNome("joao%* da silva");
-		assertEquals("dadoInvalido", ubl.create(u));
+		assertEquals("O nome contém caracteres inválidos", ubl.create(u));
 
 		u.setNome("testName3");
 
 		// rg invï¿½lido
 		// string vazia
 		u.setRg("");
-		assertEquals("dadoInvalido", ubl.create(u));
+		assertEquals("O RG é obrigatório", ubl.create(u));
 
 		// string com texto
 		u.setRg("testRg3");
@@ -202,18 +202,19 @@ public class testUsuarioBusinessLogic extends TestCase {
 		// cpf invï¿½lido
 		// string vazia
 		u.setCpf("");
-		assertEquals("dadoInvalido", ubl.create(u));
+		assertEquals("O CPF é obrigatório", ubl.create(u));
 
 		// string numï¿½rica
 		u.setCpf("testCpf1");
-		assertEquals("dadoInvalido", ubl.create(u));
+		assertEquals("O CPF digitado é inválido", ubl.create(u));
 
 		// caracteres especiais
 		u.setCpf("234*ï¿½");
-		assertEquals("dadoInvalido", ubl.create(u));
-
+		assertEquals("O CPF digitado é inválido", ubl.create(u));
+		
+		u.setCpf("93235080716");
+		
 		// tipo de permissao invï¿½lido
-		u.setOrgExpeditor("93235080716");
 		u.setTipoPermissao(0);
 		assertEquals("dadoInvalido", ubl.create(u));
 	}
@@ -319,36 +320,36 @@ public class testUsuarioBusinessLogic extends TestCase {
 			ls = ubl.pesquisar("testLogin1");
 			u = ls.get(0);
 
-			// login invï¿½lido
+			// login inválido
 			// string vazia
 			u.setLogin("");
-			assertEquals("dadoInvalido", ubl.update(u));
+			assertEquals("O login é obrigatório", ubl.update(u));
 
-			// string numï¿½rica
+			// string numérica
 			u.setLogin("123456");
-			assertEquals("dadoInvalido", ubl.update(u));
+			assertEquals("O login não pode conter só números", ubl.update(u));
 
 			u.setLogin("testLogin3");
 
-			// nome invï¿½lido
+			// nome inválido
 			// string vazia
 			u.setNome("");
-			assertEquals("dadoInvalido", ubl.update(u));
+			assertEquals("O nome é obrigatório", ubl.update(u));
 
-			// string numï¿½rica
+			// string numérica
 			u.setNome("123456");
-			assertEquals("dadoInvalido", ubl.update(u));
+			assertEquals("O nome não pode conter só números", ubl.update(u));
 
 			// caracteres especiais
 			u.setNome("joao%* da silva");
-			assertEquals("dadoInvalido", ubl.update(u));
+			assertEquals("O nome contém caracteres inválidos", ubl.update(u));
 
 			u.setNome("testName3");
 
-			// rg invï¿½lido
+			// rg inválido
 			// string vazia
 			u.setRg("");
-			assertEquals("dadoInvalido", ubl.update(u));
+			assertEquals("O RG é obrigatório", ubl.update(u));
 
 			// string com texto
 			u.setRg("testRg3");
@@ -360,32 +361,33 @@ public class testUsuarioBusinessLogic extends TestCase {
 
 			u.setRg("1234503");
 
-			// orgï¿½o expedidor invï¿½lido
+			// orgão expedidor inválido
 			// string vazia
 			u.setOrgExpeditor("");
 			assertEquals("dadoInvalido", ubl.update(u));
 
-			// string numï¿½rica
+			// string numérica
 			u.setOrgExpeditor("12345");
 			assertEquals("dadoInvalido", ubl.update(u));
 
 			u.setOrgExpeditor("SSP-PB");
 
-			// cpf invï¿½lido
+			// cpf inválido
 			// string vazia
 			u.setCpf("");
-			assertEquals("dadoInvalido", ubl.update(u));
+			assertEquals("O CPF é obrigatório", ubl.update(u));
 
-			// string numï¿½rica
+			// string com texto
 			u.setCpf("testCpf1");
-			assertEquals("dadoInvalido", ubl.update(u));
+			assertEquals("O CPF digitado é inválido", ubl.update(u));
 
 			// caracteres especiais
 			u.setCpf("234*ï¿½");
-			assertEquals("dadoInvalido", ubl.update(u));
+			assertEquals("O CPF digitado é inválido", ubl.update(u));
 
-			// tipo de permissao invï¿½lido
-			u.setOrgExpeditor("93235080716");
+			u.setCpf("93235080716");
+						
+			// tipo de permissao inválido
 			u.setTipoPermissao(0);
 			assertEquals("dadoInvalido", ubl.update(u));
 		}
