@@ -23,8 +23,8 @@ public class CoordenadasBusinessLogic {
 	}
 	
 
-	public List<BairroVO> listar(){
-		DAOBairro dBairro = new DAOBairro();
-		return dBairro.findAll();		
+	public List<CoordenadaVO> listar(){
+		DAOCoordenada daoCoord = new DAOCoordenada();
+		return daoCoord.findAll();		
 	}
 }
