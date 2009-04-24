@@ -47,7 +47,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 		u.setLogin("testLogin4");
 		u.setNome("testNameFour");
 		u.setSenha("testPassword4");
-		u.setCpf("12345678904");
+		u.setCpf("58838281165");
 		u.setRg("1234504");
 		u.setOrgExpeditor("SSP-PB");
 		u.setAtivo(1);
@@ -305,7 +305,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			assertEquals("cpfExistente", ubl.update(u));
 
 			// rg duplicado
-			u.setCpf("12345678904");
+			u.setCpf("58838281165");
 			u.setRg("1234501");
 			u.setOrgExpeditor("SSP-PB");
 			assertEquals("rgExistente", ubl.update(u));
@@ -401,7 +401,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 		ls = ubl.pesquisar("testLogin1");
 		assertEquals(1, ls.size());
 
-		ls = ubl.pesquisar("12345678904");
+		ls = ubl.pesquisar("58838281165");
 		assertEquals(1, ls.size());
 
 		ls = ubl.pesquisar("testLogin3");

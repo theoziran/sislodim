@@ -10,7 +10,7 @@ public class SislodimTestSuite {
 		//$JUnit-BEGIN$
 		//suite.addTestSuite(testUsuarioBusinessLogic.class);
 		//suite.addTestSuite(testViaturaBusinessLogic.class);
-		suite.addTestSuite(testSetorBusinessLogic.class);
+		//suite.addTestSuite(testSetorBusinessLogic.class);
 		//$JUnit-END$
 		return suite;
 	}
