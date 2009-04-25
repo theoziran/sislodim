@@ -163,7 +163,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 		u.setNome("");
 		assertEquals("O nome é obrigatório", ubl.create(u));
 
-		// string numï¿½rica
+		// string numérica
 		u.setNome("123456");
 		assertEquals("O nome não pode conter só números", ubl.create(u));
 
@@ -173,7 +173,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 
 		u.setNome("testName3");
 
-		// rg invï¿½lido
+		// rg inválido
 		// string vazia
 		u.setRg("");
 		assertEquals("O RG é obrigatório", ubl.create(u));
@@ -188,18 +188,18 @@ public class testUsuarioBusinessLogic extends TestCase {
 
 		u.setRg("1234503");
 
-		// orgï¿½o expedidor invï¿½lido
+		// orgão expedidor inválido
 		// string vazia
 		u.setOrgExpeditor("");
 		assertEquals("dadoInvalido", ubl.create(u));
 
-		// string numï¿½rica
+		// string numérica
 		u.setOrgExpeditor("12345");
 		assertEquals("dadoInvalido", ubl.create(u));
 
 		u.setOrgExpeditor("SSP-PB");
 
-		// cpf invï¿½lido
+		// cpf inválido
 		// string vazia
 		u.setCpf("");
 		assertEquals("O CPF é obrigatório", ubl.create(u));
