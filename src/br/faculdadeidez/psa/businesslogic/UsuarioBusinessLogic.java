@@ -174,12 +174,6 @@ public class UsuarioBusinessLogic {
 	private List<MensagemValidacaoVO> validaDados(UsuarioVO user) {
 		ArrayList<MensagemValidacaoVO> erros = new ArrayList<MensagemValidacaoVO>();
 
-		erros.add(new MensagemValidacaoVO("CPF", "O CPF é obrigatório", Boolean
-				.valueOf(user.getCpf().isEmpty())));
-		erros.add(new MensagemValidacaoVO("CPF", "O CPF digitado é inválido",
-				!validaCpf(user.getCpf())));
-		erros.add(new MensagemValidacaoVO("Login", "O login é obrigatório",
-				Boolean.valueOf(user.getLogin().isEmpty())));
 		erros.add(new MensagemValidacaoVO("Nome", "O nome é obrigatório",
 				Boolean.valueOf(user.getNome().isEmpty())));
 		erros.add(new MensagemValidacaoVO("RG", "O RG é obrigatório", Boolean
@@ -189,9 +183,20 @@ public class UsuarioBusinessLogic {
 						.getOrgExpeditor().isEmpty())));
 		erros.add(new MensagemValidacaoVO("Senha", "A senha é obrigatória",
 				Boolean.valueOf(user.getSenha().isEmpty())));
+		erros.add(new MensagemValidacaoVO("CPF", "O CPF é obrigatório", Boolean
+				.valueOf(user.getCpf().isEmpty())));
+		erros.add(new MensagemValidacaoVO("Login", "O login é obrigatório",
+				Boolean.valueOf(user.getLogin().isEmpty())));
+
+		if (erros.size()>0){
+			return erros;
+		}
+		
 		erros.add(new MensagemValidacaoVO("Login",
 				"O login não pode conter só números", Boolean.valueOf(user
 						.getLogin().matches("^[0-9]*$"))));
+		erros.add(new MensagemValidacaoVO("CPF", "O CPF digitado é inválido",
+				!validaCpf(user.getCpf())));
 		erros.add(new MensagemValidacaoVO("Nome",
 				"O nome não pode conter só números", Boolean.valueOf(user
 						.getNome().matches("^[0-9]*$"))));
