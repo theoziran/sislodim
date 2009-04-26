@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOViatura;
 import br.faculdadeidez.psa.vo.MensagemValidacaoVO;
+import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class ViaturaBusinessLogic {
@@ -14,7 +15,8 @@ public class ViaturaBusinessLogic {
 			if(dViatura.findByField("codigo", vo.getCodigo()).isEmpty())
 				return "viaturaInexistente";
 			ViaturaVO via = dViatura.find(vo.getCodigo());
-			dViatura.remove(via);
+			via.setAtivo(false);
+			dViatura.update(via);
 			return "removido";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -67,6 +69,11 @@ public class ViaturaBusinessLogic {
 	public List<ViaturaVO> listar(){
 		DAOViatura dViatura = new DAOViatura();
 		return dViatura.findAll();		
+	}
+	
+	public List<ViaturaVO> listarAtivos(){
+		DAOViatura dViatura = new DAOViatura();
+		return dViatura.findAllActivated();		
 	}
 	
 	public List<ViaturaVO> pesquisar(String valor){

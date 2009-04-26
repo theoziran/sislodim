@@ -55,16 +55,12 @@ public class Fachada {
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
 		return logicaUsuario.create(userVO);
 	}	
-
-
 	
 	public List<UsuarioVO> listaUsuarios(){
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
 		return  logicaUsuario.listarAtivos();
 		
-	}
-	
-	
+	}	
 	
 	public List<UsuarioVO> pesquisaUsuario(String nome){
 		UsuarioBusinessLogic logicaUsuario = new UsuarioBusinessLogic();
@@ -117,7 +113,7 @@ public class Fachada {
 	
 	public List<ViaturaVO> listarViaturas()
 	{
-		return new ViaturaBusinessLogic().listar();
+		return new ViaturaBusinessLogic().listarAtivos();
 	}	
 	
 	public List<ViaturaVO> pesquisaViatura(String nome){

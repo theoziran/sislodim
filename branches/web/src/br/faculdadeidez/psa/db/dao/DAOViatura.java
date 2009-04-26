@@ -3,6 +3,9 @@ package br.faculdadeidez.psa.db.dao;
 import java.util.List;
 import java.util.Vector;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import br.faculdadeidez.psa.db.entity.Viatura;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
@@ -22,6 +25,16 @@ public class DAOViatura extends DAOFactory<Viatura> {
 	public List<ViaturaVO> findAll(){
 		return ConvertList(super.findAll(Viatura.class));
 	}	
+	
+	public List<ViaturaVO> findAllActivated(){
+		String strQuery = "SELECT v FROM Viatura v WHERE v.ativo = 1";
+		EntityManager em = getManager();
+		Query query = em.createQuery(strQuery);
+		
+		List<ViaturaVO> resultList = ConvertList( query.getResultList());
+		
+		return resultList;
+	}
 	
 	public void update(ViaturaVO vo){		
 		super.update(new Viatura(vo));
