@@ -13,7 +13,7 @@ public class SetorBusinessLogic {
 			DAOSetor dSetor = new DAOSetor();
 			if(dSetor.findByField("codigo", String.valueOf(vo.getCodigo())).isEmpty())
 				return "setorInexistente";
-			SetorVO set = dSetor.find(String.valueOf(vo.getCodigo()));
+			SetorVO set = dSetor.find(vo.getCodigo());
 			set.setAtivo(false);
 			dSetor.update(set);
 			return "removido";

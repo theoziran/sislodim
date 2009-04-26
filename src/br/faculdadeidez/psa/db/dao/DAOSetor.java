@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import br.faculdadeidez.psa.db.entity.Setor;
 import br.faculdadeidez.psa.db.entity.Usuario;
+import br.faculdadeidez.psa.db.entity.Viatura;
 import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.UsuarioVO;
 
@@ -16,7 +17,7 @@ public class DAOSetor extends DAOFactory<Setor> {
 		super();
 	}
 	
-	public SetorVO find(String chave){		
+	public SetorVO find(int chave){		
 		return Setor.VO(super.find(Setor.class, chave));
 	}
 	
@@ -37,6 +38,7 @@ public class DAOSetor extends DAOFactory<Setor> {
 		
 		return resultList;
 	}
+	
 	public void update(SetorVO vo){		
 		super.update(new Setor(vo));
 	}
@@ -46,7 +48,8 @@ public class DAOSetor extends DAOFactory<Setor> {
 	}
 	
 	public void remove(SetorVO vo){	
-		super.remove(new Setor(vo));
+		Setor setor = super.find(Setor.class, vo.getCodigo());
+		super.remove(setor);
 	}
 	
 	/*
