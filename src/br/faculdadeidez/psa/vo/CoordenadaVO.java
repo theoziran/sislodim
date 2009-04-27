@@ -1,9 +1,8 @@
 package br.faculdadeidez.psa.vo;
 
 import java.io.Serializable;
-import java.util.List;
-import br.faculdadeidez.psa.db.entity.Setor;
 
+@SuppressWarnings("serial")
 public class CoordenadaVO implements Serializable {
 	private int codigo;
 	private String latitude;
