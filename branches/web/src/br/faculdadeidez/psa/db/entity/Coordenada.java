@@ -1,30 +1,41 @@
 package br.faculdadeidez.psa.db.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import br.faculdadeidez.psa.vo.CoordenadaVO;
-import br.faculdadeidez.psa.vo.UsuarioVO;
 
 @SuppressWarnings("serial")
 @Entity 
 @Table (name="SIS_COORDENADA")
-public class Coordenada implements Serializable {
-		
+public class Coordenada implements Serializable {		
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) 
 	@Column (name="COO_CODIGO")
 	private int id;
 	@Basic @Column (name="COO_LOGITUDE", nullable=false) 
 	private String longitude;
 	@Basic @Column (name="COO_LATITUDE", nullable=false) 
-	private String latitude;
+	private String latitude;	
+	@ManyToMany(cascade={CascadeType.ALL} )
+    @JoinTable(name="SIS_PERCURSO",
+            joinColumns=
+                @JoinColumn(name="PER_COO_CODIGO", referencedColumnName="COO_CODIGO"),
+            inverseJoinColumns=
+                    @JoinColumn(name="PER_VIA_CODIGO", referencedColumnName="VIA_CODIGO")
+            )            
+    private List<Viatura> viaturas;
 		
 	public Coordenada() {
 		// TODO Auto-generated constructor stub

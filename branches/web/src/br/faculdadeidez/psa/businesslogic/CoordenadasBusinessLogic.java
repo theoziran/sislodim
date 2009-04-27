@@ -1,11 +1,6 @@
 package br.faculdadeidez.psa.businesslogic;
 
-import java.util.List;
-
-import br.faculdadeidez.psa.db.dao.DAOBairro;
 import br.faculdadeidez.psa.db.dao.DAOCoordenada;
-
-import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 
 public class CoordenadasBusinessLogic {
@@ -20,11 +15,5 @@ public class CoordenadasBusinessLogic {
 			// TODO: handle exception
 			return "problemaInserir";
 		}
-	}
-	
-
-	public List<CoordenadaVO> listar(){
-		DAOCoordenada daoCoord = new DAOCoordenada();
-		return daoCoord.findAll();		
 	}
 }
