@@ -17,9 +17,9 @@
 		<h:outputLabel value="*Setor" />
 		<h:selectOneMenu id="setor" value="#{escalaBean.elementoSelecionado.setor}" rendered="true">  
      		<f:selectItems value="#{setorBean.listaItensSetores}"/>  
-  		</h:selectOneMenu>         		
-
-		<h:outputLabel value="*Data inicial" />
+  		</h:selectOneMenu>
+  		
+  		<h:outputLabel value="*Data inicial" />
 		<rich:calendar id="dataInicial" datePattern="dd/MM/yyyy" value="#{escalaBean.elementoSelecionado.dataInicial}" required="true"></rich:calendar>
 		
 		<h:outputLabel value="*Data final" />
