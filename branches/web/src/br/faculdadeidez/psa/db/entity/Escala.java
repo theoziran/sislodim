@@ -3,19 +3,25 @@ package br.faculdadeidez.psa.db.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.faculdadeidez.psa.db.dao.DAOViatura;
 import br.faculdadeidez.psa.vo.EscalaVO;
+import br.faculdadeidez.psa.vo.ViaturaVO;
 
 @SuppressWarnings("serial")
 @Entity 
@@ -31,9 +37,15 @@ public class Escala implements Serializable {
 	private Date dataInicial;
 	@Basic @Temporal(value = TemporalType.DATE) @Column (name="ESC_DATA_FIM")  
 	private Date dataFinal;    
-	@ManyToMany(mappedBy="escalas")
-	private List<Viatura> viaturas;	
-	
+	@ManyToMany(cascade={CascadeType.ALL} )
+    @JoinTable(name="SIS_ESCALA_VIATURA",
+            joinColumns=
+                @JoinColumn(name="ESV_ESC_CODIGO", referencedColumnName="ESC_CODIGO"),
+            inverseJoinColumns=
+                @JoinColumn(name="ESV_VIA_CODIGO", referencedColumnName="VIA_CODIGO")
+            )	
+      
+    private List<Viatura> viaturas;	
 	
 	/*********************************************************/
 	/******** Conversão do objeto Escala para o EscalaVO *******/
@@ -42,7 +54,8 @@ public class Escala implements Serializable {
 		this.codigo = vo.getCodigo();
 		this.setor = vo.getSetor();
 		this.dataInicial = vo.getDataInicial();
-		this.dataFinal = vo.getDataFinal();
+		this.dataFinal = vo.getDataFinal();		
+		this.viaturas = new DAOViatura().ConverteEntidade(vo.getViaturas());
 	}
 	
 	public static EscalaVO VO(Escala obj){
@@ -97,4 +110,12 @@ public class Escala implements Serializable {
 	public void setDataFinal(Date dataFinal) {
 		this.dataFinal = dataFinal;
 	}	
+	
+	public List<Viatura> getViaturas() {
+		return viaturas;
+	}
+
+	public void setViaturas(List<Viatura> viaturas) {
+		this.viaturas = viaturas;
+	}
 }

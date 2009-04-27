@@ -1,8 +1,16 @@
 package br.faculdadeidez.psa.apresentacao.managedbean;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.model.SelectItem;
+
+import br.faculdadeidez.psa.db.dao.DAOBairro;
+import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.EscalaVO;
+import br.faculdadeidez.psa.vo.SetorVO;
+import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class EscalaBean extends GenericoBean {
 	private List<EscalaVO> listaTudo = null;
@@ -16,7 +24,7 @@ public class EscalaBean extends GenericoBean {
 	public void setEscala(EscalaVO escala) {
 		this.escala = escala;
 	}
-
+	
 	public List<EscalaVO> getListaTudo() {
 		if (listaTudo == null || listaTudo.isEmpty()
 				|| getTermoPesquisa().isEmpty())
@@ -107,5 +115,16 @@ public class EscalaBean extends GenericoBean {
 			adicionarMensagem(mensagem);
 		}
 	}
-
+	
+	public void setViaturasEscala(List<String> listaViaturas){
+		List<ViaturaVO> viaturas = new ArrayList<ViaturaVO>();
+		for(String chave : listaViaturas){
+			viaturas.add(getFachada().pesquisaViatura(chave));			
+		}
+		escala.setViaturas(viaturas);
+	}
+	
+	public List getViaturasEscala() { 
+		return new ArrayList();
+	}
 }

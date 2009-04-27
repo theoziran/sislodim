@@ -3,7 +3,9 @@ package br.faculdadeidez.psa.businesslogic;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.faculdadeidez.psa.db.dao.DAOBairro;
 import br.faculdadeidez.psa.db.dao.DAOViatura;
+import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.MensagemValidacaoVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
@@ -89,5 +91,9 @@ public class ViaturaBusinessLogic {
 		erros.add(new MensagemValidacaoVO("Código", "O código deve ser menor que 4 dígitos", Boolean.valueOf(vo.getCodigo().length() > 4)));
 		erros.add(new MensagemValidacaoVO("Código", "O código deve ser apenas dígitos", Boolean.valueOf(!vo.getCodigo().matches("^[0-9]*$"))));
 		return erros;
+	}
+	
+	public ViaturaVO find(String chave){
+		return new DAOViatura().find(chave);
 	}
 }

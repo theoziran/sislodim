@@ -101,7 +101,7 @@ public class SetorBean extends GenericoBean {
 		for(String chave : listaBairros){
 			bairros.add(getFachada().pesquisaBairro(Integer.parseInt(chave)));
 		}
-		setor.setBairros(new DAOBairro().ConverteEntidade(bairros));
+		setor.setBairros(bairros);
 	}
 	
 	public List getBairrosSetor(){

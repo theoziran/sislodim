@@ -116,9 +116,13 @@ public class Fachada {
 		return new ViaturaBusinessLogic().listarAtivos();
 	}	
 	
-	public List<ViaturaVO> pesquisaViatura(String nome){
+	public List<ViaturaVO> pesquisaViaturas(String codigo){
 		ViaturaBusinessLogic logicaViatura = new ViaturaBusinessLogic();
-		return logicaViatura.pesquisar(nome);
+		return logicaViatura.pesquisar(codigo);
+	}
+	
+	public ViaturaVO pesquisaViatura(String codigo){
+		return new ViaturaBusinessLogic().find(codigo);
 	}
 	
 	/*
