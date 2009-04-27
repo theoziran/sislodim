@@ -16,7 +16,14 @@
 				<h:selectOneMenu id="setor" value="#{escalaBean.escala.setor}" rendered="true">  
              		<f:selectItems value="#{setorBean.listaItensSetores}"/>  
          		</h:selectOneMenu>         		
-         		<h:message for="setor" styleClass="mensagens"/>  
+         		<h:message for="setor" styleClass="mensagens"/>
+         		
+         		<h:outputLabel value="*Escolha as viaturas desta escala" />
+				<rich:pickList value="#{escalaBean.viaturasEscala}" removeAllControlLabel="Remover todos" removeControlLabel="Remover viatura" copyAllControlLabel="Adicionar todos" copyControlLabel="Adicionar viatura">
+					<f:selectItems value="#{viaturaBean.listViaturas}" />
+				</rich:pickList>   
+				
+				<br />
 				
 				<h:outputLabel value="*Data inicial" />
 				<rich:calendar id="dataInicial" datePattern="dd/MM/yyyy" value="#{escalaBean.escala.dataInicial}" required="true"></rich:calendar>
