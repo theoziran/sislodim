@@ -6,7 +6,9 @@ import java.util.Vector;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.faculdadeidez.psa.db.entity.Bairro;
 import br.faculdadeidez.psa.db.entity.Viatura;
+import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class DAOViatura extends DAOFactory<Viatura> {
@@ -57,6 +59,14 @@ public class DAOViatura extends DAOFactory<Viatura> {
 		List<ViaturaVO> newLista = new Vector<ViaturaVO>();
 		for(Viatura set : lista)
 			newLista.add(Viatura.VO(set));		
+		return newLista;
+	}
+		
+	public List<Viatura> ConverteEntidade(List<ViaturaVO> lista)
+	{
+		List<Viatura> newLista = new Vector<Viatura>();
+		for(ViaturaVO viatura : lista)
+			newLista.add(super.find(Viatura.class, viatura.getCodigo()));
 		return newLista;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.EscalaVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
@@ -21,6 +22,17 @@ public class ViaturaBean extends GenericoBean {
 
 	public void setViatura(ViaturaVO viatura) {
 		this.viatura = viatura;
+	}
+	
+	public List<SelectItem> getListViaturas(){
+		List<SelectItem> listViaturas = new ArrayList<SelectItem>();
+		for(ViaturaVO viatura : getFachada().listarViaturas()){
+			SelectItem selectItem = new SelectItem();
+			selectItem.setLabel(viatura.getCodigo());
+			selectItem.setValue(viatura.getCodigo());
+			listViaturas.add(selectItem);
+		}
+		return listViaturas;
 	}
 
 	public List<ViaturaVO> getListaTudo() {
@@ -59,7 +71,7 @@ public class ViaturaBean extends GenericoBean {
 		if (getTermoPesquisa().isEmpty()) {
 			setListaTudo(getFachada().listarViaturas());
 		} else {
-			List<ViaturaVO> viaturas = getFachada().pesquisaViatura(
+			List<ViaturaVO> viaturas = getFachada().pesquisaViaturas(
 					getTermoPesquisa());
 			if (viaturas.isEmpty())
 				adicionarMensagem("Nenhuma viatura foi encontrada!");

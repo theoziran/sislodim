@@ -11,9 +11,7 @@ public class EscalaVO implements Serializable {
 	private Date dataInicial;
 	private Date dataFinal;
 	List<ViaturaVO> viaturas;
-		
 	
-
 	public EscalaVO(){
 		
 	}

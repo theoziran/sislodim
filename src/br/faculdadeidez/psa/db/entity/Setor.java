@@ -4,17 +4,18 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import br.faculdadeidez.psa.db.dao.DAOBairro;
 import br.faculdadeidez.psa.vo.SetorVO;
 
 @SuppressWarnings("serial")
@@ -31,7 +32,7 @@ public class Setor implements Serializable {
             joinColumns=
                 @JoinColumn(name="BAS_SET_CODIGO", referencedColumnName="SET_CODIGO"),
             inverseJoinColumns=
-                @JoinColumn(name="BAI_CODIGO", referencedColumnName="BAI_CODIGO")
+                @JoinColumn(name="BAS_BAI_CODIGO", referencedColumnName="BAI_CODIGO")
             )	
       
     private List<Bairro> bairros;
@@ -53,7 +54,7 @@ public class Setor implements Serializable {
 		this.codigo = vo.getCodigo();
 		this.nome = vo.getNome();
 		this.ativo = vo.getAtivo();
-		this.bairros = vo.getBairros();
+		this.bairros = new DAOBairro().ConverteEntidade(vo.getBairros());
 	}
 	
 	public static SetorVO VO(Setor obj){
