@@ -5,9 +5,7 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.EscalaVO;
-import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class ViaturaBean extends GenericoBean {
@@ -15,7 +13,8 @@ public class ViaturaBean extends GenericoBean {
 	private ViaturaVO viatura = new ViaturaVO();
 	private String termoPesquisa = new String();
 	private List<SelectItem> listaEscalas;
-	
+	private List<SelectItem> listaViaturas;
+
 	public ViaturaVO getViatura() {
 		return viatura;
 	}
@@ -23,10 +22,10 @@ public class ViaturaBean extends GenericoBean {
 	public void setViatura(ViaturaVO viatura) {
 		this.viatura = viatura;
 	}
-	
-	public List<SelectItem> getListViaturas(){
+
+	public List<SelectItem> getListViaturas() {
 		List<SelectItem> listViaturas = new ArrayList<SelectItem>();
-		for(ViaturaVO viatura : getFachada().listarViaturas()){
+		for (ViaturaVO viatura : getFachada().listarViaturas()) {
 			SelectItem selectItem = new SelectItem();
 			selectItem.setLabel(viatura.getCodigo());
 			selectItem.setValue(viatura.getCodigo());
@@ -86,7 +85,7 @@ public class ViaturaBean extends GenericoBean {
 							+ getTermoPesquisa());
 				setListaTudo(viaturas);
 			}
-			
+
 		}
 	}
 
@@ -110,26 +109,27 @@ public class ViaturaBean extends GenericoBean {
 		} else if (mensagem.equals("inserido")) {
 			adicionarMensagem("Viatura criada com sucesso!");
 			setViatura(new ViaturaVO());
-		}else if (mensagem.equals("dadoInvalido")) {
+		} else if (mensagem.equals("dadoInvalido")) {
 			adicionarMensagem("Estes dados não são válidos");
-		}else if (mensagem.equals("removido") || mensagem.equals("atualizadoDeletado"))
+		} else if (mensagem.equals("removido")
+				|| mensagem.equals("atualizadoDeletado"))
 			adicionarMensagem("Deletado com sucesso!");
 		else if (mensagem.equals("problemaRemover")) {
 			adicionarMensagem("Houve um problema ao tentar remover,\n contacte o administrador");
-		}else if (mensagem.equals("atualizado"))
+		} else if (mensagem.equals("atualizado"))
 			adicionarMensagem("Atualizado com sucesso!");
 		else if (mensagem.equals("viaturaInexistente")) {
 			adicionarMensagem("Viatura não existe no banco de dados");
-		}else if (mensagem.equals("problemaAtualizar")) {
+		} else if (mensagem.equals("problemaAtualizar")) {
 			adicionarMensagem("Houve um problema ao tentar atualizar,\n contacte o administrador");
-		} else { 
+		} else {
 			adicionarMensagem(mensagem);
 		}
 	}
 
 	public List<SelectItem> getListaEscalas() {
 		listaEscalas = new ArrayList<SelectItem>();
-		for(EscalaVO escala : getFachada().listarEscalas()){
+		for (EscalaVO escala : getFachada().listarEscalas()) {
 			SelectItem selectItem = new SelectItem();
 			selectItem.setLabel(escala.getDataFinal().toString());
 			selectItem.setValue(escala.getCodigo());
@@ -142,4 +142,18 @@ public class ViaturaBean extends GenericoBean {
 		this.listaEscalas = listaEscalas;
 	}
 
+	public List<SelectItem> getListaViaturas() {
+		List<SelectItem> listItensViaturas = new ArrayList<SelectItem>();
+		for(ViaturaVO viatura : getFachada().pesquisarViaturasEscalaTurno()){
+			SelectItem selectItem = new SelectItem();
+			selectItem.setLabel(viatura.getCodigo());
+			selectItem.setValue(viatura.getCodigo());
+			listItensViaturas.add(selectItem);
+		}
+		return listItensViaturas;
+	}
+
+	public void setListaViaturas(List<SelectItem> listaViaturas) {
+		this.listaViaturas = listaViaturas;
+	}
 }

@@ -45,4 +45,5 @@ public class DAOEscala extends DAOFactory<Escala> {
 			newLista.add(Escala.VO(set));		
 		return newLista;
 	}
+	
 }

@@ -1,22 +1,43 @@
 <?xml version='1.0' encoding='ISO-8859-1' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 <html xmlns="http://www.w3.org/1999/xhtml"
-   xmlns:ui="http://java.sun.com/jsf/facelets"
-   xmlns:f="http://java.sun.com/jsf/core"
-   xmlns:h="http://java.sun.com/jsf/html"
-   xmlns:a4j="http://richfaces.org/a4j"
-   xmlns:rich="http://richfaces.org/rich">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:m="http://code.google.com/p/gmaps4jsf/">
 
 <ui:composition template="/templates/generico.xhtml">
-<ui:define name="conteudo">
-<rich:messages style="width:500px" layout="table" globalOnly="true"
+	<ui:define name="conteudo">
+		<rich:messages style="width:500px" layout="table" globalOnly="true"
 			showSummary="true" infoClass="informacao">
 			<f:facet name="infoMarker">
 			</f:facet>
 		</rich:messages>
-<h:graphicImage value="/images/mapa.jpg" alt="Mapa" width="500"/>
+		<!-- <h:graphicImage value="/images/mapa.jpg" alt="Mapa" width="500"/> -->
 
-</ui:define>
+
+		<body onunload="GUnload()">
+		<script
+			src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true_or_false
+    &amp;key=ABQIAAAAzmhk1rsDjNgnLZAsYOvQSRSjuaEVZENCKjhga9SCJmC3LvuwVBR8Ioq6jiQaq4b7Ft9EJwXpA4e1nA"
+			type="text/javascript"></script>
+		<f:view>
+			<h:form id="form">
+				<h:selectOneMenu id="viatura" value="#{viaturaBean.viatura.escalas}" rendered="true">  
+             		<f:selectItems value="#{escalaBean.listaViaturas}"/>  
+         		</h:selectOneMenu>
+				<m:map width="600px" height="600px" type="G_NORMAL_MAP" zoom="16"
+					latitude="-7.1761" longitude="-34.8624">
+					<m:marker latitude="-7.1761" longitude="-34.8624">
+
+					</m:marker>
+				</m:map>
+			</h:form>
+		</f:view>
+		</body>
+	</ui:define>
 
 </ui:composition>
 </html>

@@ -125,6 +125,11 @@ public class Fachada {
 		return new ViaturaBusinessLogic().find(codigo);
 	}
 	
+	public List<ViaturaVO> pesquisarViaturasEscalaTurno(){
+		EscalaBusinessLogic logicaEscala = new EscalaBusinessLogic();
+		return logicaEscala.getViaturasEscalaTurno();
+	}
+	
 	/*
 	 * Métodos para as Escalas
 	 */
@@ -164,4 +169,5 @@ public class Fachada {
 	public BairroVO pesquisaBairro(int chave){
 		return new BairroBusinessLogic().find(chave);
 	}
+	
 }
