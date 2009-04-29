@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOViatura;
+import br.faculdadeidez.psa.servico.ComparacaoDistancia;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.MensagemValidacaoVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
@@ -101,20 +102,17 @@ public class ViaturaBusinessLogic {
 		return new DAOViatura().find(chave);
 	}
 
-	/**
-	 * Descrição: Este método deve retornar a viatura mais próxima da coordenada
-	 * passada, deve ser utilizado o webservice disponibilizado por Theo para
-	 * fazer os cálculos.
-	 * 
-	 * @param viaturasDesocupadas
-	 * @param coordenadaDestino
-	 * @return ViaturaVO
-	 */
-	public ViaturaVO getViaturaProxima(List<ViaturaVO> viaturasDesocupadas,
-			CoordenadaVO coordenadaDestino) {
-
-		return null;
+	
+	
+	// TODO ajustar o método
+	public CoordenadaVO getUltimaCoordenadaViatura(ViaturaVO viatura) {
+		CoordenadaVO coord = new CoordenadaVO();
+		coord.setLatitude("0.0");
+		coord.setLongitude("7.123");
+		return coord;
 	}
+	
+	
 
 	/**
 	 * Este método deve retornar as viaturas ativas no horário em que o operador
@@ -129,4 +127,70 @@ public class ViaturaBusinessLogic {
 		List<ViaturaVO> retorno = dViatura.findViaturasEscalaAtivas();
 		return retorno;
 	}
+
+	/**
+	 * Descrição: Este método deve retornar a viatura mais próxima da coordenada
+	 * passada, deve ser utilizado o Service criado por Theo para fazer os
+	 * cálculos.
+	 * 
+	 * @param viaturasDesocupadas
+	 * @param coordenadaDestino
+	 * @return ViaturaVO
+	 */
+	public ViaturaVO getViaturaProxima(List<ViaturaVO> viaturasDesocupadas,
+			CoordenadaVO coordenadasDestino) {
+
+		ComparacaoDistancia c = new ComparacaoDistancia();
+		ViaturaVO viaturaMaisProxima = null;
+		double menorDistancia;
+
+		c.setDestino("João Pessoa, PB");
+
+		for (ViaturaVO vtr : viaturasDesocupadas) {
+			// c.setOrigem();
+			if (viaturaMaisProxima == null) {
+				viaturaMaisProxima = vtr;
+			} else {
+
+			}
+		}
+
+		return null;
+	}
+
+	public ViaturaVO getViaturaProxima(CoordenadaVO coordenadasDestino) {
+		return getViaturaProxima(getViaturasDesocupadas(), coordenadasDestino);
+	}
+
+	/**
+	 * Sobrecarga do método getViaturasDesocupadas. Este método por padrão
+	 * retorna as viaturas desocupadas de acordo com turno e escala
+	 * [getViaturasEscalasTurno()]
+	 * 
+	 * @return
+	 */
+	public List<ViaturaVO> getViaturasDesocupadas() {
+		List<ViaturaVO> viaturas = getViaturasEscalaTurno();
+		return getViaturasDesocupadas(viaturas);
+	}
+
+	/**
+	 * Retorna as viaturas desocupadas de acordo com a lista de viaturas
+	 * passadas como parametro
+	 * 
+	 * @param viaturas
+	 * @return
+	 */
+	public List<ViaturaVO> getViaturasDesocupadas(List<ViaturaVO> viaturas) {
+		List<ViaturaVO> viaturasDesocupadas = new ArrayList<ViaturaVO>();
+
+		for (ViaturaVO vtr : viaturas) {
+			if (!vtr.getOcupada()) {
+				viaturasDesocupadas.add(vtr);
+			}
+		}
+
+		return viaturasDesocupadas;
+	}
+
 }
