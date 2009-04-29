@@ -1,21 +1,18 @@
 package br.faculdadeidez.psa.apresentacao.managedbean;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import br.faculdadeidez.psa.db.dao.DAOBairro;
-import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.EscalaVO;
-import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class EscalaBean extends GenericoBean {
 	private List<EscalaVO> listaTudo = null;
 	private EscalaVO escala = new EscalaVO();
 	private String termoPesquisa = "";
+	private List<SelectItem> listaViaturas;
 
 	public EscalaVO getEscala() {
 		return escala;
@@ -24,7 +21,7 @@ public class EscalaBean extends GenericoBean {
 	public void setEscala(EscalaVO escala) {
 		this.escala = escala;
 	}
-	
+
 	public List<EscalaVO> getListaTudo() {
 		if (listaTudo == null || listaTudo.isEmpty()
 				|| getTermoPesquisa().isEmpty())
@@ -50,9 +47,9 @@ public class EscalaBean extends GenericoBean {
 	}
 
 	public String create() {
-		String mensagem = getFachada().createEscala(escala);		
+		String mensagem = getFachada().createEscala(escala);
 		setEscala(new EscalaVO());
-		adicionaMensagemUsuario(mensagem);	
+		adicionaMensagemUsuario(mensagem);
 		return mensagem;
 	}
 
@@ -75,7 +72,7 @@ public class EscalaBean extends GenericoBean {
 							+ getTermoPesquisa());
 				setListaTudo(escalas);
 			}
-			
+
 		}
 	}
 
@@ -99,32 +96,57 @@ public class EscalaBean extends GenericoBean {
 		} else if (mensagem.equals("inserido")) {
 			adicionarMensagem("Escala criada com sucesso!");
 			setEscala(new EscalaVO());
-		}else if (mensagem.equals("dadoInvalido")) {
+		} else if (mensagem.equals("dadoInvalido")) {
 			adicionarMensagem("Estes dados não são válidos");
-		}else if (mensagem.equals("removido"))
+		} else if (mensagem.equals("removido"))
 			adicionarMensagem("Deletado com sucesso!");
 		else if (mensagem.equals("problemaRemover")) {
 			adicionarMensagem("Houve um problema ao tentar remover,\n contacte o administrador");
-		}else if (mensagem.equals("atualizado"))
+		} else if (mensagem.equals("atualizado"))
 			adicionarMensagem("Atualizado com sucesso!");
 		else if (mensagem.equals("escalaInexistente")) {
 			adicionarMensagem("Escala não existe no banco de dados");
-		}else if (mensagem.equals("problemaAtualizar")) {
+		} else if (mensagem.equals("problemaAtualizar")) {
 			adicionarMensagem("Houve um problema ao tentar atualizar,\n contacte o administrador");
-		} else { 
+		} else {
 			adicionarMensagem(mensagem);
 		}
 	}
-	
-	public void setViaturasEscala(List<String> listaViaturas){
+
+	public void setViaturasEscala(List<String> listaViaturas) {
 		List<ViaturaVO> viaturas = new ArrayList<ViaturaVO>();
-		for(String chave : listaViaturas){
-			viaturas.add(getFachada().pesquisaViatura(chave));			
+		for (String chave : listaViaturas) {
+			viaturas.add(getFachada().pesquisaViatura(chave));
 		}
 		escala.setViaturas(viaturas);
 	}
-	
-	public List getViaturasEscala() { 
+
+	public List getViaturasEscala() {
 		return new ArrayList();
+	}
+
+	public List<SelectItem> getListaViaturas() {
+		List<SelectItem> listItensViaturas = new ArrayList<SelectItem>();
+		SelectItem selectItem;
+		List<ViaturaVO> viaturas = getFachada().pesquisarViaturasEscalaTurno();
+
+		if (viaturas.size() > 0) {
+			for (ViaturaVO viatura : viaturas) {
+				selectItem = new SelectItem(); 
+				selectItem.setLabel(viatura.getCodigo());
+				selectItem.setValue(viatura.getCodigo());
+				listItensViaturas.add(selectItem);
+			}
+		} else {
+			selectItem = new SelectItem();
+			selectItem.setLabel("viatura(s) inexistente(s)");
+			selectItem.setValue("x");
+			listItensViaturas.add(selectItem);
+		}
+		return listItensViaturas;
+	}
+
+	public void setListaViaturas(List<SelectItem> listaViaturas) {
+		this.listaViaturas = listaViaturas;
 	}
 }
