@@ -7,6 +7,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,6 +27,8 @@ public class Viatura implements Serializable {
 	
 	@OneToMany(mappedBy = "viatura")  
 	private List<Coordenada> coordenadas;
+	@ManyToMany(mappedBy = "viaturas") 
+	private List<Escala> escalas;
 		
 	/*********************************************************/
 	/******** Conversão do objeto Setor para o SetorVO *******/
@@ -87,6 +90,14 @@ public class Viatura implements Serializable {
 
 	public List<Coordenada> getCoordenadas() {
 		return coordenadas;
+	}
+
+	public void setEscalas(List<Escala> escalas) {
+		this.escalas = escalas;
+	}
+
+	public List<Escala> getEscalas() {
+		return escalas;
 	}
 
 	

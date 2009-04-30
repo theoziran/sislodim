@@ -9,7 +9,7 @@ public class ViaturaVO implements Serializable {
 	private Boolean ocupada = false;
 	private Boolean ativo = false;
 	private List<EscalaVO> escalas;
-	
+	private List<CoordenadaVO> coordenadas;
 	
 	public ViaturaVO(){
 		
@@ -55,5 +55,13 @@ public class ViaturaVO implements Serializable {
 
 	public void setEscalas(List<EscalaVO> escalas) {
 		this.escalas = escalas;
+	}
+
+	public void setCoordenadas(List<CoordenadaVO> coordenadas) {
+		this.coordenadas = coordenadas;
+	}
+
+	public List<CoordenadaVO> getCoordenadas() {
+		return coordenadas;
 	}
 }
