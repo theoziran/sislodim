@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import br.faculdadeidez.psa.db.entity.Setor;
+
 @SuppressWarnings("serial")
 public class EscalaVO implements Serializable {	
 	private int codigo;
-	private int setor;
+	private Setor setor;
 	private Date dataInicial;
 	private Date dataFinal;
 	List<ViaturaVO> viaturas;
@@ -20,7 +22,7 @@ public class EscalaVO implements Serializable {
 		setCodigo(codigo);
 	}
 	
-	public EscalaVO(int codigo, int setor, Date dataInicial, Date dataFinal) {
+	public EscalaVO(int codigo, Setor setor, Date dataInicial, Date dataFinal) {
 		setCodigo(codigo);	
 		setSetor(setor);
 		setDataInicial(dataInicial);
@@ -43,11 +45,11 @@ public class EscalaVO implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public int getSetor() {
+	public Setor getSetor() {
 		return setor;
 	}
 
-	public void setSetor(int setor) {
+	public void setSetor(Setor setor) {
 		this.setor = setor;
 	}
 

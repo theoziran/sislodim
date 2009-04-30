@@ -3,7 +3,6 @@ package br.faculdadeidez.psa.db.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -15,13 +14,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.faculdadeidez.psa.db.dao.DAOViatura;
 import br.faculdadeidez.psa.vo.EscalaVO;
-import br.faculdadeidez.psa.vo.ViaturaVO;
 
 @SuppressWarnings("serial")
 @Entity 
@@ -31,8 +30,9 @@ public class Escala implements Serializable {
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) 
 	@Column (name="ESC_CODIGO")
 	private int codigo;
-	@Basic @Column (name="ESC_SET_CODIGO") 
-	private int setor;	
+	@ManyToOne
+	@JoinColumn (name="ESC_SET_CODIGO") 
+	private Setor setor;	
 	@Basic @Temporal(value = TemporalType.DATE) @Column (name="ESC_DATA_INC") 
 	private Date dataInicial;
 	@Basic @Temporal(value = TemporalType.DATE) @Column (name="ESC_DATA_FIM")  
@@ -72,7 +72,7 @@ public class Escala implements Serializable {
 		setCodigo(codigo);
 	}
 	
-	public Escala(int codigo, int setor, Date dataInicial, Date dataFinal) {
+	public Escala(int codigo, Setor setor, Date dataInicial, Date dataFinal) {
 		setCodigo(codigo);	
 		setSetor(setor);
 		setDataInicial(dataInicial);
@@ -87,11 +87,11 @@ public class Escala implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public int getSetor() {
+	public Setor getSetor() {
 		return setor;
 	}
 
-	public void setSetor(int setor) {
+	public void setSetor(Setor setor) {
 		this.setor = setor;
 	}
 

@@ -7,14 +7,16 @@ public class CoordenadaVO implements Serializable {
 	private int codigo;
 	private String latitude;
 	private String longitude;
+	private ViaturaVO viatura;
 
 	public CoordenadaVO(){
 		
 	}
 	
-	public CoordenadaVO(String lat,String longit) {
+	public CoordenadaVO(String lat,String longit, ViaturaVO viatura) {
 		this.latitude = lat;
 		this.longitude = longit;
+		this.viatura = viatura;
 	}
 	public int getCodigo() {
 		return codigo;
@@ -34,6 +36,14 @@ public class CoordenadaVO implements Serializable {
 	}
 	public void setLongitude(String lat) {
 		this.longitude = lat;
+	}
+
+	public void setViatura(ViaturaVO viatura) {
+		this.viatura = viatura;
+	}
+
+	public ViaturaVO getViatura() {
+		return viatura;
 	}
 
 }

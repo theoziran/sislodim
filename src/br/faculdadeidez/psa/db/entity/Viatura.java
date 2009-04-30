@@ -7,7 +7,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.faculdadeidez.psa.vo.ViaturaVO;
@@ -22,7 +22,10 @@ public class Viatura implements Serializable {
 	@Basic @Column (name="VIA_OCUPADA", nullable=false)
 	private Boolean ocupada = false;
 	@Basic @Column (name="VIA_ATIVO", nullable=false)
-	private Boolean ativo = false;	
+	private Boolean ativo = false;
+	
+	@OneToMany(mappedBy = "viatura")  
+	private List<Coordenada> coordenadas;
 		
 	/*********************************************************/
 	/******** Conversão do objeto Setor para o SetorVO *******/
@@ -76,5 +79,15 @@ public class Viatura implements Serializable {
 	
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
-	}	
+	}
+
+	public void setCoordenadas(List<Coordenada> coordenadas) {
+		this.coordenadas = coordenadas;
+	}
+
+	public List<Coordenada> getCoordenadas() {
+		return coordenadas;
+	}
+
+	
 }
