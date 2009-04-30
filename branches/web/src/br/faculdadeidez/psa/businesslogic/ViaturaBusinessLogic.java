@@ -109,9 +109,7 @@ public class ViaturaBusinessLogic {
 	
 	// TODO ajustar o método
 	public CoordenadaVO getUltimaCoordenadaViatura(ViaturaVO viatura) {
-		CoordenadaVO coord = new CoordenadaVO();
-		coord.setLatitude("0.0");
-		coord.setLongitude("7.123");
+		CoordenadaVO coord = viatura.getCoordenadas().get(viatura.getCoordenadas().size()-1);
 		return coord;
 	}
 	
