@@ -33,7 +33,7 @@ public class TransmissaoDados {
 		return instance;
 	}
 
-	public void enviarDados(double longitude, double latitude, int viatura)
+	public void enviarDados(double longitude, double latitude, String viatura)
 			throws IOException {
 		/**
 		 * Nesse momento peço para o JME abrir uma conexão pra mim, é o JME

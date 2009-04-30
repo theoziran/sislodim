@@ -116,7 +116,7 @@ public class GPS extends TimerTask {
 		if(getLatitude() != 0.0 && getLongitude() != 0.0 ){
 			System.out.println(coordinates.getLatitude());
 			System.out.println(coordinates.getLongitude());
-			TransmissaoDados.getInstance().enviarDados(getLongitude(), getLatitude(),0001);
+			TransmissaoDados.getInstance().enviarDados(getLongitude(), getLatitude(),"0001");
 		}
 		
 	}
