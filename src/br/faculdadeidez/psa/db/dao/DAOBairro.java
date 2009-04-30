@@ -38,7 +38,7 @@ public class DAOBairro extends DAOFactory<Bairro> {
 	/*
 	 * Converte um List<Tipo1> para um List<Tipo2>
 	 */
-	private List<BairroVO> ConvertList(List<Bairro> lista)
+	public List<BairroVO> ConvertList(List<Bairro> lista)
 	{
 		List<BairroVO> newLista = new Vector<BairroVO>();
 		for(Bairro set : lista)

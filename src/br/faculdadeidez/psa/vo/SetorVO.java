@@ -37,6 +37,21 @@ public class SetorVO implements Serializable {
 		setAtivo(ativo);
 	}
 	
+	public SetorVO(String nome, Boolean ativo, List<BairroVO> bairros)
+	{
+		setNome(nome);
+		setAtivo(ativo);
+		setBairros(bairros);
+	}
+	
+	public SetorVO(int codigo, String nome, Boolean ativo, List<BairroVO> bairros)
+	{
+		setCodigo(codigo);
+		setNome(nome);
+		setAtivo(ativo);
+		setBairros(bairros);
+	}
+
 	public List<BairroVO> getBairros() {
 		return bairros;
 	}

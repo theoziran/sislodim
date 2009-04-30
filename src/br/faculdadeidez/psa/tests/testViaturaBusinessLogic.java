@@ -56,15 +56,15 @@ public class testViaturaBusinessLogic extends TestCase {
 		// codigo inválido
 		// string vazia
 		v = new ViaturaVO("",false, false);
-		assertEquals("O código é obrigatório, ", vbl.create(v));
+		assertEquals("O código é obrigatório", vbl.create(v));
 
 		// string.length > 4
 		v.setCodigo("12345");
-		assertEquals("O código deve ser menor que 4 dígitos, ", vbl.create(v));
+		assertEquals("O código deve ser menor que 4 dígitos", vbl.create(v));
 		
 		// caracteres especiais
 		v.setCodigo("#$%*");
-		assertEquals("O código deve ser apenas dígitos, ", vbl.create(v));
+		assertEquals("O código deve ser apenas dígitos", vbl.create(v));
 		
 	}
 	
@@ -83,6 +83,7 @@ public class testViaturaBusinessLogic extends TestCase {
 			 **/
 			ls = vbl.pesquisar("1234");
 			v = ls.get(0);
+			v.setAtivo(true);
 			assertEquals("atualizado", vbl.update(v));
 
 		}
@@ -126,22 +127,23 @@ public class testViaturaBusinessLogic extends TestCase {
 			// codigo inválido
 			// string vazia
 			v.setCodigo("");
-			assertEquals("O código é obrigatório, ", vbl.update(v));
+			assertEquals("O código é obrigatório", vbl.update(v));
 
 			// codigo inválido
 			// string.length > 4
 			v.setCodigo("12345");
-			assertEquals("O código deve ser menor que 4 dígitos, ", vbl.create(v));
+			assertEquals("O código deve ser menor que 4 dígitos", vbl.create(v));
 			
 			// codigo inválido			
 			// caracteres especiais
 			v.setCodigo("#$%&");
-			assertEquals("O código deve ser apenas dígitos, ", vbl.update(v));
+			assertEquals("O código deve ser apenas dígitos", vbl.update(v));
 		}
 	}
 	
 	public void testListar() {
-		assertTrue(1 == vbl.listar().size());
+		assertEquals(2, vbl.listar().size());
+		assertEquals(1, vbl.listarAtivos().size());
 	}
 
 	public void testPesquisar() {
