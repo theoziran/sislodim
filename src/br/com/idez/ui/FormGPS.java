@@ -57,8 +57,8 @@ public class FormGPS extends Form implements CommandListener {
 		if (cmd.equals(cmdStart)) {
 			if (displayable instanceof FormGPS) {
 				this.removeCommand(cmdStart);
-				GPS gps = new GPS();
-				gps.start();
+				/*GPS gps =*/ new GPS();
+				//gps.run();
 				//tfLatitude.setString(Double.toString(gps.getLatitude()));
 				//tfLongitude.setString(Double.toString(gps.getLongitude()));
 				//this.append(tfLatitude);

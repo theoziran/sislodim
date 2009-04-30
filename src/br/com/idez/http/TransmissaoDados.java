@@ -1,7 +1,7 @@
 package br.com.idez.http;
 
+import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.microedition.io.Connector;
 import javax.microedition.io.HttpConnection;
@@ -19,11 +19,11 @@ public class TransmissaoDados {
 	 * Essa classes foi testa com um script php e funcionou corretamente no
 	 * nosso caso só precisa substituir o endereço da URL
 	 */
-	private static final String servletHost = "http://localhost/sislodim/MIDServlet?";
+	private static final String servletHost = "http://localhost:8080/Sislodim/MIDServlet?";
 	private static TransmissaoDados instance = null;
 
 	private TransmissaoDados() {
-	
+
 	}
 
 	public static TransmissaoDados getInstance() {
@@ -39,20 +39,32 @@ public class TransmissaoDados {
 		 * Nesse momento peço para o JME abrir uma conexão pra mim, é o JME
 		 * intercede com o device para minha comunicação
 		 */
-		HttpConnection conexao = (HttpConnection) Connector.open(servletHost
-				+ "longitude=" + longitude + "&latitude=" + latitude
-				+ "&codVtr=" + viatura);
+		 HttpConnection conexao = (HttpConnection) Connector.open(servletHost
+		 + "longitude=" + longitude + "&latitude=" + latitude
+		 + "&codVtr=" + viatura);
+		
 
 		// Define o tipo de requisição
 		conexao.setRequestMethod(HttpConnection.GET);
+		DataInputStream stream = conexao.openDataInputStream();
+		String content = conexao.getHeaderField("Content-Type");
+		System.out.println("Content-Type: " + content);
+
+		String agent = conexao.getHeaderField("User-Agent");
+		System.out.println("User-Agent: " + agent);
+
+		String server = conexao.getHeaderField("Server");
+		System.out.println("Server: " + server);
+
+		System.out.println("Response: " + conexao.getResponseMessage());
+		System.out.println("Response Code: " + conexao.getResponseCode());
 
 		/**
 		 * Retorno a saída da requisição em um inputStream caso queira fazer
 		 * algum tratamento
 		 */
-		//InputStream inputStream = conexao.openInputStream();
-		//System.out.println(inputStream.toString());
-
+		// InputStream inputStream = conexao.openInputStream();
+		// System.out.println(inputStream.toString());
 	}
 
 }
