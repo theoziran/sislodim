@@ -8,6 +8,7 @@ import br.faculdadeidez.psa.businesslogic.SetorBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
 import br.faculdadeidez.psa.vo.BairroVO;
+import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.EscalaVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.UsuarioVO;
@@ -169,5 +170,9 @@ public class Fachada {
 	public BairroVO pesquisaBairro(int chave){
 		return new BairroBusinessLogic().find(chave);
 	}
-	
+	public CoordenadaVO getUltimaCoordenadaViatura(ViaturaVO viatura){
+		
+		
+		return null;
+	}
 }

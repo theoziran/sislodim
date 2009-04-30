@@ -1,19 +1,19 @@
 package br.faculdadeidez.psa.db.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 
@@ -27,16 +27,14 @@ public class Coordenada implements Serializable {
 	@Basic @Column (name="COO_LOGITUDE", nullable=false) 
 	private String longitude;
 	@Basic @Column (name="COO_LATITUDE", nullable=false) 
-	private String latitude;	
-	@ManyToMany(cascade={CascadeType.ALL} )
-    @JoinTable(name="SIS_PERCURSO",
-            joinColumns=
-                @JoinColumn(name="PER_COO_CODIGO", referencedColumnName="COO_CODIGO"),
-            inverseJoinColumns=
-                    @JoinColumn(name="PER_VIA_CODIGO", referencedColumnName="VIA_CODIGO")
-            )            
-    private List<Viatura> viaturas;
-		
+	private String latitude;
+	@ManyToOne
+	@JoinColumn (name="COO_VIA_CODIGO")
+	private Viatura viatura;
+	@Column (name="COO_DATA_HORA", nullable=false)
+	@Temporal(value=TemporalType.TIMESTAMP)
+	private Date data;
+	
 	public Coordenada() {
 		// TODO Auto-generated constructor stub
 	}
@@ -44,13 +42,14 @@ public class Coordenada implements Serializable {
 	public Coordenada(CoordenadaVO coo) {		
 		setLongitude(coo.getLongitude());
 		setLatitude(coo.getLatitude());
+		setViatura(new Viatura(coo.getViatura()));
 		if (coo.getCodigo()!=0){
 			setId(coo.getCodigo());
 		}
 	}
 	
 	public static CoordenadaVO toVO(Coordenada obj) {		
-		return new CoordenadaVO(obj.getLatitude(),obj.getLongitude());
+		return new CoordenadaVO(obj.getLatitude(),obj.getLongitude(),Viatura.VO(obj.getViatura()));
 		 
 	}
 	
@@ -72,4 +71,21 @@ public class Coordenada implements Serializable {
 	public void setLongitude(String longit) {
 		this.longitude = longit;
 	}
+
+	public void setViatura(Viatura viatura) {
+		this.viatura = viatura;
+	}
+
+	public Viatura getViatura() {
+		return viatura;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
 }

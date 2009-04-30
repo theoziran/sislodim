@@ -2,16 +2,16 @@ package br.faculdadeidez.psa.apresentacao.servlets;
 
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.omg.CORBA.Request;
-
 import br.faculdadeidez.psa.businesslogic.CoordenadasBusinessLogic;
-import br.faculdadeidez.psa.db.entity.Coordenada;
+import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
+import br.faculdadeidez.psa.vo.ViaturaVO;
 
 /**
  * Servlet implementation class MIDServlet
@@ -41,6 +41,9 @@ public class MIDServlet extends HttpServlet {
 		//setar os valores
 		coo.setLatitude(latitude);
 		coo.setLongitude(longitude);
+		ViaturaBusinessLogic viaturaBL = new ViaturaBusinessLogic();
+		ViaturaVO viatura = viaturaBL.find(codVtr);
+		coo.setViatura(viatura);
 		//salvar no banco
 		CoordenadasBusinessLogic cooBL = new CoordenadasBusinessLogic();
 		cooBL.create(coo);

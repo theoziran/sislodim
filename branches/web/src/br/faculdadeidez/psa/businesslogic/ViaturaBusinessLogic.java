@@ -72,13 +72,14 @@ public class ViaturaBusinessLogic {
 		DAOViatura dViatura = new DAOViatura();
 		return dViatura.findAll();
 	}
-
+	
 	public List<ViaturaVO> listarAtivos() {
 		DAOViatura dViatura = new DAOViatura();
 		return dViatura.findAllActivated();
 	}
 
 	public List<ViaturaVO> pesquisar(String valor) {
+
 		DAOViatura dViatura = new DAOViatura();
 		List<ViaturaVO> retorno = dViatura.findByField("codigo", valor);
 		return retorno;
@@ -97,8 +98,10 @@ public class ViaturaBusinessLogic {
 						.getCodigo().matches("^[0-9]*$"))));
 		return erros;
 	}
+	
+	
+	public ViaturaVO find(String chave){
 
-	public ViaturaVO find(String chave) {
 		return new DAOViatura().find(chave);
 	}
 

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.faculdadeidez.psa.db.dao.DAOBairro;
@@ -38,7 +39,9 @@ public class Setor implements Serializable {
     private List<Bairro> bairros;
     @Basic @Column( name="SET_ATIVO", nullable=false)
 	private Boolean ativo;
-	
+    @OneToMany(mappedBy = "setor")
+    private List<Escala> escalas;
+    
 	public List<Bairro> getBairros() {
 		return bairros;
 	}
@@ -99,6 +102,14 @@ public class Setor implements Serializable {
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public void setEscalas(List<Escala> escalas) {
+		this.escalas = escalas;
+	}
+
+	public List<Escala> getEscalas() {
+		return escalas;
 	}
 
 }

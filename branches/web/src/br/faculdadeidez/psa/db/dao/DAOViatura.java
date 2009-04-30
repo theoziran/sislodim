@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.faculdadeidez.psa.db.entity.Viatura;
+import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class DAOViatura extends DAOFactory<Viatura> {
@@ -25,8 +26,9 @@ public class DAOViatura extends DAOFactory<Viatura> {
 
 	public List<ViaturaVO> findAll() {
 		return ConvertList(super.findAll(Viatura.class));
-	}
 
+	}	
+	
 	public List<ViaturaVO> findAllActivated() {
 		String strQuery = "SELECT v FROM Viatura v WHERE v.ativo = 1";
 		EntityManager em = getManager();
@@ -36,7 +38,6 @@ public class DAOViatura extends DAOFactory<Viatura> {
 
 		return resultList;
 	}
-
 	public void update(ViaturaVO vo) {
 		super.update(new Viatura(vo));
 	}
@@ -59,6 +60,12 @@ public class DAOViatura extends DAOFactory<Viatura> {
 			newLista.add(Viatura.VO(set));
 		return newLista;
 	}
+
+	public CoordenadaVO getUltimaCoordenadaViatura(ViaturaVO viatura) {
+
+		return null;
+	}
+		
 
 	public List<Viatura> ConverteEntidade(List<ViaturaVO> lista) {
 		List<Viatura> newLista = new Vector<Viatura>();
