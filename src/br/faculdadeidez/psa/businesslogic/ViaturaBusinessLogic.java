@@ -107,7 +107,11 @@ public class ViaturaBusinessLogic {
 
 	
 	
-	// TODO ajustar o método
+	/**
+	 * Este método retorna a última coordenada enviada pela viatura durante o seu percurso
+	 * @param viatura viatura a ser pesquisada
+	 * @return CoordenadaVO
+	 */
 	public CoordenadaVO getUltimaCoordenadaViatura(ViaturaVO viatura) {
 		CoordenadaVO coord = viatura.getCoordenadas().get(viatura.getCoordenadas().size()-1);
 		return coord;
