@@ -2,19 +2,26 @@ package br.faculdadeidez.psa.tests;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
+
 import junit.framework.TestCase;
+import br.faculdadeidez.psa.businesslogic.BairroBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.SetorBusinessLogic;
+import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 
 public class testSetorBusinessLogic extends TestCase{
 	private SetorVO s;
 	private SetorBusinessLogic sbl = new SetorBusinessLogic();
 	private ArrayList<SetorVO> listSetoresValidos = new ArrayList<SetorVO>();
+	
+	private BairroBusinessLogic bbl = new BairroBusinessLogic();
+	private Vector<BairroVO> listBairros = (Vector<BairroVO>) bbl.listar();
 		
 	protected void setUp() throws Exception {
-		this.listSetoresValidos.add(new SetorVO("Setor Tal",true));
-		this.listSetoresValidos.add(new SetorVO("Outro Setor",true));
-		this.listSetoresValidos.add(new SetorVO("Setor N Ativo",true));
+		this.listSetoresValidos.add(new SetorVO("Setor Tal",true, listBairros));
+		this.listSetoresValidos.add(new SetorVO("Outro Setor",true, listBairros));
+		this.listSetoresValidos.add(new SetorVO("Setor N Ativo",true, listBairros));
 	}
 	
 	public void testCreateValidos() {
@@ -30,12 +37,12 @@ public class testSetorBusinessLogic extends TestCase{
 		/**
 		 * Test case - TC1.1.2 - Valores Nulos
 		 **/
-		// codigo nulo
-		s = new SetorVO("Codigo Nulo",true);
+		// nome nulo
+		s = new SetorVO(null,true, new ArrayList<BairroVO>());
 		assertEquals("problemaInserir", sbl.create(s));
 		
-		// nome nulo
-		s = new SetorVO(null,true);
+		// bairros nulos
+		s = new SetorVO("Setor teste",true, null);
 		assertEquals("problemaInserir", sbl.create(s));
 	}
 
@@ -43,22 +50,14 @@ public class testSetorBusinessLogic extends TestCase{
 		/**
 		 * Test case - TC1.1.3 - Valores Existentes
 		 **/
-		// codigo duplicado
-		s = new SetorVO("Test Existente",true);
-		assertEquals("setorExistente", sbl.create(s));
-		
 		// nome duplicado
-		s = new SetorVO("Setor Tal",true);
+		s = new SetorVO("Setor Tal",true, listBairros);
 		assertEquals("setorExistente", sbl.create(s));
-		
-		//nome duplicado,
-		//vide testCreateDuplicateSetor()
-		
 	}
 	
-	public void testCreateDuplicateSetor(){
+	/*public void testCreateDuplicatedSetor(){
 		List<SetorVO> ls;
-		ls = sbl.pesquisarByCodigo("1111");
+		ls = sbl.pesquisar("Setor Tal");
 		s = ls.get(0);
 		s.setAtivo(false);
 		assertEquals("atualizado", sbl.update(s));
@@ -68,41 +67,16 @@ public class testSetorBusinessLogic extends TestCase{
 		//obs: isso n se aplica ao "codigo" pq o mesmo é PRIMARY KEY
 		s = new SetorVO("Setor N Ativo",true);
 		assertEquals("inserido", sbl.create(s));
-	}
+	}*/
 
 	
 	public void testCreateInvalidos() {
 		/**
 		 * Test case - TC1.1.4
 		 **/
-		// codigo inválido
-		// lenght < 4
-		s = new SetorVO("Setor Codigo Invalido",true);
-		assertEquals("O código deve ser apenas 4 dígitos, ", sbl.create(s));
-
-		/*// codigo inválido
-		// length > 4
-		s.setCodigo("10000");
-		assertEquals("O código deve ser apenas 4 dígitos, ", sbl.create(s));
-		
-		// codigo inválido
-		// caracteres especiais
-		s.setCodigo("#$%*");
-		assertEquals("O código deve ser apenas 4 dígitos, ", sbl.create(s));
-		
-		// codigo inválido
-		// String de caracteres normais
-		s.setCodigo("ABCD");
-		assertEquals("O código deve ser apenas 4 dígitos, ", sbl.create(s));
-	
-		// codigo inválido
-		// String Vazia
-		s.setCodigo("");
-		assertEquals("O código deve ser apenas 4 dígitos, ", sbl.create(s));
-		*/
 //		// nome inválido
 //		// String numerico
-//		s = new SetorVO("9999","32413541",true);
+//		s = new SetorVO(9999","32413541",true);
 //		assertEquals("O nome é inválido, ", sbl.create(s));
 //		
 //		// nome inválido
@@ -118,8 +92,11 @@ public class testSetorBusinessLogic extends TestCase{
 	}
 	
 	public void testDelete() {
-		assertEquals("removido", sbl.delete(listSetoresValidos.remove(1)));
-		s = new SetorVO("Setor Inexistente", true);
+		List<SetorVO> ls; 
+		ls = sbl.pesquisar("Outro Setor");
+		assertEquals("removido", sbl.delete(ls.get(0)));
+		
+		s = new SetorVO(999,"Setor q n existe",true, listBairros);
 		assertEquals("setorInexistente", sbl.delete(s));
 	}
 
@@ -130,7 +107,7 @@ public class testSetorBusinessLogic extends TestCase{
 			/**
 			 * Test case - TC1.3.1
 			 **/
-			ls = sbl.pesquisarByCodigo("1234");
+			ls = sbl.pesquisar("Setor Tal");
 			s = ls.get(0);
 			assertEquals("atualizado", sbl.update(s));
 
@@ -140,7 +117,7 @@ public class testSetorBusinessLogic extends TestCase{
 			/**
 			 * Test case - TC1.3.2
 			 **/
-			ls = sbl.pesquisarByCodigo("9999");
+			ls = sbl.pesquisar("Setor que n existe");
 			if (ls.isEmpty())
 				s = null;
 			assertEquals("setorInexistente", sbl.update(new SetorVO("Setor Inexistente",false)));
@@ -151,23 +128,23 @@ public class testSetorBusinessLogic extends TestCase{
 			 * Test case - TC1.3.3
 			 **/
 
-			ls = sbl.pesquisarByCodigo("1234");
+			ls = sbl.pesquisar("Setor Tal");
 			s = ls.get(0);
-/*
-			// codigo nulo
-			s.setCodigo(null);
-			assertEquals("problemaAtualizar", sbl.update(s));
 
 			// nome nulo
-			s.setCodigo("1234");
 			s.setNome(null);
 			assertEquals("problemaAtualizar", sbl.update(s));
-*/
+
 			// ativo nulo
 			s.setNome("Ativo Nulo");
 			s.setAtivo(null);
 			assertEquals("problemaAtualizar", sbl.update(s));
 			
+			// bairros nulo
+			s.setAtivo(true);
+			s.setBairros(null);
+			assertEquals("problemaAtualizar", sbl.update(s));
+
 		}
 
 		{
@@ -175,34 +152,9 @@ public class testSetorBusinessLogic extends TestCase{
 			 * Test case - TC1.3.5
 			 **/
 
-			ls = sbl.pesquisarByCodigo("1234");
+			ls = sbl.pesquisar("Setor Tal");
 			s = ls.get(0);
 			
-		/*	// codigo inválido
-			// lenght < 4
-			s.setCodigo("999");
-			assertEquals("O código deve ser apenas 4 dígitos, ", sbl.update(s));
-
-			// codigo inválido
-			// length > 4
-			s.setCodigo("10000");
-			assertEquals("O código deve ser apenas 4 dígitos, ", sbl.update(s));
-			
-			// codigo inválido
-			// caracteres especiais
-			s.setCodigo("#$%*");
-			assertEquals("O código deve ser apenas 4 dígitos, ", sbl.update(s));
-			
-			// codigo inválido
-			// String de caracteres normais
-			s.setCodigo("ABCD");
-			assertEquals("O código deve ser apenas 4 dígitos, ", sbl.update(s));
-		
-			// codigo inválido
-			// String Vazia
-			s.setCodigo("");
-			assertEquals("O código deve ser apenas 4 dígitos, ", sbl.update(s));
-			*/
 //			// nome inválido
 //			// String numerico
 //			s.setCodigo("9999");
@@ -229,19 +181,12 @@ public class testSetorBusinessLogic extends TestCase{
 
 	public void testPesquisar() {
 		List<SetorVO> ls;
-
-		ls = sbl.pesquisarByCodigo("1234");
-		assertEquals(1, ls.size());
-
-		ls = sbl.pesquisarByCodigo("9999");
-		assertEquals(0, ls.size());
 		
 		ls = sbl.pesquisar("Setor Tal");
 		assertEquals(1, ls.size());
 
 		ls = sbl.pesquisar("Setor que n existe");
 		assertEquals(0, ls.size());
-		
 	}
 
 }

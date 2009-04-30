@@ -86,21 +86,11 @@ public class SetorBusinessLogic {
 		return retorno;
 	}
 	
-	public List<SetorVO> pesquisarByCodigo(String valor){
-		DAOSetor dSetor = new DAOSetor();
-		List<SetorVO> retorno = dSetor.findByField("codigo", valor);
-		return retorno;
-	}
-	
 	private List<MensagemValidacaoVO> validaDados(SetorVO vo){
 		ArrayList<MensagemValidacaoVO> erros = new ArrayList<MensagemValidacaoVO>();
 		
-		//erros.add(new MensagemValidacaoVO("Código", "O código deve ser apenas 4 dígitos", Boolean.valueOf(vo.getCodigo().length() != 4  || Boolean.valueOf(!vo.getCodigo().matches("\\d+")) ))); 
-		//FIXME: N ta funcinando 
-		//erros.add(new MensagemValidacaoVO("Nome", "O nome é inválido", Boolean.valueOf(!vo.getCodigo().matches("[[:alnum:]]"))));
-		
 		erros.add(new MensagemValidacaoVO("Nome", "O nome é inválido", Boolean.valueOf(!vo.getNome().matches("^[0-9a-zA-ZÁÂÃÀÇÉÊÍÓÔÕÚÜáâãàçéêíóôõúü\\s]*$"))));
-		
+		erros.add(new MensagemValidacaoVO("Bairros", "O setor não possui bairros", Boolean.valueOf(vo.getBairros().size()==0)));
 		return erros;
 	}
 	
