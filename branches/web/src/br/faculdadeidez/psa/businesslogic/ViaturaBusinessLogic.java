@@ -149,18 +149,24 @@ public class ViaturaBusinessLogic {
 		ViaturaVO viaturaMaisProxima = null;
 		double menorDistancia;
 
-		c.setDestino("João Pessoa, PB");
+		c.setDestino(coordenadasDestino.getLatitude()+","+coordenadasDestino.getLongitude());
 
 		for (ViaturaVO vtr : viaturasDesocupadas) {
-			// c.setOrigem();
+			CoordenadaVO coordenadaViatura = getUltimaCoordenadaViatura(vtr);
+			c.setOrigem(coordenadaViatura.getLatitude()+","+coordenadaViatura.getLongitude());
+			
 			if (viaturaMaisProxima == null) {
 				viaturaMaisProxima = vtr;
-			} else {
-
+				//menorDistancia = c.getDistancia()
+			} else  {
+//				if (menorDistancia > c.getDistancia()){
+//					viaturaMaisProxima = vtr;
+//					menorDistancia = c.getDistancia();
+//				}
 			}
 		}
 
-		return null;
+		return viaturaMaisProxima;
 	}
 
 	public ViaturaVO getViaturaProxima(CoordenadaVO coordenadasDestino) {
