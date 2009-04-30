@@ -1,6 +1,8 @@
 package br.com.idez.core;
 
-import javax.microedition.lcdui.Alert;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.microedition.location.Coordinates;
 import javax.microedition.location.Criteria;
 import javax.microedition.location.Location;
@@ -9,7 +11,7 @@ import javax.microedition.location.LocationProvider;
 
 import br.com.idez.http.TransmissaoDados;
 
-public class GPS extends Thread {
+public class GPS extends TimerTask {
 
 	private static Criteria criteria = null;
 	private LocationProvider provider = null;
@@ -17,15 +19,19 @@ public class GPS extends Thread {
 	private Coordinates coordinates = null;
 	private double latitude;
 	private double longitude;
+	private Timer time;
+	private final long TIME = (1000 * 20);
 
 	public GPS() {
-
+		this.time = new Timer();
+		time.schedule(this, TIME, TIME);
 	}
 
 	public static Criteria getCriteria() {
 		if (GPS.criteria == null) {
 			GPS.criteria = new Criteria();
 		}
+		
 		return GPS.criteria;
 	}
 
@@ -73,11 +79,12 @@ public class GPS extends Thread {
 		this.longitude = longitude;
 	}
 
+	
 	public void run() {
 		
-			while(true){
+	//		while(true){
 				try {
-					this.sleep(5000);
+
 					localizacaoGPS();
 				} catch (LocationException e) {
 					// TODO Auto-generated catch block
@@ -89,8 +96,8 @@ public class GPS extends Thread {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-			}
+			//this.time.schedule(this, 5000);	
+		//	}
 		
 	}
 
@@ -98,7 +105,7 @@ public class GPS extends Thread {
 			InterruptedException, Exception {
 		provider = LocationProvider.getInstance(GPS.getCriteria());
 
-		location = provider.getLocation(NORM_PRIORITY);
+		location = provider.getLocation(10);
 
 		coordinates = location.getQualifiedCoordinates();
 		if (coordinates == null) {
@@ -109,7 +116,7 @@ public class GPS extends Thread {
 		if(getLatitude() != 0.0 && getLongitude() != 0.0 ){
 			System.out.println(coordinates.getLatitude());
 			System.out.println(coordinates.getLongitude());
-			TransmissaoDados.getInstance().enviarDados(getLongitude(), getLatitude(),1);
+			TransmissaoDados.getInstance().enviarDados(getLongitude(), getLatitude(),0001);
 		}
 		
 	}
