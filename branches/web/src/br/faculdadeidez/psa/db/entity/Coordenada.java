@@ -43,6 +43,7 @@ public class Coordenada implements Serializable {
 		setLongitude(coo.getLongitude());
 		setLatitude(coo.getLatitude());
 		setViatura(new Viatura(coo.getViatura()));
+		setData(coo.getData());
 		if (coo.getCodigo()!=0){
 			setId(coo.getCodigo());
 		}

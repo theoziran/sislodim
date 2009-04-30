@@ -1,6 +1,7 @@
 package br.faculdadeidez.psa.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class CoordenadaVO implements Serializable {
@@ -8,6 +9,7 @@ public class CoordenadaVO implements Serializable {
 	private String latitude;
 	private String longitude;
 	private ViaturaVO viatura;
+	private Date data;
 
 	public CoordenadaVO(){
 		
@@ -44,6 +46,14 @@ public class CoordenadaVO implements Serializable {
 
 	public ViaturaVO getViatura() {
 		return viatura;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public Date getData() {
+		return data;
 	}
 
 }

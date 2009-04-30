@@ -2,6 +2,9 @@ package br.faculdadeidez.psa.apresentacao.servlets;
 
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,6 +44,7 @@ public class MIDServlet extends HttpServlet {
 		//setar os valores
 		coo.setLatitude(latitude);
 		coo.setLongitude(longitude);
+		coo.setData(new Date(System.currentTimeMillis()));
 		ViaturaBusinessLogic viaturaBL = new ViaturaBusinessLogic();
 		ViaturaVO viatura = viaturaBL.find(codVtr);
 		coo.setViatura(viatura);
@@ -59,4 +63,5 @@ public class MIDServlet extends HttpServlet {
 		super.doPost(request, response);
 	}
 
+	
 }
