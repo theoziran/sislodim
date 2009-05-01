@@ -11,29 +11,33 @@ public class ComparacaoDistancia {
 	Source source = null;
 	String origem = null;
 	String destino = null;
-	StringBuilder url = new StringBuilder("http://maps.google.com/maps?output=html&hl=pt-BR&f=d&source=s_d&saddr=");
-	
-	public ComparacaoDistancia(){
-		
+	StringBuilder url = new StringBuilder(
+			"http://maps.google.com/maps?output=html&hl=pt-BR&f=d&source=s_d&saddr=");
+
+	public ComparacaoDistancia() {
+
 	}
-	
-	public ComparacaoDistancia(String origem, String destino){
+
+	public ComparacaoDistancia(String origem, String destino) {
 		this.origem = origem;
 		this.destino = destino;
 	}
 
 	@SuppressWarnings("deprecation")
-	public String getDistancia() {
+	public String getDistancia() throws ComparacaoDistanciaException {
 		if (validar() == null) {
 			try {
 				source = new Source(new URL(this.getURL()));
 			} catch (MalformedURLException e) {
-				return "oo3- Problemas na URL";
+				// "oo3- Problemas na URL";
+				throw new ComparacaoDistanciaException(3);
 			} catch (IOException e) {
-				return "004- Problemas Entrada e Saída";
+				// "004- Problemas Entrada e Saída";
+				throw new ComparacaoDistanciaException(4);
 			} catch (Exception e) {
 				// Who knows?
-				return "005- Problema não identificado";
+				// "005- Problema não identificado";
+				throw new ComparacaoDistanciaException(5);
 			}
 			try {
 				Element passo1 = source.findAllElements("div class=dditd id=dditd").get(0);
@@ -49,7 +53,8 @@ public class ComparacaoDistancia {
 				return endereco;
 
 			} catch (Exception e) {
-				return "006- Endereço não foi encontrado, ou serviço pode ter sido modificado, verifique o código";
+				// "006- Endereço não foi encontrado, ou serviço pode ter sido modificado, verifique o source";
+				throw new ComparacaoDistanciaException(6);
 			}
 		} else
 			return validar();
@@ -81,11 +86,13 @@ public class ComparacaoDistancia {
 		this.destino = destino;
 	}
 
-	private String validar() {
+	private String validar() throws ComparacaoDistanciaException {
 		if (getOrigem() == null) {
-			return "001- O campo origem é obrigatório";
+			// "001- O campo origem é obrigatório";
+			throw new ComparacaoDistanciaException(1);
 		} else if (getDestino() == null) {
-			return "002- O campo destino é obrigatório";
+			// "002- O campo destino é obrigatório";
+			throw new ComparacaoDistanciaException(2);
 		} else {
 			return null;
 		}
