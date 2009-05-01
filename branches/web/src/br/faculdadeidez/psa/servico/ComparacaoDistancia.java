@@ -29,7 +29,7 @@ public class ComparacaoDistancia {
 			try {
 				source = new Source(new URL(this.getURL()));
 			} catch (MalformedURLException e) {
-				// "oo3- Problemas na URL";
+				// "003- Problemas na URL";
 				throw new ComparacaoDistanciaException(3);
 			} catch (IOException e) {
 				// "004- Problemas Entrada e Saída";

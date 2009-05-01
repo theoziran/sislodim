@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOViatura;
-import br.faculdadeidez.psa.servico.ComparacaoDistancia;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.MensagemValidacaoVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
@@ -72,7 +71,7 @@ public class ViaturaBusinessLogic {
 		DAOViatura dViatura = new DAOViatura();
 		return dViatura.findAll();
 	}
-	
+
 	public List<ViaturaVO> listarAtivos() {
 		DAOViatura dViatura = new DAOViatura();
 		return dViatura.findAllActivated();
@@ -98,18 +97,11 @@ public class ViaturaBusinessLogic {
 						.getCodigo().matches("^[0-9]*$"))));
 		return erros;
 	}
-	
-	
-	public ViaturaVO find(String chave){
+
+	public ViaturaVO find(String chave) {
 
 		return new DAOViatura().find(chave);
 	}
-
-	
-	
-
-	
-	
 
 	/**
 	 * Este método deve retornar as viaturas ativas no horário em que o operador
@@ -137,25 +129,26 @@ public class ViaturaBusinessLogic {
 	public ViaturaVO getViaturaProxima(List<ViaturaVO> viaturasDesocupadas,
 			CoordenadaVO coordenadasDestino) {
 
-		ComparacaoDistancia c = new ComparacaoDistancia();
 		ViaturaVO viaturaMaisProxima = null;
-		double menorDistancia;
-
-		c.setDestino(coordenadasDestino.getLatitude()+","+coordenadasDestino.getLongitude());
+		double menorDistancia = 0;
+		String destino = coordenadasDestino.getLatitude() + "," + coordenadasDestino.getLongitude();
 
 		for (ViaturaVO vtr : viaturasDesocupadas) {
 			CoordenadasBusinessLogic coordenadaBL = new CoordenadasBusinessLogic();
 			CoordenadaVO coordenadaViatura = coordenadaBL.getUltimaCoordenadaViatura(vtr);
-			c.setOrigem(coordenadaViatura.getLatitude()+","+coordenadaViatura.getLongitude());
+			String origem = coordenadaViatura.getLatitude() + ","
+					+ coordenadaViatura.getLongitude();
+			double distanciaAtual = CoordenadasBusinessLogic.getDistancia(
+					origem, destino);
 			
 			if (viaturaMaisProxima == null) {
 				viaturaMaisProxima = vtr;
-				//menorDistancia = c.getDistancia()
-			} else  {
-//				if (menorDistancia > c.getDistancia()){
-//					viaturaMaisProxima = vtr;
-//					menorDistancia = c.getDistancia();
-//				}
+				menorDistancia = distanciaAtual;
+			} else {
+				if (menorDistancia > distanciaAtual) {
+					viaturaMaisProxima = vtr;
+					menorDistancia = distanciaAtual;
+				}
 			}
 		}
 
