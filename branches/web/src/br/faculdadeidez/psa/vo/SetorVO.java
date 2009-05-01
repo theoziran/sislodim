@@ -11,7 +11,7 @@ public class SetorVO implements Serializable {
 	private List<BairroVO> bairros;
 	
 	public SetorVO() {
-		// TODO Auto-generated constructor stub
+		 
 	}
 	
 	public SetorVO(String nome)

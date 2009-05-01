@@ -14,7 +14,6 @@ public class CoordenadasBusinessLogic {
 			dCoordenada.persist(vo);
 			return "inserido";
 		} catch (Exception e) {
-			// TODO: handle exception
 			return "problemaInserir";
 		}
 	}

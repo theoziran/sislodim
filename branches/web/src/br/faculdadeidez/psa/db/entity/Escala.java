@@ -65,7 +65,7 @@ public class Escala implements Serializable {
 	/*********************************************************/
 	
 	public Escala() {
-		// TODO Auto-generated constructor stub
+		 
 	}
 	
 	public Escala(int codigo)

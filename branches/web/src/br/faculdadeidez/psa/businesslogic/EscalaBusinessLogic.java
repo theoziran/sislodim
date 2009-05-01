@@ -19,7 +19,7 @@ public class EscalaBusinessLogic {
 			dEscala.remove(esc);
 			return "removido";
 		} catch (Exception e) {
-			// TODO: handle exception
+			 
 			return "problemaRemover";
 		}
 	}
@@ -30,7 +30,7 @@ public class EscalaBusinessLogic {
 			dEscala.update(vo);
 			return "atualizado";
 		} catch (Exception e) {
-			// TODO: handle exception
+			 
 			return "problemaAtualizar";
 		}
 	}
@@ -49,7 +49,7 @@ public class EscalaBusinessLogic {
 			} else
 				return "escalaExistente";
 		} catch (Exception e) {
-			// TODO: handle exception
+			 
 			return "problemaInserir";
 		}
 	}

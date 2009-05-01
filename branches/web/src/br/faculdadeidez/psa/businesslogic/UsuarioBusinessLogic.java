@@ -59,7 +59,6 @@ public class UsuarioBusinessLogic {
 			dUsuario.update(user);
 			return "removido";
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			return "problemaRemover";
 		}
@@ -112,7 +111,6 @@ public class UsuarioBusinessLogic {
 				return "usuarioExistente";
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			return "problemaAtualizar";
 		}
 	}
@@ -145,7 +143,6 @@ public class UsuarioBusinessLogic {
 				return "usuarioExistente";
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			return "problemaInserir";
 		}
 	}

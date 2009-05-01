@@ -36,7 +36,7 @@ public class Coordenada implements Serializable {
 	private Date data;
 	
 	public Coordenada() {
-		// TODO Auto-generated constructor stub
+		 
 	}
 		
 	public Coordenada(CoordenadaVO coo) {		

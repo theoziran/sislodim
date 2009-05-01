@@ -50,7 +50,7 @@ public class Bairro implements Serializable {
 	/*********************************************************/
 	
 	public Bairro() {
-		// TODO Auto-generated constructor stub
+		 
 	}
 	
 	public Bairro(String nome)

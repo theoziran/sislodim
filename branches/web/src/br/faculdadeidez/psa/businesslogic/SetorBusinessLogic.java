@@ -18,7 +18,7 @@ public class SetorBusinessLogic {
 			dSetor.update(set);
 			return "removido";
 		} catch (Exception e) {
-			// TODO: handle exception
+			 
 			return "problemaRemover";
 		}
 	}
@@ -39,7 +39,7 @@ public class SetorBusinessLogic {
 			return "atualizado";
 				
 		} catch (Exception e) {
-			// TODO: handle exception
+			 
 			return "problemaAtualizar";
 		}
 	}
@@ -62,7 +62,7 @@ public class SetorBusinessLogic {
 				return "setorExistente";
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			 
 			return "problemaInserir";
 		}
 	}
