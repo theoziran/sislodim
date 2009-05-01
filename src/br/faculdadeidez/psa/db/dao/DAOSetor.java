@@ -63,13 +63,4 @@ public class DAOSetor extends DAOFactory<Setor> {
 		return newLista;
 	}
 	
-	public Boolean existsActiveNomeSetor(String nomeSetor){
-		Query query = getManager().createQuery("select a from Setor a where a.nome=\""+nomeSetor+"\" and a.ativo=\""+1+"\"");
-		List<Setor> result = query.getResultList();
-		if(result.isEmpty())
-			return false;
-		else
-			return true;
-	}
-	
 }
