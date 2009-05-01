@@ -1,5 +1,7 @@
 package br.faculdadeidez.psa.db.dao;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -8,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.faculdadeidez.psa.db.entity.Viatura;
-import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class DAOViatura extends DAOFactory<Viatura> {
@@ -27,8 +28,8 @@ public class DAOViatura extends DAOFactory<Viatura> {
 	public List<ViaturaVO> findAll() {
 		return ConvertList(super.findAll(Viatura.class));
 
-	}	
-	
+	}
+
 	public List<ViaturaVO> findAllActivated() {
 		String strQuery = "SELECT v FROM Viatura v WHERE v.ativo = 1";
 		EntityManager em = getManager();
@@ -38,6 +39,7 @@ public class DAOViatura extends DAOFactory<Viatura> {
 
 		return resultList;
 	}
+
 	public void update(ViaturaVO vo) {
 		super.update(new Viatura(vo));
 	}
@@ -61,8 +63,6 @@ public class DAOViatura extends DAOFactory<Viatura> {
 		return newLista;
 	}
 
-	
-
 	public List<Viatura> ConverteEntidade(List<ViaturaVO> lista) {
 		List<Viatura> newLista = new Vector<Viatura>();
 		for (ViaturaVO viatura : lista)
@@ -71,23 +71,28 @@ public class DAOViatura extends DAOFactory<Viatura> {
 	}
 
 	public List<ViaturaVO> findViaturasEscalaAtivas() {
+
 		Date data = new Date(System.currentTimeMillis());
+		String formato = "dd/MM/yyyy";
+		SimpleDateFormat formatter = new SimpleDateFormat(formato);
+		try {
+			data = formatter.parse(formatter.format(data));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			data = null;
+		}
 		System.out.println(data);
-		// String strQuery = "SELECT v FROM Escala s JOIN s.viaturas sv "
-		// + "JOIN Viatura v " + "JOIN sv.codigo " + "WHERE v.ocupada = 0 "
-		// + "AND s.dataInicio >= :dataInicio "
-		// + "AND s.dataFinal <= :dataFinal ";
-		String strQuery = "SELECT v FROM Viatura v WHERE v.ativo = 1";
+		String strQuery = "SELECT v FROM Viatura v " + "JOIN v.escalas sv "
+				+ "WHERE sv.dataInicial = :dataInicio AND v.ativo = 1";
+		// +"sv.dataFim = :dataFim";
 		EntityManager em = getManager();
 		Query query = em.createQuery(strQuery);
-		// query.setParameter(":dataInicio", data);
-		// query.setParameter(":dataFinal", data);
+		query.setParameter("dataInicio", data);
+		// query.setParameter("dataFinal", data);
 
 		List<ViaturaVO> resultList = ConvertList(query.getResultList());
 
 		return resultList;
 	}
-	
-	
-	
+
 }
