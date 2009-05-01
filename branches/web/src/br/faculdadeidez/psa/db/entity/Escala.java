@@ -21,7 +21,6 @@ import javax.persistence.TemporalType;
 
 import br.faculdadeidez.psa.db.dao.DAOViatura;
 import br.faculdadeidez.psa.vo.EscalaVO;
-import br.faculdadeidez.psa.vo.SetorVO;
 
 @SuppressWarnings("serial")
 @Entity 

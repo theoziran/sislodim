@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import br.faculdadeidez.psa.db.dao.DAOBairro;
 import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 
