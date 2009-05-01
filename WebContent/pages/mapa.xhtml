@@ -15,7 +15,6 @@
 			<f:facet name="infoMarker">
 			</f:facet>
 		</rich:messages>
-		<!-- <h:graphicImage value="/images/mapa.jpg" alt="Mapa" width="500"/> -->
 
 
 		<body onunload="GUnload()">
@@ -23,19 +22,20 @@
 			src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true_or_false
     &amp;key=ABQIAAAAzmhk1rsDjNgnLZAsYOvQSRSjuaEVZENCKjhga9SCJmC3LvuwVBR8Ioq6jiQaq4b7Ft9EJwXpA4e1nA"
 			type="text/javascript"></script>
-		<f:view>
 			<h:form id="form">
-				<h:selectOneMenu id="viatura" value="#{viaturaBean.viatura.escalas}" rendered="true">  
+				<h:selectOneMenu id="viatura" value="#{viaturaBean.viatura.codigo}" rendered="true" onchange="submit()">  
              		<f:selectItems value="#{escalaBean.listaViaturas}"/>  
+             		<!-- a4j:support event="onchange" action="submit()" reRender="mapa"/-->
          		</h:selectOneMenu>
+         	</h:form>
+         	<rich:panel name="mapa" id="mapa" style="width:500px;float:left">
 				<m:map width="600px" height="600px" type="G_NORMAL_MAP" zoom="16"
-					latitude="-7.1761" longitude="-34.8624">
-					<m:marker latitude="-7.1761" longitude="-34.8624">
+					latitude="#{viaturaBean.ultimaCoordenada.latitude}" longitude="#{viaturaBean.ultimaCoordenada.longitude}">
+					<m:marker latitude="#{viaturaBean.ultimaCoordenada.latitude}" longitude="#{viaturaBean.ultimaCoordenada.longitude}">
 
 					</m:marker>
 				</m:map>
-			</h:form>
-		</f:view>
+			</rich:panel>
 		</body>
 	</ui:define>
 

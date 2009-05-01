@@ -3,10 +3,14 @@ package br.faculdadeidez.psa.db.dao;
 import java.util.List;
 import java.util.Vector;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import br.faculdadeidez.psa.db.entity.Bairro;
 import br.faculdadeidez.psa.db.entity.Coordenada;
 import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
+import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class DAOCoordenada extends DAOFactory<Coordenada> {
 	public DAOCoordenada() {
@@ -47,4 +51,19 @@ public class DAOCoordenada extends DAOFactory<Coordenada> {
 			newLista.add(Coordenada.toVO(set));		
 		return newLista;
 	}
+	
+	public CoordenadaVO getUltimaCoordenadaViatura(ViaturaVO viatura) {
+		String strQuery = "SELECT c FROM Coordenada c WHERE c.id = (SELECT MAX(cid.id) FROM Coordenada cid WHERE cid.viatura.codigo = '"+viatura.getCodigo()+"')";
+		
+		EntityManager em = getManager();
+		Query query = em.createQuery(strQuery);
+
+		List<Coordenada> resultList =query.getResultList();
+		if (resultList.isEmpty()) return null;
+		Coordenada c = resultList.get(0);
+		CoordenadaVO cVO = Coordenada.toVO(c);
+
+		return cVO;
+	}
+		
 }

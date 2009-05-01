@@ -13,7 +13,7 @@
 			<h:panelGrid columns="3">
 				<h:outputLabel value="*Setor" />
 				
-				<h:selectOneMenu id="setor" value="#{escalaBean.escala.setor}" rendered="true">  
+				<h:selectOneMenu id="setor" value="#{escalaBean.escala.setor.codigo}" rendered="true">  
              		<f:selectItems value="#{setorBean.listaItensSetores}"/>  
          		</h:selectOneMenu>         		
          		<h:message for="setor" styleClass="mensagens"/>

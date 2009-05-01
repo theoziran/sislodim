@@ -3,8 +3,10 @@ package br.faculdadeidez.psa.businesslogic;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOEscala;
+import br.faculdadeidez.psa.db.dao.DAOSetor;
 import br.faculdadeidez.psa.db.dao.DAOViatura;
 import br.faculdadeidez.psa.vo.EscalaVO;
+import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class EscalaBusinessLogic {
@@ -38,6 +40,10 @@ public class EscalaBusinessLogic {
 			DAOEscala daoEscala = new DAOEscala();
 			if (daoEscala.findByField("codigo",
 					String.valueOf(escala.getCodigo())).isEmpty()) {
+				DAOSetor daoSetor = new DAOSetor();
+				SetorVO setor = daoSetor.find(escala.getSetor().getCodigo());
+				escala.setSetor(setor);
+				
 				daoEscala.persist(escala);
 				return "inserido";
 			} else

@@ -3,6 +3,7 @@ package br.faculdadeidez.psa.facade;
 import java.util.List;
 
 import br.faculdadeidez.psa.businesslogic.BairroBusinessLogic;
+import br.faculdadeidez.psa.businesslogic.CoordenadasBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.EscalaBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.SetorBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
@@ -171,8 +172,8 @@ public class Fachada {
 		return new BairroBusinessLogic().find(chave);
 	}
 	public CoordenadaVO getUltimaCoordenadaViatura(ViaturaVO viatura){
+		CoordenadasBusinessLogic cBL = new CoordenadasBusinessLogic();
+		return cBL.getUltimaCoordenadaViatura(viatura);
 		
-		
-		return null;
 	}
 }
