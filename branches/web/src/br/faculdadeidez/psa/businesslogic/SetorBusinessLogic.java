@@ -32,7 +32,7 @@ public class SetorBusinessLogic {
 				return MensagemValidacao.getMensagensValidacao(erros);
 			
 			DAOSetor dSetor = new DAOSetor();
-			if(dSetor.findByField("codigo", String.valueOf(vo.getCodigo())).isEmpty() && vo.getCodigo() != 0)
+			if(dSetor.findByField("codigo", String.valueOf(vo.getCodigo())).isEmpty())
 				return "setorInexistente";
 				
 			dSetor.update(vo);
@@ -54,15 +54,13 @@ public class SetorBusinessLogic {
 				return MensagemValidacao.getMensagensValidacao(erros);
 			
 			DAOSetor daoSetor = new DAOSetor();
-			if(daoSetor.findByField("codigo", String.valueOf(setor.getCodigo())).isEmpty() && !daoSetor.existsActiveNomeSetor(setor.getNome()) ){
+			if(daoSetor.findByField("codigo", String.valueOf(setor.getCodigo())).isEmpty() && daoSetor.findByField("nome", setor.getNome()).isEmpty()){ //!daoSetor.existsActiveNomeSetor(setor.getNome()) ){
 				setor.setAtivo(true);
 				daoSetor.persist(setor);
 				return "inserido";
 			}else
 				return "setorExistente";
-			
-			
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			return "problemaInserir";
@@ -90,6 +88,7 @@ public class SetorBusinessLogic {
 		ArrayList<MensagemValidacaoVO> erros = new ArrayList<MensagemValidacaoVO>();
 		
 		erros.add(new MensagemValidacaoVO("Nome", "O nome È inv·lido", Boolean.valueOf(!vo.getNome().matches("^[0-9a-zA-Z¡¬√¿«… Õ”‘’⁄‹·‚„‡ÁÈÍÌÛÙı˙¸\\s]*$"))));
+		erros.add(new MensagemValidacaoVO("Nome", "O nome n„o foi preenchido", Boolean.valueOf(vo.getNome().length() == 0)));
 		erros.add(new MensagemValidacaoVO("Bairros", "O setor n„o possui bairros", Boolean.valueOf(vo.getBairros().size()==0)));
 		return erros;
 	}
