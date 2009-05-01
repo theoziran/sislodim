@@ -19,7 +19,6 @@ public class ViaturaBusinessLogic {
 			dViatura.update(via);
 			return "removido";
 		} catch (Exception e) {
-			// TODO: handle exception
 			return "problemaRemover";
 		}
 	}
@@ -42,7 +41,7 @@ public class ViaturaBusinessLogic {
 			else
 				return "atualizadoDeletado";
 		} catch (Exception e) {
-			// TODO: handle exception
+			 
 			return "problemaAtualizar";
 		}
 	}
@@ -62,7 +61,6 @@ public class ViaturaBusinessLogic {
 			} else
 				return "viaturaExistente";
 		} catch (Exception e) {
-			// TODO: handle exception
 			return "problemaInserir";
 		}
 	}
@@ -131,21 +129,23 @@ public class ViaturaBusinessLogic {
 
 		ViaturaVO viaturaMaisProxima = null;
 		double menorDistancia = 0;
-		String destino = coordenadasDestino.getLatitude() + "," + coordenadasDestino.getLongitude();
+		String destino = coordenadasDestino.getLatitude() + ","
+				+ coordenadasDestino.getLongitude();
 
 		for (ViaturaVO vtr : viaturasDesocupadas) {
 			CoordenadasBusinessLogic coordenadaBL = new CoordenadasBusinessLogic();
-			CoordenadaVO coordenadaViatura = coordenadaBL.getUltimaCoordenadaViatura(vtr);
+			CoordenadaVO coordenadaViatura = coordenadaBL
+					.getUltimaCoordenadaViatura(vtr);
 			String origem = coordenadaViatura.getLatitude() + ","
 					+ coordenadaViatura.getLongitude();
 			double distanciaAtual = CoordenadasBusinessLogic.getDistancia(
 					origem, destino);
-			
+
 			if (viaturaMaisProxima == null) {
 				viaturaMaisProxima = vtr;
 				menorDistancia = distanciaAtual;
 			} else {
-				if ((menorDistancia > distanciaAtual) && (distanciaAtual !=0)) {
+				if ((menorDistancia > distanciaAtual) && (distanciaAtual != 0)) {
 					viaturaMaisProxima = vtr;
 					menorDistancia = distanciaAtual;
 				}

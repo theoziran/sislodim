@@ -66,7 +66,7 @@ public class Setor implements Serializable {
 	/*********************************************************/
 	
 	public Setor() {
-		// TODO Auto-generated constructor stub
+		 
 	}
 	
 	public Setor(String nome)

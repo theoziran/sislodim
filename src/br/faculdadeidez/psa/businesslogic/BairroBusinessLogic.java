@@ -14,7 +14,6 @@ public class BairroBusinessLogic {
 			dBairro.remove(set);
 			return "removido";
 		} catch (Exception e) {
-			// TODO: handle exception
 			return "problemaRemover";
 		}
 	}
@@ -25,7 +24,7 @@ public class BairroBusinessLogic {
 			dBairro.update(vo);
 			return "atualizado";
 		} catch (Exception e) {
-			// TODO: handle exception
+			 
 			return "problemaAtualizar";
 		}
 	}
@@ -36,7 +35,7 @@ public class BairroBusinessLogic {
 			dBairro.persist(vo);
 			return "inserido";
 		} catch (Exception e) {
-			// TODO: handle exception
+			 
 			return "problemaInserir";
 		}
 	}

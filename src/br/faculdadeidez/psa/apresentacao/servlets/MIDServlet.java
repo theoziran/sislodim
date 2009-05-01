@@ -27,14 +27,12 @@ public class MIDServlet extends HttpServlet {
      */
     public MIDServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String codVtr = (String) req.getParameter("codVtr");
 		String latitude = (String) req.getParameter("latitude");
 		String longitude = (String) req.getParameter("longitude");
@@ -59,7 +57,6 @@ public class MIDServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		super.doPost(request, response);
 	}
 

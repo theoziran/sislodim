@@ -13,7 +13,7 @@ public class UsuarioVO{
 	private int tipoPermissao;
 		
 	public UsuarioVO() {
-		// TODO Auto-generated constructor stub
+		 
 	}
 		
 	public UsuarioVO(String nome, String login, String senha, String cpf, String rg, String orgExpeditor, String tipoPermissao) {		
