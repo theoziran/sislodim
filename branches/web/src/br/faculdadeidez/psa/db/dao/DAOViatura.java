@@ -61,11 +61,7 @@ public class DAOViatura extends DAOFactory<Viatura> {
 		return newLista;
 	}
 
-	public CoordenadaVO getUltimaCoordenadaViatura(ViaturaVO viatura) {
-
-		return null;
-	}
-		
+	
 
 	public List<Viatura> ConverteEntidade(List<ViaturaVO> lista) {
 		List<Viatura> newLista = new Vector<Viatura>();
@@ -91,4 +87,7 @@ public class DAOViatura extends DAOFactory<Viatura> {
 
 		return resultList;
 	}
+	
+	
+	
 }

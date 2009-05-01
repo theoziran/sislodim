@@ -21,6 +21,7 @@ import javax.persistence.TemporalType;
 
 import br.faculdadeidez.psa.db.dao.DAOViatura;
 import br.faculdadeidez.psa.vo.EscalaVO;
+import br.faculdadeidez.psa.vo.SetorVO;
 
 @SuppressWarnings("serial")
 @Entity 
@@ -52,14 +53,14 @@ public class Escala implements Serializable {
 	/*********************************************************/
 	public Escala(EscalaVO vo) {
 		this.codigo = vo.getCodigo();
-		this.setor = vo.getSetor();
+		this.setor = new Setor(vo.getSetor());
 		this.dataInicial = vo.getDataInicial();
 		this.dataFinal = vo.getDataFinal();		
 		this.viaturas = new DAOViatura().ConverteEntidade(vo.getViaturas());
 	}
 	
 	public static EscalaVO VO(Escala obj){
-		return new EscalaVO(obj.getCodigo(), obj.getSetor(), obj.getDataInicial(), obj.getDataFinal());
+		return new EscalaVO(obj.getCodigo(), Setor.VO(obj.getSetor()), obj.getDataInicial(), obj.getDataFinal());
 	}
 	/*********************************************************/
 	

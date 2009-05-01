@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.EscalaVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
@@ -156,4 +157,10 @@ public class ViaturaBean extends GenericoBean {
 	public void setListaViaturas(List<SelectItem> listaViaturas) {
 		this.listaViaturas = listaViaturas;
 	}
+
+
+	public CoordenadaVO getUltimaCoordenada() {
+		return getFachada().getUltimaCoordenadaViatura(viatura);
+	}
+
 }

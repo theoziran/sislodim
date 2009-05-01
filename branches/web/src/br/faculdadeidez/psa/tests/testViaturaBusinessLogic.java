@@ -2,6 +2,7 @@ package br.faculdadeidez.psa.tests;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import junit.framework.TestCase;
 import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
 import br.faculdadeidez.psa.vo.ViaturaVO;
