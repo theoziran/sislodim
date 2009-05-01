@@ -1,15 +1,10 @@
 package br.faculdadeidez.psa.servico;
 
 public class Aplicacao {
-public static void main(String[] args)  {
+public static void main(String[] args) throws ComparacaoDistanciaException {
 	ComparacaoDistancia c = new ComparacaoDistancia();
 		c.setOrigem("Santa Rita, PB");
-		c.setDestino("João dfadsfadfadfa fsdf sd fadsfasdf ds f, PB");
-		try {
-			System.out.println(c.getDistancia());
-		} catch (ComparacaoDistanciaException e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
-		}
+		c.setDestino("-7.097614, -34.834213");
+		System.out.println(c.getDistancia());
 	}
 }

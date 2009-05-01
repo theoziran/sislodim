@@ -41,6 +41,12 @@ public class CoordenadasBusinessLogic {
 		return coord;
 	}
 	
+	
+	/**
+	 * Transforma uma coordenada nula em uma coordenada padrão
+	 * 
+	 * @param coord
+	 */
 	private void coordenadaDefault(CoordenadaVO coord){
 		
 		coord.setLatitude("-7.096985");
