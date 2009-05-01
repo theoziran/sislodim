@@ -107,15 +107,7 @@ public class ViaturaBusinessLogic {
 
 	
 	
-	/**
-	 * Este método retorna a última coordenada enviada pela viatura durante o seu percurso
-	 * @param viatura viatura a ser pesquisada
-	 * @return CoordenadaVO
-	 */
-	public CoordenadaVO getUltimaCoordenadaViatura(ViaturaVO viatura) {
-		CoordenadaVO coord = viatura.getCoordenadas().get(viatura.getCoordenadas().size()-1);
-		return coord;
-	}
+
 	
 	
 
@@ -152,7 +144,8 @@ public class ViaturaBusinessLogic {
 		c.setDestino(coordenadasDestino.getLatitude()+","+coordenadasDestino.getLongitude());
 
 		for (ViaturaVO vtr : viaturasDesocupadas) {
-			CoordenadaVO coordenadaViatura = getUltimaCoordenadaViatura(vtr);
+			CoordenadasBusinessLogic coordenadaBL = new CoordenadasBusinessLogic();
+			CoordenadaVO coordenadaViatura = coordenadaBL.getUltimaCoordenadaViatura(vtr);
 			c.setOrigem(coordenadaViatura.getLatitude()+","+coordenadaViatura.getLongitude());
 			
 			if (viaturaMaisProxima == null) {
