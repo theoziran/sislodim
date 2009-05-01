@@ -145,7 +145,7 @@ public class ViaturaBusinessLogic {
 				viaturaMaisProxima = vtr;
 				menorDistancia = distanciaAtual;
 			} else {
-				if (menorDistancia > distanciaAtual) {
+				if ((menorDistancia > distanciaAtual) && (distanciaAtual !=0)) {
 					viaturaMaisProxima = vtr;
 					menorDistancia = distanciaAtual;
 				}
