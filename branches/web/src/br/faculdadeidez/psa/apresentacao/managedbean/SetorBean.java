@@ -13,74 +13,72 @@ public class SetorBean extends GenericoBean {
 	private List<SelectItem> listaItensSetores = null;
 	private SetorVO setor = new SetorVO();
 	private String termoPesquisa = new String();
-	
+
 	public SetorVO getSetor() {
 		return setor;
 	}
 
 	public void setSetor(SetorVO setor) {
 		this.setor = setor;
-	}	
-	
+	}
+
 	public List<SelectItem> getListaItensSetores() {
 		List<SelectItem> listaItensSetores = new ArrayList<SelectItem>();
-		for(SetorVO setor : getFachada().listarSetores()){
+		for (SetorVO setor : getFachada().listarSetores()) {
 			SelectItem selectItem = new SelectItem();
 			selectItem.setLabel(setor.getNome());
 			selectItem.setValue(setor.getCodigo());
-									
+
 			listaItensSetores.add(selectItem);
 		}
 		return listaItensSetores;
 	}
-	
-	public void setListaItensSetores(List<SelectItem> lista) { 
+
+	public void setListaItensSetores(List<SelectItem> lista) {
 		this.listaItensSetores = lista;
 	}
-	
-	public List<SetorVO> getListaTudo()
-	{	
-		if (listaTudo==null || listaTudo.isEmpty() || getTermoPesquisa().isEmpty() )
+
+	public List<SetorVO> getListaTudo() {
+		if (listaTudo == null || listaTudo.isEmpty()
+				|| getTermoPesquisa().isEmpty())
 			setListaTudo(getFachada().listarSetores());
 		else
 			setTermoPesquisa(new String());
 		return listaTudo;
 	}
-		
-	public String delete()
-	{
-		SetorVO setorDaVez = (SetorVO)getElementoSelecionado();
+
+	public String delete() {
+		SetorVO setorDaVez = (SetorVO) getElementoSelecionado();
 		return getFachada().deleteSetor(setorDaVez);
 	}
-	
-	public String update()
-	{
-		SetorVO setorDaVez = (SetorVO)getElementoSelecionado();
+
+	public String update() {
+		SetorVO setorDaVez = (SetorVO) getElementoSelecionado();
 		setorDaVez.setBairros(setor.getBairros());
 		return getFachada().updateSetor(setorDaVez);
 	}
-	
-	public String create()
-	{
+
+	public String create() {
 		String mensagem = getFachada().createSetor(setor);
-		
-		if(mensagem.equals("setorExistente")){			
-			adicionarMensagem("Setor já existente");			
-		} else if (mensagem.equals("problemaInserir")) {			
+
+		if (mensagem.equals("setorExistente")) {
+			adicionarMensagem("Setor já existente");
+		} else if (mensagem.equals("problemaInserir")) {
 			adicionarMensagem("Error...");
-		} else {						
-			setSetor(new SetorVO());	
+		} else {
+			setSetor(new SetorVO());
 			adicionarMensagem("Setor criado com sucesso!");
 		}
 		return mensagem;
 	}
-	
-	public void pesquisar(){
-		if (getTermoPesquisa().isEmpty()){
+
+	public void pesquisar() {
+		if (getTermoPesquisa().isEmpty()) {
 			setListaTudo(getFachada().listarSetores());
-		}else{
-		List<SetorVO> setores = getFachada().pesquisaSetor(getTermoPesquisa());
-		setListaTudo(setores);
+		} else {
+			List<SetorVO> setores = getFachada().pesquisaSetor(
+					getTermoPesquisa());
+			setListaTudo(setores);
 		}
 	}
 
@@ -95,17 +93,36 @@ public class SetorBean extends GenericoBean {
 	public void setTermoPesquisa(String termoPesquisa) {
 		this.termoPesquisa = termoPesquisa;
 	}
-	
-	public void setBairrosSetor(List<String> listaBairros){
+
+	public void setBairrosSetor(List<String> listaBairros) {
 		List<BairroVO> bairros = new ArrayList<BairroVO>();
-		for(String chave : listaBairros){
+		for (String chave : listaBairros) {
 			bairros.add(getFachada().pesquisaBairro(Integer.parseInt(chave)));
 		}
 		setor.setBairros(bairros);
 	}
-	
-	public List getBairrosSetor(){
-			return new ArrayList();	
-	} 
-	
+
+	public List<BairroVO> getBairrosSetor() {
+		return setor.getBairros();
+	}
+
+	public List<SelectItem> getListaBairrosDisponiveis() {
+		List<SelectItem> listaDisponiveis = new ArrayList<SelectItem>();
+/*		List<BairroVO> disponiveis = getFachada().listarBairros();
+		List<BairroVO> atuais = getBairrosSetor();
+
+		for (BairroVO bairroVO : disponiveis) {
+			if (!atuais.contains(bairroVO)) {
+				SelectItem selectItem = new SelectItem();
+				
+				selectItem.setLabel(bairroVO.getNome());
+				selectItem.setValue(String.valueOf(bairroVO.getCodigo()));
+				
+				listaDisponiveis.add(selectItem);
+			}
+		}*/
+
+		return listaDisponiveis;
+	}
+
 }
