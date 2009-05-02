@@ -17,7 +17,7 @@
 <body>
 <div id="geral">
 	<div id="topo"><a href="#{facesContext.externalContext.request.contextPath}"><h:graphicImage value="/images/topo.gif" width="770" height="150" style="border:0;" alt="Sislodim - Módulo administrativo" /></a></div>
-	<div id="info"><ui:insert name="info"><h:form rendered="#{sessaoBean.logado}"><span><h:commandLink value="Logout" action="#{usuarioBean.logout}" /></span>Olá, <strong><h:outputText value="#{sessaoBean.usuarioBean.usuario.nome}" /></strong></h:form></ui:insert></div>
+	<div id="info"><ui:insert name="info"><h:form rendered="#{sessaoBean.logado}"><span><h:commandLink style="margin:5px 0 0 0;float:left;background:#DDEEFF;height:15px;line-height:15px;padding:5px;border:1px solid #99CCFF;" value="Logout" action="#{usuarioBean.logout}" /></span>Olá, <strong><h:outputText value="#{sessaoBean.usuarioBean.usuario.nome}" /></strong></h:form></ui:insert></div>
 
 		
 	<div id="menu">
