@@ -1,0 +1,7 @@
+Alterações feitas no banco nessa release:
+
+- Removida a tabela SIS_PERCURSO e criada uma relação direta entre SIS_COORDENADA e SIS_VIATURA.
+- Adicionada uma chave na tabela SIS_COORDENADA para as viaturas fora da área. (COO_FORA_AREA do tipo Smallint).
+- Corrigida a nomenclatura de algumas colunas.
+
+Criado o dicionário de dados.
