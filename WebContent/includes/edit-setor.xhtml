@@ -17,8 +17,8 @@
 				<h:inputText id="nome" value="#{setorBean.elementoSelecionado.nome}"
 					/>
 				<h:outputLabel value="*Escolha os bairros do setor" />
-				<rich:pickList value="#{setorBean.BairrosSetor}" removeAllControlLabel="Remover todos" removeControlLabel="Remover bairro" copyAllControlLabel="Adicionar todos" copyControlLabel="Adicionar bairro">
-					<f:selectItems value="#{setorBean.ListaBairrosDisponiveis}" />
+				<rich:pickList value="#{setorBean.bairrosSetor}" removeAllControlLabel="Remover todos" removeControlLabel="Remover bairro" copyAllControlLabel="Adicionar todos" copyControlLabel="Adicionar bairro">
+					<f:selectItems value="#{setorBean.listaBairrosDisponiveis}" />
 				</rich:pickList>
 		</h:panelGrid>
 	</ui:define>
