@@ -18,7 +18,7 @@
 					/>
 				<h:outputLabel value="*Escolha os bairros do setor" />
 				<rich:pickList value="#{setorBean.bairrosSetor}" removeAllControlLabel="Remover todos" removeControlLabel="Remover bairro" copyAllControlLabel="Adicionar todos" copyControlLabel="Adicionar bairro">
-					<f:selectItems value="#{setorBean.listaBairrosDisponiveis}" />
+					<f:selectItems value="#{bairroBean.listBairros}" />
 				</rich:pickList>
 		</h:panelGrid>
 	</ui:define>

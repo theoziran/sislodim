@@ -18,10 +18,10 @@ public class BairroBean extends GenericoBean {
 	public void setSetor(BairroVO bairro) {
 		this.bairro = bairro;
 	}
-	
-	public List<SelectItem> getListBairros(){
+
+	public List<SelectItem> getListBairros() {
 		List<SelectItem> listBairros = new ArrayList<SelectItem>();
-		for(BairroVO bairro : getFachada().listarBairros()){
+		for (BairroVO bairro : getFachada().listarBairros()) {
 			SelectItem selectItem = new SelectItem();
 			selectItem.setLabel(bairro.getNome());
 			selectItem.setValue(String.valueOf(bairro.getCodigo()));
@@ -29,26 +29,20 @@ public class BairroBean extends GenericoBean {
 		}
 		return listBairros;
 	}
-	
-	
+
 	public List<BairroVO> getListaTudo() {
 
-		if (listaTudo == null || listaTudo.isEmpty()
-				)
+		if (listaTudo == null || listaTudo.isEmpty())
 			setListaTudo(getFachada().listarBairros());
 		return listaTudo;
 	}
-	
-	public void setListBairros(){
-		
-	}
-	public void setListaTudo(List<BairroVO> bairros){
-		this.listaTudo= bairros;
-		
+
+	public void setListBairros() {
+
 	}
 
-
-
-
+	public void setListaTudo(List<BairroVO> bairros) {
+		this.listaTudo = bairros;
+	}
 
 }

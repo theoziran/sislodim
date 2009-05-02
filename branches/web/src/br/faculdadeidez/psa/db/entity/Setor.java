@@ -61,7 +61,14 @@ public class Setor implements Serializable {
 	}
 	
 	public static SetorVO VO(Setor obj){
-		return new SetorVO(obj.getCodigo(), obj.getNome(), obj.getAtivo(), new DAOBairro().ConvertList(obj.getBairros()));
+		SetorVO setorVO = new SetorVO();
+		
+		setorVO.setAtivo(obj.getAtivo());
+		setorVO.setCodigo(obj.getCodigo());
+		setorVO.setNome(obj.getNome());
+		setorVO.setBairros(new DAOBairro().ConvertList(obj.getBairros()));
+		
+		return setorVO;
 	}
 	/*********************************************************/
 	

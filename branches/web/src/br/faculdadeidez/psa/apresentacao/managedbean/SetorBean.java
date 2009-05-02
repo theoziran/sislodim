@@ -102,27 +102,18 @@ public class SetorBean extends GenericoBean {
 		setor.setBairros(bairros);
 	}
 
-	public List<BairroVO> getBairrosSetor() {
-		return setor.getBairros();
-	}
+	public List<String> getBairrosSetor() {
+		if (getElementoSelecionado() != null) {
+			List<String> listaAtuais = new ArrayList<String>();
+			List<BairroVO> bairros = ((SetorVO) getElementoSelecionado())
+					.getBairros();
 
-	public List<SelectItem> getListaBairrosDisponiveis() {
-		List<SelectItem> listaDisponiveis = new ArrayList<SelectItem>();
-/*		List<BairroVO> disponiveis = getFachada().listarBairros();
-		List<BairroVO> atuais = getBairrosSetor();
-
-		for (BairroVO bairroVO : disponiveis) {
-			if (!atuais.contains(bairroVO)) {
-				SelectItem selectItem = new SelectItem();
-				
-				selectItem.setLabel(bairroVO.getNome());
-				selectItem.setValue(String.valueOf(bairroVO.getCodigo()));
-				
-				listaDisponiveis.add(selectItem);
+			for (BairroVO bairroVO : bairros) {
+				listaAtuais.add(String.valueOf(bairroVO.getCodigo()));
 			}
-		}*/
-
-		return listaDisponiveis;
+			return listaAtuais;
+		}
+		return null;
 	}
 
 }
