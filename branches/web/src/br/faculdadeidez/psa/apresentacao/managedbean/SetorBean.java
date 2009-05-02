@@ -60,7 +60,7 @@ public class SetorBean extends GenericoBean {
 		return getFachada().updateSetor(setorDaVez);
 	}
 	
-	public void create()
+	public String create()
 	{
 		String mensagem = getFachada().createSetor(setor);
 		
@@ -72,6 +72,7 @@ public class SetorBean extends GenericoBean {
 			setSetor(new SetorVO());	
 			adicionarMensagem("Setor criado com sucesso!");
 		}
+		return mensagem;
 	}
 	
 	public void pesquisar(){
