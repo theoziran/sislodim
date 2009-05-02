@@ -6,8 +6,8 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class ViaturaVO implements Serializable {	
 	private String codigo;
-	private Boolean ocupada = false;
-	private Boolean ativo = false;
+	private boolean ocupada = false;
+	private boolean ativo = false;
 	private List<EscalaVO> escalas;
 	private List<CoordenadaVO> coordenadas;
 	
@@ -19,7 +19,7 @@ public class ViaturaVO implements Serializable {
 		setCodigo(codigo);
 	}
 	
-	public ViaturaVO(String codigo, Boolean ocupada, Boolean ativo){
+	public ViaturaVO(String codigo, boolean ocupada, boolean ativo){
 		setCodigo(codigo);
 		setOcupada(ocupada);
 		setAtivo(ativo);
@@ -33,19 +33,19 @@ public class ViaturaVO implements Serializable {
 		this.codigo = codigo;
 	}
 	
-	public Boolean getOcupada() {
+	public boolean getOcupada() {
 		return ocupada;
 	}
 	
-	public void setOcupada(Boolean ocupada) {
+	public void setOcupada(boolean ocupada) {
 		this.ocupada = ocupada;
 	}
 	
-	public Boolean getAtivo() {
+	public boolean getAtivo() {
 		return ativo;
 	}
 	
-	public void setAtivo(Boolean ativo) {
+	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
 

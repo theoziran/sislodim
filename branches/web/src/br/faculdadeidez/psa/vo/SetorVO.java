@@ -7,7 +7,7 @@ import java.util.List;
 public class SetorVO implements Serializable {
 	private int codigo;
 	private String nome;
-	private Boolean ativo;
+	private boolean ativo;
 	private List<BairroVO> bairros;
 	
 	public SetorVO() {
@@ -25,26 +25,26 @@ public class SetorVO implements Serializable {
 		setNome(nome);
 	}
 	
-	public SetorVO(int codigo, String nome, Boolean ativo)
+	public SetorVO(int codigo, String nome, boolean ativo)
 	{
 		setCodigo(codigo);
 		setNome(nome);
 		setAtivo(ativo);
 	}
 		
-	public SetorVO(String nome, Boolean ativo){
+	public SetorVO(String nome, boolean ativo){
 		setNome(nome);
 		setAtivo(ativo);
 	}
 	
-	public SetorVO(String nome, Boolean ativo, List<BairroVO> bairros)
+	public SetorVO(String nome, boolean ativo, List<BairroVO> bairros)
 	{
 		setNome(nome);
 		setAtivo(ativo);
 		setBairros(bairros);
 	}
 	
-	public SetorVO(int codigo, String nome, Boolean ativo, List<BairroVO> bairros)
+	public SetorVO(int codigo, String nome, boolean ativo, List<BairroVO> bairros)
 	{
 		setCodigo(codigo);
 		setNome(nome);
@@ -76,11 +76,11 @@ public class SetorVO implements Serializable {
 		this.nome = nome;
 	}
 
-	public Boolean getAtivo() {
+	public boolean getAtivo() {
 		return ativo;
 	}
 
-	public void setAtivo(Boolean ativo) {
+	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
 	

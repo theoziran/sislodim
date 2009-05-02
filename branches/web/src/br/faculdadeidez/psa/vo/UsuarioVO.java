@@ -6,11 +6,11 @@ public class UsuarioVO{
 	private String nome;
 	private String login;
 	private String senha;
-	private int ativo;
+	private boolean ativo;
 	private String cpf;
 	private String rg;
 	private String orgExpeditor;
-	private int tipoPermissao;
+	private short tipoPermissao;
 		
 	public UsuarioVO() {
 		 
@@ -23,10 +23,10 @@ public class UsuarioVO{
 		setCpf(cpf);
 		setRg(rg);
 		setOrgExpeditor(orgExpeditor);
-		setTipoPermissao(Integer.parseInt(tipoPermissao));
+		setTipoPermissao(Short.valueOf(tipoPermissao));
 	}
 	
-	public UsuarioVO(String nome, String login, String senha, int id, int ativo, String cpf, String rg, String orgExpeditor, String tipoPermissao) {
+	public UsuarioVO(String nome, String login, String senha, int id, boolean ativo, String cpf, String rg, String orgExpeditor, String tipoPermissao) {
 		setAtivo(ativo);
 		setId(id);
 		setSenha(senha);
@@ -35,14 +35,14 @@ public class UsuarioVO{
 		setCpf(cpf);
 		setRg(rg);
 		setOrgExpeditor(orgExpeditor);
-		setTipoPermissao(Integer.parseInt(tipoPermissao));
+		setTipoPermissao(Short.valueOf(tipoPermissao));
 	}
 	
-	public int getTipoPermissao() {
+	public short getTipoPermissao() {
 		return tipoPermissao;
 	}
 
-	public void setTipoPermissao(int tipoPermissao) {
+	public void setTipoPermissao(short tipoPermissao) {
 		this.tipoPermissao = tipoPermissao;
 	}
 	
@@ -70,10 +70,10 @@ public class UsuarioVO{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public int getAtivo() {
+	public boolean getAtivo() {
 		return ativo;
 	}
-	public void setAtivo(int ativo) {
+	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
 

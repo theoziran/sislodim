@@ -10,15 +10,20 @@ public class CoordenadaVO implements Serializable {
 	private String longitude;
 	private ViaturaVO viatura;
 	private Date data;
-
+	private boolean foraDeArea;
+	
+	
 	public CoordenadaVO(){
 		
 	}
 	
-	public CoordenadaVO(String lat,String longit, ViaturaVO viatura) {
+	public CoordenadaVO(String lat,String longit, ViaturaVO viatura, Date data, boolean foraDeArea, int id) {
 		this.latitude = lat;
 		this.longitude = longit;
 		this.viatura = viatura;
+		this.data = data;
+		this.foraDeArea = foraDeArea;
+		this.codigo = id;
 	}
 	public int getCodigo() {
 		return codigo;
@@ -54,6 +59,14 @@ public class CoordenadaVO implements Serializable {
 
 	public Date getData() {
 		return data;
+	}
+
+	public void setForaDeArea(boolean foraDeArea) {
+		this.foraDeArea = foraDeArea;
+	}
+
+	public boolean getForaDeArea() {
+		return foraDeArea;
 	}
 
 }

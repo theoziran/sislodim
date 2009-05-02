@@ -29,7 +29,7 @@ public class UsuarioBusinessLogic {
 				throw new Exception();
 			for (UsuarioVO obj : usuarios) {
 				if (obj.getSenha().equals(senha)) {
-					if (obj.getAtivo() == 1) {
+					if (obj.getAtivo() == true) {
 						FacesContext context = FacesContext
 								.getCurrentInstance();
 						if (context != null) {
@@ -55,7 +55,7 @@ public class UsuarioBusinessLogic {
 			UsuarioVO user = dUsuario.find(id);
 			if (user == null)
 				return "usuarioInexistente";
-			user.setAtivo(0);
+			user.setAtivo(false);
 			dUsuario.update(user);
 			return "removido";
 		} catch (Exception e) {
@@ -130,7 +130,7 @@ public class UsuarioBusinessLogic {
 				if (dUsuario.findByField("cpf", user.getCpf()).isEmpty()) {
 					if (dUsuario.existsRg(user.getRg(), user.getOrgExpeditor())
 							.isEmpty()) {
-						user.setAtivo(1);
+						user.setAtivo(true);
 						dUsuario.persist(user);
 						return "inserido";
 					} else {

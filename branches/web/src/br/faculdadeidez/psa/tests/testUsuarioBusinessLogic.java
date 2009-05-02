@@ -24,8 +24,8 @@ public class testUsuarioBusinessLogic extends TestCase {
 		u.setCpf("22616487403");
 		u.setRg("1234501");
 		u.setOrgExpeditor("SSP-PB");
-		u.setTipoPermissao(1);
-		u.setAtivo(1);
+		u.setTipoPermissao((short) 1);
+		u.setAtivo(true);
 
 		listUsuariosValidos.add(u);
 
@@ -37,8 +37,8 @@ public class testUsuarioBusinessLogic extends TestCase {
 		u.setCpf("71741487510");
 		u.setRg("1234502");
 		u.setOrgExpeditor("SSP-PB");
-		u.setAtivo(1);
-		u.setTipoPermissao(2);
+		u.setAtivo(true);
+		u.setTipoPermissao((short) 2);
 
 		listUsuariosValidos.add(u);
 
@@ -50,8 +50,8 @@ public class testUsuarioBusinessLogic extends TestCase {
 		u.setCpf("58838281165");
 		u.setRg("1234504");
 		u.setOrgExpeditor("SSP-PB");
-		u.setAtivo(1);
-		u.setTipoPermissao(2);
+		u.setAtivo(true);
+		u.setTipoPermissao((short) 2);
 
 		listUsuariosValidos.add(u);
 
@@ -63,8 +63,8 @@ public class testUsuarioBusinessLogic extends TestCase {
 		usuarioInvalido.setCpf("93235080716");
 		usuarioInvalido.setRg("1234503");
 		usuarioInvalido.setOrgExpeditor("SSP-PB");
-		usuarioInvalido.setAtivo(1);
-		usuarioInvalido.setTipoPermissao(1);
+		usuarioInvalido.setAtivo(true);
+		usuarioInvalido.setTipoPermissao((short) 1);
 
 	}
 
@@ -215,7 +215,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 		u.setCpf("93235080716");
 		
 		// tipo de permissao invï¿½lido
-		u.setTipoPermissao(0);
+		u.setTipoPermissao((short) 0);
 		assertEquals("dadoInvalido", ubl.create(u));
 	}
 
@@ -388,7 +388,7 @@ public class testUsuarioBusinessLogic extends TestCase {
 			u.setCpf("93235080716");
 						
 			// tipo de permissao inválido
-			u.setTipoPermissao(0);
+			u.setTipoPermissao((short) 0);
 			assertEquals("dadoInvalido", ubl.update(u));
 		}
 	}

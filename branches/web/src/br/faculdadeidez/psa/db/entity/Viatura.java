@@ -18,12 +18,12 @@ import br.faculdadeidez.psa.vo.ViaturaVO;
 @Table (name="SIS_VIATURA")
 public class Viatura implements Serializable {	
 	
-	@Id @Column (name="VIA_CODIGO")
+	@Id @Column (name="VIA_CODIGO", length=4)
 	private String codigo;
 	@Basic @Column (name="VIA_OCUPADA", nullable=false)
-	private Boolean ocupada = false;
+	private boolean ocupada = false;
 	@Basic @Column (name="VIA_ATIVO", nullable=false)
-	private Boolean ativo = false;
+	private boolean ativo = false;
 	
 	@OneToMany(mappedBy = "viatura")  
 	private List<Coordenada> coordenadas;
@@ -68,19 +68,19 @@ public class Viatura implements Serializable {
 		this.codigo = codigo;
 	}
 	
-	public Boolean getOcupada() {
+	public boolean getOcupada() {
 		return ocupada;
 	}
 	
-	public void setOcupada(Boolean ocupada) {
+	public void setOcupada(boolean ocupada) {
 		this.ocupada = ocupada;
 	}
 	
-	public Boolean getAtivo() {
+	public boolean getAtivo() {
 		return ativo;
 	}
 	
-	public void setAtivo(Boolean ativo) {
+	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
 

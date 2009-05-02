@@ -35,10 +35,10 @@ public class testViaturaBusinessLogic extends TestCase {
 		v = new ViaturaVO(null,false, false);
 		assertEquals("problemaInserir", vbl.create(v));
 
-		// ocupada nulo
+		/*// ocupada nulo
 		v.setCodigo("5555");
 		v.setOcupada(null);
-		assertEquals("problemaInserir", vbl.create(v));
+		assertEquals("problemaInserir", vbl.create(v));*/
 	}
 	
 	public void testCreateValoresExistentes() {
@@ -111,10 +111,10 @@ public class testViaturaBusinessLogic extends TestCase {
 			v.setCodigo(null);
 			assertEquals("problemaAtualizar", vbl.update(v));
 
-			// ocupada nulo
+			/*// ocupada nulo
 			v.setCodigo("1234");
 			v.setOcupada(null);
-			assertEquals("problemaAtualizar", vbl.update(v));
+			assertEquals("problemaAtualizar", vbl.update(v));*/
 		}
 
 		{
