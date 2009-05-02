@@ -3,7 +3,6 @@ package br.com.idez.ddm.tourguide;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.microedition.lcdui.Displayable;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
@@ -12,7 +11,6 @@ import org.xmlpull.v1.XmlPullParserException;
 import br.com.idez.ddm.tourguide.core.Parser;
 import br.com.idez.ddm.tourguide.core.Record;
 import br.com.idez.ddm.tourguide.core.UIController;
-import br.com.idez.ddm.tourguide.telas.Inicial;
 
 public class TourGuideMIDLet extends MIDlet {
 
@@ -36,8 +34,9 @@ public class TourGuideMIDLet extends MIDlet {
 	protected void startApp() throws MIDletStateChangeException {
 		System.out.println("Iniciando MIDlet");
 
-		InputStream in = getClass().getResourceAsStream("PontosEstrategicos.xml");
-		
+		InputStream in = getClass().getResourceAsStream(
+				"PontosEstrategicos.xml");
+
 		try {
 			Parser.getInstance().parse(in);
 		} catch (XmlPullParserException e) {
@@ -47,17 +46,17 @@ public class TourGuideMIDLet extends MIDlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		// Se acontecer um evendo de re-inicialização (pauseApp invocado) o
 		// MIDLet volta ao estado corrente.
-//		if (!started) {
-//			this.controller = UIController.createInstance(this);
-//			controller.setCurrent(Inicial.getInstance());
-//			started = true;
-//		} else {
-//			Displayable displayable = controller.getCurrentDisplayable();
-//			controller.setCurrent(displayable);
-//		}
+		// if (!started) {
+		// this.controller = UIController.createInstance(this);
+		// controller.setCurrent(Inicial.getInstance());
+		// started = true;
+		// } else {
+		// Displayable displayable = controller.getCurrentDisplayable();
+		// controller.setCurrent(displayable);
+		// }
 	}
 
 }
