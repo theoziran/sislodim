@@ -24,16 +24,19 @@ public class Coordenada implements Serializable {
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) 
 	@Column (name="COO_CODIGO")
 	private int id;
-	@Basic @Column (name="COO_LOGITUDE", nullable=false) 
+	@Basic @Column (name="COO_LOGITUDE", nullable=false, length=18) 
 	private String longitude;
-	@Basic @Column (name="COO_LATITUDE", nullable=false) 
+	@Basic @Column (name="COO_LATITUDE", nullable=false, length=18) 
 	private String latitude;
 	@ManyToOne
-	@JoinColumn (name="COO_VIA_CODIGO")
+	@JoinColumn (name="COO_VIA_CODIGO", nullable=false)
 	private Viatura viatura;
 	@Column (name="COO_DATA_HORA", nullable=false)
 	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date data;
+	@Column (name="COO_FORA_AREA", nullable=false)
+	private boolean foraDeArea;
+	
 	
 	public Coordenada() {
 		 
@@ -44,13 +47,14 @@ public class Coordenada implements Serializable {
 		setLatitude(coo.getLatitude());
 		setViatura(new Viatura(coo.getViatura()));
 		setData(coo.getData());
+		setForaDeArea(coo.getForaDeArea());
 		if (coo.getCodigo()!=0){
 			setId(coo.getCodigo());
 		}
 	}
 	
 	public static CoordenadaVO toVO(Coordenada obj) {		
-		return new CoordenadaVO(obj.getLatitude(),obj.getLongitude(),Viatura.VO(obj.getViatura()));
+		return new CoordenadaVO(obj.getLatitude(),obj.getLongitude(),Viatura.VO(obj.getViatura()),obj.getData(),obj.getForaDeArea(),obj.getId());
 		 
 	}
 	
@@ -87,6 +91,14 @@ public class Coordenada implements Serializable {
 
 	public Date getData() {
 		return data;
+	}
+
+	public void setForaDeArea(boolean foraDeArea) {
+		this.foraDeArea = foraDeArea;
+	}
+
+	public boolean getForaDeArea() {
+		return foraDeArea;
 	}
 
 }

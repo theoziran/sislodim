@@ -22,7 +22,7 @@ public class Bairro implements Serializable {
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) 
 	@Column (name="BAI_CODIGO")
 	private int codigo;
-	@Basic @Column (name="BAI_NOME") 
+	@Basic @Column (name="BAI_NOME", length=80, nullable=false) 
 	private String nome;
 	@ManyToMany(mappedBy="bairros")
 	private List<Setor> setores;

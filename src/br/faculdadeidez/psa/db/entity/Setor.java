@@ -26,7 +26,7 @@ public class Setor implements Serializable {
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) 
 	@Column (name="SET_CODIGO")
 	private int codigo;
-	@Basic @Column (name="SET_NOME", nullable=false) 
+	@Basic @Column (name="SET_NOME", nullable=false, length=100) 
 	private String nome;
     @ManyToMany(cascade={CascadeType.ALL} )
     @JoinTable(name="SIS_BAIRRO_SETOR",
@@ -38,7 +38,7 @@ public class Setor implements Serializable {
       
     private List<Bairro> bairros;
     @Basic @Column( name="SET_ATIVO", nullable=false)
-	private Boolean ativo;
+	private boolean ativo;
     @OneToMany(mappedBy = "setor")
     private List<Escala> escalas;
     
@@ -103,11 +103,11 @@ public class Setor implements Serializable {
 		this.nome = nome;
 	}
 
-	public Boolean getAtivo() {
+	public boolean getAtivo() {
 		return ativo;
 	}
 
-	public void setAtivo(Boolean ativo) {
+	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
 

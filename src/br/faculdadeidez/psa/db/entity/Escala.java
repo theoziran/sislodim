@@ -1,6 +1,7 @@
 package br.faculdadeidez.psa.db.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import javax.persistence.TemporalType;
 
 import br.faculdadeidez.psa.db.dao.DAOViatura;
 import br.faculdadeidez.psa.vo.EscalaVO;
+import br.faculdadeidez.psa.vo.ViaturaVO;
 
 @SuppressWarnings("serial")
 @Entity 
@@ -31,12 +33,14 @@ public class Escala implements Serializable {
 	@Column (name="ESC_CODIGO")
 	private int codigo;
 	@ManyToOne
-	@JoinColumn (name="ESC_SET_CODIGO") 
+	@JoinColumn (name="ESC_SET_CODIGO", nullable=false) 
 	private Setor setor;	
-	@Basic @Temporal(value = TemporalType.DATE) @Column (name="ESC_DATA_INC") 
+	@Basic @Temporal(value = TemporalType.TIMESTAMP) @Column (name="ESC_DATA_INC", nullable=false) 
 	private Date dataInicial;
-	@Basic @Temporal(value = TemporalType.DATE) @Column (name="ESC_DATA_FIM")  
-	private Date dataFinal;    
+	@Basic @Temporal(value = TemporalType.TIMESTAMP) @Column (name="ESC_DATA_FIM", nullable=false)  
+	private Date dataFinal;   
+	@Basic @Column (name="ESC_ATIVO", nullable=false)  
+	private boolean ativo; 
 	@ManyToMany(cascade={CascadeType.ALL} )
     @JoinTable(name="SIS_ESCALA_VIATURA",
             joinColumns=
@@ -59,7 +63,7 @@ public class Escala implements Serializable {
 	}
 	
 	public static EscalaVO VO(Escala obj){
-		return new EscalaVO(obj.getCodigo(), Setor.VO(obj.getSetor()), obj.getDataInicial(), obj.getDataFinal());
+		return new EscalaVO(obj.getCodigo(), Setor.VO(obj.getSetor()), obj.getDataInicial(), obj.getDataFinal(),getViaturasVO(obj.getViaturas()),obj.getAtivo());
 	}
 	/*********************************************************/
 	
@@ -72,11 +76,13 @@ public class Escala implements Serializable {
 		setCodigo(codigo);
 	}
 	
-	public Escala(int codigo, Setor setor, Date dataInicial, Date dataFinal) {
+	public Escala(int codigo, Setor setor, Date dataInicial, Date dataFinal, boolean ativo, List<Viatura> viaturas) {
 		setCodigo(codigo);	
 		setSetor(setor);
 		setDataInicial(dataInicial);
 		setDataFinal(dataFinal);
+		setAtivo(ativo);
+		setViaturas(viaturas);
 	}
 
 	public int getCodigo() {
@@ -117,5 +123,22 @@ public class Escala implements Serializable {
 
 	public void setViaturas(List<Viatura> viaturas) {
 		this.viaturas = viaturas;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public boolean getAtivo() {
+		return ativo;
+	}
+	
+	private static List<ViaturaVO> getViaturasVO(List<Viatura> viaturas){
+		List<ViaturaVO> viaturasVO = new ArrayList<ViaturaVO>();
+		for (Viatura viatura : viaturas) {
+			viaturasVO.add( Viatura.VO(viatura));
+		}
+		return viaturasVO;
+		
 	}
 }

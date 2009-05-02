@@ -122,9 +122,9 @@ public class testSetorBusinessLogic extends TestCase{
 			assertEquals("problemaAtualizar", sbl.update(s));
 
 			// ativo nulo
-			s.setNome("Ativo Nulo");
+			/*s.setNome("Ativo Nulo");
 			s.setAtivo(null);
-			assertEquals("problemaAtualizar", sbl.update(s));
+			assertEquals("problemaAtualizar", sbl.update(s));*/
 			
 			// bairros nulo
 			s.setAtivo(true);

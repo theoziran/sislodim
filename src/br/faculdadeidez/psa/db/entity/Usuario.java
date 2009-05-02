@@ -20,22 +20,22 @@ public class Usuario implements Serializable {
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) 
 	@Column (name="USU_CODIGO")
 	private int id;
-	@Basic @Column (name="USU_NOME", nullable=false) 
+	@Basic @Column (name="USU_NOME", nullable=false, length=150) 
 	private String nome;
-	@Basic @Column (unique=true, name="USU_LOGIN", nullable=false) 
+	@Basic @Column (unique=true, name="USU_LOGIN", nullable=false, length=30) 
 	private String login;
-	@Basic @Column (name="USU_SENHA", nullable=false) 
+	@Basic @Column (name="USU_SENHA", nullable=false, length=10) 
 	private String senha;
-	@Basic @Column (name="USU_ATIVO") 
-	private int ativo;
-	@Basic @Column (unique=true, name="USU_CPF", nullable=false) 
+	@Basic @Column (name="USU_ATIVO", nullable=false) 
+	private boolean ativo;
+	@Basic @Column (unique=true, name="USU_CPF", nullable=false, length=11) 
 	private String cpf;
-	@Basic @Column (name="USU_RG", nullable=false) 
+	@Basic @Column (name="USU_RG", nullable=false, length=10) 
 	private String rg;
-	@Basic @Column (name="USU_ORGAO_EXPED", nullable=false) 
+	@Basic @Column (name="USU_ORGAO_EXPED", nullable=false, length=10) 
 	private String orgExpeditor;
-	@Basic @Column (name="USU_PERMISSAO", nullable=false) 
-	private int tipoPermissao;	
+	@Basic @Column (name="USU_PERFIL", nullable=false) 
+	private short tipoPermissao;	
 	
 	
 
@@ -73,11 +73,11 @@ public class Usuario implements Serializable {
 		return user;
 	}
 	
-	public int getTipoPermissao() {
+	public short getTipoPermissao() {
 		return tipoPermissao;
 	}
 
-	public void setTipoPermissao(int tipoPermissao) {
+	public void setTipoPermissao(short tipoPermissao) {
 		this.tipoPermissao = tipoPermissao;
 	}
 	
@@ -105,10 +105,10 @@ public class Usuario implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public int getAtivo() {
+	public boolean getAtivo() {
 		return ativo;
 	}
-	public void setAtivo(int ativo) {
+	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
 

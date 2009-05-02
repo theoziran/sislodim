@@ -12,6 +12,7 @@ public class EscalaVO implements Serializable {
 	private SetorVO setor = new SetorVO();
 	private Date dataInicial;
 	private Date dataFinal;
+	private boolean ativo;
 	List<ViaturaVO> viaturas;
 	
 	public EscalaVO(){
@@ -22,11 +23,13 @@ public class EscalaVO implements Serializable {
 		setCodigo(codigo);
 	}
 	
-	public EscalaVO(int codigo, SetorVO setor, Date dataInicial, Date dataFinal) {
+	public EscalaVO(int codigo, SetorVO setor, Date dataInicial, Date dataFinal, List<ViaturaVO> viaturas, boolean ativo) {
 		setCodigo(codigo);	
 		setSetor(setor);
 		setDataInicial(dataInicial);
 		setDataFinal(dataFinal);
+		setViaturas(viaturas);
+		setAtivo(ativo);
 	}
 	
 	public List<ViaturaVO> getViaturas() {
@@ -67,5 +70,13 @@ public class EscalaVO implements Serializable {
 
 	public void setDataFinal(Date dataFinal) {
 		this.dataFinal = dataFinal;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public boolean getAtivo() {
+		return ativo;
 	}	
 }
