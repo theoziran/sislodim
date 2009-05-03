@@ -158,6 +158,11 @@ public class Fachada {
 		return logicaEscala.pesquisar(codigo);
 	}
 	
+	public List<ViaturaVO> listarViaturasEscala(EscalaVO escala){
+		EscalaBusinessLogic logicaEscala = new EscalaBusinessLogic();
+		return logicaEscala.listarViaturasEscala(escala);
+	}
+	
 	/**
 	 * Início da parte dos bairros
 	 * 

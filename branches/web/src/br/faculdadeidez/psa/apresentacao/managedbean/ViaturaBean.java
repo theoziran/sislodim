@@ -13,7 +13,6 @@ public class ViaturaBean extends GenericoBean {
 	private List<ViaturaVO> listaTudo = null;
 	private ViaturaVO viatura = new ViaturaVO();
 	private String termoPesquisa = new String();
-	private List<SelectItem> listaEscalas;
 	private List<SelectItem> listaViaturas;
 
 	public ViaturaVO getViatura() {
@@ -126,21 +125,6 @@ public class ViaturaBean extends GenericoBean {
 		} else {
 			adicionarMensagem(mensagem);
 		}
-	}
-
-	public List<SelectItem> getListaEscalas() {
-		listaEscalas = new ArrayList<SelectItem>();
-		for (EscalaVO escala : getFachada().listarEscalas()) {
-			SelectItem selectItem = new SelectItem();
-			selectItem.setLabel(escala.getDataFinal().toString());
-			selectItem.setValue(escala.getCodigo());
-			listaEscalas.add(selectItem);
-		}
-		return listaEscalas;
-	}
-
-	public void setListaEscalas(List<SelectItem> listaEscalas) {
-		this.listaEscalas = listaEscalas;
 	}
 
 	public List<SelectItem> getListaViaturas() {
