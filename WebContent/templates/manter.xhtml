@@ -57,7 +57,7 @@
 							<rich:columnGroup>
 								<ui:insert name="tituloTabela" />
 								
-								<rich:column rowspan="2" colspan="2" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}">
+								<rich:column rowspan="2" colspan="2" rendered="#{sessaoBean.coordenador or sessaoBean.moderador or sessaoBean.operador}">
 									<h:outputText value="Ações" />
 								</rich:column>
 
@@ -83,7 +83,7 @@
 														
 							<ui:insert name="colunasAdicionaisValores" />
 							<rich:column
-								rendered="#{sessaoBean.coordenador or sessaoBean.moderador}">
+								rendered="#{sessaoBean.coordenador or sessaoBean.moderador or sessaoBean.operador}">
 								<a4j:commandButton value="Editar"
 									oncomplete="#{rich:component('editPanel')}.show()"
 									ajaxSingle="true">

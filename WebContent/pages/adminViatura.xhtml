@@ -18,34 +18,36 @@
 	<ui:define name="campo1">
 		<h:outputText value="Código" />
 	</ui:define>
-	
+
 	<ui:define name="campo2">
 		<h:outputText value="Ocupada" />
 	</ui:define>
-	
+
 	<ui:define name="colunasAdicionaisTitulos">
-       <rich:column>
-       <h:outputText value="Ativo?" />
-       </rich:column>
-    </ui:define>
+		<rich:column>
+			<h:outputText value="Ativo?" />
+		</rich:column>
+	</ui:define>
 
 	<ui:define name="campo11">
 		<h:outputText value="#{elementoDaVez.codigo}" />
 	</ui:define>
-	
+
 	<ui:define name="campo21">
 		<h:selectBooleanCheckbox value="#{elementoDaVez.ocupada}"
 			disabled="true" />
 	</ui:define>
-	
+
 	<ui:define name="colunasAdicionaisValores">
-       <rich:column>
-       <h:outputText value="#{elementoDaVez.ativo}" />
-       </rich:column>
-    </ui:define>
-	
+		<rich:column>
+			<h:outputText value="#{elementoDaVez.ativo}" />
+		</rich:column>
+	</ui:define>
+
 	<ui:define name="linkNovoItem">
-    	<h:commandButton value="Nova viatura" action="cadastroViatura" rendered="#{sessaoBean.coordenador or sessaoBean.moderador}" />
-    </ui:define>
+		<h:commandButton value="Nova viatura" action="cadastroViatura"
+			rendered="#{sessaoBean.coordenador or sessaoBean.moderador }" />
+
+	</ui:define>
 </ui:composition>
 </html>
