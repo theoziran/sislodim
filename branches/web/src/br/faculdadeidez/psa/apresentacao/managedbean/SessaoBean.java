@@ -38,7 +38,7 @@ public class SessaoBean extends GenericoBean{
 	}
 	
 	public boolean isModerador(){
-		if (getUsuarioBean().getUsuario().getTipoPermissao()==3)
+		if (getUsuarioBean().getUsuario().getTipoPermissao()==2)
 			setModerador(true);
 		return moderador;
 	}
@@ -50,7 +50,7 @@ public class SessaoBean extends GenericoBean{
 	}
 	
 	public boolean isCoordenador(){
-		if (getUsuarioBean().getUsuario().getTipoPermissao()==2)
+		if (getUsuarioBean().getUsuario().getTipoPermissao()==3)
 			setCoordenador(true);
 		return coordenador;
 	}
