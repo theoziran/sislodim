@@ -16,7 +16,8 @@ public class EscalaBusinessLogic {
 			EscalaVO esc = dEscala.find(vo.getCodigo());
 			if (esc == null)
 				return "escalaInexistente";
-			dEscala.remove(esc);
+			vo.setAtivo(false);
+			dEscala.update(vo);
 			return "removido";
 		} catch (Exception e) {
 			 
@@ -27,6 +28,10 @@ public class EscalaBusinessLogic {
 	public String update(EscalaVO vo) {
 		try {
 			DAOEscala dEscala = new DAOEscala();
+			EscalaVO esc = dEscala.find(vo.getCodigo());
+			if (esc == null)
+				return "escalaInexistente";
+			
 			dEscala.update(vo);
 			return "atualizado";
 		} catch (Exception e) {
@@ -43,7 +48,7 @@ public class EscalaBusinessLogic {
 				DAOSetor daoSetor = new DAOSetor();
 				SetorVO setor = daoSetor.find(escala.getSetor().getCodigo());
 				escala.setSetor(setor);
-				
+				escala.setAtivo(true);
 				daoEscala.persist(escala);
 				return "inserido";
 			} else
@@ -56,13 +61,19 @@ public class EscalaBusinessLogic {
 
 	public List<EscalaVO> listar() {
 		DAOEscala dEscala = new DAOEscala();
-		return dEscala.findAll();
+		return dEscala.findAllActivated();
 	}
 
 	public List<EscalaVO> pesquisar(int valor) {
 		DAOEscala dEscala = new DAOEscala();
 		List<EscalaVO> retorno = dEscala.findByField("codigo", String
 				.valueOf(valor));
+		return retorno;
+	}
+	
+	public List<ViaturaVO> listarViaturasEscala(EscalaVO escala){
+		DAOViatura dViatura = new DAOViatura();
+		List<ViaturaVO> retorno = dViatura.findViaturasEscala(escala);
 		return retorno;
 	}
 	

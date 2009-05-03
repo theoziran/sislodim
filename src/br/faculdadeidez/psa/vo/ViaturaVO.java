@@ -7,7 +7,7 @@ import java.util.List;
 public class ViaturaVO implements Serializable {	
 	private String codigo;
 	private boolean ocupada = false;
-	private boolean ativo = false;
+	private boolean ativo = true;
 	private List<EscalaVO> escalas;
 	private List<CoordenadaVO> coordenadas;
 	

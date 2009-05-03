@@ -2,6 +2,7 @@ package br.faculdadeidez.psa.apresentacao.managedbean;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.faces.model.SelectItem;
 
@@ -12,7 +13,7 @@ public class EscalaBean extends GenericoBean {
 	private List<EscalaVO> listaTudo = null;
 	private EscalaVO escala = new EscalaVO();
 	private String termoPesquisa = "";
-	private List<SelectItem> listaViaturas;
+	private List<SelectItem> listaViaturas = null;
 
 	public EscalaVO getEscala() {
 		return escala;
@@ -41,8 +42,10 @@ public class EscalaBean extends GenericoBean {
 
 	public String update() {
 		EscalaVO escalaDaVez = (EscalaVO) getElementoSelecionado();
+		escalaDaVez.setViaturas(escala.getViaturas());		
 		String mensagem = getFachada().updateEscala(escalaDaVez);
-		adicionaMensagemUsuario(mensagem);
+		adicionaMensagemUsuario(mensagem);		
+		setElementoSelecionado(null);		
 		return mensagem;
 	}
 
@@ -120,11 +123,21 @@ public class EscalaBean extends GenericoBean {
 		}
 		escala.setViaturas(viaturas);
 	}
+	
+	public List<String> getViaturasEscala() {
+		if (getElementoSelecionado() != null) {
+			List<String> listaAtuais = new ArrayList<String>();
+			List<ViaturaVO> viaturas = ((EscalaVO) getElementoSelecionado())
+					.getViaturas();
 
-	public List getViaturasEscala() {
-		return new ArrayList();
+			for (ViaturaVO viaturaVO : viaturas) {
+				listaAtuais.add(String.valueOf(viaturaVO.getCodigo()));
+			}
+			return listaAtuais;
+		}
+		return null;
 	}
-
+	
 	public List<SelectItem> getListaViaturas() {
 		List<SelectItem> listItensViaturas = new ArrayList<SelectItem>();
 		SelectItem selectItem;

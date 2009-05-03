@@ -58,7 +58,8 @@ public class Escala implements Serializable {
 		this.codigo = vo.getCodigo();
 		this.setor = new Setor(vo.getSetor());
 		this.dataInicial = vo.getDataInicial();
-		this.dataFinal = vo.getDataFinal();		
+		this.dataFinal = vo.getDataFinal();
+		this.ativo = vo.getAtivo();
 		this.viaturas = new DAOViatura().ConverteEntidade(vo.getViaturas());
 	}
 	
