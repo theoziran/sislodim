@@ -24,13 +24,6 @@
 				<h:inputText styleClass="codigo" id="codigo" value="#{viaturaBean.viatura.codigo}"
 					required="true" requiredMessage="Digite um código para a viatura" maxlenght="4" />
 				<h:message for="codigo" styleClass="mensagens"/>
-				<h:outputLabel value="Ativo?" />
-				<h:selectBooleanCheckbox value="#{viaturaBean.viatura.ativo}"/>
-				<!-- h:outputLabel value="*Escalas" />
-				
-				<h:selectOneMenu id="escala" value="#{viaturaBean.viatura.escalas}" rendered="true">  
-             		<f:selectItems value="#{viaturaBean.listaEscalas}"/>  
-         		</h:selectOneMenu--> 
 			</h:panelGrid>
 			
 			<h:commandButton action="#{viaturaBean.create}" value="Salvar" />	

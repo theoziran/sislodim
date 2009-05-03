@@ -11,7 +11,7 @@
 	<ui:param name="atualBean" value="#{escalaBean}" />
 	<ui:define name="tituloTabela">
 		<!-- coloque o número de colunas necessárias -->
-		<rich:column colspan="4">Dados básicos
+		<rich:column colspan="5">Dados básicos
  		</rich:column>
 	</ui:define>
 
@@ -31,6 +31,10 @@
        <rich:column>
        	<h:outputText value="Data Final" />
        </rich:column>
+       
+       <rich:column>
+       	<h:outputText value="Ativo?" />
+       </rich:column>
     </ui:define>
 	
 	<ui:define name="campo11"><h:outputText value="#{elementoDaVez.codigo}" /></ui:define>
@@ -39,12 +43,20 @@
 	
 	<ui:define name="colunasAdicionaisValores">
        <rich:column>
-       	<h:outputText value="#{elementoDaVez.dataInicial}" />
+       	<h:outputText value="#{elementoDaVez.dataInicial}">       	
+       		<f:convertDateTime pattern="dd/MM/yyyy"/>
+       	</h:outputText>
        </rich:column>
        
        <rich:column>
-       	<h:outputText value="#{elementoDaVez.dataFinal}" />
+       	<h:outputText value="#{elementoDaVez.dataFinal}">
+       		<f:convertDateTime pattern="dd/MM/yyyy"/>
+       	</h:outputText>
        </rich:column>
+       
+       <rich:column>
+			<h:selectBooleanCheckbox value="#{elementoDaVez.ativo}" disabled="true" />			
+	</rich:column>
     </ui:define>
 		
 	<ui:define name="linkNovoItem">

@@ -13,17 +13,29 @@
 	</ui:define>
 
 	<ui:define name="camposEdit">
+	
+		<h:panelGrid columns="2">
 		
-		<h:outputLabel value="*Setor" />
-		<h:selectOneMenu id="setor" value="#{escalaBean.elementoSelecionado.setor}" rendered="true">  
-     		<f:selectItems value="#{setorBean.listaItensSetores}"/>  
-  		</h:selectOneMenu>
-  		
-  		<h:outputLabel value="*Data inicial" />
-		<rich:calendar id="dataInicial" datePattern="dd/MM/yyyy" value="#{escalaBean.elementoSelecionado.dataInicial}" required="true"></rich:calendar>
+			<h:outputLabel value="*Setor" />
+			<h:selectOneMenu id="setor" value="#{escalaBean.elementoSelecionado.setor.codigo}" rendered="true">  
+	     		<f:selectItems value="#{setorBean.listaItensSetores}"/>  
+	  		</h:selectOneMenu>
+	  		
+	  		<h:outputLabel value="*Escolha as viaturas desta escala" />
+			<rich:pickList value="#{escalaBean.viaturasEscala}" removeAllControlLabel="Remover todos" removeControlLabel="Remover viatura" copyAllControlLabel="Adicionar todos" copyControlLabel="Adicionar viatura">
+				<f:selectItems value="#{viaturaBean.listViaturas}" />
+			</rich:pickList>   
+			
+	  		<h:outputLabel value="*Data inicial" />
+			<rich:calendar id="dataInicial" datePattern="dd/MM/yyyy" value="#{escalaBean.elementoSelecionado.dataInicial}" required="true"></rich:calendar>
+			
+			<h:outputLabel value="*Data final" />
+			<rich:calendar id="dataFinal" datePattern="dd/MM/yyyy" value="#{escalaBean.elementoSelecionado.dataFinal}" required="true"></rich:calendar>
+			
+			<h:outputLabel value="Ativo?" />
+			<h:selectBooleanCheckbox value="#{escalaBean.elementoSelecionado.ativo}"/>
 		
-		<h:outputLabel value="*Data final" />
-		<rich:calendar id="dataFinal" datePattern="dd/MM/yyyy" value="#{escalaBean.elementoSelecionado.dataFinal}" required="true"></rich:calendar>
+		</h:panelGrid>
 		
 	</ui:define>
 	
