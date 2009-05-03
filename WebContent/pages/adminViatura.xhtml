@@ -34,13 +34,12 @@
 	</ui:define>
 
 	<ui:define name="campo21">
-		<h:selectBooleanCheckbox value="#{elementoDaVez.ocupada}"
-			disabled="true" />
+		<h:selectBooleanCheckbox value="#{elementoDaVez.ocupada}" disabled="true" />
 	</ui:define>
 
 	<ui:define name="colunasAdicionaisValores">
 		<rich:column>
-			<h:outputText value="#{elementoDaVez.ativo}" />
+			<h:selectBooleanCheckbox value="#{elementoDaVez.ativo}" disabled="true" />			
 		</rich:column>
 	</ui:define>
 
