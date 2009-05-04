@@ -11,7 +11,7 @@ public class UsuarioBean extends GenericoBean {
 	private UsuarioVO usuario = new UsuarioVO();
 	private String termoPesquisa = new String();
 	private List<UsuarioVO> listaTudo;
-
+	
 	public UsuarioBean() {
 		setLinkEditar("cadastroUsuario");
 	}

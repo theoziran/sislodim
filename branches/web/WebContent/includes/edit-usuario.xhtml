@@ -16,7 +16,7 @@
 	</ui:define>
 	<ui:define name="camposEdit">
 		<h:outputLabel value="Ativo" />
-		<h:inputText value="#{usuarioBean.elementoSelecionado.ativo}" />
+		<h:selectBooleanCheckbox value="#{usuarioBean.elementoSelecionado.ativo}"/>
 		<h:outputLabel value="Nome" />
 		<h:inputText value="#{usuarioBean.elementoSelecionado.nome}" />
 		<h:outputLabel value="Senha" />
