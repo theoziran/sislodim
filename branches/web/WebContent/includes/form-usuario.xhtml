@@ -36,7 +36,7 @@
 				<h:message for="login" styleClass="mensagens"/>
 				
 				<h:outputLabel value="* Senha" />
-				<h:inputSecret id="senha" value="#{usuarioBean.usuario.senha}" required="true"  requiredMessage="A senha é obrigatória" />
+				<h:inputSecret maxlength="10" id="senha" value="#{usuarioBean.usuario.senha}" required="true"  requiredMessage="A senha é obrigatória" />
 				<h:message for="senha" styleClass="mensagens"/>
 				
 				<h:outputLabel value="* Tipo de usuário" />

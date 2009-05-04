@@ -20,7 +20,7 @@
 		<h:outputLabel value="Nome" />
 		<h:inputText value="#{usuarioBean.elementoSelecionado.nome}" />
 		<h:outputLabel value="Senha" />
-		<h:inputSecret value="#{usuarioBean.elementoSelecionado.senha}" />
+		<h:inputSecret value="#{usuarioBean.elementoSelecionado.senha}" maxlength="10" />
 	</ui:define>
 
 </ui:composition>
