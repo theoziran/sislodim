@@ -47,7 +47,7 @@ public class PontosMarcados {
 			Ponto ponto) {
 
 		AddressInfo address = new AddressInfo();
-		// FIXME adiciona os campos no AddressInfo
+		// FIXME adicionar os campos no AddressInfo
 
 		// FIXME recupera as coordenadas
 		QualifiedCoordinates coord = null;

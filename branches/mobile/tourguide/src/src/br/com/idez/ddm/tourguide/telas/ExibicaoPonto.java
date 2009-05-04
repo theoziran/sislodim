@@ -34,7 +34,7 @@ public class ExibicaoPonto extends Form implements CommandListener {
 		try {
 			image = Image.createImage("/farol.png");
 		} catch (IOException e) {
-			// FIXME tratar a exceção
+			image = null;
 		}
 		iiPontoEstrategico.setImage(image);
 

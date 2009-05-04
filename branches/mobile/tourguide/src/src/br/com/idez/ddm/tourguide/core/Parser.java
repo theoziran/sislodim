@@ -1,7 +1,5 @@
 package br.com.idez.ddm.tourguide.core;
 
-
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -48,7 +46,7 @@ public class Parser {
 			String attributeName = xmlParser.getAttributeName(0);
 			String attributeValue = xmlParser.getAttributeValue(0);
 
-			System.out.println("ID = " + attributeValue);
+			System.out.println("--> ID = " + attributeValue);
 
 			if (attributeName.equals("id")) {
 				pontos.addElement(parsePonto(attributeValue));
@@ -57,8 +55,8 @@ public class Parser {
 			}
 			xmlParser.require(XmlPullParser.END_TAG, null, "ponto");
 		}
-
-		xmlParser.require(XmlPullParser.END_TAG, null, "agenda");
+		
+		xmlParser.require(XmlPullParser.END_TAG, null, "pontos");
 		xmlParser.next();
 		xmlParser.require(XmlPullParser.END_DOCUMENT, null, null);
 
@@ -78,7 +76,7 @@ public class Parser {
 			String name = xmlParser.getName();
 			String text = xmlParser.nextText();
 
-			System.out.println("<" + name + ">" + text);
+			System.out.println("----->" + name + ": " + text);
 
 			if (name.equals("nome"))
 				ponto.setNome(text);
