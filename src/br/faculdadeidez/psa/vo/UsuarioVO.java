@@ -82,7 +82,7 @@ public class UsuarioVO{
 	}
 
 	public void setCpf(String cpf) {
-		this.cpf = cpf;
+		this.cpf = cpf.replaceAll("[^0-9]*", "");
 	}
 
 	public String getRg() {
@@ -100,4 +100,5 @@ public class UsuarioVO{
 	public void setOrgExpeditor(String orgExpeditor) {
 		this.orgExpeditor = orgExpeditor;
 	}	
+
 }

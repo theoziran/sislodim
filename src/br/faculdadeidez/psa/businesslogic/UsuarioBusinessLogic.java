@@ -184,11 +184,6 @@ public class UsuarioBusinessLogic {
 				.valueOf(user.getCpf().isEmpty())));
 		erros.add(new MensagemValidacaoVO("Login", "O login é obrigatório",
 				Boolean.valueOf(user.getLogin().isEmpty())));
-
-		if (erros.size()>0){
-			return erros;
-		}
-		
 		erros.add(new MensagemValidacaoVO("Login",
 				"O login não pode conter só números", Boolean.valueOf(user
 						.getLogin().matches("^[0-9]*$"))));
@@ -205,6 +200,7 @@ public class UsuarioBusinessLogic {
 	}
 
 	private boolean validaCpf(String cpf) {
+
 		if (cpf == null)
 			return false;
 
