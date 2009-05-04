@@ -52,7 +52,7 @@ public class Setup extends HttpServlet {
 		response.getWriter().println("Criando primeiro usuário...<br/>");
 		response.getWriter().println(
 				bo.create(new UsuarioVO("Administrador", "admin", "123",
-						"123456789", "123456", "SSP/PB", "3")));
+						"75626335250", "123456", "SSP/PB", "3")));
 
 		response.getWriter().println("Login: admin<br/>");
 		response.getWriter().println("Senha: 123<br/>");
