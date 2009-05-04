@@ -1,12 +1,9 @@
 package br.com.idez.ddm.tourguide;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
-
-import org.xmlpull.v1.XmlPullParserException;
 
 import br.com.idez.ddm.tourguide.core.Parser;
 import br.com.idez.ddm.tourguide.core.Record;
@@ -37,15 +34,7 @@ public class TourGuideMIDLet extends MIDlet {
 		InputStream in = getClass().getResourceAsStream(
 				"PontosEstrategicos.xml");
 
-		try {
-			Parser.getInstance().parse(in);
-		} catch (XmlPullParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Parser.getInstance();
 
 		// Se acontecer um evendo de re-inicialização (pauseApp invocado) o
 		// MIDLet volta ao estado corrente.
