@@ -177,8 +177,15 @@ public class Fachada {
 		return new BairroBusinessLogic().find(chave);
 	}
 	public CoordenadaVO getUltimaCoordenadaViatura(ViaturaVO viatura){
-		CoordenadasBusinessLogic cBL = new CoordenadasBusinessLogic();
-		return cBL.getUltimaCoordenadaViatura(viatura);
+		CoordenadasBusinessLogic logicaCoordenada = new CoordenadasBusinessLogic();
+		return logicaCoordenada.getUltimaCoordenadaViatura(viatura);
 		
+	}
+	
+	public BairroVO pesquisaBairroNome (String nome){
+		if (nome.isEmpty())
+			return new BairroVO();
+		BairroBusinessLogic logicaBairro = new BairroBusinessLogic();
+		return logicaBairro.findNome(nome);
 	}
 }

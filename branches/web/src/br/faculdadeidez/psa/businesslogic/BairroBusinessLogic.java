@@ -49,4 +49,9 @@ public class BairroBusinessLogic {
 	public BairroVO find(int chave){
 		return new DAOBairro().find(chave);
 	}
+	
+	public BairroVO findNome(String nome){
+		DAOBairro dBairro = new DAOBairro();
+		return dBairro.findByField("nome", nome).get(0);
+	}
 }

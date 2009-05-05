@@ -18,5 +18,9 @@ public static void main(String[] args) throws ComparacaoDistanciaException {
 		c.setDestino("-7.097614,-34.834213");
 		
 		System.out.println(c.getDistancia());
+		c.setOrigem("-7.183055,-34.839642");
+		c.setDestino("rua maria noemi de souza holanda, mangabeira");
+		
+		System.out.println(c.getDistancia());
 	}
 }
