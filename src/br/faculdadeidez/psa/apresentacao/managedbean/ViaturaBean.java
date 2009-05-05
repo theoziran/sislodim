@@ -15,6 +15,10 @@ public class ViaturaBean extends GenericoBean {
 	private String termoPesquisa = new String();
 	private List<SelectItem> listaViaturas;
 
+	
+	
+	
+	
 	public ViaturaVO getViatura() {
 		return viatura;
 	}

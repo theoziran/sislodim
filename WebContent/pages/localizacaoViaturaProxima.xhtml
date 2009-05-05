@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/templates/generico.xhtml">
+
+	<ui:define name="head">
+		<script
+			src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAzmhk1rsDjNgnLZAsYOvQSRSjuaEVZENCKjhga9SCJmC3LvuwVBR8Ioq6jiQaq4b7Ft9EJwXpA4e1nA"
+			type="text/javascript"></script>
+		<script type="text/javascript">
+
+  
+    
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map_canvas"));
+        directions = new GDirections(map);
+        /*directions.load("from: -7.183055,-34.839642 to: -7.119077,-34.834106");*/
+        directions.load("from: #{coordenadaBean.coordenada.latitude},#{coordenadaBean.coordenada.longitude} to: #{coordenadaBean.rua},#{coordenadaBean.bairro}");
+      }
+    }
+
+</script>
+
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<body onload="initialize()" onunload="GUnload()">
+		<rich:messages style="width:500px" layout="table" globalOnly="true"
+			showSummary="true" infoClass="informacao">
+			<f:facet name="infoMarker">
+			</f:facet>
+		</rich:messages>
+		<h:panelGrid columns="6">
+		<h:form>
+		 <h:outputLabel value="Bairro" for="bairro" />
+		 <h:selectOneMenu value="#{coordenadaBean.bairro}" id="bairro">
+		 <f:selectItems value="#{bairroBean.listBairros}"/>
+		 </h:selectOneMenu>
+		 <h:outputLabel value="Rua" for="rua" />
+		 <h:inputText value="#{coordenadaBean.rua}" id="rua" size="50"/>
+		<h:commandButton action="#{coordenadaBean.calculaPontoMaisProximo}" value="Encontrar viatura mais próxima" />
+		</h:form>
+		</h:panelGrid>
+		
+		<rich:panel name="mapa" id="map_canvas"
+			style="width:500px;height: 300px;float:left">
+
+
+
+
+		</rich:panel>
+		</body>
+	</ui:define>
+</ui:composition>
+</html>

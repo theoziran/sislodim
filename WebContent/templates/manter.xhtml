@@ -82,11 +82,14 @@
 							</rich:column>
 														
 							<ui:insert name="colunasAdicionaisValores" />
+							
 							<rich:column
 								rendered="#{sessaoBean.coordenador or sessaoBean.moderador or sessaoBean.operador}">
+								
 								<a4j:commandButton value="Editar"
-									oncomplete="#{rich:component('editPanel')}.show()"
-									ajaxSingle="true">
+									onclick="#{rich:component('editPanel')}.show()"
+									>
+									
 									<f:setPropertyActionListener value="#{elementoDaVez}"
 										target="#{atualBean.elementoSelecionado}" />
 								</a4j:commandButton>
@@ -101,8 +104,8 @@
 										target="#{atualBean.elementoSelecionado}" />
 								</a4j:commandButton>
 
-
 							</rich:column>
+							
 						</rich:columnGroup>
 					</rich:dataTable>
 					<rich:datascroller align="left" for="generica" id="datascroller" />
