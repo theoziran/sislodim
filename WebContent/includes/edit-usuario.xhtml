@@ -7,17 +7,16 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition template="/templates/manter.xhtml">
-
+	
 	<ui:define name="tituloEdit">
 		<h:outputText value="Editar usuários" />
 	</ui:define>
 	<ui:define name="tituloDel">
-		<h:outputText
-			value="Deletar usuário #{usuarioBean.elementoSelecionado.nome}" />
+		<h:outputText value="Deletar usuário #{usuarioBean.elementoSelecionado.nome}" />
 	</ui:define>
 	<ui:define name="camposEdit">
 		<h:outputLabel value="Ativo" />
-		<h:selectBooleanCheckbox value="#{usuarioBean.elementoSelecionado.ativo}" />
+		<h:selectBooleanCheckbox value="#{usuarioBean.elementoSelecionado.ativo}"/>
 		<h:outputLabel value="Nome" />
 		<h:inputText styleClass="nome" id="nome"
 			value="#{usuarioBean.elementoSelecionado.rg}" required="true"
