@@ -7,20 +7,48 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition template="/templates/manter.xhtml">
-	
+
 	<ui:define name="tituloEdit">
 		<h:outputText value="Editar usuários" />
 	</ui:define>
 	<ui:define name="tituloDel">
-		<h:outputText value="Deletar usuário #{usuarioBean.elementoSelecionado.nome}" />
+		<h:outputText
+			value="Deletar usuário #{usuarioBean.elementoSelecionado.nome}" />
 	</ui:define>
 	<ui:define name="camposEdit">
 		<h:outputLabel value="Ativo" />
-		<h:selectBooleanCheckbox value="#{usuarioBean.elementoSelecionado.ativo}"/>
+		<h:selectBooleanCheckbox value="#{usuarioBean.elementoSelecionado.ativo}" />
 		<h:outputLabel value="Nome" />
-		<h:inputText value="#{usuarioBean.elementoSelecionado.nome}" />
-		<h:outputLabel value="Senha" />
-		<h:inputSecret value="#{usuarioBean.elementoSelecionado.senha}" maxlength="10" />
+		<h:inputText styleClass="nome" id="nome"
+			value="#{usuarioBean.elementoSelecionado.rg}" required="true"
+			requiredMessage="O Nome é obrigatório" />
+		<h:outputLabel value="* CPF" />
+		<h:inputText styleClass="cpf" id="cpf"
+			value="#{usuarioBean.elementoSelecionado.cpf}" required="true"
+			requiredMessage="O CPF é obrigatório" />
+		<h:outputLabel value="* RG" />
+		<h:inputText styleClass="rg" id="rg"
+			value="#{usuarioBean.elementoSelecionado.rg}" required="true"
+			requiredMessage="O RG é obrigatório" />
+		<h:outputLabel value="* Orgão Expedidor" />
+		<h:inputText id="orgExpeditor"
+			value="#{usuarioBean.elementoSelecionado.orgExpeditor}"
+			required="true" requiredMessage="O órgão expeditor é obrigatório" />
+		<h:outputLabel value="* Login" />
+		<h:inputText id="login"
+			value="#{usuarioBean.elementoSelecionado.login}" required="true"
+			requiredMessage="O login é obrigatório" />
+		<h:outputLabel value="* Senha" />
+		<h:inputSecret maxlength="10" id="senha"
+			value="#{usuarioBean.elementoSelecionado.senha}" required="true"
+			requiredMessage="A senha é obrigatória" />
+		<h:outputLabel value="* Tipo de usuário" />
+		<h:selectOneMenu id="placa"
+			value="#{usuarioBean.elementoSelecionado.tipoPermissao}">
+			<f:selectItem itemLabel="Coordenador" itemValue="3" />
+			<f:selectItem itemLabel="Moderador" itemValue="2" />
+			<f:selectItem itemLabel="Operador" itemValue="1" />
+		</h:selectOneMenu>
 	</ui:define>
 
 </ui:composition>
