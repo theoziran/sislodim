@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="/includes/edit-usuario.xhtml">
+	<ui:param name="atualBean" value="#{rotaPercorridaBean}" />
+	<ui:define name="tituloTabela">
+		<!-- coloque o número de colunas necessárias -->
+		<rich:column colspan="4">
+             Rotas Percorridas</rich:column>
+	</ui:define>
+	<ui:define name="campo1">
+		<h:outputText value="Viatura" />
+	</ui:define>
+	<ui:define name="campo2">
+		<h:outputText value="Bairro" />
+	</ui:define>
+	<ui:define name="campo3">
+		<h:outputText value="Horário" />
+	</ui:define>
+	<ui:define name="linkNovaPesquisa">
+		<h:commandButton value="Nova Pesquisa" action="relatorio"
+			rendered="#{sessaoBean.coordenador or sessaoBean.moderador}" />
+	</ui:define>
+</ui:composition>
+</html>

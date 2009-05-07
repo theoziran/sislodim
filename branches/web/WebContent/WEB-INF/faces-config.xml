@@ -172,6 +172,14 @@
 			<to-view-id>/pages/relatorio.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>pages/relatorio.xhtml</display-name>
+		<from-view-id>/pages/relatorio.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>exibir</from-outcome>
+			<to-view-id>/pages/exibicaoRelatorio.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 	<!-- setor  -->
 
