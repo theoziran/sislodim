@@ -36,7 +36,8 @@ public class Coordenada implements Serializable {
 	private Date data;
 	@Column (name="COO_FORA_AREA", nullable=false)
 	private boolean foraDeArea;
-	
+	@Column (name="COO_PROC_VERIFIC", nullable=false)
+	private boolean processadoVerificacao;
 	
 	public Coordenada() {
 		 
@@ -48,16 +49,25 @@ public class Coordenada implements Serializable {
 		setViatura(new Viatura(coo.getViatura()));
 		setData(coo.getData());
 		setForaDeArea(coo.getForaDeArea());
+		setProcessadoVerificacao(coo.isProcessadoVerificacao());
 		if (coo.getCodigo()!=0){
 			setId(coo.getCodigo());
 		}
 	}
 	
 	public static CoordenadaVO toVO(Coordenada obj) {		
-		return new CoordenadaVO(obj.getLatitude(),obj.getLongitude(),Viatura.VO(obj.getViatura()),obj.getData(),obj.getForaDeArea(),obj.getId());
+		return new CoordenadaVO(obj.getLatitude(),obj.getLongitude(),Viatura.VO(obj.getViatura()),obj.getData(),obj.getForaDeArea(),obj.getId(),obj.isProcessadoVerificacao());
 		 
+	}	
+		
+	public boolean isProcessadoVerificacao() {
+		return processadoVerificacao;
 	}
-	
+
+	public void setProcessadoVerificacao(boolean processadoVerificacao) {
+		this.processadoVerificacao = processadoVerificacao;
+	}
+
 	public int getId() {
 		return id;
 	}
