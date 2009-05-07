@@ -5,6 +5,7 @@ import java.util.List;
 import br.faculdadeidez.psa.businesslogic.BairroBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.CoordenadasBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.EscalaBusinessLogic;
+import br.faculdadeidez.psa.businesslogic.RotaPercorridaBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.SetorBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
@@ -188,4 +189,16 @@ public class Fachada {
 		BairroBusinessLogic logicaBairro = new BairroBusinessLogic();
 		return logicaBairro.findNome(nome);
 	}
+	
+	/*
+	 * Métodos para Relatório de Rotas Percorridas
+	 */
+	public List<CoordenadaVO> listaRotas(){
+		return new RotaPercorridaBusinessLogic().listar();
+	}
+	
+	public List<CoordenadaVO> listaForaDeArea(){
+		return new RotaPercorridaBusinessLogic().listarForaDeArea();
+	}
+	
 }
