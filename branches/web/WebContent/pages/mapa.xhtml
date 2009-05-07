@@ -23,11 +23,15 @@
     &amp;key=ABQIAAAAzmhk1rsDjNgnLZAsYOvQSRSjuaEVZENCKjhga9SCJmC3LvuwVBR8Ioq6jiQaq4b7Ft9EJwXpA4e1nA"
 			type="text/javascript"></script>
 		<h:form id="form">
+		<h:panelGrid columns="4">
+		<h:outputLabel value="Escolha a viatura" for="viatura" />
 			<h:selectOneMenu id="viatura" value="#{viaturaBean.viatura.codigo}"
 				rendered="true" onchange="submit()">
 				<f:selectItems value="#{escalaBean.listaViaturas}" />
 				<!-- a4j:support event="onchange" action="submit()" reRender="mapa"/-->
 			</h:selectOneMenu>
+			<h:commandLink action="viaturaProxima" value="Viatura mais próxima da ocorrência" />
+			</h:panelGrid>
 		</h:form>
 		<rich:panel name="mapa" id="mapa" style="width:500px;float:left">
 			<m:map width="600px" height="600px" type="G_NORMAL_MAP" zoom="16"
