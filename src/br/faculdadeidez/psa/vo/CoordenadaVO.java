@@ -11,36 +11,50 @@ public class CoordenadaVO implements Serializable {
 	private ViaturaVO viatura;
 	private Date data;
 	private boolean foraDeArea;
-	
+	private boolean processadoVerificacao;
 	
 	public CoordenadaVO(){
 		
 	}
 	
-	public CoordenadaVO(String lat,String longit, ViaturaVO viatura, Date data, boolean foraDeArea, int id) {
+	public CoordenadaVO(String lat,String longit, ViaturaVO viatura, Date data, boolean foraDeArea, int id, boolean processadoVerificacao) {
 		this.latitude = lat;
 		this.longitude = longit;
 		this.viatura = viatura;
 		this.data = data;
 		this.foraDeArea = foraDeArea;
 		this.codigo = id;
+		this.processadoVerificacao = processadoVerificacao;
 	}
+	
 	public int getCodigo() {
 		return codigo;
 	}
+	
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
+	
 	public String getLatitude() {
 		return latitude;
 	}
+	
 	public void setLatitude(String lat) {
 		this.latitude = lat;
 	}
-	
+		
 	public String getLongitude() {
 		return longitude;
 	}
+	
+	public boolean isProcessadoVerificacao() {
+		return processadoVerificacao;
+	}
+
+	public void setProcessadoVerificacao(boolean processadoVerificacao) {
+		this.processadoVerificacao = processadoVerificacao;
+	}
+
 	public void setLongitude(String lat) {
 		this.longitude = lat;
 	}

@@ -10,7 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.faculdadeidez.psa.db.entity.Viatura;
+import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.EscalaVO;
+import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class DAOViatura extends DAOFactory<Viatura> {
@@ -118,5 +120,66 @@ public class DAOViatura extends DAOFactory<Viatura> {
 
 		return resultList;
 	}
+	
+	public List<EscalaVO> findViaturasEscalaAtivas(String viatura) {
 
+		Date data = new Date(System.currentTimeMillis());
+		String formato = "dd/MM/yyyy";
+		SimpleDateFormat formatter = new SimpleDateFormat(formato);
+		try {
+			data = formatter.parse(formatter.format(data));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			data = null;
+		}
+		System.out.println(data);
+		String strQuery = "SELECT sv FROM Viatura v " + "JOIN v.escalas sv "
+				+ "WHERE sv.dataInicial = :dataInicio AND v.ativo = 1 AND v.codigo = '"+ viatura +"'";
+		// +"sv.dataFim = :dataFim";
+		EntityManager em = getManager();
+		Query query = em.createQuery(strQuery);
+		query.setParameter("dataInicio", data);
+		// query.setParameter("dataFinal", data);
+
+		List<EscalaVO> resultList = new DAOEscala().ConvertList(query.getResultList());
+
+		return resultList;
+	}
+	
+	/**
+	 * Retorna uma lista de todos os bairros das escalas atuais da viatura
+	 * 
+	 * @param viatura
+	 * @param dataPesquisa
+	 * @return
+	 */
+	public List<BairroVO> findViaturasEscalasBairros(String viatura, Date dataPesquisa) { 
+		Date data = new Date(System.currentTimeMillis());
+		String formato = "dd/MM/yyyy";
+		SimpleDateFormat formatter = new SimpleDateFormat(formato);
+		try {
+			data = formatter.parse(formatter.format(data));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			data = null;
+		}
+		String strQuery = "SELECT v FROM Viatura v JOIN v.escalas sv "
+				+ "WHERE :dataInicio BETWEEN sv.dataInicial AND sv.dataFinal AND v.codigo = '" + viatura + "'";
+		// +"sv.dataFim = :dataFim";
+		EntityManager em = getManager();
+		Query query = em.createQuery(strQuery);
+		query.setParameter("dataInicio", dataPesquisa);
+				
+		List<String> resultList = new Vector<String>();
+		List<ViaturaVO> viaturas = ConvertList(query.getResultList());
+		
+		for(ViaturaVO viat : viaturas) {
+			for(EscalaVO escala : findViaturasEscalaAtivas(viat.getCodigo())) { 				
+				SetorVO setor = new DAOSetor().find(escala.getSetor().getCodigo());
+				return setor.getBairros();
+			}
+		}	
+
+		return null;
+	}
 }

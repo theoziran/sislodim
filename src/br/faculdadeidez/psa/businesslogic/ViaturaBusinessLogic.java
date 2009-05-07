@@ -1,9 +1,11 @@
 package br.faculdadeidez.psa.businesslogic;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOViatura;
+import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.MensagemValidacaoVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
@@ -189,5 +191,16 @@ public class ViaturaBusinessLogic {
 
 		return viaturasDesocupadas;
 	}
-
+	
+	/**
+	 * Retorna uma lista de todos os bairros das escalas atuais da viatura
+	 * 
+	 * @param viatura
+	 * @param dataPesquisa
+	 * @return
+	 */
+	public List<BairroVO> listaBairrosSetorEscalaViatura(String viatura, Date dataPesquisa) { 
+		DAOViatura dViatura = new DAOViatura();
+		return dViatura.findViaturasEscalasBairros(viatura, dataPesquisa);
+	}
 }

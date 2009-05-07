@@ -140,15 +140,18 @@ public class RetornaEndereco {
 	public String getBairro(String string) {
 		String[] str1 = string.split(",");
 		String[] str2 = str1[1].trim().split("-");
-		String res = null;
-		// System.out.println(str2[0].trim());
-		// System.out.println(str2[1].trim());
-		//System.out.println(str2[2].trim());
-		// System.out.println(str2[0]);
+
 		for (String string2 : str2) {
-			//string2 = "teste";
-			string2 = string2.trim();
+			string2 = string2.trim();						
 			String aux = string2.trim();
+			
+			try { 
+				Integer.parseInt(aux);
+				continue;
+			}catch(Exception exc) {
+				// não é uma string				
+			}
+						
 			string2 = string2.replace('à', 'a');
 			string2 = string2.replace('è', 'e');
 			string2 = string2.replace('ì', 'i');
@@ -172,12 +175,8 @@ public class RetornaEndereco {
 			string2 = string2.replace('ö', 'o');
 			string2 = string2.replace('ü', 'u');
 			string2 = string2.replace('ç', 'c');
-			if (string2.matches("[a-zA-Z]+")) {
-				res = aux;
-			}
-			// System.out.println(string2.trim());
+			return string2;
 		}
-
-		return res;
+		return null;
 	}
 }

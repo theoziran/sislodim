@@ -48,7 +48,7 @@ public class DAOCoordenada extends DAOFactory<Coordenada> {
 			newLista.add(Coordenada.toVO(set));
 		return newLista;
 	}
-
+	
 	public CoordenadaVO getUltimaCoordenadaViatura(ViaturaVO viatura) {
 		String strQuery = "SELECT c FROM Coordenada c WHERE c.id = (SELECT MAX(cid.id) FROM Coordenada cid WHERE cid.viatura.codigo = '"
 				+ viatura.getCodigo() + "')";

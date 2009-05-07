@@ -52,7 +52,7 @@ public class DAOEscala extends DAOFactory<Escala> {
 	/*
 	 * Converte um List<Tipo1> para um List<Tipo2>
 	 */
-	private List<EscalaVO> ConvertList(List<Escala> lista)
+	public List<EscalaVO> ConvertList(List<Escala> lista)
 	{
 		List<EscalaVO> newLista = new Vector<EscalaVO>();
 		for(Escala set : lista)
