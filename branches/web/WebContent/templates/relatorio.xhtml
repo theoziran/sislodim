@@ -55,10 +55,6 @@
 						<f:facet name="header">
 							<rich:columnGroup>
 								<ui:insert name="tituloTabela" />
-								
-								<rich:column rowspan="2" colspan="2" rendered="#{sessaoBean.coordenador or sessaoBean.moderador or sessaoBean.operador}">
-									<h:outputText value="Ações" />
-								</rich:column>
 
 								<rich:column breakBefore="true">
 									<ui:insert name="campo1"></ui:insert>
@@ -81,30 +77,6 @@
 							</rich:column>
 														
 							<ui:insert name="colunasAdicionaisValores" />
-							
-							<rich:column
-								rendered="#{sessaoBean.coordenador or sessaoBean.moderador or sessaoBean.operador}">
-								
-								<a4j:commandButton value="Editar"
-									onclick="#{rich:component('editPanel')}.show()"
-									>
-									
-									<f:setPropertyActionListener value="#{elementoDaVez}"
-										target="#{atualBean.elementoSelecionado}" />
-								</a4j:commandButton>
-							</rich:column>
-
-							<rich:column
-								rendered="#{sessaoBean.coordenador or sessaoBean.moderador}">
-								<a4j:commandButton value="Deletar" ajaxSingle="true"
-									id="deletelink"
-									oncomplete="#{rich:component('deletePanel')}.show()">
-									<f:setPropertyActionListener value="#{elementoDaVez}"
-										target="#{atualBean.elementoSelecionado}" />
-								</a4j:commandButton>
-
-							</rich:column>
-							
 						</rich:columnGroup>
 					</rich:dataTable>
 					<rich:datascroller align="left" for="generica" id="datascroller" />
