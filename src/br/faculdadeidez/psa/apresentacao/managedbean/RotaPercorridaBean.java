@@ -13,8 +13,11 @@ public class RotaPercorridaBean extends GenericoBean {
 	private RotaPercorridaVO rotaPercorrida = new RotaPercorridaVO();
 	private SetorVO setorVO = new SetorVO();
 	private Date periodoInicio = new Date();
-	private Date peridoFim = new Date();
+	private Date periodoFim = new Date();
 	private Boolean foraDeSetor = false;
+	private List<RotaPercorridaVO> rotas;
+	private List<RotaPercorridaVO> listaTudo;
+	private String termoPesquisa;
 
 	public RotaPercorridaVO getRotaPercorrida() {
 		return rotaPercorrida;
@@ -40,12 +43,12 @@ public class RotaPercorridaBean extends GenericoBean {
 		this.periodoInicio = periodoInicio;
 	}
 
-	public Date getPeridoFim() {
-		return peridoFim;
+	public Date getPeriodoFim() {
+		return periodoFim;
 	}
 
-	public void setPeridoFim(Date peridoFim) {
-		this.peridoFim = peridoFim;
+	public void setPeriodoFim(Date peridoFim) {
+		this.periodoFim = peridoFim;
 	}
 
 	public Boolean getForaDeSetor() {
@@ -65,7 +68,7 @@ public class RotaPercorridaBean extends GenericoBean {
 		List<CoordenadaVO> coords = getFachada().listaRotas();
 
 		for (CoordenadaVO coordenadaVO : coords) {
-			if ((coordenadaVO.getData().compareTo(peridoFim) >= 0)
+			if ((coordenadaVO.getData().compareTo(periodoFim) >= 0)
 					&& (coordenadaVO.getData().compareTo(periodoInicio) < 0)) {
 				RotaPercorridaVO rota = new RotaPercorridaVO();
 
@@ -90,7 +93,7 @@ public class RotaPercorridaBean extends GenericoBean {
 		List<CoordenadaVO> coords = getFachada().listaForaDeArea();
 
 		for (CoordenadaVO coordenadaVO : coords) {
-			if ((coordenadaVO.getData().compareTo(peridoFim) >= 0)
+			if ((coordenadaVO.getData().compareTo(periodoFim) >= 0)
 					&& (coordenadaVO.getData().compareTo(periodoInicio) < 0)) {
 				RotaPercorridaVO rota = new RotaPercorridaVO();
 
@@ -104,5 +107,25 @@ public class RotaPercorridaBean extends GenericoBean {
 		}
 
 		return rotas;
+	}
+	
+	public String exibir(){
+		return "exibirRelatorios";
+	}
+
+	public void setListaTudo(List<RotaPercorridaVO> listaTudo) {
+		this.listaTudo = listaTudo;
+	}
+
+	public List<RotaPercorridaVO> getListaTudo() {
+		return getRotas();
+	}
+
+	public void setTermoPesquisa(String termoPesquisa) {
+		this.termoPesquisa = termoPesquisa;
+	}
+
+	public String getTermoPesquisa() {
+		return termoPesquisa;
 	}
 }

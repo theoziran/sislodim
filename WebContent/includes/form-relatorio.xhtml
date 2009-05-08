@@ -12,22 +12,24 @@
 	<div class="form"><h:panelGrid columns="1">
 		<h:form>
 			<h:panelGrid columns="3">
-				<h:outputLabel value="*Perído:" />
-	     		<rich:calendar id="priodoInicio" datePattern="dd/MM/yyyy" value="#{rotaPercorridaBean.periodoInicio}" required="true">
+				<h:outputLabel value="*Período:" />
+	     		<rich:calendar id="periodoInicio" datePattern="dd/MM/yyyy" value="#{rotaPercorridaBean.periodoInicio}" required="true">
     			<h:outputLabel value="*Data inicial:" />
          		</rich:calendar>
 	     		<rich:calendar id="periodoFim" datePattern="dd/MM/yyyy" value="#{rotaPercorridaBean.periodoFim}" required="true">
     			<h:outputLabel value="*Data final:" />
          		</rich:calendar>
-				<h:outputLabel value="Setor" />
-				<h:selectOneMenu id="setor" value="#{rotaPercorridaBean.setorVO}" rendered="true">  
+				<!--<h:outputLabel value="Setor" />
+				 <h:selectOneMenu id="setor" value="#{rotaPercorridaBean.setorVO}" rendered="true">  
 					<f:selectItems value="#{setorBean.listaItensSetores}" />
-         		</h:selectOneMenu>
+         		</h:selectOneMenu>-->
 				<br />
-	     		<h:selectBooleanCheckbox value="#{rotaPercorridaBean.foraDeSetor}" /><h:outputLabel value="Viaturas fora do setor" />
+	     		<h:selectBooleanCheckbox value="#{rotaPercorridaBean.foraDeSetor}" />
+	     		<h:outputLabel value="Viaturas fora do setor" />
 			</h:panelGrid>
 			
-			<h:commandButton action="#{rotaPercorridaBean.create}" value="Gerar Relatório" />	
+			<h:commandButton action="#{rotaPercorridaBean.exibir}" value="Gerar Relatório" />
+			<h:messages />	
 		</h:form>
 	</h:panelGrid></div>
 </ui:composition>

@@ -60,7 +60,7 @@
 			br.faculdadeidez.psa.apresentacao.managedbean.BairroBean 
 		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>	
+	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>coordenadaBean</managed-bean-name>
 		<managed-bean-class>
@@ -68,7 +68,13 @@
 		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-
+	<managed-bean>
+		<managed-bean-name>rotaPercorridaBean</managed-bean-name>
+		<managed-bean-class>
+			br.faculdadeidez.psa.apresentacao.managedbean.RotaPercorridaBean 
+		</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<!-- Navegação global -->
 	<lifecycle>
 		<phase-listener>br.faculdadeidez.psa.apresentacao.servlets.GerenciadorAutorizacao</phase-listener>
@@ -171,18 +177,14 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>*</display-name>
-		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>paginaRelatorios</from-outcome>
 			<to-view-id>/pages/relatorio.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>pages/relatorio.xhtml</display-name>
-		<from-view-id>/pages/relatorio.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>exibir</from-outcome>
+			<from-outcome>exibirRelatorios</from-outcome>
 			<to-view-id>/pages/exibicaoRelatorio.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
@@ -198,6 +200,4 @@
 	<!-- /escala -->
 	
 	<!-- Navegação especializada -->
-	
-	
 </faces-config>

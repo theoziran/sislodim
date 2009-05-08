@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12369044727503" configfile="/Sislodim/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="*" x="120" y="216" id="pf12374706509843" referenceLink="//@navigationRule.14/@fromViewId|" outlinks="pf123850923131234 pf123850923131235 pf123850923131236 pf123850923131237 pf123850923131238 pf123850923131239 pf123850923131240 pf123850923131241 pf12412797301720 pf12412797301721 pf12417241422652" path="*"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/cadastroViatura" x="336" y="96" id="pf123850904381214" referenceLink="//@navigationRule.11/@fromViewId|" outlinks="pf12392499569372" inlinks="pf123850923131240" path="/pages/cadastroViatura.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/adminViatura" x="514" y="163" id="pf123850904381216" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" inlinks="pf123850923131241 pf12392499569372" path="/pages/adminViatura.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/cadastroUsuario" x="-38" y="96" id="pf123850916623427" referenceLink="//@navigationRule.10/@fromViewId|" outlinks="pf12392499525001" inlinks="pf123850923131235" path="/pages/cadastroUsuario.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/adminUsuario" x="-193" y="163" id="pf123850916623430" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" inlinks="pf123850923131237 pf12392499525001" path="/pages/adminUsuario.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/cadastroSetor" x="341" y="348" id="pf123850916623431" referenceLink="//@navigationRule.9/@fromViewId|" outlinks="pf12392499481560" inlinks="pf123850923131238" path="/pages/cadastroSetor.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/adminSetor" x="519" y="235" id="pf123850916623433" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" inlinks="pf123850923131239 pf12392499481560" path="/pages/adminSetor.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="inicio" x="73" y="-5" id="pf123850923131245" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf123850923131234" path="/inicio.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/mapa" x="214" y="31" id="pf123850923131246" referenceLink="//@navigationRule.13/@navigationCase.0/@toViewId|" inlinks="pf123850923131236" path="/pages/mapa.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/cadastroEscala.xhtml" x="-50" y="348" id="pf12412797301732" referenceLink="//@navigationRule.12/@fromViewId|" outlinks="pf12412797301733" inlinks="pf12412797301720" path="/pages/cadastroEscala.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/adminEscala.xhtml" x="-206" y="235" id="pf12412797301734" referenceLink="//@navigationRule.12/@navigationCase.0/@toViewId|" inlinks="pf12412797301721 pf12412797301733" path="/pages/adminEscala.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/relatorio.xhtml" x="72" y="384" id="pf12417241422653" referenceLink="//@navigationRule.14/@navigationCase.0/@toViewId|" outlinks="pf12417312951254" inlinks="pf12417241422652" path="/pages/relatorio.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/exibicaoRelatorio.xhtml" x="214" y="480" id="pf12417312951255" inlinks="pf12417312951254" path="/pages/exibicaoRelatorio.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1372" id="pf12374706509843" referenceLink="//@navigationRule.13/@fromViewId|" outlinks="pf123850923131234 pf123850923131235 pf123850923131236 pf123850923131237 pf123850923131238 pf123850923131239 pf123850923131240 pf123850923131241 pf12412797301720 pf12412797301721 pf12417241422652" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/cadastroViatura" x="338" y="967" id="pf123850904381214" referenceLink="//@navigationRule.11/@fromViewId|" outlinks="pf12392499569372" inlinks="pf123850923131240" path="/pages/cadastroViatura.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/adminViatura" x="554" y="1169" id="pf123850904381216" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" inlinks="pf123850923131241 pf12392499569372" path="/pages/adminViatura.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/cadastroUsuario" x="338" y="178" id="pf123850916623427" referenceLink="//@navigationRule.10/@fromViewId|" outlinks="pf12392499525001" inlinks="pf123850923131235" path="/pages/cadastroUsuario.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/adminUsuario" x="554" y="380" id="pf123850916623430" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" inlinks="pf123850923131237 pf12392499525001" path="/pages/adminUsuario.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/cadastroSetor" x="338" y="2140" id="pf123850916623431" referenceLink="//@navigationRule.9/@fromViewId|" outlinks="pf12392499481560" inlinks="pf123850923131238" path="/pages/cadastroSetor.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/adminSetor" x="554" y="2342" id="pf123850916623433" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" inlinks="pf123850923131239 pf12392499481560" path="/pages/adminSetor.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inicio" x="338" y="583" id="pf123850923131245" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf123850923131234" path="/inicio.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/mapa" x="338" y="1372" id="pf123850923131246" referenceLink="//@navigationRule.13/@navigationCase.0/@toViewId|" inlinks="pf123850923131236" path="/pages/mapa.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/cadastroEscala.xhtml" x="338" y="2545" id="pf12412797301732" referenceLink="//@navigationRule.12/@fromViewId|" outlinks="pf12412797301733" inlinks="pf12412797301720" path="/pages/cadastroEscala.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/adminEscala.xhtml" x="554" y="2747" id="pf12412797301734" referenceLink="//@navigationRule.12/@navigationCase.0/@toViewId|" inlinks="pf12412797301721 pf12412797301733" path="/pages/adminEscala.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/relatorio.xhtml" x="420" y="1620" id="pf12417241422653" referenceLink="//@navigationRule.14/@navigationCase.0/@toViewId|" inlinks="pf12417241422652" path="/pages/relatorio.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/exibicaoRelatorio.xhtml" x="122" y="2251" id="pf12417312951255" path="/pages/exibicaoRelatorio.xhtml"/>
   <links id="pf123850923131234" target="pf123850923131245" source="pf12374706509843" outcome="loginPage" redirect="true"/>
   <links id="pf123850923131235" target="pf123850916623427" source="pf12374706509843" outcome="cadastroUsuario"/>
   <links id="pf123850923131236" target="pf123850923131246" source="pf12374706509843" outcome="logado"/>
@@ -28,5 +28,4 @@
   <links id="pf12412797301721" target="pf12412797301734" source="pf12374706509843" outcome="adminEscala"/>
   <links id="pf12412797301733" target="pf12412797301734" source="pf12412797301732" outcome="inserido"/>
   <links id="pf12417241422652" target="pf12417241422653" source="pf12374706509843" outcome="paginaRelatorios"/>
-  <links id="pf12417312951254" target="pf12417312951255" source="pf12417241422653" outcome="exibir"/>
 </pageflow:Pageflow>
