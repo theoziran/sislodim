@@ -2,8 +2,6 @@ package br.faculdadeidez.psa.apresentacao.servlets;
 
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.ServletException;
