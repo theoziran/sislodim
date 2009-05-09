@@ -10,6 +10,7 @@ import javax.microedition.location.LocationException;
 import javax.microedition.location.LocationProvider;
 
 import br.com.idez.http.TransmissaoDados;
+import br.com.idez.record.Record;
 
 public class GPS extends TimerTask {
 
@@ -20,10 +21,12 @@ public class GPS extends TimerTask {
 	private double latitude;
 	private double longitude;
 	private Timer time;
-	private final long TIME = (1000 * 20);
+	private final long TIME;
 
 	public GPS() {
 		this.time = new Timer();
+		TIME  = (1000 * Record.getTempo());
+		System.out.println(TIME);
 		time.schedule(this, TIME, TIME);
 	}
 

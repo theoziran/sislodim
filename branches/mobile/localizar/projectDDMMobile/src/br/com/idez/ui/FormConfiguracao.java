@@ -58,12 +58,12 @@ public class FormConfiguracao extends Form implements CommandListener {
 			}
 		}
 		if (cmd.equals(cmdOK)) {
-			showAlert();
 			try {
 					UIController.getInstance().salvarConfiguracao(tempoSelecionado());
+					//UIController.getInstance().setCurrent(this);
+					showAlert();
 				} catch (Exception e) {
-					TODO Auto-generated catch block
-					e.printStackTrace();
+
 				}
 		}
 	}
