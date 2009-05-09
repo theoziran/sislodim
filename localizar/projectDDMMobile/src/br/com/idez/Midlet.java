@@ -35,8 +35,8 @@ public class Midlet extends MIDlet {
 			this.controler = UIController.createInstance(this);
 			// no nosso caso vai ser a tela inicial vai ser GPSMain, quando
 			// juntar os projetos esta tela inicial vai ser o login
-			 controler.setCurrent(FormGPS.getInstance());
-			// controler.setCurrent(FormConfiguracao.getInstance());
+			// controler.setCurrent(FormGPS.getInstance());
+			 controler.setCurrent(FormConfiguracao.getInstance());
 			this.start = true;
 		} else {
 

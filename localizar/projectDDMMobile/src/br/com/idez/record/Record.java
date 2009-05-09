@@ -38,17 +38,17 @@ public class Record {
 			}
 			
 		} catch (RecordStoreFullException e) {
-			System.err.println(e.getMessage());
+			
 		} catch (RecordStoreNotFoundException e) {
-			System.err.println(e.getMessage());
+			
 		} catch (RecordStoreException e) {
-			System.err.println(e.getMessage());
+			
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
 				// TODO exibir Alert
-				System.err.println(e.getMessage());
+				
 			}
 		}
 
@@ -76,17 +76,17 @@ public class Record {
 					ID_TEMPO = rs.addRecord(recBytes, 0, recBytes.length);
 				}
 			} catch (RecordStoreFullException e) {
-				System.err.println(e.getMessage());
+				
 			} catch (RecordStoreNotFoundException e) {
-				System.err.println(e.getMessage());
+				
 			} catch (RecordStoreException e) {
-				System.err.println(e.getMessage());
+				
 			} finally{
 				try {
 					closeRecord();
 				} catch (Exception e) {
 					// TODO exibir Alert
-					System.err.println(e.getMessage());
+					
 				} 
 			}
 	}
@@ -101,19 +101,21 @@ public class Record {
 				recTempo = new String(rs.getRecord(ID_TEMPO));
 				tempo = Integer.parseInt(recTempo.substring(recTempo
 						.indexOf(":") + 1, recTempo.length()));
+			} else {
+				System.out.println(ID_TEMPO);
 			}
 		} catch (RecordStoreFullException e) {
-			System.err.println(e.getMessage());
+			
 		} catch (RecordStoreNotFoundException e) {
-			System.err.println(e.getMessage());
+			
 		} catch (RecordStoreException e) {
-			System.err.println(e.getMessage());
+			
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
 				// TODO exibir Alert
-				System.err.println(e.getMessage());
+				
 			}
 		}
 
