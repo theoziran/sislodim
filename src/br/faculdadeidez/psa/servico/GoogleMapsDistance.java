@@ -38,7 +38,6 @@ public class GoogleMapsDistance {
 
 	public void setOrigem(String origem) {
 		this.origem = origem.replace(" ", "+");
-		// System.out.println("Origem: " + this.origem);
 	}
 
 	public String getDestino() {
@@ -47,7 +46,6 @@ public class GoogleMapsDistance {
 
 	public void setDestino(String destino) {
 		this.destino = destino.replace(" ", "+");
-		// System.out.println("Destino: " + this.destino);
 	}
 
 	public String getURL() {
@@ -80,11 +78,10 @@ public class GoogleMapsDistance {
 			}
 			bf.close();
 			res = sb.toString();
-			// System.out.println("KML" + res);
 		} catch (MalformedURLException e) {
-			System.err.println(e.getMessage());
+			res = null;
 		} catch (IOException e) {
-			System.err.println(e.getMessage());
+			res = null;
 		}
 		return res;
 	}
@@ -110,7 +107,7 @@ public class GoogleMapsDistance {
 					Element element = (Element) nodes.item(i);
 					res = (String) element.getTextContent();
 					if (res.trim().length() > 0) {
-		
+
 						res = res.trim();
 
 					}
