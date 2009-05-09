@@ -60,7 +60,6 @@ public class FormConfiguracao extends Form implements CommandListener {
 		if (cmd.equals(cmdOK)) {
 			try {
 					UIController.getInstance().salvarConfiguracao(tempoSelecionado());
-					//UIController.getInstance().setCurrent(this);
 					showAlert();
 				} catch (Exception e) {
 
@@ -98,7 +97,7 @@ public class FormConfiguracao extends Form implements CommandListener {
 	private void showAlert(){
 		this.alert = new Alert("O tempo foi alterado para "+tempoSelecionado()+" segundos");
 		try {
-			UIController.getInstance().setCurrent(alert, this);
+			UIController.getInstance().setCurrent(alert, FormGPS.getInstance());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
