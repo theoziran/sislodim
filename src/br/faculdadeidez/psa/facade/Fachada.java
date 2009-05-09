@@ -133,6 +133,11 @@ public class Fachada {
 		return logicaEscala.getViaturasEscalaTurno();
 	}
 	
+	public double getDistancia(String origem, String destino)
+	{
+		return CoordenadasBusinessLogic.getDistancia(origem, destino);
+	}
+	
 	/*
 	 * Métodos para as Escalas
 	 */
@@ -200,5 +205,7 @@ public class Fachada {
 	public List<CoordenadaVO> listaForaDeArea(){
 		return new RotaPercorridaBusinessLogic().listarForaDeArea();
 	}
+	
+	
 	
 }

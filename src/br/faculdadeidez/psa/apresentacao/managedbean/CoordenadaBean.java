@@ -2,7 +2,6 @@ package br.faculdadeidez.psa.apresentacao.managedbean;
 
 import java.util.List;
 
-import br.faculdadeidez.psa.servico.ComparacaoDistancia;
 import br.faculdadeidez.psa.servico.ComparacaoDistanciaException;
 import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
@@ -13,6 +12,8 @@ public class CoordenadaBean extends GenericoBean{
 	private CoordenadaVO coordenada;
 	private String bairro="";
 	private String rua="";
+	private String nomeBairro;
+	
 	
 	public CoordenadaVO getCoordenada() {
 		return coordenada;
@@ -27,6 +28,7 @@ public class CoordenadaBean extends GenericoBean{
 	public void setBairro(String bairro) {
 		BairroVO bairroVO = getFachada().pesquisaBairro(Integer.parseInt(bairro));
 		this.bairro = bairroVO.getNome();
+		this.nomeBairro = bairroVO.getNome();
 	}
 	public String getRua() {
 		return rua;
@@ -39,27 +41,30 @@ public class CoordenadaBean extends GenericoBean{
 		StringBuffer origem= new StringBuffer();
 		StringBuffer destino= new StringBuffer();
 		CoordenadaVO coordenadaTemporaria = new CoordenadaVO();
-		int distancia=0;
-		int distanciaTemporaria=999999999;
+		double distancia=0;
+		double distanciaTemporaria=999999999;
 		origem.append(this.rua);
 		origem.append(",");
 		origem.append(this.bairro);
-		ComparacaoDistancia comparador = new ComparacaoDistancia();
-		comparador.setOrigem(origem.toString());
 		List<ViaturaVO> viaturas = getFachada().pesquisarViaturasEscalaTurno();
 		for (ViaturaVO viaturaVO : viaturas) {
 			coordenadaTemporaria = getFachada().getUltimaCoordenadaViatura(viaturaVO);
 			destino.append(coordenadaTemporaria.getLatitude());
 			destino.append(",");
 			destino.append(coordenadaTemporaria.getLongitude());
-			comparador.setDestino(destino.toString());
-			distancia = Integer.parseInt(comparador.getDistancia());
+			distancia = getFachada().getDistancia(origem.toString(), destino.toString());
 			if (distanciaTemporaria>distancia){
 				distanciaTemporaria=distancia;
 				this.coordenada=coordenadaTemporaria;
 				destino = new StringBuffer();
 			}
 		}
+	}
+	public void setNomeBairro(String nomeBairro) {
+		this.nomeBairro = nomeBairro;
+	}
+	public String getNomeBairro() {
+		return nomeBairro;
 	}
 
 }

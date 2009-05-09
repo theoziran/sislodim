@@ -13,7 +13,7 @@
 		<script
 			src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAzmhk1rsDjNgnLZAsYOvQSRSjuaEVZENCKjhga9SCJmC3LvuwVBR8Ioq6jiQaq4b7Ft9EJwXpA4e1nA"
 			type="text/javascript"></script>
-		<script type="text/javascript">
+		<script type="text/javascript"><!--
 
   
     
@@ -22,11 +22,11 @@
         var map = new GMap2(document.getElementById("map_canvas"));
         directions = new GDirections(map);
         /*directions.load("from: -7.183055,-34.839642 to: -7.119077,-34.834106");*/
-        directions.load("from: #{coordenadaBean.coordenada.latitude},#{coordenadaBean.coordenada.longitude} to: #{coordenadaBean.rua},#{coordenadaBean.bairro}");
+        directions.load("from: #{coordenadaBean.coordenada.latitude},#{coordenadaBean.coordenada.longitude} to: #{coordenadaBean.rua},#{coordenadaBean.nomeBairro}");
       }
     }
 
-</script>
+--></script>
 
 	</ui:define>
 
