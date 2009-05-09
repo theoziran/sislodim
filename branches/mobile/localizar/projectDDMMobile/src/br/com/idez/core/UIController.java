@@ -2,6 +2,7 @@ package br.com.idez.core;
 
 import java.util.Stack;
 
+import javax.microedition.lcdui.Alert;
 import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.midlet.MIDlet;
@@ -53,4 +54,14 @@ public class UIController {
 
 	}
 
+	public void setCurrent(Alert alert,Displayable nextDisplayable) {
+		this.tela.push(nextDisplayable);
+		this.disp.setCurrent(alert, nextDisplayable);
+		
+	}
+
+	public void salvarConfiguracao(String tempoSelecionado) {
+		
+	}
+	
 }
