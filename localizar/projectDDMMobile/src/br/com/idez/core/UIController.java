@@ -9,6 +9,7 @@ import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
 import br.com.idez.Midlet;
+import br.com.idez.record.Record;
 
 public class UIController {
 
@@ -54,14 +55,13 @@ public class UIController {
 
 	}
 
-	public void setCurrent(Alert alert,Displayable nextDisplayable) {
+	public void setCurrent(Alert alert, Displayable nextDisplayable) {
 		this.tela.push(nextDisplayable);
 		this.disp.setCurrent(alert, nextDisplayable);
-		
+
 	}
 
 	public void salvarConfiguracao(String tempoSelecionado) {
-		
+		Record.setTempo(Integer.parseInt(tempoSelecionado));
 	}
-	
 }
