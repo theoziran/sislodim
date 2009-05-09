@@ -1,0 +1,7 @@
+MIDlet-Jar-Size: 23482
+MIDlet-Jar-URL: projectDDMMobile.jar
+MIDlet-Name: projectDDMMobile Midlet Suite
+MIDlet-Vendor: Midlet Suite Vendor
+MIDlet-Version: 1.0.0
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.0
