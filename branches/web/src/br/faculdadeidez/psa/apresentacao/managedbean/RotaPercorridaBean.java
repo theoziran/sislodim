@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.omg.CORBA.PRIVATE_MEMBER;
+
 import br.faculdadeidez.psa.servico.RetornaEndereco;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.RotaPercorridaVO;
@@ -18,6 +20,7 @@ public class RotaPercorridaBean extends GenericoBean {
 	private List<RotaPercorridaVO> rotas;
 	private List<RotaPercorridaVO> listaTudo;
 	private String termoPesquisa;
+	private String tipoDeRelatorio;
 
 	public RotaPercorridaVO getRotaPercorrida() {
 		return rotaPercorrida;
@@ -64,12 +67,14 @@ public class RotaPercorridaBean extends GenericoBean {
 			return getRotasForaDeArea();
 		}
 
+		periodoFim = new Date(periodoFim.getYear(),periodoFim.getMonth(),periodoFim.getDate(),23,59);
 		List<RotaPercorridaVO> rotas = new ArrayList<RotaPercorridaVO>();
 		List<CoordenadaVO> coords = getFachada().listaRotas();
 
 		for (CoordenadaVO coordenadaVO : coords) {
-			if ((coordenadaVO.getData().compareTo(periodoFim) >= 0)
-					&& (coordenadaVO.getData().compareTo(periodoInicio) < 0)) {
+			
+			if ((coordenadaVO.getData().after(periodoInicio))
+					&& (coordenadaVO.getData().before(periodoFim))){
 				RotaPercorridaVO rota = new RotaPercorridaVO();
 
 				rota.setBairro(getBairro(coordenadaVO.getLatitude(),
@@ -89,19 +94,20 @@ public class RotaPercorridaBean extends GenericoBean {
 	}
 
 	private List<RotaPercorridaVO> getRotasForaDeArea() {
+
+		periodoFim = new Date(periodoFim.getYear(),periodoFim.getMonth(),periodoFim.getDate(),23,59);
 		List<RotaPercorridaVO> rotas = new ArrayList<RotaPercorridaVO>();
 		List<CoordenadaVO> coords = getFachada().listaForaDeArea();
 
 		for (CoordenadaVO coordenadaVO : coords) {
-			if ((coordenadaVO.getData().compareTo(periodoFim) >= 0)
-					&& (coordenadaVO.getData().compareTo(periodoInicio) < 0)) {
+			if ((coordenadaVO.getData().after(periodoInicio))
+					&& (coordenadaVO.getData().before(periodoFim))){
 				RotaPercorridaVO rota = new RotaPercorridaVO();
-
 				rota.setBairro(getBairro(coordenadaVO.getLatitude(),
 						coordenadaVO.getLongitude()));
 				rota.setViatura(coordenadaVO.getViatura());
 				rota.setData(coordenadaVO.getData());
-
+				rota.setESetor(coordenadaVO.getForaDeArea());
 				rotas.add(rota);
 			}
 		}
@@ -128,4 +134,14 @@ public class RotaPercorridaBean extends GenericoBean {
 	public String getTermoPesquisa() {
 		return termoPesquisa;
 	}
+	public String getTipoDeRelatorio() {
+		if(foraDeSetor){
+			tipoDeRelatorio = "Relatório de Rotas Fora do Setor";
+		}
+		else{
+			tipoDeRelatorio = "Relatório de Rotas";
+		}
+		return tipoDeRelatorio;
+	}
+	
 }
