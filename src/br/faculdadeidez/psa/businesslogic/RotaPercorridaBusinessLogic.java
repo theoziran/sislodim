@@ -9,7 +9,7 @@ public class RotaPercorridaBusinessLogic {
 
 	public List<CoordenadaVO> listar() {
 		DAOCoordenada dCoordenada = new DAOCoordenada();
-		return dCoordenada.findAll();
+		return dCoordenada.findByField("foraDeArea", "false");
 	}
 	
 	public List<CoordenadaVO> listarForaDeArea(){

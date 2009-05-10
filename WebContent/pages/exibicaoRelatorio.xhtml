@@ -11,8 +11,8 @@
 	<ui:param name="atualBean" value="#{rotaPercorridaBean}" />
 	<ui:define name="tituloTabela">
 		<!-- coloque o número de colunas necessárias -->
-		<rich:column colspan="3">
-             Rotas Percorridas
+		<rich:column colspan="4">
+             <h:outputText value="#{atualBean.tipoDeRelatorio}" />
         </rich:column>
 	</ui:define>
 
@@ -22,14 +22,13 @@
 	<ui:define name="campo2">
 		<h:outputText value="Bairro" />
 	</ui:define>
-	<ui:define name="camposAdicionaisTitulo">
+	<ui:define name="colunasAdicionaisTitulos">
+		<rich:column>
+			<h:outputText value="Dia" />
+		</rich:column>
 		<rich:column>
 			<h:outputText value="Horário" />
 		</rich:column>
-	</ui:define>
-	<ui:define name="linkNovaPesquisa">
-		<h:commandButton value="Nova Pesquisa" action="relatorio"
-			rendered="#{sessaoBean.coordenador or sessaoBean.moderador}" />
 	</ui:define>
 	<ui:define name="campo11">
 		<h:outputText value="#{elementoDaVez.viatura.codigo}" />
@@ -37,11 +36,17 @@
 	<ui:define name="campo21">
 		<h:outputText value="#{elementoDaVez.bairro}" />
 	</ui:define>
-	<ui:define name="camposAdicionaisValores">
+	<ui:define name="colunasAdicionaisValores">
 		<rich:column>
-			<h:outputText value="#{elementoDaVez.data}" />
+			<h:outputText value="#{elementoDaVez.dataFormatada}" />
+		</rich:column>
+		<rich:column>
+			<h:outputText value="#{elementoDaVez.horario}" />
 		</rich:column>
 	</ui:define>
-
+	<ui:define name="linkNovaPesquisa">
+		<h:commandButton value="Nova Pesquisa" action="relatorio"
+			rendered="#{sessaoBean.coordenador or sessaoBean.moderador}" />
+	</ui:define>
 </ui:composition>
 </html>

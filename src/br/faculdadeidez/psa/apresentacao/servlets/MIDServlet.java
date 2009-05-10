@@ -30,7 +30,7 @@ public class MIDServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String codVtr = (String) req.getParameter("codVtr");
 		String latitude = (String) req.getParameter("latitude");
 		String longitude = (String) req.getParameter("longitude");
