@@ -37,6 +37,11 @@ public class CoordenadaBean extends GenericoBean{
 		origem.append(",");
 		origem.append("João Pessoa");
 		this.gmaps=getFachada().calculaViaturaMaisProxima(origem.toString());
+		if (this.gmaps.getMsgErro()!=null){
+			adicionarMensagemErro("Endereço não encontrado");
+		}else{
+			adicionarMensagem("A viatura " +this.gmaps.getViatura().getCodigo()+" sairá do ponto A ("+this.gmaps.getEnderecoCompletoOrigem()+") para o ponto B ("+this.gmaps.getEnderecoCompletoDestino()+")");
+		}
 	}
 	public void setNomeBairro(String nomeBairro) {
 		this.nomeBairro = nomeBairro;

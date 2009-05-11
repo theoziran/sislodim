@@ -58,7 +58,7 @@ public class CoordenadasBusinessLogic {
 		if (coord == null) {
 			coord = new CoordenadaVO();
 			coordenadaDefault(coord);
-
+			
 		}
 		return coord;
 	}
@@ -83,6 +83,7 @@ public class CoordenadasBusinessLogic {
 
 		coord.setLatitude("-7.096985");
 		coord.setLongitude("-34.834374");
+		coord.getViatura().setCodigo("padrão do sistema");
 	}
 	
 	/**
@@ -133,7 +134,7 @@ public class CoordenadasBusinessLogic {
 		StringBuffer destino= new StringBuffer();
 		CoordenadaVO coordenadaTemporaria = new CoordenadaVO();
 		GoogleMaps gmaps;
-		GoogleMaps retorno= new GoogleMaps();
+		GoogleMaps retorno= null;
 		double distancia;
 		double distanciaTemporaria=999999999;
 		EscalaBusinessLogic logicaEscala = new EscalaBusinessLogic();
@@ -152,8 +153,13 @@ public class CoordenadasBusinessLogic {
 			if (distanciaTemporaria>distancia){
 				distanciaTemporaria=distancia;
 				retorno = gmaps;
+				retorno.setViatura(viaturaVO);
 				destino = new StringBuffer();
 			}
+		}
+		if (retorno==null){
+			retorno=new GoogleMaps();
+			retorno.setMsgErro("Erro");
 		}
 		return retorno;
 	}

@@ -35,10 +35,10 @@
 
 	<ui:define name="conteudo">
 		<body onload="initialize()" onunload="GUnload()">
-		<rich:messages style="width:500px" layout="table" globalOnly="true"
-			showSummary="true" infoClass="informacao">
-			<f:facet name="infoMarker">
-			</f:facet>
+		
+		<rich:messages style="width:500px" layout="table" showSummary="true" errorClass="erro" infoClass="informacao">
+			<f:facet name="infoMarker"></f:facet>
+			<f:facet name="errorMarker"></f:facet>
 		</rich:messages>
 		<h:panelGrid columns="6">
 		<h:form>
