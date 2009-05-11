@@ -80,7 +80,7 @@ public class SetorBusinessLogic {
 	
 	public List<SetorVO> pesquisar(String valor){
 		DAOSetor dSetor = new DAOSetor();
-		List<SetorVO> retorno = dSetor.findByField("nome", valor);
+		List<SetorVO> retorno = dSetor.findByName(valor);
 		return retorno;
 	}
 	

@@ -10,27 +10,24 @@
 <ui:composition template="/templates/generico.xhtml">
 	<ui:define name="conteudo">
 
-		<rich:messages style="width:500px" layout="table" globalOnly="true"
-			showSummary="true" infoClass="informacao">
-			<f:facet name="infoMarker">
-			</f:facet>
+		<rich:messages style="width:500px" layout="table" showSummary="true" errorClass="erro" infoClass="informacao">
+			<f:facet name="infoMarker"></f:facet>
+			<f:facet name="errorMarker"></f:facet>
 		</rich:messages>
-		<h:panelGrid columns="2" width="520">s
+		
+		<h:panelGrid columns="2" width="520">
 			<h:form>
-				<h:message for="nome" styleClass="mensagens"/>
 				<h:panelGrid columns="3">
 					<h:outputText value="Pesquisar" />
-					<h:inputText id="nome" value="#{atualBean.termoPesquisa}"
-						required="true" requiredMessage="Digite um termo para a busca"/>
-						
-					<a4j:commandButton value="Encontrar"
-						action="#{atualBean.pesquisar}" reRender="generica,datascroller" />
+					<h:inputText id="nome" value="#{atualBean.termoPesquisa}" required="true" requiredMessage="Digite um termo para a busca"/>
+					<a4j:commandButton value="Encontrar" action="#{atualBean.pesquisar}" reRender="generica,datascroller" />
 				</h:panelGrid>
+				
 				<a4j:status>
 					<f:facet name="start">
 						<h:graphicImage value="/images/indicator.gif" />
 					</f:facet>
-				</a4j:status>
+				</a4j:status>				
 			</h:form>
 			<h:form>
 				<h:panelGrid columns="1">

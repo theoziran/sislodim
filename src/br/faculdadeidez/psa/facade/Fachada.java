@@ -1,5 +1,6 @@
 package br.faculdadeidez.psa.facade;
 
+import java.util.Date;
 import java.util.List;
 
 import br.faculdadeidez.psa.businesslogic.BairroBusinessLogic;
@@ -150,7 +151,7 @@ public class Fachada {
 		return new EscalaBusinessLogic().update(vo);
 	}
 	
-	public String createEscala(EscalaVO vo){
+	public String createEscala(EscalaVO vo){		
 		return new EscalaBusinessLogic().create(vo);
 	}
 	

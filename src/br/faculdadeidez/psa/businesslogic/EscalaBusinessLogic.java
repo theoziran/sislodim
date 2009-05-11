@@ -1,5 +1,6 @@
 package br.faculdadeidez.psa.businesslogic;
 
+import java.util.Date;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOEscala;
@@ -27,6 +28,9 @@ public class EscalaBusinessLogic {
 
 	public String update(EscalaVO vo) {
 		try {
+			String validacoes = validacoes(vo);
+			if(validacoes != null) return validacoes;
+			
 			DAOEscala dEscala = new DAOEscala();
 			EscalaVO esc = dEscala.find(vo.getCodigo());
 			if (esc == null)
@@ -41,7 +45,10 @@ public class EscalaBusinessLogic {
 	}
 
 	public String create(EscalaVO escala) {
-		try {
+		try {			
+			String validacoes = validacoes(escala);
+			if(validacoes != null) return validacoes;
+			
 			DAOEscala daoEscala = new DAOEscala();
 			if (daoEscala.findByField("codigo",
 					String.valueOf(escala.getCodigo())).isEmpty()) {
@@ -56,6 +63,25 @@ public class EscalaBusinessLogic {
 		} catch (Exception e) {
 			 
 			return "problemaInserir";
+		}
+	}
+	
+	private String validacoes(EscalaVO escala) {
+		Date dataAtual = new Date();
+		dataAtual = new Date(dataAtual.getYear(), dataAtual.getMonth(), dataAtual.getDate());
+				
+		// verificação de datas
+		if(escala.getDataFinal().before(escala.getDataInicial())) {
+			return "datafim_ant_dataini";
+		} else if(escala.getDataInicial().before(dataAtual)) { 
+			return "dataini_ant_dataatual";
+		} else {
+			String noutraEscala = new DAOEscala().verificaViaturasNoutrasEscalasComMesmoDia(escala);
+			
+			if(noutraEscala != null)			
+				return "mesma_viatura_escalas_diferentes|" + noutraEscala;
+			else
+				return null;
 		}
 	}
 

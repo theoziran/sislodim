@@ -12,12 +12,7 @@ import br.faculdadeidez.psa.vo.ViaturaVO;
 public class ViaturaBean extends GenericoBean {
 	private List<ViaturaVO> listaTudo = null;
 	private ViaturaVO viatura = new ViaturaVO();
-	private String termoPesquisa = new String();
 	private List<SelectItem> listaViaturas;
-
-	
-	
-	
 	
 	public ViaturaVO getViatura() {
 		return viatura;
@@ -39,11 +34,8 @@ public class ViaturaBean extends GenericoBean {
 	}
 
 	public List<ViaturaVO> getListaTudo() {
-		if (listaTudo == null || listaTudo.isEmpty()
-				|| getTermoPesquisa().isEmpty())
+		if (listaTudo == null || canUpdate())
 			setListaTudo(getFachada().listarViaturas());
-		else
-			setTermoPesquisa(new String());
 		return listaTudo;
 	}
 
@@ -52,8 +44,11 @@ public class ViaturaBean extends GenericoBean {
 		viaturaDaVez.setAtivo(false);
 		String mensagem = getFachada().updateViatura(viaturaDaVez);
 		adicionaMensagemUsuario(mensagem);
+		
+		// força atualização
+		setListaTudo(null);
+		
 		return mensagem;
-
 	}
 
 	public String update() {
@@ -95,14 +90,6 @@ public class ViaturaBean extends GenericoBean {
 
 	public void setListaTudo(List<ViaturaVO> listaTudo) {
 		this.listaTudo = listaTudo;
-	}
-
-	public String getTermoPesquisa() {
-		return termoPesquisa;
-	}
-
-	public void setTermoPesquisa(String termoPesquisa) {
-		this.termoPesquisa = termoPesquisa;
 	}
 
 	private void adicionaMensagemUsuario(String mensagem) {

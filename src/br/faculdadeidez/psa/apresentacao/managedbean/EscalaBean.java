@@ -1,6 +1,7 @@
 package br.faculdadeidez.psa.apresentacao.managedbean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -12,7 +13,6 @@ import br.faculdadeidez.psa.vo.ViaturaVO;
 public class EscalaBean extends GenericoBean {
 	private List<EscalaVO> listaTudo = null;
 	private EscalaVO escala = new EscalaVO();
-	private String termoPesquisa = "";
 	private List<SelectItem> listaViaturas = null;
 
 	public EscalaVO getEscala() {
@@ -24,11 +24,8 @@ public class EscalaBean extends GenericoBean {
 	}
 
 	public List<EscalaVO> getListaTudo() {
-		if (listaTudo == null || listaTudo.isEmpty()
-				|| getTermoPesquisa().isEmpty())
+		if (listaTudo == null || canUpdate())
 			setListaTudo(getFachada().listarEscalas());
-		else
-			setTermoPesquisa("");
 		return listaTudo;
 	}
 
@@ -36,8 +33,11 @@ public class EscalaBean extends GenericoBean {
 		EscalaVO escalaDaVez = (EscalaVO) getElementoSelecionado();
 		String mensagem = getFachada().deleteEscala(escalaDaVez);
 		adicionaMensagemUsuario(mensagem);
+		
+		// força atualização
+		setListaTudo(null);
+		
 		return mensagem;
-
 	}
 
 	public String update() {
@@ -45,23 +45,41 @@ public class EscalaBean extends GenericoBean {
 		escalaDaVez.setViaturas(escala.getViaturas());		
 		String mensagem = getFachada().updateEscala(escalaDaVez);
 		adicionaMensagemUsuario(mensagem);		
-		setElementoSelecionado(null);		
+		setElementoSelecionado(null);
+		
+		// força atualização
+		setListaTudo(null);
+		
 		return mensagem;
 	}
 
-	public String create() {
+	public String create() {			
 		String mensagem = getFachada().createEscala(escala);
 		setEscala(new EscalaVO());
 		adicionaMensagemUsuario(mensagem);
 		return mensagem;
 	}
 
-	public void pesquisar() {
+	public void pesquisar() {		
 		if (getTermoPesquisa() == "") {
 			setListaTudo(getFachada().listarEscalas());
 		} else {
-			List<EscalaVO> escalas = getFachada().pesquisaEscala(
-					Integer.parseInt(getTermoPesquisa()));
+			int codigoSetor = 0;
+			
+			// validação
+			try { 
+				codigoSetor = Integer.parseInt(getTermoPesquisa());
+			}
+			catch(Exception exc) {
+				// ocorreu um erro tentando converter, este não é um número válido
+				adicionarMensagemErro("Este não é um código de escala válido!");
+				
+				// por padrão, lista tudo
+				setListaTudo(getFachada().listarEscalas());
+				return;
+			}
+			
+			List<EscalaVO> escalas = getFachada().pesquisaEscala(codigoSetor);
 			if (escalas.isEmpty())
 				adicionarMensagem("Nenhuma escala foi encontrada!");
 			else {
@@ -75,20 +93,11 @@ public class EscalaBean extends GenericoBean {
 							+ getTermoPesquisa());
 				setListaTudo(escalas);
 			}
-
 		}
 	}
 
 	public void setListaTudo(List<EscalaVO> listaTudo) {
 		this.listaTudo = listaTudo;
-	}
-
-	public String getTermoPesquisa() {
-		return termoPesquisa;
-	}
-
-	public void setTermoPesquisa(String termoPesquisa) {
-		this.termoPesquisa = termoPesquisa;
 	}
 
 	private void adicionaMensagemUsuario(String mensagem) {
@@ -111,6 +120,13 @@ public class EscalaBean extends GenericoBean {
 			adicionarMensagem("Escala não existe no banco de dados");
 		} else if (mensagem.equals("problemaAtualizar")) {
 			adicionarMensagem("Houve um problema ao tentar atualizar,\n contacte o administrador");
+		} else if (mensagem.equals("datafim_ant_dataini")) {
+			adicionarMensagemErro("Não é possível cadastrar uma escala com data final anterior a data inicial.");
+		} else if (mensagem.equals("dataini_ant_dataatual")) { 
+			adicionarMensagemErro("Não é possível cadastrar uma escala com data inicial anterior a atual.");
+		} else if (mensagem.startsWith("mesma_viatura_escalas_diferentes")) {
+			String codigoViatura = mensagem.substring(mensagem.indexOf('|')+1);
+			adicionarMensagemErro("A viatura '"+ codigoViatura +"' já está definida em outra escala entre esta data inicial e final.");
 		} else {
 			adicionarMensagem(mensagem);
 		}

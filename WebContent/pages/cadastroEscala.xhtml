@@ -10,11 +10,11 @@
 <ui:composition template="/templates/generico.xhtml">
 
 	<ui:define name="conteudo">
-		<rich:messages style="width:500px" layout="table" globalOnly="true"
-			showSummary="true" infoClass="informacao">
-			<f:facet name="infoMarker">
-			</f:facet>
+		<rich:messages style="width:500px" layout="table" showSummary="true" errorClass="erro" infoClass="informacao">
+			<f:facet name="infoMarker"></f:facet>
+			<f:facet name="errorMarker"></f:facet>
 		</rich:messages>
+		
 		<ui:include src="/includes/form-escala.xhtml"></ui:include>
 	</ui:define>
 </ui:composition>

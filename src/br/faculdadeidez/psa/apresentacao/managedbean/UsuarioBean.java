@@ -9,7 +9,6 @@ import br.faculdadeidez.psa.vo.UsuarioVO;
 
 public class UsuarioBean extends GenericoBean {
 	private UsuarioVO usuario = new UsuarioVO();
-	private String termoPesquisa = new String();
 	private List<UsuarioVO> listaTudo;
 	
 	public UsuarioBean() {
@@ -23,7 +22,7 @@ public class UsuarioBean extends GenericoBean {
 		return mensagem;
 	}
 
-	public void logout() {
+	public String logout() {
 		/**
 		 * É feito o processo reverso do logon, no atributo logado coloca falso
 		 * no objeto do usuário na sessão coloco null e depois
@@ -38,6 +37,9 @@ public class UsuarioBean extends GenericoBean {
 			System.out.println("Logout efetuado com sucesso");
 		}
 		
+		adicionaMensagemUsuario("Você saiu do sistema!");
+		
+		return "logout";
 	}
 
 	public String delete() {
@@ -45,6 +47,10 @@ public class UsuarioBean extends GenericoBean {
 		UsuarioVO usuarioDaVez = (UsuarioVO) o;
 		String mensagem = getFachada().deleteUsuario(usuarioDaVez);
 		adicionaMensagemUsuario(mensagem);
+		
+		// força atualização
+		setListaTudo(null);
+		
 		return mensagem;
 	}
 
@@ -70,12 +76,8 @@ public class UsuarioBean extends GenericoBean {
 	}
 
 	public List<UsuarioVO> getListaTudo() {
-
-		if (listaTudo == null || listaTudo.isEmpty()
-				|| getTermoPesquisa().isEmpty())
+		if (listaTudo == null || canUpdate())
 			setListaTudo(getFachada().listaUsuarios());
-		else
-			setTermoPesquisa(new String());
 		return listaTudo;
 	}
 
@@ -103,14 +105,6 @@ public class UsuarioBean extends GenericoBean {
 				setListaTudo(usuarios);
 			}
 		}
-	}
-
-	public String getTermoPesquisa() {
-		return termoPesquisa;
-	}
-
-	public void setTermoPesquisa(String termoPesquisa) {
-		this.termoPesquisa = termoPesquisa;
 	}
 
 	private void adicionaMensagemUsuario(String mensagem) {

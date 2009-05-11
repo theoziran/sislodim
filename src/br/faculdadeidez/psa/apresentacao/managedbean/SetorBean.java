@@ -3,16 +3,21 @@ package br.faculdadeidez.psa.apresentacao.managedbean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+import javax.faces.lifecycle.Lifecycle;
 import javax.faces.model.SelectItem;
+import javax.faces.webapp.FacesServlet;
+
+import org.richfaces.function.RichFunction;
 
 import br.faculdadeidez.psa.vo.BairroVO;
+import br.faculdadeidez.psa.vo.EscalaVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 
 public class SetorBean extends GenericoBean {
 	private List<SetorVO> listaTudo = null;
 	private List<SelectItem> listaItensSetores = null;
 	private SetorVO setor = new SetorVO();
-	private String termoPesquisa = new String();
 
 	public SetorVO getSetor() {
 		return setor;
@@ -39,24 +44,32 @@ public class SetorBean extends GenericoBean {
 	}
 
 	public List<SetorVO> getListaTudo() {
-		if (listaTudo == null || listaTudo.isEmpty()
-				|| getTermoPesquisa().isEmpty())
+		if (listaTudo == null || canUpdate())
 			setListaTudo(getFachada().listarSetores());
-		else
-			setTermoPesquisa(new String());
+										
 		return listaTudo;
 	}
 
 	public String delete() {
 		SetorVO setorDaVez = (SetorVO) getElementoSelecionado();
-		return getFachada().deleteSetor(setorDaVez);
+		String mensagem = getFachada().deleteSetor(setorDaVez);
+		adicionaMensagemUsuario(mensagem);
+		
+		// força atualização
+		setListaTudo(null);
+		
+		return mensagem;
 	}
 
 	public String update() {
 		SetorVO setorDaVez = (SetorVO) getElementoSelecionado();
 		setorDaVez.setBairros(setor.getBairros());
 		setElementoSelecionado(null);
-		return getFachada().updateSetor(setorDaVez);
+		
+		String mensagem = getFachada().updateSetor(setorDaVez);
+		adicionaMensagemUsuario(mensagem);
+		
+		return mensagem;
 	}
 
 	public String create() {
@@ -77,22 +90,26 @@ public class SetorBean extends GenericoBean {
 		if (getTermoPesquisa().isEmpty()) {
 			setListaTudo(getFachada().listarSetores());
 		} else {
-			List<SetorVO> setores = getFachada().pesquisaSetor(
-					getTermoPesquisa());
-			setListaTudo(setores);
+			
+			List<SetorVO> setores = getFachada().pesquisaSetor(getTermoPesquisa());
+			if (setores.isEmpty())
+				adicionarMensagem("Nenhum setor foi encontrado!");
+			else {
+				if (setores.size() > 1)
+					adicionarMensagem("Foram encontrados " + setores.size()
+							+ " resultados para a busca por '"
+							+ getTermoPesquisa() + "'");
+				else
+					adicionarMensagem("Foi encontrado " + setores.size()
+							+ " resultado para a busca por '"
+							+ getTermoPesquisa() + "'");
+				setListaTudo(setores);		
+			}
 		}
 	}
 
 	public void setListaTudo(List<SetorVO> listaTudo) {
 		this.listaTudo = listaTudo;
-	}
-
-	public String getTermoPesquisa() {
-		return termoPesquisa;
-	}
-
-	public void setTermoPesquisa(String termoPesquisa) {
-		this.termoPesquisa = termoPesquisa;
 	}
 
 	public void setBairrosSetor(List<String> listaBairros) {
@@ -117,4 +134,15 @@ public class SetorBean extends GenericoBean {
 		return null;
 	}
 
+	private void adicionaMensagemUsuario(String mensagem) {
+		if (mensagem.equals("removido"))
+			adicionarMensagem("Deletado com sucesso!");
+		else if (mensagem.equals("problemaRemover")) {
+			adicionarMensagem("Houve um problema ao tentar remover,\n contacte o administrador");
+		} else if (mensagem.equals("atualizado")) { 
+			adicionarMensagem("Atualizado com sucesso!");
+		} else {
+			adicionarMensagem(mensagem);
+		}
+	}	
 }
