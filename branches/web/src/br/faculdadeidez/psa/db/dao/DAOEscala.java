@@ -58,7 +58,7 @@ public class DAOEscala extends DAOFactory<Escala> {
 	 */
 	public String verificaViaturasNoutrasEscalasComMesmoDia(EscalaVO vo) {
 		String strQuery = "SELECT v FROM Viatura v " + "JOIN v.escalas sv "
-		+ "WHERE :dataInicioEscala between sv.dataInicial and sv.dataFinal AND sv.ativo = 1 AND v.ativo = 1";
+		+ "WHERE :dataInicioEscala between sv.dataInicial and sv.dataFinal AND sv.ativo = 1 AND v.ativo = 1 and sv.codigo <> " + vo.getCodigo();
 		EntityManager em = getManager();
 		Query query = em.createQuery(strQuery);
 		query.setParameter("dataInicioEscala", vo.getDataInicial());
