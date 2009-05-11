@@ -178,6 +178,12 @@
 	</navigation-rule>
 	<navigation-rule>
 		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/inicio.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
 			<from-outcome>paginaRelatorios</from-outcome>
 			<to-view-id>/pages/relatorio.xhtml</to-view-id>
 		</navigation-case>
