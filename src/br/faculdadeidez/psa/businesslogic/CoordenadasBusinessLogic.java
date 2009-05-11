@@ -3,16 +3,15 @@ package br.faculdadeidez.psa.businesslogic;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOCoordenada;
-import br.faculdadeidez.psa.db.dao.DAOEscala;
-import br.faculdadeidez.psa.db.dao.DAOViatura;
-import br.faculdadeidez.psa.servico.ComparacaoDistancia;
-import br.faculdadeidez.psa.servico.ComparacaoDistanciaException;
+import br.faculdadeidez.psa.servico.GoogleMaps;
+import br.faculdadeidez.psa.servico.GoogleMapsDistance;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
-import br.faculdadeidez.psa.vo.EscalaVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class CoordenadasBusinessLogic {
 
+	private GoogleMaps gmaps = null;
+	
 	public String create(CoordenadaVO vo) {
 		try {
 			DAOCoordenada dCoordenada = new DAOCoordenada();
@@ -107,19 +106,55 @@ public class CoordenadasBusinessLogic {
 	 *            ponto de destino
 	 * @return double
 	 */
-	public static double getDistancia(String origem, String destino) {
-		ComparacaoDistancia comp = new ComparacaoDistancia();
-		comp.setOrigem(origem);
-		comp.setDestino(destino);
-
-		String distancia;
-		try {
+	private GoogleMaps getDistancia(String origem, String destino) {
+		GoogleMapsDistance distance = new GoogleMapsDistance(origem,destino);
+		GoogleMaps gmaps = distance.retornaDistancia();
+		
+		return gmaps;
+	
+		/*try {
 			distancia = comp.getDistancia().replaceAll(",", ".");
 			distancia = distancia.replaceAll("[^0-9,]*", "");
 		} catch (ComparacaoDistanciaException e) {
 			distancia = "0";
-		}
+		}*/
+		
+	}
+	
+	
+	public  GoogleMaps getGmaps(){
+		return gmaps;
+	}
 
-		return Double.parseDouble(distancia);
+	public  void setGmaps(GoogleMaps gmapsE) {
+		gmaps = gmapsE;
+	}
+	public GoogleMaps calculaViaturaMaisProxima(String origem){
+		StringBuffer destino= new StringBuffer();
+		CoordenadaVO coordenadaTemporaria = new CoordenadaVO();
+		GoogleMaps gmaps;
+		GoogleMaps retorno= new GoogleMaps();
+		double distancia;
+		double distanciaTemporaria=999999999;
+		EscalaBusinessLogic logicaEscala = new EscalaBusinessLogic();
+		List<ViaturaVO> viaturas = logicaEscala.getViaturasEscalaTurno();
+		for (ViaturaVO viaturaVO : viaturas) {
+			coordenadaTemporaria = getUltimaCoordenadaViatura(viaturaVO);
+			destino.append(coordenadaTemporaria.getLatitude());
+			destino.append(",");
+			destino.append(coordenadaTemporaria.getLongitude());
+			gmaps = getDistancia(origem.toString(), destino.toString());
+			try {
+				distancia = Double.parseDouble( gmaps.getDistancia());
+			} catch (Exception e) {
+				distancia = 999999999;
+			}
+			if (distanciaTemporaria>distancia){
+				distanciaTemporaria=distancia;
+				retorno = gmaps;
+				destino = new StringBuffer();
+			}
+		}
+		return retorno;
 	}
 }
