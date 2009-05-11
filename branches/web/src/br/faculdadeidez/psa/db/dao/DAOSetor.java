@@ -25,6 +25,16 @@ public class DAOSetor extends DAOFactory<Setor> {
 		return ConvertList(super.findByField(Setor.class, campo, valor));
 	}
 	
+	public List<SetorVO> findByName(String nomeSetor){
+		String strQuery = "SELECT  s FROM Setor s WHERE s.nome like '%"+nomeSetor+"%'";
+		EntityManager em = getManager();
+		Query query = em.createQuery(strQuery);
+		
+		List<SetorVO> resultList = ConvertList( query.getResultList());
+		
+		return resultList;
+	}
+	
 	public List<SetorVO> findAll(){
 		return ConvertList(super.findAll(Setor.class));
 	}

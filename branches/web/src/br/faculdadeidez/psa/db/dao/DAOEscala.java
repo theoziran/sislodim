@@ -7,8 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.faculdadeidez.psa.db.entity.Escala;
+import br.faculdadeidez.psa.db.entity.Viatura;
 import br.faculdadeidez.psa.vo.EscalaVO;
-import br.faculdadeidez.psa.vo.SetorVO;
+import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class DAOEscala extends DAOFactory<Escala> {
 	public DAOEscala() {
@@ -47,6 +48,34 @@ public class DAOEscala extends DAOFactory<Escala> {
 	
 	public void remove(EscalaVO vo){	
 		super.remove(super.find(Escala.class, vo.getCodigo()));
+	}
+	
+	/** 
+	 * Verifica se as viaturas presentes na escala atual já estão cadastradas em outras escalas
+	 * que estão entre o período inicial e final desta escala
+	 * @param vo
+	 * @return
+	 */
+	public String verificaViaturasNoutrasEscalasComMesmoDia(EscalaVO vo) {
+		String strQuery = "SELECT v FROM Viatura v " + "JOIN v.escalas sv "
+		+ "WHERE :dataInicioEscala between sv.dataInicial and sv.dataFinal AND sv.ativo = 1 AND v.ativo = 1";
+		EntityManager em = getManager();
+		Query query = em.createQuery(strQuery);
+		query.setParameter("dataInicioEscala", vo.getDataInicial());
+		
+		List<Viatura> viaturas = query.getResultList();
+		
+		for(Viatura via : viaturas) { 
+			// verifica se alguma das viaturas retornadas estão dentre as viaturas que 
+			// foram definidas nesta escala
+			
+			for(ViaturaVO viaEsc : vo.getViaturas()) { 
+				if(viaEsc.getCodigo().equals(via.getCodigo()))
+					return viaEsc.getCodigo();
+			}
+		}		
+				
+		return null;
 	}
 	
 	/*

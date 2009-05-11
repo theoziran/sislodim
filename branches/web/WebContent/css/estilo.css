@@ -41,6 +41,17 @@ margin-left:5px;
   height:25px;
   text-align: center;
 }
+
+.erro
+{
+  background: #ffefef no-repeat 10px 3px;
+  border: 1px solid red;
+  font-size:14px;
+  height:25px;
+  color: red;
+  text-align: center;
+}
+
 #geral{
 	width:770px;
 	min-height:500px;
