@@ -41,8 +41,7 @@ public class ViaturaBean extends GenericoBean {
 
 	public String delete() {
 		ViaturaVO viaturaDaVez = (ViaturaVO) getElementoSelecionado();
-		viaturaDaVez.setAtivo(false);
-		String mensagem = getFachada().updateViatura(viaturaDaVez);
+		String mensagem = getFachada().deleteViatura(viaturaDaVez);
 		adicionaMensagemUsuario(mensagem);
 		
 		// força atualização
