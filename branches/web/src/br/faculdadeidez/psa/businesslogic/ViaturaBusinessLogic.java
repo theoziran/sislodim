@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOViatura;
+import br.faculdadeidez.psa.servico.GoogleMaps;
 import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.MensagemValidacaoVO;
@@ -131,6 +132,7 @@ public class ViaturaBusinessLogic {
 
 		ViaturaVO viaturaMaisProxima = null;
 		double menorDistancia = 0;
+		GoogleMaps gmaps;
 		String destino = coordenadasDestino.getLatitude() + ","
 				+ coordenadasDestino.getLongitude();
 
@@ -140,9 +142,15 @@ public class ViaturaBusinessLogic {
 					.getUltimaCoordenadaViatura(vtr);
 			String origem = coordenadaViatura.getLatitude() + ","
 					+ coordenadaViatura.getLongitude();
-			double distanciaAtual = CoordenadasBusinessLogic.getDistancia(
-					origem, destino);
-
+			double distanciaAtual ;
+			gmaps = coordenadaBL.calculaViaturaMaisProxima(origem);
+			try {
+				distanciaAtual = Double.parseDouble( gmaps.getDistancia());
+			} catch (Exception e) {
+				// TODO: handle exception
+				distanciaAtual = 999999999;
+			}
+			
 			if (viaturaMaisProxima == null) {
 				viaturaMaisProxima = vtr;
 				menorDistancia = distanciaAtual;

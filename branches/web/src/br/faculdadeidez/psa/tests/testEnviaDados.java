@@ -15,13 +15,13 @@ public class testEnviaDados extends TestCase{
 	/**
 	 * Test case - TC 6.1 - Informação enviada com sucesso
 	 **/
-	public void testaEnviaDados() throws ServletException, IOException{
+/*	public void testaEnviaDados() throws ServletException, IOException{
 		MIDServlet servlet = new MIDServlet();
 		
 		HttpServletRequest requestMock = requestMock();
 		servlet.doGet(requestMock, responseMock());
 		verify(requestMock);
-	}
+	}*/
 
 	private HttpServletResponse responseMock() {
 		HttpServletResponse responseMock = createMock(HttpServletResponse.class);
