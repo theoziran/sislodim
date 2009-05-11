@@ -1,8 +1,11 @@
 package br.faculdadeidez.psa.servico;
 
+import br.faculdadeidez.psa.vo.ViaturaVO;
+
 public class GoogleMaps {
 
 	private String distancia = null;
+	private ViaturaVO viatura;
 	
 	private String paisOrigem = null;
 	private String paisDestino = null;
@@ -194,5 +197,15 @@ public class GoogleMaps {
 
 	public void setPaisDestino(String paisDestino) {
 		this.paisDestino = paisDestino;
+	}
+
+
+	public void setViatura(ViaturaVO viatura) {
+		this.viatura = viatura;
+	}
+
+
+	public ViaturaVO getViatura() {
+		return viatura;
 	}
 }

@@ -27,6 +27,7 @@
 		<h:outputLabel value="Escolha a viatura" for="viatura" />
 			<h:selectOneMenu id="viatura" value="#{viaturaBean.viatura.codigo}"
 				rendered="true" onchange="submit()">
+				<f:selectItem itemLabel="" itemValue=""/>
 				<f:selectItems value="#{escalaBean.listaViaturas}" />
 				<!-- a4j:support event="onchange" action="submit()" reRender="mapa"/-->
 			</h:selectOneMenu>
@@ -39,7 +40,7 @@
 				longitude="#{viaturaBean.ultimaCoordenada.longitude}">
 				<m:marker latitude="#{viaturaBean.ultimaCoordenada.latitude}"
 					longitude="#{viaturaBean.ultimaCoordenada.longitude}" />
-				<m:htmlInformationWindow htmlText="Localização padrão do Mag Shopping" />
+				<m:htmlInformationWindow htmlText="Localização da viatura #{viaturaBean.ultimaCoordenada.viatura.codigo}" />
 			</m:map>
 		</rich:panel>
 		</body>

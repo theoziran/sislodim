@@ -8,7 +8,7 @@ public class CoordenadaVO implements Serializable {
 	private int codigo;
 	private String latitude;
 	private String longitude;
-	private ViaturaVO viatura;
+	private ViaturaVO viatura= new ViaturaVO() ;
 	private Date data;
 	private boolean foraDeArea;
 	private boolean processadoVerificacao;
