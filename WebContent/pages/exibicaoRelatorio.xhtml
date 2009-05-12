@@ -44,9 +44,5 @@
 			<h:outputText value="#{elementoDaVez.horario}" />
 		</rich:column>
 	</ui:define>
-	<ui:define name="linkNovaPesquisa">
-		<h:commandButton value="Nova Pesquisa" action="relatorio"
-			rendered="#{sessaoBean.coordenador or sessaoBean.moderador}" />
-	</ui:define>
 </ui:composition>
 </html>

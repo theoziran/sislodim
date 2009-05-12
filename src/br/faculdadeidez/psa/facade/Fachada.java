@@ -1,5 +1,6 @@
 package br.faculdadeidez.psa.facade;
 
+import java.util.Date;
 import java.util.List;
 
 import br.faculdadeidez.psa.businesslogic.BairroBusinessLogic;
@@ -13,6 +14,7 @@ import br.faculdadeidez.psa.servico.GoogleMaps;
 import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.EscalaVO;
+import br.faculdadeidez.psa.vo.RotaPercorridaVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.UsuarioVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
@@ -200,12 +202,8 @@ public class Fachada {
 	/*
 	 * Métodos para Relatório de Rotas Percorridas
 	 */
-	public List<CoordenadaVO> listaRotas() {
-		return new RotaPercorridaBusinessLogic().listar();
-	}
-
-	public List<CoordenadaVO> listaForaDeArea() {
-		return new RotaPercorridaBusinessLogic().listarForaDeArea();
+	public List<RotaPercorridaVO> listarRotas(Date dataInicio, Date dataFim, Boolean foraDeSetor) {
+		return new RotaPercorridaBusinessLogic().listar(dataInicio, dataFim, foraDeSetor);
 	}
 
 }
