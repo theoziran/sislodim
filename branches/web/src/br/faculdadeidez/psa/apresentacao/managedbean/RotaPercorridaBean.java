@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
-
-import br.faculdadeidez.psa.servico.RetornaEndereco;
-import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.RotaPercorridaVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 
@@ -63,58 +59,12 @@ public class RotaPercorridaBean extends GenericoBean {
 	}
 
 	public List<RotaPercorridaVO> getRotas() {
-		if (foraDeSetor) {
-			return getRotasForaDeArea();
-		}
-
-		periodoFim = new Date(periodoFim.getYear(),periodoFim.getMonth(),periodoFim.getDate(),23,59);
 		List<RotaPercorridaVO> rotas = new ArrayList<RotaPercorridaVO>();
-		List<CoordenadaVO> coords = getFachada().listaRotas();
-
-		for (CoordenadaVO coordenadaVO : coords) {
-			
-			if ((coordenadaVO.getData().after(periodoInicio))
-					&& (coordenadaVO.getData().before(periodoFim))){
-				RotaPercorridaVO rota = new RotaPercorridaVO();
-
-				rota.setBairro(getBairro(coordenadaVO.getLatitude(),
-						coordenadaVO.getLongitude()));
-				rota.setViatura(coordenadaVO.getViatura());
-				rota.setData(coordenadaVO.getData());
-
-				rotas.add(rota);
-			}
-		}
+		rotas = getFachada().listarRotas(periodoInicio, periodoFim, foraDeSetor);
 		return rotas;
+
 	}
 
-	private String getBairro(String latitude, String longitude) {
-		RetornaEndereco re = new RetornaEndereco(latitude, longitude);
-		return re.getBairro(re.PercorrerXml(re.receberXml()));
-	}
-
-	private List<RotaPercorridaVO> getRotasForaDeArea() {
-
-		periodoFim = new Date(periodoFim.getYear(),periodoFim.getMonth(),periodoFim.getDate(),23,59);
-		List<RotaPercorridaVO> rotas = new ArrayList<RotaPercorridaVO>();
-		List<CoordenadaVO> coords = getFachada().listaForaDeArea();
-
-		for (CoordenadaVO coordenadaVO : coords) {
-			if ((coordenadaVO.getData().after(periodoInicio))
-					&& (coordenadaVO.getData().before(periodoFim))){
-				RotaPercorridaVO rota = new RotaPercorridaVO();
-				rota.setBairro(getBairro(coordenadaVO.getLatitude(),
-						coordenadaVO.getLongitude()));
-				rota.setViatura(coordenadaVO.getViatura());
-				rota.setData(coordenadaVO.getData());
-				rota.setESetor(coordenadaVO.getForaDeArea());
-				rotas.add(rota);
-			}
-		}
-
-		return rotas;
-	}
-	
 	public String exibir(){
 		return "exibirRelatorios";
 	}
