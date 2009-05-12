@@ -130,21 +130,26 @@ public class CoordenadasBusinessLogic {
 	public  void setGmaps(GoogleMaps gmapsE) {
 		gmaps = gmapsE;
 	}
-	public GoogleMaps calculaViaturaMaisProxima(String origem){
-		StringBuffer destino= new StringBuffer();
+	public GoogleMaps calculaViaturaMaisProxima(String destino){
+		StringBuffer origem= new StringBuffer();
 		CoordenadaVO coordenadaTemporaria = new CoordenadaVO();
 		GoogleMaps gmaps;
 		GoogleMaps retorno= null;
 		double distancia;
 		double distanciaTemporaria=999999999;
-		EscalaBusinessLogic logicaEscala = new EscalaBusinessLogic();
-		List<ViaturaVO> viaturas = logicaEscala.getViaturasEscalaTurno();
+		ViaturaBusinessLogic logicaViatura = new ViaturaBusinessLogic();
+		List<ViaturaVO> viaturas = logicaViatura.getViaturasDesocupadas();
+		if (viaturas.isEmpty()){
+			retorno=new GoogleMaps();
+			retorno.setMsgErro("ViaturasOcupadas");
+			return retorno;
+		}
 		for (ViaturaVO viaturaVO : viaturas) {
 			coordenadaTemporaria = getUltimaCoordenadaViatura(viaturaVO);
-			destino.append(coordenadaTemporaria.getLatitude());
-			destino.append(",");
-			destino.append(coordenadaTemporaria.getLongitude());
-			gmaps = getDistancia(origem.toString(), destino.toString());
+			origem.append(coordenadaTemporaria.getLatitude());
+			origem.append(",");
+			origem.append(coordenadaTemporaria.getLongitude());
+			gmaps = getDistancia(origem.toString(),destino.toString());
 			try {
 				distancia = Double.parseDouble( gmaps.getDistancia());
 			} catch (Exception e) {
@@ -154,7 +159,7 @@ public class CoordenadasBusinessLogic {
 				distanciaTemporaria=distancia;
 				retorno = gmaps;
 				retorno.setViatura(viaturaVO);
-				destino = new StringBuffer();
+				origem = new StringBuffer();
 			}
 		}
 		if (retorno==null){

@@ -30,15 +30,18 @@ public class CoordenadaBean extends GenericoBean{
 	}
 	
 	public void calculaPontoMaisProximo() throws NumberFormatException, ComparacaoDistanciaException{
-		StringBuffer origem= new StringBuffer();
-		origem.append(this.rua);
-		origem.append(",");
-		origem.append(this.bairro);
-		origem.append(",");
-		origem.append("João Pessoa");
-		this.gmaps=getFachada().calculaViaturaMaisProxima(origem.toString());
+		StringBuffer destino= new StringBuffer();
+		destino.append(this.rua);
+		destino.append(",");
+		destino.append(this.bairro);
+		destino.append(",");
+		destino.append("João Pessoa");
+		this.gmaps=getFachada().calculaViaturaMaisProxima(destino.toString());
 		if (this.gmaps.getMsgErro()!=null){
-			adicionarMensagemErro("Endereço não encontrado");
+			if (gmaps.getMsgErro().equals("ViaturasOcupadas"))
+				adicionarMensagemErro("Todas as viaturas estão indisponíveis");
+			else
+				adicionarMensagemErro("Endereço não encontrado");
 		}else{
 			adicionarMensagem("A viatura " +this.gmaps.getViatura().getCodigo()+" sairá do ponto A ("+this.gmaps.getEnderecoCompletoOrigem()+") para o ponto B ("+this.gmaps.getEnderecoCompletoDestino()+")");
 		}

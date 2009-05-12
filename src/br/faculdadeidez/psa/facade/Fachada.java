@@ -133,9 +133,9 @@ public class Fachada {
 
 	
 
-	public GoogleMaps calculaViaturaMaisProxima(String origem) {
+	public GoogleMaps calculaViaturaMaisProxima(String destino) {
 		CoordenadasBusinessLogic logicaCoordenada = new CoordenadasBusinessLogic();
-		return logicaCoordenada.calculaViaturaMaisProxima(origem);
+		return logicaCoordenada.calculaViaturaMaisProxima(destino);
 	}
 
 	/*
