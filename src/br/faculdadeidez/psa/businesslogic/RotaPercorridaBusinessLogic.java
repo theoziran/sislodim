@@ -22,8 +22,10 @@ public class RotaPercorridaBusinessLogic {
 
 			if(foraDeSetor){
 				coordenadas = listarForaDoSetor();
-				rota = new RotaPercorridaVO();
-				for (CoordenadaVO coordenadaVO : coordenadas) {
+			}else if(!foraDeSetor){
+				coordenadas = listarNoSetor();
+			}
+			for (CoordenadaVO coordenadaVO : coordenadas) {
 				if ((coordenadaVO.getData().after(dataInicio))
 						&& (coordenadaVO.getData().before(dataFim))){
 					rota = new RotaPercorridaVO();
@@ -34,20 +36,7 @@ public class RotaPercorridaBusinessLogic {
 
 				}
 			}
-			}else if(!foraDeSetor){
-				coordenadas = listarNoSetor();
-				rota = new RotaPercorridaVO();
-				for (CoordenadaVO coordenadaVO : coordenadas) {
-					if ((coordenadaVO.getData().after(dataInicio))
-							&& (coordenadaVO.getData().before(dataFim))){
-					rota.setBairro(getBairro(coordenadaVO.getLatitude(),coordenadaVO.getLongitude()));
-					rota.setViatura(coordenadaVO.getViatura());
-					rota.setData(coordenadaVO.getData());
-					rotas.add(rota);
 
-					}
-				}
-			}
 			return rotas;
 			
 	}	
