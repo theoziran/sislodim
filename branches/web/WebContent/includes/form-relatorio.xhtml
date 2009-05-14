@@ -7,6 +7,7 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition>
+
 	<h3>Relatório de Rotas</h3>
 	<div class="form">
 		<h:form>
@@ -23,18 +24,18 @@
 				</rich:calendar>
 			</h:panelGrid>
 			<hr />
-			<h:panelGrid columns="2">
+			<h:panelGrid>
 				<h:outputLabel value="Tipo de Relatório: " />
-				<br />
-				<h:outputLabel value="Viaturas fora do setor" />
-				<h:selectBooleanCheckbox value="#{rotaPercorridaBean.foraDeSetor}" />
 			</h:panelGrid>
-			<br />
-			<br />
-			<h:commandButton action="#{rotaPercorridaBean.exibir}"
-				value="Gerar Relatório" />
-			<h:messages />
+			<h:panelGrid columns="3">
+				<h:commandButton action="#{rotaPercorridaBean.viaturaNoSetor}"
+					value="Rotas Percorridas" />
+				<h:commandButton action="#{rotaPercorridaBean.viaturaForaDoSetor}"
+					value="Viaturas fora de área" />
+			</h:panelGrid>
 		</h:form>
-	</div>
+		</div>
+
+
 </ui:composition>
 </html>

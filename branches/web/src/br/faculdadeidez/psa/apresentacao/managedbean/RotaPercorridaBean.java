@@ -65,10 +65,6 @@ public class RotaPercorridaBean extends GenericoBean {
 
 	}
 
-	public String exibir(){
-		return "exibirRelatorios";
-	}
-
 	public void setListaTudo(List<RotaPercorridaVO> listaTudo) {
 		this.listaTudo = listaTudo;
 	}
@@ -94,4 +90,15 @@ public class RotaPercorridaBean extends GenericoBean {
 		return tipoDeRelatorio;
 	}
 	
+	public String viaturaForaDoSetor(){
+		foraDeSetor = true;
+		return "exibirRelatorios";
+		
+	}
+
+	public String viaturaNoSetor(){
+		this.foraDeSetor = false;
+		return "exibirRelatorios";
+		
+	}
 }
