@@ -21,6 +21,7 @@ public class Menu extends List implements CommandListener {
 		this.append("Sincronizar Dados", null);
 		this.append("Configurações", null);
 		this.append("Exibir Ponto Estratégico", null);
+		this.append("Iniciar Aplicação", null);
 
 		this.addCommand(cmdVoltar);
 		this.addCommand(cmdOk);
@@ -67,7 +68,13 @@ public class Menu extends List implements CommandListener {
 								ExibicaoPonto.getInstance());
 						break;
 					}
+					case 3: {
+						System.out.println("Exibir ponto estratégico");
 
+						UIController.getInstance().setCurrent(
+								GPS.getInstance());
+						break;
+					}
 					default: {
 						System.out.println("Opção Indefinida");
 					}

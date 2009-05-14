@@ -1,11 +1,17 @@
 package br.com.idez.ddm.tourguide.telas;
 
+import java.io.IOException;
+
 import javax.microedition.lcdui.Alert;
+import javax.microedition.lcdui.AlertType;
+import javax.microedition.lcdui.Image;
+
 
 public class Alerta extends Alert {
 
 	private static Alerta instance;
 	private String texto;
+	private static Image img;
 
 	public String getTexto() {
 		return texto;
@@ -15,10 +21,9 @@ public class Alerta extends Alert {
 		super.setString(texto);
 	}
 
-	// private Alerta(String title, String alertText, Image alertImage,
-	// AlertType alertType) {
-	// super(title, alertText, alertImage, alertType);
-	// }
+	 private Alerta(String title, String alertText, Image alertImage,AlertType alertType) {
+		super(title, alertText, alertImage, alertType);
+	}
 
 	private Alerta() {
 		super("");
@@ -30,4 +35,17 @@ public class Alerta extends Alert {
 		}
 		return instance;
 	}
+	
+	public static Alerta getInstance(String title, String alertText) {
+		if (instance == null) {
+			try {
+				img = Image.createImage("/alert.png");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			instance = new Alerta(title, alertText, img, AlertType.CONFIRMATION);
+		}
+		return instance;
+	}
+	
 }
