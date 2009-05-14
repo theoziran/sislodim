@@ -14,7 +14,6 @@ import br.com.idez.ddm.tourguide.PontoEstrategico;
 public class Parser {
 
 	private static Parser instance = null;
-
 	private KXmlParser xmlParser = null;
 
 	private Parser() {
@@ -46,16 +45,14 @@ public class Parser {
 			String attributeName = xmlParser.getAttributeName(0);
 			String attributeValue = xmlParser.getAttributeValue(0);
 
-			System.out.println("--> ID = " + attributeValue);
-
 			if (attributeName.equals("id")) {
 				pontos.addElement(parsePonto(attributeValue));
 			} else {
-				System.out.println("atributo não esperado: " + attributeValue);
+				throw new XmlPullParserException("ATRIBUTO não esperado");
 			}
 			xmlParser.require(XmlPullParser.END_TAG, null, "ponto");
 		}
-		
+
 		xmlParser.require(XmlPullParser.END_TAG, null, "pontos");
 		xmlParser.next();
 		xmlParser.require(XmlPullParser.END_DOCUMENT, null, null);
@@ -67,7 +64,6 @@ public class Parser {
 			throws XmlPullParserException, IOException {
 
 		PontoEstrategico ponto = new PontoEstrategico();
-
 		ponto.setId(Integer.parseInt(id));
 
 		while (xmlParser.nextTag() != XmlPullParser.END_TAG) {
@@ -76,14 +72,14 @@ public class Parser {
 			String name = xmlParser.getName();
 			String text = xmlParser.nextText();
 
-			System.out.println("----->" + name + ": " + text);
-
 			if (name.equals("nome"))
 				ponto.setNome(text);
 			else if (name.equals("lat"))
 				ponto.setLatitude(Double.parseDouble(text));
 			else if (name.equals("long"))
 				ponto.setLongitude(Double.parseDouble(text));
+			else
+				throw new XmlPullParserException("TAG não esperada");
 
 			xmlParser.require(XmlPullParser.END_TAG, null, name);
 		}
