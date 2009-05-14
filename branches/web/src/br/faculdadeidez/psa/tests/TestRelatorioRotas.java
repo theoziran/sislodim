@@ -1,64 +1,44 @@
 package br.faculdadeidez.psa.tests;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
+import junit.framework.TestCase;
 import br.faculdadeidez.psa.businesslogic.RotaPercorridaBusinessLogic;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.RotaPercorridaVO;
 
-import junit.framework.TestCase;
-
 public class TestRelatorioRotas extends TestCase{
 	
-	protected List<Date> listDataInicial;
-	protected List<Date> listDataFinal;
-	
-	
-	public TestRelatorioRotas() {
-		this.listDataInicial = new ArrayList<Date>();
-		this.listDataFinal = new ArrayList<Date>();
-	}
+	protected Date dataInicial;
+	protected Date dataFinal;
 	
 	@Override
 	protected void setUp() throws Exception {
-		Date data = new Date();
-		
-		data.setYear(2009);
-		data.setMonth(5);
-		data.setDate(8);
-		data.setHours(21);
-		data.setMinutes(15);		
-		listDataInicial.add(data);
-		data.setDate(10);
-		data.setHours(0);
-		data.setMinutes(45);
-		listDataInicial.add(data);
-		data.setHours(3);
-		data.setMinutes(15);
-		listDataInicial.add(data);
-		
-		data.setYear(2009);
-		data.setMonth(5);
-		data.setDate(22);
-		data.setHours(23);
-		data.setMinutes(59);
-		listDataFinal.add(data);
-		data.setDate(6);
-		listDataFinal.add(data);
-		data.setMonth(10);
-		listDataFinal.add(data);
-				
-		
+		this.dataInicial = new Date(2008,4,7,21,15);
+		this.dataFinal = new Date(2009,5,22,23,59);
 	}
 	
 	public void testGeraRelatorioViaturaNoSetorValidos(){
 		RotaPercorridaBusinessLogic rotasBl = new RotaPercorridaBusinessLogic();
-		List<RotaPercorridaVO> list = new ArrayList<RotaPercorridaVO>();
-		list.addAll(rotasBl.listar(listDataInicial.get(0), listDataFinal.get(0), false));
-		assertTrue(!list.isEmpty());
+		
+		List<RotaPercorridaVO> list = rotasBl.listar(this.dataInicial, this.dataFinal, true);
+		assertEquals(3, list.size());
+
+		list = rotasBl.listar(this.dataInicial, this.dataFinal, false);
+		assertEquals(1, list.size());
 	}
 	
-	
+	public void testListarCoordenadas() {
+		RotaPercorridaBusinessLogic rotasBL = new RotaPercorridaBusinessLogic();
+		
+		Vector<CoordenadaVO> coordenadas = (Vector<CoordenadaVO>)rotasBL.listarNoSetor();
+		Vector<CoordenadaVO> coordenadasFora = (Vector<CoordenadaVO>)rotasBL.listarForaDoSetor();
+		
+		assertEquals(1, coordenadas.size());
+		assertEquals(3, coordenadasFora.size());	
+	}
 }
