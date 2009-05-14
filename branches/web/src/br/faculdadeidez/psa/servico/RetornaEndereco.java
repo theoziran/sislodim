@@ -25,7 +25,7 @@ public class RetornaEndereco {
 
 	// CONSTANTES
 	private final String URL = "http://maps.google.com/maps/geo?output=xml&oe=utf-8&ll=";
-	private final String KEY = "&key=ABQIAAAAzmhk1rsDjNgnLZAsYOvQSRSjuaEVZENCKjhga9SCJmC3LvuwVBR8Ioq6jiQaq4b7Ft9EJwXpA4e1nA";
+	private final String KEY = "&key=ABQIAAAAnP7CvtbK0B6uGXcc2TLFNBQNPSG1CbDoZtsh_iahoSxMN1Ni0xQiLeWpgqnQng6nlXxjgUevDh9ljA";
 
 	public RetornaEndereco() {
 		// TODO Auto-generated constructor stub
