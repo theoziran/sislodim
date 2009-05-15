@@ -18,8 +18,8 @@ public class TestRelatorioRotas extends TestCase{
 	
 	@Override
 	protected void setUp() throws Exception {
-		this.dataInicial = new Date(2008,4,7,21,15);
-		this.dataFinal = new Date(2009,5,22,23,59);
+		this.dataInicial = new Date(2008-1900,5-1,7,21,15);
+		this.dataFinal = new Date(2009-1900,5-1,22,23,59);
 	}
 	
 	public void testGeraRelatorioViaturaNoSetorValidos(){
