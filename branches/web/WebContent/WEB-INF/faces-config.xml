@@ -94,6 +94,12 @@
 	</navigation-rule>
 	<navigation-rule>
 		<navigation-case>
+			<from-outcome>cadastroPessoa</from-outcome>
+			<to-view-id>/pages/cadastroPessoa.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>	
+	<navigation-rule>
+		<navigation-case>
 			<from-outcome>adminUsuario</from-outcome>
 			<to-view-id>/pages/adminUsuario.xhtml</to-view-id>
 		</navigation-case>

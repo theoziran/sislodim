@@ -77,4 +77,14 @@
     <servlet-name>MIDServlet</servlet-name>
     <url-pattern>/MIDServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ComparacaoDistancia</display-name>
+    <servlet-name>ComparacaoDistancia</servlet-name>
+    <servlet-class>br.faculdadeidez.psa.apresentacao.servlets.ComparacaoDistancia</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ComparacaoDistancia</servlet-name>
+    <url-pattern>/ComparacaoDistancia</url-pattern>
+  </servlet-mapping>
 </web-app>

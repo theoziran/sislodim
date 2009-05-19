@@ -9,7 +9,7 @@
 <head>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-		<title><ui:insert name="title">Sislodim - Administrador</ui:insert></title>
+		<title><ui:insert name="title">Spoor - Administrador</ui:insert></title>
 	<link href="#{facesContext.externalContext.request.contextPath}/css/estilo.css" rel="stylesheet" type="text/css" media="screen" />
 	<ui:insert name="head">
 				
@@ -20,7 +20,7 @@
 <body>
 
 <div id="geral">
-	<div id="topo"><h:form ><h:commandLink action="logado"><h:graphicImage value="/images/topo.gif" width="770" height="150" style="border:0;" alt="Sislodim - Módulo administrativo" /></h:commandLink></h:form></div>
+	<div id="topo"><h:form ><h:commandLink action="logado"><h:graphicImage value="/images/topo.jpg" style="border:0;" alt="Spoor - Módulo administrativo" /></h:commandLink></h:form></div>
 	<!-- <div id="topo"><a href="#{facesContext.externalContext.request.contextPath}"><h:graphicImage value="/images/topo.gif" width="770" height="150" style="border:0;" alt="Sislodim - Módulo administrativo" /></a></div>-->
 	<div id="info"><ui:insert name="info"><h:form rendered="#{sessaoBean.logado}"><span><h:commandLink style="margin:5px 0 0 0;float:left;background:#DDEEFF;height:15px;line-height:15px;padding:5px;border:1px solid #99CCFF;" value="Home" action="logado" /><h:commandLink style="margin:5px 0 0 0;float:left;background:#DDEEFF;height:15px;line-height:15px;padding:5px;border:1px solid #99CCFF;" value="Logout" action="#{usuarioBean.logout}" /></span>Olá, <strong><h:outputText value="#{sessaoBean.usuarioBean.usuario.nome}" /></strong></h:form></ui:insert></div>
 
