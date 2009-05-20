@@ -7,6 +7,7 @@ import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.TextField;
 
 import br.com.idez.core.UIController;
+import br.com.idez.ui.util.Alerta;
 
 public class ConsultarOcorrencia extends Form implements CommandListener{
 	private static ConsultarOcorrencia instance;
@@ -46,7 +47,13 @@ public class ConsultarOcorrencia extends Form implements CommandListener{
 			 */
 			try {	
 				System.out.println("Iniciando consulta de ocorrência...");
-				UIController.getInstance().consultaOcorrencia(this.txtPlacaVeiculo.getString());
+				
+				if(this.txtPlacaVeiculo.getString().equals("")) {
+					UIController.getInstance().setCurrent(Alerta.getInstance("Você deve informar a placa do veículo", 1));				
+				}
+				else { 				
+					UIController.getInstance().consultaOcorrencia(this.txtPlacaVeiculo.getString());
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -15,11 +15,11 @@ import br.com.idez.core.response.ConsultaCondutorResponse;
 import br.com.idez.core.response.ConsultaOcorrenciaResponse;
 import br.com.idez.core.response.ConsultaVeiculoResponse;
 import br.com.idez.core.response.IResponse;
-import br.com.idez.exemplos.Alerta;
 import br.com.idez.ui.ConsultarCondutorResultado;
 import br.com.idez.ui.ConsultarOcorrenciaResultado;
 import br.com.idez.ui.ConsultarVeiculoResultado;
 import br.com.idez.ui.Menu;
+import br.com.idez.ui.util.Alerta;
 
 public class UIController {
 	
@@ -189,14 +189,17 @@ public class UIController {
 						System.out.println("Encontrou dados: " + resp.getResponse());
 						
 						// verificação para cada tipo de resposta
-						if (resp instanceof ConsultaOcorrenciaResponse) {							
-							setCurrent(ConsultarOcorrenciaResultado.getInstance(resp.getResponse()));
+						if (resp instanceof ConsultaOcorrenciaResponse) {
+							setCurrent(ConsultarOcorrenciaResultado.getInstance());
+							ConsultarOcorrenciaResultado.getInstance().processaXml(resp.getResponse());
 						}
 						else if(resp instanceof ConsultaCondutorResponse) { 
-							setCurrent(ConsultarCondutorResultado.getInstance(resp.getResponse()));
+							setCurrent(ConsultarCondutorResultado.getInstance());							
+							ConsultarCondutorResultado.getInstance().processaXml(resp.getResponse());
 						}
-						else if(resp instanceof ConsultaVeiculoResponse) { 
-							setCurrent(ConsultarVeiculoResultado.getInstance(resp.getResponse()));
+						else if(resp instanceof ConsultaVeiculoResponse) {
+							setCurrent(ConsultarVeiculoResultado.getInstance());
+							ConsultarVeiculoResultado.getInstance().processaXml(resp.getResponse());
 						}
 					}
 				}
