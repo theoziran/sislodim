@@ -1,6 +1,6 @@
-MIDlet-Jar-URL: ProjetoDDM.jar
-MIDlet-Name: ProjetoDDM Midlet Suite
-MIDlet-Vendor: Midlet Suite Vendor
 MIDlet-Version: 1.0.0
-MicroEdition-Configuration: CLDC-1.1
+MIDlet-Vendor: Midlet Suite Vendor
+MIDlet-Jar-URL: ProjetoDDM.jar
+MicroEdition-Configuration: CLDC-1.0
 MicroEdition-Profile: MIDP-2.0
+MIDlet-Name: ProjetoDDM Midlet Suite
