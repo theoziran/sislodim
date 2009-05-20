@@ -7,6 +7,7 @@ import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.TextField;
 
 import br.com.idez.core.UIController;
+import br.com.idez.ui.util.Alerta;
 
 public class ConsultarCondutor extends Form implements CommandListener{
 	private static ConsultarCondutor instance;
@@ -47,7 +48,13 @@ public class ConsultarCondutor extends Form implements CommandListener{
 			 */
 			try {	
 				System.out.println("Iniciando consulta de condutor...");
-				UIController.getInstance().consultaCondutor(this.txtIdentificacaoCNH.getString());
+				
+				if(this.txtIdentificacaoCNH.getString().equals("")) {
+					UIController.getInstance().setCurrent(Alerta.getInstance("Você deve informar o CNH do condutor", 1));				
+				}
+				else { 				
+					UIController.getInstance().consultaCondutor(this.txtIdentificacaoCNH.getString());
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

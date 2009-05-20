@@ -1,4 +1,4 @@
-package br.com.idez.exemplos;
+package br.com.idez.ui.util;
 
 import java.io.IOException;
 
