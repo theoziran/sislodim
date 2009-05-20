@@ -1,6 +1,9 @@
 package br.com.idez.ddm.tourguide.core;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Stack;
+import java.util.Vector;
 
 import javax.microedition.lcdui.Alert;
 import javax.microedition.lcdui.Display;
@@ -8,6 +11,9 @@ import javax.microedition.lcdui.Displayable;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import br.com.idez.ddm.tourguide.PontoEstrategico;
 import br.com.idez.ddm.tourguide.TourGuideMIDLet;
 
 public class UIController {
@@ -80,5 +86,23 @@ public class UIController {
 		Record.setConfigMultimedia(multimedia);
 		Record.setConfigSound(sound);
 		Record.setConfigSync(sync);
+	}
+
+	public void sincronizar() {
+
+		try {
+			InputStream in = TransmissaoDados.getInstance().getSyncXML();
+			Vector pontos = Parser.getInstance().parse(in);
+
+			for (int i = 0; i < pontos.size(); i++) {
+				PontoEstrategico.addPonto((PontoEstrategico) pontos
+						.elementAt(i));
+			}
+
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

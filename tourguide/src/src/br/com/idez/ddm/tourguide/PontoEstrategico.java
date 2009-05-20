@@ -1,5 +1,7 @@
 package br.com.idez.ddm.tourguide;
 
+import br.com.idez.ddm.tourguide.core.Record;
+
 public class PontoEstrategico {
 	private int id;
 	private String nome;
@@ -39,5 +41,27 @@ public class PontoEstrategico {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("ID: " + id + "|");
+		sb.append("Nome: " + nome + "|");
+		sb.append("Latitude: " + latitude + "|");
+		sb.append("Longitude: " + longitude + "|");
+
+		return sb.toString();
+
+	}
+
+	public static void addPonto(PontoEstrategico ponto) {
+		if (buscaPonto(ponto) == null) {
+			Record.addPontoEstrategico(ponto);
+		}
+		//TODO atualiza ponto
+	}
+
+	private static PontoEstrategico buscaPonto(PontoEstrategico ponto) {
+		return Record.getPontoEstrategico(ponto.getId());
 	}
 }

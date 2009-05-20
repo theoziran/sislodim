@@ -29,7 +29,7 @@ public class ExibicaoPonto extends Form implements CommandListener {
 		iiPontoEstrategico = new ImageItem(null, null, ImageItem.LAYOUT_CENTER,
 				"ponto estrategico");
 
-		// cria a image
+		// cria a imagem
 		Image image = null;
 		try {
 			image = Image.createImage("/farol.png");
@@ -62,7 +62,6 @@ public class ExibicaoPonto extends Form implements CommandListener {
 			try {
 				UIController.getInstance().voltar();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

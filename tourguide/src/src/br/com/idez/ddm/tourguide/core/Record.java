@@ -306,8 +306,8 @@ public class Record {
 					+ ponto.getNome();
 			String recPontoLatitude = KEY_PTO_LATITUDE + ":" + recPontoID + "="
 					+ Double.toString(ponto.getLatitude());
-			String recPontoLongitude = KEY_PTO_LONGITUDE + ":" + recPontoID	+ "="
-					+ Double.toString(ponto.getLongitude());
+			String recPontoLongitude = KEY_PTO_LONGITUDE + ":" + recPontoID
+					+ "=" + Double.toString(ponto.getLongitude());
 
 			byte[] recBytes = recPontoNome.getBytes();
 			rs.addRecord(recBytes, 0, recBytes.length);
@@ -330,7 +330,7 @@ public class Record {
 	}
 
 	public static PontoEstrategico getPontoEstrategico(int id) {
-		PontoEstrategico pontoEstrategico = new PontoEstrategico();
+		PontoEstrategico pontoEstrategico = null;
 		int count = 0;
 		try {
 			openRecord(key_record_store);
@@ -344,26 +344,38 @@ public class Record {
 			// executa a pesquisa pelo id informado
 			if (rs != null) {
 				RecordEnumeration re = rs.enumerateRecords(null, null, false);
-				while (re.hasNextElement() || (recPontoNome != null && recPontoLongitude != null && recPontoLatitude != null)) {
+				while (re.hasNextElement()
+						|| (recPontoNome != null && recPontoLongitude != null && recPontoLatitude != null)) {
 					count = re.nextRecordId();
 					String str = new String(rs.getRecord(count));
 					if (str.startsWith(KEY_PTO_NOME + ":" + recPontoID + "=")) {
 						recPontoNome = new String(rs.getRecord(count));
-					} else if (str.startsWith(KEY_PTO_LATITUDE + ":" + recPontoID + "=")) {
+					} else if (str.startsWith(KEY_PTO_LATITUDE + ":"
+							+ recPontoID + "=")) {
 						recPontoLatitude = new String(rs.getRecord(count));
-					} else if (str.startsWith(KEY_PTO_LONGITUDE + ":" + recPontoID + "=")) {
+					} else if (str.startsWith(KEY_PTO_LONGITUDE + ":"
+							+ recPontoID + "=")) {
 						recPontoLongitude = new String(rs.getRecord(count));
 					}
 				}
+
+				if (recPontoNome != null) {
+					pontoEstrategico = new PontoEstrategico();
+					
+					pontoEstrategico.setId(id);
+					pontoEstrategico.setNome(recPontoNome.substring(
+							recPontoNome.indexOf("=") + 1, recPontoNome
+									.length()));
+					pontoEstrategico.setLatitude(Double
+							.parseDouble((recPontoLatitude.substring(
+									recPontoLatitude.indexOf("=") + 1,
+									recPontoLatitude.length()))));
+					pontoEstrategico.setLongitude(Double
+							.parseDouble((recPontoLongitude.substring(
+									recPontoLongitude.indexOf("=") + 1,
+									recPontoLongitude.length()))));
+				}
 			}
-			
-			pontoEstrategico.setId(id);
-			pontoEstrategico.setNome(recPontoNome.substring(recPontoNome
-					.indexOf("=") + 1, recPontoNome.length()));
-			pontoEstrategico.setLatitude(Double.parseDouble((recPontoLatitude.substring(recPontoLatitude.indexOf("=") + 1,
-							recPontoLatitude.length()))));
-			pontoEstrategico.setLongitude(Double.parseDouble((recPontoLongitude.substring(recPontoLongitude.indexOf("=") + 1,
-							recPontoLongitude.length()))));
 
 		} catch (Exception e) {
 			// TODO exibir Alert
