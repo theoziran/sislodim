@@ -29,19 +29,6 @@ public class TourGuideMIDLet extends MIDlet {
 	protected void startApp() throws MIDletStateChangeException {
 		System.out.println("Iniciando MIDlet");
 
-		/*
-		 * Código para testar o Parser XML
-		 */
-		// InputStream in = getClass().getResourceAsStream(
-		// "/PontosEstrategicos.xml");
-		//
-		// try {
-		// Parser.getInstance().parse(in);
-		// } catch (XmlPullParserException e) {
-		// e.printStackTrace();
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
 		
 		// Se acontecer um evendo de re-inicialização (pauseApp invocado) o
 		// MIDLet volta ao estado corrente.

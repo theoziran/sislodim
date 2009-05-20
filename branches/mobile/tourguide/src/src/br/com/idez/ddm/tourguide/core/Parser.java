@@ -57,6 +57,12 @@ public class Parser {
 		xmlParser.next();
 		xmlParser.require(XmlPullParser.END_DOCUMENT, null, null);
 
+		//teste do parser
+		//TODO remover este trecho de codigo
+		for(int i=0; i<pontos.size(); i++){
+			System.out.println(((PontoEstrategico) pontos.elementAt(i)).toString());
+		}
+		
 		return pontos;
 	}
 
