@@ -161,26 +161,37 @@ public class ConsultaParser {
 				veiculo = new VeiculoVO();
 
 				parser.nextTag();
-				parser.require(XmlPullParser.START_TAG, null, "placa");
-				veiculo.setPlaca(parser.nextText());
+				
+				if (parser.getName().equals("placa")) {
+					parser.require(XmlPullParser.START_TAG, null, "placa");
+					veiculo.setPlaca(parser.nextText());
+					parser.nextTag();
+				}
+				
+				if (parser.getName().equals("ano")) {
+					parser.require(XmlPullParser.START_TAG, null, "ano");
+					veiculo.setAno(Integer.parseInt(parser.nextText().trim()));
+					parser.nextTag();
+				}
+				
+				if (parser.getName().equals("modelo")) {				
+					parser.require(XmlPullParser.START_TAG, null, "modelo");
+					veiculo.setModelo(parser.nextText());
+					parser.nextTag();
+				}
 
-				parser.nextTag();
-				parser.require(XmlPullParser.START_TAG, null, "ano");
-				veiculo.setAno(Integer.parseInt(parser.nextText()));
-
-				parser.nextTag();
-				parser.require(XmlPullParser.START_TAG, null, "modelo");
-				veiculo.setModelo(parser.nextText());
-
-				parser.nextTag();
-				parser.require(XmlPullParser.START_TAG, null, "anoFabricacao");
-				veiculo.setAnoFrabricacao(Integer.parseInt(parser.nextText()));
-
-				parser.nextTag();
-				parser.require(XmlPullParser.START_TAG, null, "informacoes");
-				veiculo.setInformacoes(parser.nextText());
-
-				parser.nextTag();
+				if (parser.getName().equals("anoFabricacao")) {
+					parser.require(XmlPullParser.START_TAG, null, "anoFabricacao");
+					veiculo.setAnoFrabricacao(Integer.parseInt(parser.nextText().trim()));
+					parser.nextTag();
+				}
+				
+				if (parser.getName().equals("informacoes")) {
+					parser.require(XmlPullParser.START_TAG, null, "informacoes");
+					veiculo.setInformacoes(parser.nextText());
+					parser.nextTag();
+				}
+				
 				parser.require(XmlPullParser.END_TAG, null, "veiculo");
 
 				parser.nextTag();

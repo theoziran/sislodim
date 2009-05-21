@@ -1,11 +1,16 @@
 package br.com.idez;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
 import br.com.idez.core.UIController;
 import br.com.idez.ui.Menu;
+import br.com.idez.ui.Splash;
+import br.com.idez.ui.util.Alerta;
 
 public class DDMMIDLet extends MIDlet {
 	
@@ -33,14 +38,22 @@ public class DDMMIDLet extends MIDlet {
 		// MIDLet volta ao estado corrente.
 		if (!started) {
 			this.controller = UIController.createInstance(this);
-			controller.setCurrent(Menu.getInstance());
-			//controller.setCurrent(Alerta.getInstance("Processando...", 0));		
+			controller.setCurrent(Splash.getInstance());
+
+			Timer tm = new Timer();
+			CarregaMenuTask menu = new CarregaMenuTask();
+			tm.schedule(menu, 2000);
+
 			started = true;
 		} else {
 			Displayable displayable = controller.getCurrentDisplayable();
 			controller.setCurrent(displayable);
-		}
-		
+		}		
 	}
-
+	
+	private class CarregaMenuTask extends TimerTask {
+		public final void run() {
+			controller.setCurrent(Menu.getInstance());
+		}
+	}
 }

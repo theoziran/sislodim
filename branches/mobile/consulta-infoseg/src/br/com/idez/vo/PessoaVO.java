@@ -1,6 +1,5 @@
 package br.com.idez.vo;
 
-import java.util.Date;
 
 public class PessoaVO {
 	private String nome;
