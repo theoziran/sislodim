@@ -19,6 +19,7 @@ public class TourGuideMIDLet extends MIDlet {
 	}
 
 	public void destroyApp(boolean arg0) throws MIDletStateChangeException {
+		Record.destroy("TOURGUIDE");
 		System.out.println("Destruindo MIDlet");
 	}
 
@@ -29,9 +30,6 @@ public class TourGuideMIDLet extends MIDlet {
 	protected void startApp() throws MIDletStateChangeException {
 		System.out.println("Iniciando MIDlet");
 
-		
-		// Se acontecer um evendo de re-inicialização (pauseApp invocado) o
-		// MIDLet volta ao estado corrente.
 		if (!started) {
 			this.controller = UIController.createInstance(this);
 			controller.setCurrent(Inicial.getInstance());

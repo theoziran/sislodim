@@ -8,13 +8,16 @@ import java.util.Vector;
 import javax.microedition.lcdui.Alert;
 import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Displayable;
+import javax.microedition.location.Landmark;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
 import org.xmlpull.v1.XmlPullParserException;
 
+import br.com.idez.ddm.listener.landmarks.PontosMarcados;
 import br.com.idez.ddm.tourguide.PontoEstrategico;
 import br.com.idez.ddm.tourguide.TourGuideMIDLet;
+import br.com.idez.ddm.tourguide.telas.Alerta;
 
 public class UIController {
 
@@ -94,15 +97,25 @@ public class UIController {
 			InputStream in = TransmissaoDados.getInstance().getSyncXML();
 			Vector pontos = Parser.getInstance().parse(in);
 
+			PontoEstrategico pontoAtual;
+			//PontosMarcados pontosMarcados = new PontosMarcados();
 			for (int i = 0; i < pontos.size(); i++) {
-				PontoEstrategico.addPonto((PontoEstrategico) pontos
-						.elementAt(i));
+				pontoAtual = (PontoEstrategico) pontos
+				.elementAt(i);
+				PontoEstrategico.addPonto(pontoAtual);
+				//pontosMarcados.createLandmark(String.valueOf(pontoAtual.getId()), pontoAtual.getNome(), pontoAtual);
 			}
-
 		} catch (XmlPullParserException e) {
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void excessaoGenerica( String mensagem){
+		Alerta alertaMensagem = Alerta.getInstance();
+		alertaMensagem.setTexto(mensagem);
+		setCurrent(alertaMensagem);
 	}
 }
