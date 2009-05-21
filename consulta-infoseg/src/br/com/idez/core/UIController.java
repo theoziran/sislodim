@@ -18,7 +18,7 @@ import br.com.idez.core.response.IResponse;
 import br.com.idez.ui.ConsultarCondutorResultado;
 import br.com.idez.ui.ConsultarOcorrenciaResultado;
 import br.com.idez.ui.ConsultarVeiculoResultado;
-import br.com.idez.ui.Menu;
+import br.com.idez.ui.Splash;
 import br.com.idez.ui.util.Alerta;
 
 public class UIController {
@@ -86,24 +86,20 @@ public class UIController {
 	 * @param displayable
 	 */
 	public void setCurrent(Displayable displayable) {
-		this.telas.push(displayable);
-		this.disp.setCurrent(displayable);
-	}
-	
-	/**
-	 * Vai na entidade de autenticação e realiza o login
-	 * 
-	 * @param login
-	 * @param senha
-	 */
-	public void login(String login, String senha) {
-		if (login.equals("admin") && senha.equals("123")) {// login bem sucedido
-			// TODO registra o login
-			// FIXME alterar para autenticar no servidor web
-			setCurrent(Menu.getInstance());
-		} else {	
-			// TODO Alerta login inválido
+		if(displayable instanceof Splash)
+		{
+			/* -> não faz nada!!
+			 * 
+			 * Quando a tela é do tipo Splash, não é necessário adicionar na lista
+			 * de telas ativas
+			 * 
+			 */
 		}
+		else { 		
+			this.telas.push(displayable);
+		}
+		
+		this.disp.setCurrent(displayable);
 	}
 	
 	public void consultaOcorrencia(String placa) { 
@@ -120,7 +116,6 @@ public class UIController {
 		this.req = new ConsultaCondutorRequest(identificacaoCNH);		
 		execute();
 	}
-	
 	
 	/**
 	 * Sai da aplicação
@@ -150,7 +145,7 @@ public class UIController {
 	}	
 	
 	/*
-	 * 
+	 * Métodos e classes responsáveis pelo processamento multi-thread
 	 */
 	
 	private void execute() {
@@ -174,8 +169,10 @@ public class UIController {
 						e.printStackTrace();
 					}
 					resp = performConnection();
+					
 					System.out.println("resp = " + resp);
 					
+					// verifica se nenhuma resposta foi retornada
 					if(resp.getResponse().equals("0")) { 
 						System.out.println("Nenhum registro foi encontrado");
 						setCurrent(Alerta.getInstance("Nenhum registro foi encontrado", 1));
@@ -185,21 +182,27 @@ public class UIController {
 						setCurrent(Alerta.getInstance("Não foi possível realizar a pesquisa", 2));
 					}
 					else {
-						// consulta retornou dados
+						// a consulta retornou dados
 						System.out.println("Encontrou dados: " + resp.getResponse());
 						
-						// verificação para cada tipo de resposta
-						if (resp instanceof ConsultaOcorrenciaResponse) {
-							setCurrent(ConsultarOcorrenciaResultado.getInstance());
-							ConsultarOcorrenciaResultado.getInstance().processaXml(resp.getResponse());
+						try { 						
+							// verificação para cada tipo de resposta
+							if (resp instanceof ConsultaOcorrenciaResponse) {
+								setCurrent(ConsultarOcorrenciaResultado.getInstance());
+								ConsultarOcorrenciaResultado.getInstance().processaXml(resp.getResponse());
+							}
+							else if(resp instanceof ConsultaCondutorResponse) { 
+								setCurrent(ConsultarCondutorResultado.getInstance());							
+								ConsultarCondutorResultado.getInstance().processaXml(resp.getResponse());
+							}
+							else if(resp instanceof ConsultaVeiculoResponse) {
+								setCurrent(ConsultarVeiculoResultado.getInstance());
+								ConsultarVeiculoResultado.getInstance().processaXml(resp.getResponse());
+							}
 						}
-						else if(resp instanceof ConsultaCondutorResponse) { 
-							setCurrent(ConsultarCondutorResultado.getInstance());							
-							ConsultarCondutorResultado.getInstance().processaXml(resp.getResponse());
-						}
-						else if(resp instanceof ConsultaVeiculoResponse) {
-							setCurrent(ConsultarVeiculoResultado.getInstance());
-							ConsultarVeiculoResultado.getInstance().processaXml(resp.getResponse());
+						catch(Exception exc) {
+							setCurrent(Alerta.getInstance("Não foi possível carregar esta informação", 2));
+							exc.printStackTrace();
 						}
 					}
 				}

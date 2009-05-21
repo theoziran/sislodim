@@ -1,11 +1,12 @@
 package br.com.idez.ui.util;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Displayable;
-import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.ImageItem;
@@ -21,6 +22,14 @@ public class Alerta extends Form implements CommandListener{
 	private StringItem lblTitulo;
 	private String titulo;
 	private int tipo;
+	
+	public void setImage(String imagem) { 
+		try {
+			this.imgAlerta.setImage(Image.createImage(imagem));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void setTitulo(String titulo) { 
 		this.titulo = titulo;
@@ -56,14 +65,13 @@ public class Alerta extends Form implements CommandListener{
 		this.lblTitulo.setText(this.titulo);
 		
 		try {		
-			// verifica se o tipo de alerta é "loading"
-			if(this.tipo == 0) {
-				this.imgAlerta.setImage(Image.createImage("/ajax-loader.png"));				
+			if(this.tipo == 0) { 
+				// se o tipo de alerta é de alerta
+				this.imgAlerta.setImage(Image.createImage("/ajax-loader.png"));
 			}
 			else if(this.tipo == 2) { 
 				// se o tipo de alerta é de erro
-				this.imgAlerta.setImage(Image.createImage("/alert.png"));
-	
+				this.imgAlerta.setImage(Image.createImage("/alert.png"));	
 			}
 			else {
 				// para todos os outros, exibe a imagem de alerta
