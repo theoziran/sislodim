@@ -13,12 +13,13 @@ import javax.microedition.location.LocationProvider;
 import javax.microedition.location.ProximityListener;
 import javax.microedition.location.QualifiedCoordinates;
 
+import br.com.idez.ddm.tourguide.PontoEstrategico;
+
 public class PontosMarcados {
 
 	LandmarkStore pontos;
 
 	public PontosMarcados() {
-		// TODO Auto-generated constructor stub
 		createLandmarkStore();
 		// FIXME recupera os dados e cadastra os pontos
 		Vector pontosCadastrados = new Vector();
@@ -43,21 +44,22 @@ public class PontosMarcados {
 		}
 	}
 
-	private void createLandmark(String nomeLandmark, String descricaoLandmark,
-			Ponto ponto) {
+	public void createLandmark(String nomeLandmark, String descricaoLandmark,
+			PontoEstrategico ponto) {
 
 		AddressInfo address = new AddressInfo();
 		// FIXME adicionar os campos no AddressInfo
+		address.setField(AddressInfo.BUILDING_NAME, ponto.getNome());
 
 		// FIXME recupera as coordenadas
-		QualifiedCoordinates coord = null;
+		QualifiedCoordinates coord = new QualifiedCoordinates(ponto.getLatitude(),ponto.getLongitude(),0,20,20);
 		Landmark lmk = new Landmark(nomeLandmark, descricaoLandmark, coord,
 				address);
 
 		try {
 			pontos.addLandmark(lmk, "Categoria default");
+			adicionarListener(lmk);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -24,22 +24,9 @@ public class Sincronizacao extends Form implements CommandListener {
 		siTexto = new StringItem("Dejesa realmente iniciar a sincronização?",
 				null);
 
-		// iiLoading = new ImageItem(null, null, ImageItem.LAYOUT_CENTER,
-		// "loading");
-		//
-		// // cria a image
-		// Image image = null;
-		// try {
-		// image = Image.createImage("/loading.png");
-		// } catch (IOException e) {
-		// // FIXME tratar a exceção
-		// }
-		// iiLoading.setImage(image);
-
 		cmdCancelar = new Command("Cancelar", Command.CANCEL, 1);
 		addCommand(new Command("Sincronizar", Command.OK, 1));
 
-		// this.append(iiLoading);
 		this.append("Deseja realmente iniciar a sincronização?");
 
 		this.addCommand(cmdCancelar);

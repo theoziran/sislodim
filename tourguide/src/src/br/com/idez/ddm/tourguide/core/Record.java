@@ -1,5 +1,7 @@
 package br.com.idez.ddm.tourguide.core;
 
+import java.util.Vector;
+
 import javax.microedition.rms.RecordEnumeration;
 import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
@@ -33,6 +35,16 @@ public class Record {
 		rs = RecordStore.openRecordStore(recordStore, true);
 	}
 
+	public static void destroy(String recordStore) {
+		try {
+			rs.deleteRecordStore(recordStore);
+		} catch (RecordStoreNotFoundException e) {
+			e.printStackTrace();
+		} catch (RecordStoreException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private static void closeRecord() throws RecordStoreNotOpenException,
 			RecordStoreException {
 		rs.closeRecordStore();
@@ -62,13 +74,13 @@ public class Record {
 				}
 			}
 		} catch (Exception e) {
-			// TODO exibir Alert
 			System.out.println("exceção maldita");
+			e.printStackTrace();
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
-				// TODO exibir Alert
+				e.printStackTrace();
 			}
 		}
 	}
@@ -84,12 +96,12 @@ public class Record {
 						.indexOf(":") + 1, recConfigSound.length());
 			}
 		} catch (Exception e) {
-			// TODO exibir Alert
+			e.printStackTrace();
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
-				// TODO exibir Alert
+				e.printStackTrace();
 			}
 		}
 
@@ -118,12 +130,12 @@ public class Record {
 				ID_CFG_SOUND = rs.addRecord(recBytes, 0, recBytes.length);
 			}
 		} catch (Exception e) {
-			// TODO exibir Alert
+			e.printStackTrace();
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
-				// TODO exibir Alert
+				e.printStackTrace();
 			}
 		}
 	}
@@ -139,12 +151,12 @@ public class Record {
 						recConfigSync.indexOf(":") + 1, recConfigSync.length());
 			}
 		} catch (Exception e) {
-			// TODO exibir Alert
+			e.printStackTrace();
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
-				// TODO exibir Alert
+				e.printStackTrace();
 			}
 		}
 
@@ -173,12 +185,12 @@ public class Record {
 				ID_CFG_SYNC = rs.addRecord(recBytes, 0, recBytes.length);
 			}
 		} catch (Exception e) {
-			// TODO exibir Alert
+			e.printStackTrace();
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
-				// TODO exibir Alert
+				e.printStackTrace();
 			}
 		}
 	}
@@ -196,12 +208,12 @@ public class Record {
 						recConfigMultimedia.length());
 			}
 		} catch (Exception e) {
-			// TODO exibir Alert
+			e.printStackTrace();
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
-				// TODO exibir Alert
+				e.printStackTrace();
 			}
 		}
 
@@ -231,12 +243,12 @@ public class Record {
 				ID_CFG_MULTIMEDIA = rs.addRecord(recBytes, 0, recBytes.length);
 			}
 		} catch (Exception e) {
-			// TODO exibir Alert
+			e.printStackTrace();
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
-				// TODO exibir Alert
+				e.printStackTrace();
 			}
 		}
 	}
@@ -252,12 +264,12 @@ public class Record {
 						.indexOf(":") + 1, recConfigMaxTime.length());
 			}
 		} catch (Exception e) {
-			// TODO exibir Alert
+			e.printStackTrace();
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
-				// TODO exibir Alert
+				e.printStackTrace();
 			}
 		}
 
@@ -286,12 +298,12 @@ public class Record {
 				ID_CFG_MAX_TIME = rs.addRecord(recBytes, 0, recBytes.length);
 			}
 		} catch (Exception e) {
-			// TODO exibir Alert
+			e.printStackTrace();
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
-				// TODO exibir Alert
+				e.printStackTrace();
 			}
 		}
 	}
@@ -344,24 +356,31 @@ public class Record {
 			// executa a pesquisa pelo id informado
 			if (rs != null) {
 				RecordEnumeration re = rs.enumerateRecords(null, null, false);
-				while (re.hasNextElement()
-						|| (recPontoNome != null && recPontoLongitude != null && recPontoLatitude != null)) {
+
+				while (re.hasNextElement()) {
+
 					count = re.nextRecordId();
 					String str = new String(rs.getRecord(count));
-					if (str.startsWith(KEY_PTO_NOME + ":" + recPontoID + "=")) {
-						recPontoNome = new String(rs.getRecord(count));
+					if (str.startsWith(KEY_PTO_LONGITUDE + ":" + recPontoID
+							+ "=")) {
+						recPontoLongitude = new String(rs.getRecord(count));
 					} else if (str.startsWith(KEY_PTO_LATITUDE + ":"
 							+ recPontoID + "=")) {
 						recPontoLatitude = new String(rs.getRecord(count));
-					} else if (str.startsWith(KEY_PTO_LONGITUDE + ":"
-							+ recPontoID + "=")) {
-						recPontoLongitude = new String(rs.getRecord(count));
+					} else if (str.startsWith(KEY_PTO_NOME + ":" + recPontoID
+							+ "=")) {
+						recPontoNome = new String(rs.getRecord(count));
+					}
+
+					if (recPontoLatitude != null && recPontoLongitude != null
+							&& recPontoNome != null) {
+						break;
 					}
 				}
 
-				if (recPontoNome != null) {
+				if (recPontoLongitude != null) {
 					pontoEstrategico = new PontoEstrategico();
-					
+
 					pontoEstrategico.setId(id);
 					pontoEstrategico.setNome(recPontoNome.substring(
 							recPontoNome.indexOf("=") + 1, recPontoNome
@@ -379,14 +398,57 @@ public class Record {
 
 		} catch (Exception e) {
 			// TODO exibir Alert
+			e.printStackTrace();
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
 				// TODO exibir Alert
+				e.printStackTrace();
 			}
 		}
 
 		return pontoEstrategico;
+	}
+
+	public static Vector getAllPontos() {
+		Vector pontos = new Vector();
+		Vector ids = new Vector();
+		int count = 0;
+		try {
+			openRecord(key_record_store);
+
+			// executa a pesquisa pelo id informado
+			if (rs != null) {
+				RecordEnumeration re = rs.enumerateRecords(null, null, false);
+				while (re.hasNextElement()) {
+					count = re.nextRecordId();
+					String str = new String(rs.getRecord(count));
+					if (str.startsWith(KEY_PTO_NOME + ":")) {
+						String ponto = new String(rs.getRecord(count));
+						ids.addElement(ponto.substring(ponto.indexOf(":") + 1,
+								ponto.indexOf("=")));
+					}
+				}
+			}
+
+			for (int i = 0; i < ids.size(); i++) {
+				pontos.addElement(Record.getPontoEstrategico(Integer
+						.parseInt((String) ids.elementAt(i))));
+			}
+
+		} catch (Exception e) {
+			// TODO exibir Alert
+			e.printStackTrace();
+		} finally {
+			try {
+				closeRecord();
+			} catch (Exception e) {
+				// TODO exibir Alert
+				e.printStackTrace();
+			}
+		}
+
+		return pontos;
 	}
 }

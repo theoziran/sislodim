@@ -1,5 +1,7 @@
 package br.com.idez.ddm.tourguide;
 
+import java.util.Vector;
+
 import br.com.idez.ddm.tourguide.core.Record;
 
 public class PontoEstrategico {
@@ -57,11 +59,19 @@ public class PontoEstrategico {
 	public static void addPonto(PontoEstrategico ponto) {
 		if (buscaPonto(ponto) == null) {
 			Record.addPontoEstrategico(ponto);
+			System.out.println("inserindo ponto: " + ponto.getId());
+		} else {
+			// TODO atualizar ponto
+			System.out.println("Ponto " + ponto.getId()
+					+ " já existe e será atualizado!");
 		}
-		//TODO atualiza ponto
 	}
 
 	private static PontoEstrategico buscaPonto(PontoEstrategico ponto) {
 		return Record.getPontoEstrategico(ponto.getId());
+	}
+
+	public static Vector getAllPontos() {
+		return Record.getAllPontos();
 	}
 }

@@ -88,11 +88,9 @@ public class Coordenada extends TimerTask {
 			try {
 				UIController.getInstance().setCurrent(Alerta.getInstance("Erro","Falha na Conexão com os Satélites"));
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -64,7 +64,6 @@ public class Inicial extends Form implements CommandListener {
 				UIController.getInstance().setCurrent(
 						Menu.getInstance());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println("MENU selecionado");
@@ -73,7 +72,6 @@ public class Inicial extends Form implements CommandListener {
 			try {
 				UIController.getInstance().sair();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
