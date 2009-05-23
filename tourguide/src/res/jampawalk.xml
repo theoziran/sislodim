@@ -1,0 +1,14 @@
+<waypoints>
+	<waypoint time="5000" latitude="-7.097610" longitude="-34.834213"
+		altitude="0" />
+	<waypoint time="5500" latitude="-7.097614" longitude="-34.834213"
+		altitude="0" />
+	<waypoint time="9500" latitude="-7.119769" longitude="-34.823670"
+		altitude="0" />
+	<waypoint time="5500" latitude="-7.119769" longitude="-34.823678"
+		altitude="0" />
+	<waypoint time="9500" latitude="-7.148730" longitude="-34.796690"
+		altitude="0" />
+	<waypoint time="5500" latitude="-7.148737" longitude="-34.796692"
+		altitude="0" />
+</waypoints>
