@@ -25,17 +25,17 @@ public class Inicial extends Form implements CommandListener {
 	private Inicial(String title) {
 		super(title);
 
-		siTexto = new StringItem("Mapa com a localização atual", null);
+		siTexto = new StringItem("Mapa com a localizaï¿½ï¿½o atual", null);
 
 		iiMapa = new ImageItem(null, null, ImageItem.LAYOUT_CENTER,
-				"localização atual");
+				"localizaï¿½ï¿½o atual");
 
-		// cria a image
+		// cria a imagem
 		Image image = null;
 		try {
 			image = Image.createImage("/mapa.png");
 		} catch (IOException e) {
-			// FIXME tratar a exceção
+			e.printStackTrace();
 		}
 		iiMapa.setImage(image);
 

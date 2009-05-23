@@ -74,7 +74,7 @@ public class Record {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("exceção maldita");
+			System.out.println("exceï¿½ï¿½o maldita");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -106,7 +106,7 @@ public class Record {
 		}
 
 		/**
-		 * testa se já existe o registro se não existir cria com valor padrão
+		 * testa se jï¿½ existe o registro se nï¿½o existir cria com valor padrï¿½o
 		 * "ON"
 		 */
 
@@ -126,7 +126,7 @@ public class Record {
 			// se existir, atualiza
 			if (ID_CFG_SOUND != 0) {
 				rs.setRecord(ID_CFG_SOUND, recBytes, 0, recBytes.length);
-			} else {// se não, adiciona
+			} else {// se nï¿½o, adiciona
 				ID_CFG_SOUND = rs.addRecord(recBytes, 0, recBytes.length);
 			}
 		} catch (Exception e) {
@@ -161,7 +161,7 @@ public class Record {
 		}
 
 		/**
-		 * testa se já existe o registro se não existir cria com valor padrão
+		 * testa se jï¿½ existe o registro se nï¿½o existir cria com valor padrï¿½o
 		 * "ON"
 		 */
 
@@ -181,7 +181,7 @@ public class Record {
 			// se existir, atualiza
 			if (ID_CFG_SYNC != 0) {
 				rs.setRecord(ID_CFG_SYNC, recBytes, 0, recBytes.length);
-			} else {// se não, adiciona
+			} else {// se nï¿½o, adiciona
 				ID_CFG_SYNC = rs.addRecord(recBytes, 0, recBytes.length);
 			}
 		} catch (Exception e) {
@@ -218,7 +218,7 @@ public class Record {
 		}
 
 		/**
-		 * testa se já existe o registro se não existir cria com valor padrão
+		 * testa se jï¿½ existe o registro se nï¿½o existir cria com valor padrï¿½o
 		 * "ON"
 		 */
 
@@ -239,7 +239,7 @@ public class Record {
 			// se existir, atualiza
 			if (ID_CFG_MULTIMEDIA != 0) {
 				rs.setRecord(ID_CFG_MULTIMEDIA, recBytes, 0, recBytes.length);
-			} else {// se não, adiciona
+			} else {// se nï¿½o, adiciona
 				ID_CFG_MULTIMEDIA = rs.addRecord(recBytes, 0, recBytes.length);
 			}
 		} catch (Exception e) {
@@ -274,7 +274,7 @@ public class Record {
 		}
 
 		/**
-		 * testa se já existe o registro se não existir cria com valor padrão
+		 * testa se jï¿½ existe o registro se nï¿½o existir cria com valor padrï¿½o
 		 * "15" segundos
 		 */
 
@@ -331,12 +331,12 @@ public class Record {
 			rs.addRecord(recBytes, 0, recBytes.length);
 
 		} catch (Exception e) {
-			// TODO exibir Alert
+			e.printStackTrace();
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
-				// TODO exibir Alert
+				e.printStackTrace();
 			}
 		}
 	}
@@ -397,13 +397,11 @@ public class Record {
 			}
 
 		} catch (Exception e) {
-			// TODO exibir Alert
 			e.printStackTrace();
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
-				// TODO exibir Alert
 				e.printStackTrace();
 			}
 		}
@@ -438,13 +436,11 @@ public class Record {
 			}
 
 		} catch (Exception e) {
-			// TODO exibir Alert
 			e.printStackTrace();
 		} finally {
 			try {
 				closeRecord();
 			} catch (Exception e) {
-				// TODO exibir Alert
 				e.printStackTrace();
 			}
 		}
