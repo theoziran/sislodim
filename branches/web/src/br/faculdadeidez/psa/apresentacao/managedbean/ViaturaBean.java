@@ -13,7 +13,7 @@ public class ViaturaBean extends GenericoBean {
 	private List<ViaturaVO> listaTudo = null;
 	private ViaturaVO viatura = new ViaturaVO();
 	private List<SelectItem> listaViaturas;
-	
+		
 	public ViaturaVO getViatura() {
 		return viatura;
 	}

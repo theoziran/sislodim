@@ -103,6 +103,12 @@ public class EscalaBusinessLogic {
 		return retorno;
 	}
 	
+	public List<ViaturaVO> listarViaturasEscalaSetor(int setor){
+		DAOViatura dViatura = new DAOViatura();
+		List<ViaturaVO> retorno = dViatura.findViaturasEscalaSetor(setor);
+		return retorno;
+	}
+	
 	/**
 	 * Este método deve retornar as viaturas ativas no horário em que o operador
 	 * trabalha sendo dividido por turno. O método deve recuperar a hora do

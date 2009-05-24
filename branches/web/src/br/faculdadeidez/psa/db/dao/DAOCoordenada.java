@@ -65,4 +65,24 @@ public class DAOCoordenada extends DAOFactory<Coordenada> {
 		return cVO;
 	}
 
+	public CoordenadaVO getUltimaCoordenadaViaturaSetor(int setor) {
+		String strQuery = "SELECT c FROM Coordenada c WHERE c.id = " +
+				"(SELECT MAX(cid.id) FROM Coordenada cid " +
+				"JOIN cid.viatura v " +
+				"JOIN v.escalas e " +
+				"JOIN e.setor s " +
+				"WHERE s.codigo = '"
+				+ setor + "')";
+
+		EntityManager em = getManager();
+		Query query = em.createQuery(strQuery);
+
+		List<Coordenada> resultList = query.getResultList();
+		if (resultList.isEmpty())
+			return null;
+		Coordenada c = resultList.get(0);
+		CoordenadaVO cVO = Coordenada.toVO(c);
+
+		return cVO;
+	}
 }

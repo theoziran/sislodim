@@ -96,7 +96,11 @@ public class Fachada {
 	public List<SetorVO> pesquisaSetor(String nome) {
 		SetorBusinessLogic logicaSetor = new SetorBusinessLogic();
 		return logicaSetor.pesquisar(nome);
-
+	}
+	
+	public SetorVO pesquisaSetor(int codigo) {
+		SetorBusinessLogic logicaSetor = new SetorBusinessLogic();
+		return logicaSetor.find(codigo);
 	}
 
 	/*
@@ -171,6 +175,17 @@ public class Fachada {
 		EscalaBusinessLogic logicaEscala = new EscalaBusinessLogic();
 		return logicaEscala.listarViaturasEscala(escala);
 	}
+	
+	/**
+	 * Retorna a lista de todas as viaturas da escala ativa do setor passado
+	 * 
+	 * @param escala
+	 * @return
+	 */
+	public List<ViaturaVO> listarViaturasEscalaSetor(int setor) {
+		EscalaBusinessLogic logicaEscala = new EscalaBusinessLogic();
+		return logicaEscala.listarViaturasEscalaSetor(setor);
+	}
 
 	/**
 	 * Início da parte dos bairros
@@ -189,7 +204,11 @@ public class Fachada {
 	public CoordenadaVO getUltimaCoordenadaViatura(ViaturaVO viatura) {
 		CoordenadasBusinessLogic logicaCoordenada = new CoordenadasBusinessLogic();
 		return logicaCoordenada.getUltimaCoordenadaViatura(viatura);
-
+	}
+	
+	public CoordenadaVO getUltimaCoordenadaViaturaSetor(int setor) {
+		CoordenadasBusinessLogic logicaCoordenada = new CoordenadasBusinessLogic();
+		return logicaCoordenada.getUltimaCoordenadaViaturaSetor(setor);
 	}
 
 	public BairroVO pesquisaBairroNome(String nome) {
