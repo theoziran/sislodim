@@ -10,6 +10,7 @@
 
 <ui:composition template="/templates/generico.xhtml">
 	<ui:define name="conteudo">
+	<ui:define name="head"><meta http-equiv="refresh" content="10"/> </ui:define>
 		<rich:messages style="width:500px" layout="table" globalOnly="true"
 			showSummary="true" infoClass="informacao">
 			<f:facet name="infoMarker">
@@ -39,6 +40,7 @@
 				longitude="#{viaturaBean.ultimaCoordenada.longitude}">
 				<m:marker latitude="#{viaturaBean.ultimaCoordenada.latitude}"
 					longitude="#{viaturaBean.ultimaCoordenada.longitude}" />
+					<m:mapControl name="GLargeMapControl" position="G_ANCHOR_BOTTOM_RIGHT"/>
 				<m:htmlInformationWindow htmlText="Localização da viatura #{viaturaBean.ultimaCoordenada.viatura.codigo}" />
 			</m:map>
 		</rich:panel>

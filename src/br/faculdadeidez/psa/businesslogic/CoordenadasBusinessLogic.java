@@ -67,7 +67,7 @@ public class CoordenadasBusinessLogic {
 	 * Retorna uma CoordenadaVO por código
 	 * 
 	 * @param codigo
-	 * @return
+	 * @return CoordenadaVO
 	 */
 	public CoordenadaVO find(int codigo) { 
 		DAOCoordenada dao = new DAOCoordenada();
