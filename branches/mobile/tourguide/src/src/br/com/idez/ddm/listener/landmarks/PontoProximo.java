@@ -39,7 +39,7 @@ public class PontoProximo implements ProximityListener, LocationListener {
 	        double latRadius = 0.1;
 	        double lonRadius = 0.1;
 
-	        float dist = Float.MAX_VALUE;
+	        float dist = 25;
 	        LandmarkStore store = LandmarkStore.getInstance("pontosEstrategicos");
 	       
 
