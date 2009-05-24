@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOSetor;
+import br.faculdadeidez.psa.db.dao.DAOViatura;
 import br.faculdadeidez.psa.vo.MensagemValidacaoVO;
 import br.faculdadeidez.psa.vo.SetorVO;
+import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class SetorBusinessLogic {
 	public String delete(SetorVO vo){
@@ -67,6 +69,9 @@ public class SetorBusinessLogic {
 		}
 	}
 	
+	public SetorVO find(int chave) {
+		return new DAOSetor().find(chave);
+	}
 
 	public List<SetorVO> listar(){
 		DAOSetor dSetor = new DAOSetor();

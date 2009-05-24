@@ -95,7 +95,31 @@ public class DAOViatura extends DAOFactory<Viatura> {
 
 		return resultList;
 	}
+	
+	public List<ViaturaVO> findViaturasEscalaSetor(int setor) {
 
+		Date data = new Date(System.currentTimeMillis());
+		String formato = "dd/MM/yyyy";
+		SimpleDateFormat formatter = new SimpleDateFormat(formato);
+		try {
+			data = formatter.parse(formatter.format(data));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			data = null;
+		}
+		System.out.println(data);
+		
+		String strQuery = "SELECT v FROM Viatura v JOIN v.escalas sv JOIN sv.setor s "  
+				+ "WHERE :dataInicio BETWEEN sv.dataInicial AND sv.dataFinal and s.codigo = " + setor;
+		EntityManager em = getManager();
+		Query query = em.createQuery(strQuery);
+		query.setParameter("dataInicio", new Date());
+		
+		List<ViaturaVO> resultList = ConvertList(query.getResultList());
+
+		return resultList;
+	}
+	
 	public List<ViaturaVO> findViaturasEscalaAtivas() {
 
 		Date data = new Date(System.currentTimeMillis());
