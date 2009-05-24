@@ -56,7 +56,7 @@ public class CoordenadaBean extends GenericoBean{
 	/**
 	 * Método responsável por enviar os dados a serem calculados para trazer a viatura desocupada mais próxima da ocorrência
 	 */
-	public void calculaPontoMaisProximo(){
+	public String calculaPontoMaisProximo(){
 		StringBuffer destino= new StringBuffer();
 		destino.append(this.rua);
 		destino.append(",");
@@ -72,6 +72,8 @@ public class CoordenadaBean extends GenericoBean{
 		}else{
 			adicionarMensagem("A viatura " +this.gmaps.getViatura().getCodigo()+" sairá do ponto A ("+this.gmaps.getEnderecoCompletoOrigem()+") para o ponto B ("+this.gmaps.getEnderecoCompletoDestino()+")");
 		}
+		
+		return "viaturaProxima";
 	}
 	public void setGmaps(GoogleMaps gmaps) {
 		this.gmaps = gmaps;

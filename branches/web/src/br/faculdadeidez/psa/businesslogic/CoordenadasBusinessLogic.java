@@ -64,6 +64,26 @@ public class CoordenadasBusinessLogic {
 	}
 	
 	/**
+	 * Retorna a última coordenada de uma viatura que faz parte da escala deste setor
+	 * 
+	 * @param setor
+	 * @return
+	 */
+	public CoordenadaVO getUltimaCoordenadaViaturaSetor(int setor) {
+
+		CoordenadaVO coord = null;
+			
+		DAOCoordenada dCoordenada = new DAOCoordenada();
+		coord = dCoordenada.getUltimaCoordenadaViaturaSetor(setor);
+		if (coord == null) {
+			coord = new CoordenadaVO();
+			coordenadaDefault(coord);			
+		}
+		
+		return coord;
+	}
+	
+	/**
 	 * Retorna uma CoordenadaVO por código
 	 * 
 	 * @param codigo
