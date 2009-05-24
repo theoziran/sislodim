@@ -22,8 +22,6 @@ public class PontosMarcados {
 
 	public PontosMarcados() {
 		createLandmarkStore();
-		// FIXME recupera os dados e cadastra os pontos
-		Vector pontosCadastrados = new Vector();
 	}
 
 	private void createLandmarkStore() {
@@ -43,12 +41,13 @@ public class PontosMarcados {
 
 			pontos = LandmarkStore.getInstance("pontosEstrategicos");
 		}
-		existsCategory("categoriaDefault");
-		try {
-			pontos.addCategory("categoriaDefault");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (!existsCategory("categoriaDefault")) {
+			try {
+				pontos.addCategory("categoriaDefault");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -60,12 +59,13 @@ public class PontosMarcados {
 		address.setField(AddressInfo.BUILDING_NAME, ponto.getNome());
 
 		// FIXME recupera as coordenadas
-		QualifiedCoordinates coord = new QualifiedCoordinates(ponto.getLatitude(),ponto.getLongitude(),0,20,20);
+		QualifiedCoordinates coord = new QualifiedCoordinates(ponto
+				.getLatitude(), ponto.getLongitude(), 0, 20, 20);
 		Landmark lmk = new Landmark(nomeLandmark, descricaoLandmark, coord,
 				address);
 		try {
 			pontos.addLandmark(lmk, "categoriaDefault");
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -91,18 +91,19 @@ public class PontosMarcados {
 			e.printStackTrace();
 		}
 	}
-	
-	private boolean existsCategory(String nomeCategoria){
+
+	private boolean existsCategory(String nomeCategoria) {
 		Enumeration categorias = pontos.getCategories();
-		
-		  while (categorias.hasMoreElements()){
-	           if (nomeCategoria.equals(categorias.nextElement())){
-	        	   return true;
-	        	   
-	           };
-	           System.out.println(categorias.nextElement());
-	        }  
-		
+
+		while (categorias.hasMoreElements()) {
+			if (nomeCategoria.equals(categorias.nextElement())) {
+				return true;
+
+			}
+			;
+			System.out.println(categorias.nextElement());
+		}
+
 		return false;
 	}
 
