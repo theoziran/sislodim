@@ -23,6 +23,10 @@
         directions = new GDirections(map);
         /*directions.load("from: -7.183055,-34.839642 to: -7.119077,-34.834106");*/
         
+var bottomRight = new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(10,10));
+
+map.addControl(new GLargeMapControl(), bottomRight);
+
         directions.load("from: #{coordenadaBean.gmaps.latitudeOrigem},#{coordenadaBean.gmaps.longitudeOrigem} to: #{coordenadaBean.gmaps.latitudeDestino},#{coordenadaBean.gmaps.longitudeDestino}",{"locale":"pt_BR"});
         
         
@@ -35,28 +39,29 @@
 
 	<ui:define name="conteudo">
 		<body onload="initialize()" onunload="GUnload()">
-		
-		<rich:messages style="width:500px" layout="table" showSummary="true" errorClass="erro" infoClass="informacao">
+
+		<rich:messages style="width:500px" layout="table" showSummary="true"
+			errorClass="erro" infoClass="informacao">
 			<f:facet name="infoMarker"></f:facet>
 			<f:facet name="errorMarker"></f:facet>
 		</rich:messages>
 		<h:panelGrid columns="6">
-		<h:form>
-		 <h:outputLabel value="Bairro" for="bairro" />
-		 <h:selectOneMenu value="#{coordenadaBean.bairro}" id="bairro">
-		 <f:selectItems value="#{bairroBean.listBairros}"/>
-		 </h:selectOneMenu>
-		 <h:outputLabel value="Rua" for="rua" />
-		 <h:inputText value="#{coordenadaBean.rua}" id="rua" size="30"/>
-		 <h:outputLabel value="Número" for="numero" />
-		 <h:inputText value="#{coordenadaBean.numero}" id="numero" size="4"/>
-		<h:commandButton action="#{coordenadaBean.calculaPontoMaisProximo}" value="Encontrar viatura mais próxima" />
-		</h:form>
+			<h:form>
+				<h:outputLabel value="Bairro" for="bairro" />
+				<h:selectOneMenu value="#{coordenadaBean.bairro}" id="bairro">
+					<f:selectItems value="#{bairroBean.listBairros}" />
+				</h:selectOneMenu>
+				<h:outputLabel value="Rua" for="rua" />
+				<h:inputText value="#{coordenadaBean.rua}" id="rua" size="30" />
+				<h:outputLabel value="Número" for="numero" />
+				<h:inputText value="#{coordenadaBean.numero}" id="numero" size="4" />
+				<h:commandButton action="#{coordenadaBean.calculaPontoMaisProximo}"
+					value="Encontrar viatura mais próxima" />
+			</h:form>
 		</h:panelGrid>
-		
+
 		<rich:panel name="mapa" id="map_canvas"
 			style="width:600px;height:600px;float:left">
-
 
 
 
