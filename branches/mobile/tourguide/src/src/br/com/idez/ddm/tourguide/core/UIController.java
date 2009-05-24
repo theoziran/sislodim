@@ -98,12 +98,12 @@ public class UIController {
 			Vector pontos = Parser.getInstance().parse(in);
 
 			PontoEstrategico pontoAtual;
-			//PontosMarcados pontosMarcados = new PontosMarcados();
+			PontosMarcados pontosMarcados = new PontosMarcados();
 			for (int i = 0; i < pontos.size(); i++) {
 				pontoAtual = (PontoEstrategico) pontos
 				.elementAt(i);
 				PontoEstrategico.addPonto(pontoAtual);
-				//pontosMarcados.createLandmark(String.valueOf(pontoAtual.getId()), pontoAtual.getNome(), pontoAtual);
+				pontosMarcados.createLandmark(String.valueOf(pontoAtual.getId()), pontoAtual.getNome(), pontoAtual);
 			}
 		} catch (XmlPullParserException e) {
 			System.out.println(e.getMessage());
