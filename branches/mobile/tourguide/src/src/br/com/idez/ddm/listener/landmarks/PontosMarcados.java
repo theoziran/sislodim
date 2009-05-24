@@ -45,7 +45,6 @@ public class PontosMarcados {
 			try {
 				pontos.addCategory("categoriaDefault");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -70,16 +69,13 @@ public class PontosMarcados {
 			e.printStackTrace();
 		}
 		adicionarListener(lmk);
-
 	}
 
 	public void sincronizarPontos(Vector pontosCadastrados) {
 		// FIXME conecta ao servidor para trazer os dados
-
 	}
 
 	private void adicionarListener(Landmark landmark) {
-
 		createProximityListener(landmark.getQualifiedCoordinates());
 	}
 
@@ -98,9 +94,7 @@ public class PontosMarcados {
 		while (categorias.hasMoreElements()) {
 			if (nomeCategoria.equals(categorias.nextElement())) {
 				return true;
-
 			}
-			;
 			System.out.println(categorias.nextElement());
 		}
 
