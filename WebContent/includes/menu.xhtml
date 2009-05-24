@@ -36,6 +36,12 @@
 					height="32" alt="Relatórios" /><h:commandLink value="Relatórios"
 					action="paginaRelatorios" /></li>
 			</h:panelGroup>
+			
+			<h:panelGroup rendered="#{sessaoBean.coordenador}">
+				<li><h:graphicImage value="/images/icon-mapa.gif" width="32"
+					height="32" alt="Mapa" /><h:commandLink value="Mapa"
+					action="paginaMapaSetor" /></li>
+			</h:panelGroup>
 		</h:form>
 	</ul>
 </ui:composition>
