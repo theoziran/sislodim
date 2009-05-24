@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:m="http://code.google.com/p/gmaps4jsf/">
+
+<ui:composition template="/templates/generico.xhtml">
+	<ui:define name="conteudo">
+		<rich:messages style="width:500px" layout="table" globalOnly="true" showSummary="true" infoClass="informacao">
+			<f:facet name="infoMarker">
+			</f:facet>
+		</rich:messages>
+		
+		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAnP7CvtbK0B6uGXcc2TLFNBQNPSG1CbDoZtsh_iahoSxMN1Ni0xQiLeWpgqnQng6nlXxjgUevDh9ljA" type="text/javascript"></script>
+		
+		<script language="javascript">
+			window.onunload = GUnload();
+
+			function localizaViatura(viatura) {
+				try { 
+					var via = null;
+					eval("via = " + viatura);
+					mapa.panTo(via.getLatLng());
+				}
+				catch(e)			
+				{
+					alert(e);
+				}						
+			}
+
+			function defineDescricoes(viatura, descricao) {
+				try { 
+					var via = null;
+					eval("via = " + viatura);
+					via.bindInfoWindowHtml(descricao);
+				}
+				catch(e)			
+				{
+					alert(e);
+				}
+			}
+		</script>
+		
+		<a4j:form>
+				
+		<div style="margin-top: 10px; ">
+			<div style="width:430px;float:left">
+				<h2>Localizar viatura para uma ocorrência</h2>
+			
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Bairro do setor: " for="bairro" />
+						<h:selectOneMenu value="#{coordenadaBean.bairro}" id="bairro">
+							<f:selectItems value="#{mapaSetorBean.listBairros}"/>
+						</h:selectOneMenu>
+					</h:panelGrid>						
+					<h:panelGrid columns="5">						
+						<h:outputLabel value="*Rua: " for="rua" />
+						<h:inputText value="#{coordenadaBean.rua}" id="rua" size="30"/>
+						<h:outputLabel value="Número: " for="numero" />
+						<h:inputText value="#{coordenadaBean.numero}" id="numero" size="4"/>
+						<h:commandButton action="#{coordenadaBean.calculaPontoMaisProximo}" value="Procurar" />
+					</h:panelGrid>
+				</h:form>				
+
+				<br />			
+			
+				<h2>Mapa [<h:commandLink action="visualizarMapaSetor">Atualizar mapa</h:commandLink>]</h2>
+										
+				<m:map id="mapa" width="430px" height="400px" jsVariable="mapa" type="G_NORMAL_MAP" zoom="15" latitude="#{mapaSetorBean.ultimaCoordenada.latitude}" longitude="#{mapaSetorBean.ultimaCoordenada.longitude}">				
+				<t:dataList var="viatura" layout="simple" value="#{mapaSetorBean.listaCoordenadasDesocupadas}">				
+					<m:marker latitude="#{viatura.latitude}" longitude="#{viatura.longitude}" jsVariable="viatura#{viatura.viatura.codigo}" >
+						<m:htmlInformationWindow htmlText="Viatura: &lt;strong&gt;#{viatura.viatura.codigo}&lt;/strong&gt; &lt;br&gt;Última movimentação: #{viatura.data}" jsVariable="marker#{viatura.viatura.codigo}"/>
+						<m:icon imageURL="http://localhost:8080/Sislodim/images/icon-police.gif"/>
+					</m:marker>						
+				</t:dataList>				
+				</m:map>			
+			</div>
+			
+			<div style="width:155px;float:right">
+				<h2>Viaturas Desocupadas</h2>
+				
+				<ul>
+					<t:dataList id="lstViaturasDesocupadas" var="viatura" layout="simple" value="#{mapaSetorBean.listaCoordenadasDesocupadas}">
+						<li><a href="javascript: localizaViatura('viatura#{viatura.viatura.codigo}');">Encontrar viatura #{viatura.viatura.codigo}</a> <br />
+						
+						<a4j:commandButton value="Ocupou-se" onclick="#{rich:component('editPanel')}.show()">
+							<f:setPropertyActionListener value="#{viatura.viatura}" target="#{viaturaBean.elementoSelecionado}" />
+						</a4j:commandButton>
+											
+						</li>
+					</t:dataList>
+				</ul>
+				
+				
+				<h2>Viaturas Ocupadas</h2>
+				
+				<ul>
+					<t:dataList id="lstViaturasOcupadas" var="viatura" layout="simple" value="#{mapaSetorBean.listaCoordenadasOcupadas}">
+						<li><a href="#">Viatura #{viatura.viatura.codigo}</a> <br />
+						
+						<a4j:commandButton value="Desocupou-se" onclick="#{rich:component('editPanel')}.show()">
+							<f:setPropertyActionListener value="#{viatura.viatura}" target="#{viaturaBean.elementoSelecionado}" />
+						</a4j:commandButton>
+											
+						</li>
+					</t:dataList>
+				</ul>
+			</div>	
+		</div>	
+		</a4j:form>
+		
+		<rich:modalPanel id="editPanel" autosized="true" width="450">
+			<f:facet name="header">
+				<ui:insert name="tituloEdit">
+					<h:outputText value="Ocupar/Desocupar uma viatura" />
+				</ui:insert>
+			</f:facet>
+			<f:facet name="controls">
+				<h:panelGroup>
+					<h:graphicImage value="/images/modal/close.png" id="hidelink"
+						styleClass="hidelink" />
+					<rich:componentControl for="editPanel" attachTo="hidelink"
+						operation="hide" event="onclick" />
+				</h:panelGroup>
+			</f:facet>
+			<h:form>
+
+				<h:panelGrid columns="1">
+					<a4j:outputPanel ajaxRendered="true">
+						<h:outputLabel value="Ocupada?" />
+						<h:selectBooleanCheckbox value="#{viaturaBean.elementoSelecionado.ocupada}"/>						
+					</a4j:outputPanel>
+
+					<h:panelGrid columns="2">
+						<a4j:commandButton value="Salvar" action="#{viaturaBean.update}" oncomplete="#{rich:component('editPanel')}.hide(); jsfcljs(document.getElementById('j_id53'),{'j_id53:j_id55':'j_id53:j_id55'},'');" />
+						<a4j:commandButton value="Cancelar" onclick="#{rich:component('editPanel')}.hide(); return false;" />
+					</h:panelGrid>
+
+				</h:panelGrid>
+			</h:form>
+		</rich:modalPanel>
+	</ui:define>
+</ui:composition>
+</html>

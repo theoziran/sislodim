@@ -75,6 +75,13 @@
 		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>mapaSetorBean</managed-bean-name>
+		<managed-bean-class>
+			br.faculdadeidez.psa.apresentacao.managedbean.MapaSetorBean 
+		</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<!-- Navegação global -->
 	<lifecycle>
 		<phase-listener>br.faculdadeidez.psa.apresentacao.servlets.GerenciadorAutorizacao</phase-listener>
@@ -182,6 +189,16 @@
 			<to-view-id>/pages/mapa.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>*</display-name>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>mapa</from-outcome>
+			<to-view-id>/pages/mapa.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>logout</from-outcome>
@@ -198,6 +215,20 @@
 		<navigation-case>
 			<from-outcome>exibirRelatorios</from-outcome>
 			<to-view-id>/pages/exibicaoRelatorio.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>paginaMapaSetor</from-outcome>
+			<to-view-id>/pages/mapaViaturasSetor.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>visualizarMapaSetor</from-outcome>
+			<to-view-id>/pages/visualizacaoMapaViaturasSetor.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+
+	<h3>Visualização da Localização de Viaturas por Setor</h3>
+	<div class="form">
+		<h:form>
+			
+			<h:panelGrid columns="2">
+				<h:outputLabel value="*Setor: " />
+		
+				<h:selectOneMenu id="setor" value="#{mapaSetorBean.setor.codigo}" rendered="true">  
+            		<f:selectItems value="#{setorBean.listaItensSetores}"/>  
+        		</h:selectOneMenu>
+       		</h:panelGrid>
+        	<br />   
+        	
+        	<h:commandButton action="#{mapaSetorBean.visualizarMapaPorSetor}" value="Visualizar Mapa" />      		
+		</h:form>
+	</div>
+
+</ui:composition>
+</html>
