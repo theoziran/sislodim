@@ -5,6 +5,7 @@ import br.faculdadeidez.psa.vo.ViaturaVO;
 public class GoogleMaps {
 
 	private String distancia = null;
+	private String tempo = null;
 	private ViaturaVO viatura;
 	
 	private String paisOrigem = null;
@@ -44,7 +45,15 @@ public class GoogleMaps {
 	public void setDistancia(String distancia) {
 		this.distancia = distancia;
 	}
+	
+	public String getTempo(){
+		return this.tempo;
+	}
 
+	public void setTempo(String tempo){
+		this.tempo = tempo;
+	}
+	
 	public String getMsgErro() {
 		return msgErro;
 	}

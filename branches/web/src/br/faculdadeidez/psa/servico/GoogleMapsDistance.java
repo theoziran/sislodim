@@ -208,17 +208,16 @@ public class GoogleMapsDistance {
                                 res = res.replace('ü', 'u');
                                 res = res.replace('ç', 'c');
 
-
                                 res = res.replaceAll("[a-zA-Z]+:", "");
+                                res = res.replaceAll("&#160;", " ");
+          
+                                res = res.replace(')', ' ');
                                 res = res.trim();
-                                res = res.replaceAll("[a-zA-Z]+", "");
-                                res = res.trim();
-                                res = res.replaceAll("&#160;", "");
-                                res = res.trim();
-
+                                
                                 String[] split = res.split(" ");
-
-                                maps.setDistancia(split[0].replace(",", "."));
+                                
+                                maps.setDistancia(split[0].replace(',', '.') + " " + split[1]);
+                                maps.setTempo(split[3] + " " + split[4]);
 
                         } catch (ParserConfigurationException e) {
                                 maps.setMsgErro("Erro");
@@ -237,7 +236,7 @@ public class GoogleMapsDistance {
 }
 
 
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		GoogleMapsDistance distance = new GoogleMapsDistance(
 				"rua praia de ponta negra, joão pessoa, paraiba",
 				"rua maria noemia de sousa holanda, joão pessoa, paraiba");
@@ -255,5 +254,7 @@ public class GoogleMapsDistance {
 		System.out.println(maps.getMunicipioOrigem());
 		System.out.println(maps.getLatitudeOrigem());
 		System.out.println(maps.getLongitudeOrigem());
-	}*/
+		System.err.println(maps.getDistancia());
+		System.err.println(maps.getTempo());
+	}
 }
