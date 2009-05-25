@@ -1,9 +1,7 @@
 package br.faculdadeidez.psa.apresentacao.managedbean;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 import javax.faces.model.SelectItem;
 
@@ -11,24 +9,44 @@ import br.faculdadeidez.psa.vo.EscalaVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class EscalaBean extends GenericoBean {
+	/**
+	 * Responsável por mostrar os objetos na tabela genérica
+	 */
 	private List<EscalaVO> listaTudo = null;
+	/**
+	 * Responsável por representar a entidade Escala
+	 */
 	private EscalaVO escala = new EscalaVO();
-	private List<SelectItem> listaViaturas = null;
-
+	/**
+	 * Método getter do atributo escala
+	 * @return EscalaVO
+	 */
 	public EscalaVO getEscala() {
 		return escala;
 	}
 
+	/**
+	 * Método setter do atributo escala
+	 * @param escala EscalaVO
+	 */
 	public void setEscala(EscalaVO escala) {
 		this.escala = escala;
 	}
 
+	/**
+	 * Método getter do atributo listaTudo
+	 * @return List<EscalaVO>
+	 */
 	public List<EscalaVO> getListaTudo() {
 		if (listaTudo == null || canUpdate())
 			setListaTudo(getFachada().listarEscalas());
 		return listaTudo;
 	}
 
+	/**
+	 * Método que envia os dados para deletar a escala
+	 * @return String
+	 */
 	public String delete() {
 		EscalaVO escalaDaVez = (EscalaVO) getElementoSelecionado();
 		String mensagem = getFachada().deleteEscala(escalaDaVez);
@@ -40,6 +58,10 @@ public class EscalaBean extends GenericoBean {
 		return mensagem;
 	}
 
+	/**
+	 * Método que envia os dados a serem atualizados
+	 * @return String
+	 */
 	public String update() {
 		EscalaVO escalaDaVez = (EscalaVO) getElementoSelecionado();
 		escalaDaVez.setViaturas(escala.getViaturas());		
@@ -53,6 +75,10 @@ public class EscalaBean extends GenericoBean {
 		return mensagem;
 	}
 
+	/**
+	 * Método que envia os dados para escala ser cadastrada
+	 * @return
+	 */
 	public String create() {			
 		String mensagem = getFachada().createEscala(escala);
 		setEscala(new EscalaVO());
@@ -60,6 +86,9 @@ public class EscalaBean extends GenericoBean {
 		return mensagem;
 	}
 
+	/**
+	 * Método que envia os dados para pesquisar nas escalas cadastradas
+	 */
 	public void pesquisar() {		
 		if (getTermoPesquisa() == "") {
 			setListaTudo(getFachada().listarEscalas());
@@ -96,10 +125,18 @@ public class EscalaBean extends GenericoBean {
 		}
 	}
 
+	/**
+	 * Método setter do atributo listaTudo
+	 * @param listaTudo
+	 */
 	public void setListaTudo(List<EscalaVO> listaTudo) {
 		this.listaTudo = listaTudo;
 	}
 
+	/**
+	 * Método que adiciona uma mensagem a ser mostrada para o usuário
+	 * @param mensagem String
+	 */
 	private void adicionaMensagemUsuario(String mensagem) {
 		if (mensagem.equals("escalaExistente")) {
 			adicionarMensagem("Escala já existe");
@@ -132,6 +169,10 @@ public class EscalaBean extends GenericoBean {
 		}
 	}
 
+	/**
+	 * Método que define as viaturas de uma escala
+	 * @param listaViaturas
+	 */
 	public void setViaturasEscala(List<String> listaViaturas) {
 		List<ViaturaVO> viaturas = new ArrayList<ViaturaVO>();
 		for (String chave : listaViaturas) {
@@ -139,7 +180,10 @@ public class EscalaBean extends GenericoBean {
 		}
 		escala.setViaturas(viaturas);
 	}
-	
+	/**
+	 * Método que retorna as viaturas da escala
+	 * @return List<String>
+	 */
 	public List<String> getViaturasEscala() {
 		if (getElementoSelecionado() != null) {
 			List<String> listaAtuais = new ArrayList<String>();
@@ -153,7 +197,10 @@ public class EscalaBean extends GenericoBean {
 		}
 		return null;
 	}
-	
+	/**
+	 * Método que retorna uma lista de SelectItem contendo as viaturas escaladas para aquele turno
+	 * @return List<SelectItem>
+	 */
 	public List<SelectItem> getListaViaturas() {
 		List<SelectItem> listItensViaturas = new ArrayList<SelectItem>();
 		SelectItem selectItem;
@@ -168,14 +215,11 @@ public class EscalaBean extends GenericoBean {
 			}
 		} else {
 			selectItem = new SelectItem();
-			selectItem.setLabel("viatura(s) inexistente(s)");
+			selectItem.setLabel("Nenhuma viatura escalada");
 			selectItem.setValue("x");
 			listItensViaturas.add(selectItem);
 		}
 		return listItensViaturas;
 	}
 
-	public void setListaViaturas(List<SelectItem> listaViaturas) {
-		this.listaViaturas = listaViaturas;
-	}
 }

@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import br.faculdadeidez.psa.db.entity.Setor;
-
 @SuppressWarnings("serial")
 public class EscalaVO implements Serializable {	
 	private int codigo;

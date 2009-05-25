@@ -6,22 +6,42 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import br.faculdadeidez.psa.vo.CoordenadaVO;
-import br.faculdadeidez.psa.vo.EscalaVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
+/**
+ * ManagedBean de viatura
+ *
+ */
 public class ViaturaBean extends GenericoBean {
+	/**
+	 * Responsável pelos elementos da lista
+	 */
 	private List<ViaturaVO> listaTudo = null;
+	/**
+	 * Representa a entidade viatura
+	 */
 	private ViaturaVO viatura = new ViaturaVO();
-	private List<SelectItem> listaViaturas;
 		
+	/**
+	 * Método getter do atributo viatura
+	 * @return ViaturaVO
+	 */
 	public ViaturaVO getViatura() {
 		return viatura;
 	}
 
+	/**
+	 * Método setter do atributo viatura
+	 * @param viatura ViaturaVO
+	 */
 	public void setViatura(ViaturaVO viatura) {
 		this.viatura = viatura;
 	}
 
+	/**
+	 * Método que retorna uma lista de SelectItem contendo as viaturas cadastradas
+	 * @return List<SelectItem>
+	 */
 	public List<SelectItem> getListViaturas() {
 		List<SelectItem> listViaturas = new ArrayList<SelectItem>();
 		for (ViaturaVO viatura : getFachada().listarViaturas()) {
@@ -33,12 +53,20 @@ public class ViaturaBean extends GenericoBean {
 		return listViaturas;
 	}
 
+	/**
+	 * Método getter do atributo listaTudo
+	 * @return List<ViaturaVO>
+	 */
 	public List<ViaturaVO> getListaTudo() {
 		if (listaTudo == null || canUpdate())
 			setListaTudo(getFachada().listarViaturas());
 		return listaTudo;
 	}
 
+	/**
+	 * Método que envia os dados da viatura ser deletada
+	 * @return String
+	 */
 	public String delete() {
 		ViaturaVO viaturaDaVez = (ViaturaVO) getElementoSelecionado();
 		String mensagem = getFachada().deleteViatura(viaturaDaVez);
@@ -50,6 +78,10 @@ public class ViaturaBean extends GenericoBean {
 		return mensagem;
 	}
 
+	/**
+	 * Método que envia os dados da viatura a ser atualizada
+	 * @return String
+	 */
 	public String update() {
 		ViaturaVO viaturaDaVez = (ViaturaVO) getElementoSelecionado();
 		String mensagem = getFachada().updateViatura(viaturaDaVez);
@@ -57,6 +89,10 @@ public class ViaturaBean extends GenericoBean {
 		return mensagem;
 	}
 
+	/**
+	 * Método que envia os dados para o cadastro de viatura
+	 * @return String
+	 */
 	public String create() {
 		String mensagem = getFachada().createViatura(viatura);
 		adicionaMensagemUsuario(mensagem);
@@ -64,6 +100,9 @@ public class ViaturaBean extends GenericoBean {
 		return mensagem;
 	}
 
+	/**
+	 * Método que envia os dados a serem pesquisados nas  viaturas cadastradas
+	 */
 	public void pesquisar() {
 		if (getTermoPesquisa().isEmpty()) {
 			setListaTudo(getFachada().listarViaturas());
@@ -87,10 +126,18 @@ public class ViaturaBean extends GenericoBean {
 		}
 	}
 
+	/**
+	 * Método setter do atributo listaTudo
+	 * @param listaTudo List<ViaturaVO>
+	 */
 	public void setListaTudo(List<ViaturaVO> listaTudo) {
 		this.listaTudo = listaTudo;
 	}
 
+	/**
+	 * Método para adicionar mensagem a ser mostrada ao usuário
+	 * @param mensagem String
+	 */
 	private void adicionaMensagemUsuario(String mensagem) {
 		if (mensagem.equals("viaturaExistente")) {
 			adicionarMensagem("Viatura já existe");
@@ -117,6 +164,10 @@ public class ViaturaBean extends GenericoBean {
 		}
 	}
 
+	/**
+	 * Método que retorna a lista de viaturas escaladas no turno
+	 * @return List<SelectItem>
+	 */
 	public List<SelectItem> getListaViaturas() {
 		List<SelectItem> listItensViaturas = new ArrayList<SelectItem>();
 		for(ViaturaVO viatura : getFachada().pesquisarViaturasEscalaTurno()){
@@ -128,11 +179,12 @@ public class ViaturaBean extends GenericoBean {
 		return listItensViaturas;
 	}
 
-	public void setListaViaturas(List<SelectItem> listaViaturas) {
-		this.listaViaturas = listaViaturas;
-	}
 
 
+	/**
+	 * Retorna a última coordenada enviada pela viatura
+	 * @return CoordenadaVO
+	 */
 	public CoordenadaVO getUltimaCoordenada() {
 		return getFachada().getUltimaCoordenadaViatura(viatura);
 	}

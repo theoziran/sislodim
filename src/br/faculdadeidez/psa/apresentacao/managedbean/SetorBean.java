@@ -3,30 +3,44 @@ package br.faculdadeidez.psa.apresentacao.managedbean;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.context.FacesContext;
-import javax.faces.lifecycle.Lifecycle;
 import javax.faces.model.SelectItem;
-import javax.faces.webapp.FacesServlet;
-
-import org.richfaces.function.RichFunction;
 
 import br.faculdadeidez.psa.vo.BairroVO;
-import br.faculdadeidez.psa.vo.EscalaVO;
 import br.faculdadeidez.psa.vo.SetorVO;
-
+/**
+ * ManagedBean de Setor
+ *
+ */
 public class SetorBean extends GenericoBean {
+	/**
+	 * Responsável pela lista de setores
+	 */
 	private List<SetorVO> listaTudo = null;
-	private List<SelectItem> listaItensSetores = null;
+	/**
+	 * Representa a entidade Setor
+	 */
 	private SetorVO setor = new SetorVO();
 
+	/**
+	 * Método getter do atributo setor
+	 * @return SetorVO
+	 */
 	public SetorVO getSetor() {
 		return setor;
 	}
 
+	/**
+	 * Método setter do atributo setor
+	 * @param setor SetorVO
+	 */
 	public void setSetor(SetorVO setor) {
 		this.setor = setor;
 	}
 
+	/**
+	 * Método que retorna uma lista de SelectItem contendo os setores
+	 * @return List<SelectItem>
+	 */
 	public List<SelectItem> getListaItensSetores() {
 		List<SelectItem> listaItensSetores = new ArrayList<SelectItem>();
 		for (SetorVO setor : getFachada().listarSetores()) {
@@ -39,10 +53,10 @@ public class SetorBean extends GenericoBean {
 		return listaItensSetores;
 	}
 
-	public void setListaItensSetores(List<SelectItem> lista) {
-		this.listaItensSetores = lista;
-	}
-
+	/**
+	 * Método getter do atributo listaTudo
+	 * @return List<SetorVO>
+	 */
 	public List<SetorVO> getListaTudo() {
 		if (listaTudo == null || canUpdate())
 			setListaTudo(getFachada().listarSetores());
@@ -50,6 +64,10 @@ public class SetorBean extends GenericoBean {
 		return listaTudo;
 	}
 
+	/**
+	 * Método que passa o setor a ser deletado
+	 * @return String
+	 */
 	public String delete() {
 		SetorVO setorDaVez = (SetorVO) getElementoSelecionado();
 		String mensagem = getFachada().deleteSetor(setorDaVez);
@@ -61,6 +79,10 @@ public class SetorBean extends GenericoBean {
 		return mensagem;
 	}
 
+	/**
+	 * Método que passa o setor a ser atualizado
+	 * @return String
+	 */
 	public String update() {
 		SetorVO setorDaVez = (SetorVO) getElementoSelecionado();
 		setorDaVez.setBairros(setor.getBairros());
@@ -72,6 +94,10 @@ public class SetorBean extends GenericoBean {
 		return mensagem;
 	}
 
+	/**
+	 * Método que passa o setor a ser criado
+	 * @return String
+	 */
 	public String create() {
 		String mensagem = getFachada().createSetor(setor);
 
@@ -86,6 +112,9 @@ public class SetorBean extends GenericoBean {
 		return mensagem;
 	}
 
+	/**
+	 * Método que passa os dados de setor para ser pesquisado nos setores cadastrados
+	 */
 	public void pesquisar() {
 		if (getTermoPesquisa().isEmpty()) {
 			setListaTudo(getFachada().listarSetores());
@@ -108,10 +137,18 @@ public class SetorBean extends GenericoBean {
 		}
 	}
 
+	/**
+	 * Método setter do atributo listaTudo
+	 * @param listaTudo List<SetorVO>
+	 */
 	public void setListaTudo(List<SetorVO> listaTudo) {
 		this.listaTudo = listaTudo;
 	}
 
+	/**
+	 * Método que seta os bairros em um setor
+	 * @param listaBairros List<String>
+	 */
 	public void setBairrosSetor(List<String> listaBairros) {
 		List<BairroVO> bairros = new ArrayList<BairroVO>();
 		for (String chave : listaBairros) {
@@ -120,6 +157,10 @@ public class SetorBean extends GenericoBean {
 		setor.setBairros(bairros);
 	}
 
+	/**
+	 *  Método que retorna os bairros de um setor
+	 * @return List<String>
+	 */
 	public List<String> getBairrosSetor() {
 		if (getElementoSelecionado() != null) {
 			List<String> listaAtuais = new ArrayList<String>();
@@ -134,6 +175,10 @@ public class SetorBean extends GenericoBean {
 		return null;
 	}
 
+	/**
+	 * Método que adicona mensagem ao usuário
+	 * @param mensagem String
+	 */
 	private void adicionaMensagemUsuario(String mensagem) {
 		if (mensagem.equals("removido"))
 			adicionarMensagem("Deletado com sucesso!");
