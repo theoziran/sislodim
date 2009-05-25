@@ -16,23 +16,31 @@
 				<br />
 				<h:outputLabel value="*Data inicial:" />
 				<rich:calendar id="periodoInicio" datePattern="dd/MM/yyyy"
-					value="#{rotaPercorridaBean.periodoInicio}" required="true">
+					value="#{rotaPercorridaBean.periodoInicio.time}" required="true">
 				</rich:calendar>
 				<h:outputLabel value="*Data final:" />
 				<rich:calendar id="periodoFim" datePattern="dd/MM/yyyy"
-					value="#{rotaPercorridaBean.periodoFim}" required="true">
+					value="#{rotaPercorridaBean.periodoFim.time}" required="true">
 				</rich:calendar>
 			</h:panelGrid>
 			<hr />
 			<h:panelGrid>
 				<h:outputLabel value="Tipo de Relatório: " />
 			</h:panelGrid>
-			<h:panelGrid columns="3">
+			<h:panelGrid columns="2">
+			<h:outputLabel value="Viatura" />
+			<h:selectOneMenu id="setor" value="#{rotaPercorridaBean.viatura}" rendered="true">  
+	     		<f:selectItems value="#{rotaPercorridaBean.listaViaturas}"/>  
+	  		</h:selectOneMenu>
 				<h:commandButton action="#{rotaPercorridaBean.viaturaNoSetor}"
 					value="Rotas Percorridas" />
 				<h:commandButton action="#{rotaPercorridaBean.viaturaForaDoSetor}"
 					value="Viaturas fora de área" />
 			</h:panelGrid>
+			
+			
+			
+			
 		</h:form>
 		</div>
 
