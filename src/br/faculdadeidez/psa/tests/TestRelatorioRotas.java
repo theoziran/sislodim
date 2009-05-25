@@ -1,9 +1,8 @@
 package br.faculdadeidez.psa.tests;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Vector;
 
 import junit.framework.TestCase;
@@ -13,13 +12,13 @@ import br.faculdadeidez.psa.vo.RotaPercorridaVO;
 
 public class TestRelatorioRotas extends TestCase{
 	
-	protected Date dataInicial;
-	protected Date dataFinal;
+	protected Calendar dataInicial = Calendar.getInstance(new Locale("pt","br"));
+	protected Calendar dataFinal = Calendar.getInstance(new Locale("pt","br"));
 	
 	@Override
 	protected void setUp() throws Exception {
-		this.dataInicial = new Date(2008-1900,5-1,7,21,15);
-		this.dataFinal = new Date(2009-1900,5-1,22,23,59);
+		this.dataInicial.set(2008-1900,5-1,7,21,15);
+		this.dataFinal.set(2009-1900,5-1,22,23,59);
 	}
 	
 	public void testGeraRelatorioViaturaNoSetorValidos(){

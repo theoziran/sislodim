@@ -1,15 +1,14 @@
 package br.faculdadeidez.psa.tests;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Vector;
 
+import junit.framework.TestCase;
 import br.faculdadeidez.psa.businesslogic.CoordenadasBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
 import br.faculdadeidez.psa.servico.GoogleMaps;
-import br.faculdadeidez.psa.servico.GoogleMapsDistance;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
-import junit.framework.TestCase;
 
 public class testCoordenadaBusinessLogic extends TestCase {
 
@@ -20,7 +19,7 @@ public class testCoordenadaBusinessLogic extends TestCase {
 	private CoordenadasBusinessLogic cbl = new CoordenadasBusinessLogic();
 	
 	public void testCreate() {
-		c = new CoordenadaVO("-7.096987","-34.834377",listvaitura.get(0),new Date() ,true,1,true);
+		c = new CoordenadaVO("-7.096987","-34.834377",listvaitura.get(0),Calendar.getInstance() ,true,1,true);
 		assertEquals("inserido", cbl.create(c));
 	}
 

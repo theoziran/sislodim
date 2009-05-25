@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import br.faculdadeidez.psa.businesslogic.CoordenadasBusinessLogic;
 import br.faculdadeidez.psa.db.entity.Coordenada;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;

@@ -1,23 +1,49 @@
 package br.faculdadeidez.psa.apresentacao.managedbean;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
+
+import javax.faces.model.SelectItem;
 
 import br.faculdadeidez.psa.vo.RotaPercorridaVO;
 import br.faculdadeidez.psa.vo.SetorVO;
+import br.faculdadeidez.psa.vo.ViaturaVO;
 
 public class RotaPercorridaBean extends GenericoBean {
 	private RotaPercorridaVO rotaPercorrida = new RotaPercorridaVO();
 	private SetorVO setorVO = new SetorVO();
-	private Date periodoInicio = new Date();
-	private Date periodoFim = new Date();
+	private Locale locBr = new Locale("pt","br");
+	private Calendar periodoInicio =  Calendar.getInstance(locBr);
+	private Calendar periodoFim =  Calendar.getInstance(locBr);
 	private Boolean foraDeSetor = false;
 	private List<RotaPercorridaVO> rotas;
-	private List<RotaPercorridaVO> listaTudo;
 	private String termoPesquisa;
 	private String tipoDeRelatorio;
+	private String saida;
+	private String viatura;
+	
+	public List<SelectItem> getListaViaturas() {
+		List<SelectItem> listaViaturas = new ArrayList<SelectItem>();
+		SelectItem itemDefault = new SelectItem();
+		itemDefault.setLabel("todas");
+		itemDefault.setValue("todas");
+		listaViaturas.add(itemDefault);
 
+		for (ViaturaVO viatura : getFachada().listarViaturas()) {
+			SelectItem selectItem = new SelectItem();
+			selectItem.setLabel(viatura.getCodigo());
+			selectItem.setValue(viatura.getCodigo());
+			listaViaturas.add(selectItem);
+		}
+		return listaViaturas;
+	}
+	
+	public String getSaida() {
+		return saida;
+	}
+	
 	public RotaPercorridaVO getRotaPercorrida() {
 		return rotaPercorrida;
 	}
@@ -34,19 +60,19 @@ public class RotaPercorridaBean extends GenericoBean {
 		this.setorVO = setorVO;
 	}
 
-	public Date getPeriodoInicio() {
+	public Calendar getPeriodoInicio() {
 		return periodoInicio;
 	}
 
-	public void setPeriodoInicio(Date periodoInicio) {
+	public void setPeriodoInicio(Calendar periodoInicio) {
 		this.periodoInicio = periodoInicio;
 	}
 
-	public Date getPeriodoFim() {
+	public Calendar getPeriodoFim() {
 		return periodoFim;
 	}
 
-	public void setPeriodoFim(Date peridoFim) {
+	public void setPeriodoFim(Calendar peridoFim) {
 		this.periodoFim = peridoFim;
 	}
 
@@ -59,18 +85,14 @@ public class RotaPercorridaBean extends GenericoBean {
 	}
 
 	public List<RotaPercorridaVO> getRotas() {
-		List<RotaPercorridaVO> rotas = new ArrayList<RotaPercorridaVO>();
+		rotas = new ArrayList<RotaPercorridaVO>();
 		rotas = getFachada().listarRotas(periodoInicio, periodoFim, foraDeSetor);
 		return rotas;
 
 	}
 
-	public void setListaTudo(List<RotaPercorridaVO> listaTudo) {
-		this.listaTudo = listaTudo;
-	}
-
 	public List<RotaPercorridaVO> getListaTudo() {
-		return getRotas();
+		return rotas;
 	}
 
 	public void setTermoPesquisa(String termoPesquisa) {
@@ -92,6 +114,7 @@ public class RotaPercorridaBean extends GenericoBean {
 	
 	public String viaturaForaDoSetor(){
 		foraDeSetor = true;
+		getRotas();
 		return "exibirRelatorios";
 		
 	}
@@ -101,4 +124,18 @@ public class RotaPercorridaBean extends GenericoBean {
 		return "exibirRelatorios";
 		
 	}
+	
+	public String getViatura() {
+		return viatura;
+	}
+
+	public void setViatura(String viatura) {
+		this.viatura = viatura;
+	}
+	public String geraRelatorio(){
+		saida = getFachada().gerarRelatorio(rotas, foraDeSetor);  
+		return "exibeRelatorio"; 
+		
+	}
+	
 }

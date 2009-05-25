@@ -1,6 +1,6 @@
 package br.faculdadeidez.psa.facade;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import br.faculdadeidez.psa.businesslogic.BairroBusinessLogic;
@@ -221,8 +221,19 @@ public class Fachada {
 	/*
 	 * Métodos para Relatório de Rotas Percorridas
 	 */
-	public List<RotaPercorridaVO> listarRotas(Date dataInicio, Date dataFim, Boolean foraDeSetor) {
+	public List<RotaPercorridaVO> listarRotas(Calendar dataInicio, Calendar dataFim, Boolean foraDeSetor) {
 		return new RotaPercorridaBusinessLogic().listar(dataInicio, dataFim, foraDeSetor);
+	}
+	
+	public String gerarRelatorio(List<RotaPercorridaVO> rotas, boolean foraDeArea){
+		String caminhoDoPDF = null;
+		RotaPercorridaBusinessLogic rota = new RotaPercorridaBusinessLogic();
+		
+		caminhoDoPDF = rota.geraRelatorio(rotas, foraDeArea);
+		
+		return caminhoDoPDF;
+		
+		
 	}
 
 }
