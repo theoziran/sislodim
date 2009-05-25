@@ -3,6 +3,11 @@ package br.faculdadeidez.psa.apresentacao.managedbean;
 import br.faculdadeidez.psa.servico.GoogleMaps;
 import br.faculdadeidez.psa.vo.BairroVO;
 
+/**
+ * ManagedBean de coordenada
+ * @author Samuel
+ *
+ */
 public class CoordenadaBean extends GenericoBean{
 	
 	/**
@@ -75,6 +80,10 @@ public class CoordenadaBean extends GenericoBean{
 		
 		return "viaturaProxima";
 	}
+	/**
+	 * Método setter do atributo gmaps
+	 * @param gmaps GoogleMaps
+	 */
 	public void setGmaps(GoogleMaps gmaps) {
 		this.gmaps = gmaps;
 	}

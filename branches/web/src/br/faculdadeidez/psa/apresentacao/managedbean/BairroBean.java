@@ -7,6 +7,10 @@ import javax.faces.model.SelectItem;
 
 import br.faculdadeidez.psa.vo.BairroVO;
 
+/**
+ * ManagedBean de bairro
+ *
+ */
 public class BairroBean extends GenericoBean {
 	/**
 	 * Responsável por representar a entidade Bairro

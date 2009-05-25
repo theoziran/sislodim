@@ -12,18 +12,35 @@ import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
+/**
+ * ManagedBean de MapaSetor
+ *
+ */
 public class MapaSetorBean extends GenericoBean {
+	/**
+	 * Responsável por representar a entidade Setor
+	 */
 	private SetorVO setor = new SetorVO();
-	private List<CoordenadaVO> listaCoordenadas;
-	
+	/**
+	 * Método getter do atributo setor
+	 * @return SetorVO
+	 */
 	public SetorVO getSetor() {
 		return setor;
 	}
 
+	/**
+	 * Método setter do atributo setor
+	 * @param setor
+	 */
 	public void setSetor(SetorVO setor) {
 		this.setor = setor;
 	}
 	
+	/**
+	 * Retorna uma lista de coordenadas com as viaturas desocupadas
+	 * @return List<CoordenadaVO>
+	 */
 	public List<CoordenadaVO> getListaCoordenadasDesocupadas() {
 		List<ViaturaVO> escalaViaturas = Fachada.getFachada().listarViaturasEscalaSetor(setor.getCodigo());
 		
@@ -40,6 +57,10 @@ public class MapaSetorBean extends GenericoBean {
 		return lstCoordenadas;
 	}
 	
+	/**
+	 * Retorna uma lista de coordenadas com as viaturas ocupadas
+	 * @return List<CoordenadaVO>
+	 */
 	public List<CoordenadaVO> getListaCoordenadasOcupadas() {
 		List<ViaturaVO> escalaViaturas = Fachada.getFachada().listarViaturasEscalaSetor(setor.getCodigo());
 		
@@ -56,6 +77,11 @@ public class MapaSetorBean extends GenericoBean {
 		return lstCoordenadas;
 	}
 		
+	/**
+	 * 
+	 * Método que retorna uma lista de SelectItem contendo os bairros de um determinado setor
+	 * @return List<SelectItem>
+	 */
 	public List<SelectItem> getListBairros() {
 		SetorVO setor2 = Fachada.getFachada().pesquisaSetor(setor.getCodigo());
 		
@@ -72,17 +98,20 @@ public class MapaSetorBean extends GenericoBean {
 		return listBairros;
 	}
 
+	
+	/**
+	 * Método que mostra o mapa por setor
+	 * @return String
+	 */
 	public String visualizarMapaPorSetor() {
-		SetorVO setor2 = Fachada.getFachada().pesquisaSetor(setor.getCodigo());	
-		
-		adicionarMensagem("Visualizando viaturas no setor " + setor2.getNome());		
+		SetorVO setor = Fachada.getFachada().pesquisaSetor(this.setor.getCodigo());	
+		adicionarMensagem("Visualizando viaturas no setor " + setor.getNome());		
 		return "visualizarMapaSetor";
 	}
 	
 	/**
 	 * Retorna a última coordenada de uma viatura no setor
-	 * 
-	 * @return
+	 * @return CoordenadaVO
 	 */
 	public CoordenadaVO getUltimaCoordenada() {		
 		return getFachada().getUltimaCoordenadaViaturaSetor(setor.getCodigo());

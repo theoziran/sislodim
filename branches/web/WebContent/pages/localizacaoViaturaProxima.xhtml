@@ -23,9 +23,9 @@
         directions = new GDirections(map);
         /*directions.load("from: -7.183055,-34.839642 to: -7.119077,-34.834106");*/
         
-var bottomRight = new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(10,10));
+	var bottomRight = new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(10,10));
 
-map.addControl(new GLargeMapControl(), bottomRight);
+	map.addControl(new GLargeMapControl(), bottomRight);
 
         directions.load("from: #{coordenadaBean.gmaps.latitudeOrigem},#{coordenadaBean.gmaps.longitudeOrigem} to: #{coordenadaBean.gmaps.latitudeDestino},#{coordenadaBean.gmaps.longitudeDestino}",{"locale":"pt_BR"});
         
