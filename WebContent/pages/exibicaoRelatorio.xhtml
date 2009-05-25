@@ -8,6 +8,12 @@
 	xmlns:rich="http://richfaces.org/rich">
 
 <ui:composition template="/templates/relatorio.xhtml">
+	<ui:define name="imprimir">
+		<h:form target="_Blank">
+			<h:commandButton action="#{rotaPercorridaBean.geraRelatorio}"
+					value="Imprimir" />
+		</h:form>
+	</ui:define>			
 	<ui:param name="atualBean" value="#{rotaPercorridaBean}" />
 	<ui:define name="tituloTabela">
 		<!-- coloque o número de colunas necessárias -->
@@ -38,7 +44,7 @@
 	</ui:define>
 	<ui:define name="colunasAdicionaisValores">
 		<rich:column>
-			<h:outputText value="#{elementoDaVez.dataFormatada}" />
+			<h:outputText value="#{elementoDaVez.data}" />
 		</rich:column>
 		<rich:column>
 			<h:outputText value="#{elementoDaVez.horario}" />

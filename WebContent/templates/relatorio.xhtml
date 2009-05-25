@@ -15,21 +15,13 @@
 			<f:facet name="infoMarker">
 			</f:facet>
 		</rich:messages>
-		<h:panelGrid columns="2" width="520">
-			<h:form>
-				<h:panelGrid columns="1">
-					<ui:insert name="linkNovoItem"></ui:insert>
-				</h:panelGrid>
-			</h:form>
-		</h:panelGrid>
 		<rich:panel>
 			<h:panelGrid class="lista" columns="1" width="520">
-
 				<rich:dataTable
 					onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
 					onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
 					cellpadding="0" cellspacing="0" width="518" border="0" rows="10"
-					var="elementoDaVez" value="#{atualBean.listaTudo}" id="generica">
+					var="elementoDaVez" value="#{atualBean.rotas}" id="generica">
 
 					<f:facet name="header">
 						<rich:columnGroup>
@@ -59,7 +51,10 @@
 					</rich:columnGroup>
 				</rich:dataTable>
 				<rich:spacer height="30" />
-
+			</h:panelGrid>
+			<h:panelGrid columns="2" width="520">
+				<rich:spacer width="530" />
+				<ui:insert name="imprimir"></ui:insert>
 			</h:panelGrid>
 		</rich:panel>
 	</ui:define>
