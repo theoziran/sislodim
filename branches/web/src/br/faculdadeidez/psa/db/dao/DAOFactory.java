@@ -58,4 +58,11 @@ public class DAOFactory<T> {
 				+ campo + " = \"" + valor + "\"");
 		return (List<T>) query.getResultList();
 	}	
+
+	List<T> findByField(Class<T> classe, String campo, String campo2, String valor, String valor2) {
+		Query query = manager.createQuery("select a from "+classe.getSimpleName()+" a " + "where a."
+				+ campo + " = \"" + valor + "\" and a."+ campo2 + " = \"" + valor2 + "\"");
+		return (List<T>) query.getResultList();
+	}	
+
 }

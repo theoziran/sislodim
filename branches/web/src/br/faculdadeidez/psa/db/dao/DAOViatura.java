@@ -2,6 +2,7 @@ package br.faculdadeidez.psa.db.dao;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -177,7 +178,7 @@ public class DAOViatura extends DAOFactory<Viatura> {
 	 * @param dataPesquisa
 	 * @return
 	 */
-	public List<BairroVO> findViaturasEscalasBairros(String viatura, Date dataPesquisa) { 
+	public List<BairroVO> findViaturasEscalasBairros(String viatura, Calendar dataPesquisa) { 
 		Date data = new Date(System.currentTimeMillis());
 		String formato = "dd/MM/yyyy";
 		SimpleDateFormat formatter = new SimpleDateFormat(formato);

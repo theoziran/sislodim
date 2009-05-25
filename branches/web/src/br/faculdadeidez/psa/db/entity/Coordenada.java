@@ -1,7 +1,7 @@
 package br.faculdadeidez.psa.db.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -33,7 +33,7 @@ public class Coordenada implements Serializable {
 	private Viatura viatura;
 	@Column (name="COO_DATA_HORA", nullable=false)
 	@Temporal(value=TemporalType.TIMESTAMP)
-	private Date data;
+	private Calendar data;
 	@Column (name="COO_FORA_AREA", nullable=false)
 	private boolean foraDeArea;
 	@Column (name="COO_PROC_VERIFIC", nullable=false)
@@ -95,11 +95,11 @@ public class Coordenada implements Serializable {
 		return viatura;
 	}
 
-	public void setData(Date data) {
+	public void setData(Calendar data) {
 		this.data = data;
 	}
 
-	public Date getData() {
+	public Calendar getData() {
 		return data;
 	}
 

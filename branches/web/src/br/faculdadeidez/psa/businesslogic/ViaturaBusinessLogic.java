@@ -1,6 +1,7 @@
 package br.faculdadeidez.psa.businesslogic;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -207,7 +208,7 @@ public class ViaturaBusinessLogic {
 	 * @param dataPesquisa
 	 * @return
 	 */
-	public List<BairroVO> listaBairrosSetorEscalaViatura(String viatura, Date dataPesquisa) { 
+	public List<BairroVO> listaBairrosSetorEscalaViatura(String viatura, Calendar dataPesquisa) { 
 		DAOViatura dViatura = new DAOViatura();
 		return dViatura.findViaturasEscalasBairros(viatura, dataPesquisa);
 	}

@@ -1,7 +1,9 @@
 package br.faculdadeidez.psa.vo;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 @SuppressWarnings("serial")
 public class CoordenadaVO implements Serializable {
@@ -9,7 +11,8 @@ public class CoordenadaVO implements Serializable {
 	private String latitude;
 	private String longitude;
 	private ViaturaVO viatura= new ViaturaVO() ;
-	private Date data;
+	private Locale locBr = new Locale("pt","br"); 
+	private Calendar data = Calendar.getInstance(locBr);
 	private boolean foraDeArea;
 	private boolean processadoVerificacao;
 	
@@ -17,7 +20,7 @@ public class CoordenadaVO implements Serializable {
 		
 	}
 	
-	public CoordenadaVO(String lat,String longit, ViaturaVO viatura, Date data, boolean foraDeArea, int id, boolean processadoVerificacao) {
+	public CoordenadaVO(String lat,String longit, ViaturaVO viatura, Calendar data, boolean foraDeArea, int id, boolean processadoVerificacao) {
 		this.latitude = lat;
 		this.longitude = longit;
 		this.viatura = viatura;
@@ -67,11 +70,12 @@ public class CoordenadaVO implements Serializable {
 		return viatura;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void setData(Date data) {
-		this.data = data;
+		this.data.set(data.getYear(), data.getMonth(), data.getDate(), data.getHours(),data.getMinutes());
 	}
 
-	public Date getData() {
+	public Calendar getData() {
 		return data;
 	}
 
