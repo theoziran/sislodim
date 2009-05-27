@@ -25,10 +25,10 @@ public class Inicial extends Form implements CommandListener {
 	private Inicial(String title) {
 		super(title);
 
-		siTexto = new StringItem("Mapa com a localizaï¿½ï¿½o atual", null);
+		siTexto = new StringItem("Mapa com a localização atual", null);
 
 		iiMapa = new ImageItem(null, null, ImageItem.LAYOUT_CENTER,
-				"localizaï¿½ï¿½o atual");
+				"localização atual");
 
 		// cria a imagem
 		Image image = null;
