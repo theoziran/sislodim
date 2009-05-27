@@ -109,8 +109,7 @@ public class UIController {
 				Alerta.getInstance().setTexto(
 						"Sincronização completada com sucesso");
 				Alerta.getInstance().setType(AlertType.INFO);
-				setCurrent(Alerta.getInstance());
-				voltar();
+				setCurrent(Alerta.getInstance(), getCurrentDisplayable());
 				voltar();
 			}
 				

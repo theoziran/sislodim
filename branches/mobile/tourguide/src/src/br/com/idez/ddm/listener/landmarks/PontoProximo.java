@@ -24,6 +24,7 @@ public class PontoProximo implements ProximityListener, LocationListener {
 		Landmark lm = findNearestLandMark(coordenadas);
 		System.out.println("Aviso: Você está próximo ao landmark "+lm.getDescription()+" com as coordenadas "+ coordenadas.getLatitude()+coordenadas.getLongitude());
 		System.out.println("Landmark "+lm.getDescription()+" com as coordenadas "+ lm.getQualifiedCoordinates().getLatitude()+lm.getQualifiedCoordinates().getLongitude()+" está a "+lm.getQualifiedCoordinates().distance(coordenadas));
+		ExibicaoPonto.getInstance().limparTela();
 		ExibicaoPonto.getInstance().exibirPonto(lm.getName());
 	}
 
