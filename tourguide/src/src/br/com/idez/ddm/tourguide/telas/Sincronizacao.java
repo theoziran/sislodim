@@ -71,7 +71,6 @@ public class Sincronizacao extends Form implements CommandListener {
 						Thread.sleep(Integer
 								.parseInt(Record.getConfigMaxTime()) * 1000);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					automatica=true;
