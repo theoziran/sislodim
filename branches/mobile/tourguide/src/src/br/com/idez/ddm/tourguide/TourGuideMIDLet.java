@@ -19,7 +19,7 @@ public class TourGuideMIDLet extends MIDlet {
 	}
 
 	public void destroyApp(boolean arg0) throws MIDletStateChangeException {
-		//FIXME remover a destruiÃ§Ã£o da record store
+		//FIXME remover a destruição da record store
 		Record.destroy("TOURGUIDE");
 		System.out.println("Destruindo MIDlet");
 	}

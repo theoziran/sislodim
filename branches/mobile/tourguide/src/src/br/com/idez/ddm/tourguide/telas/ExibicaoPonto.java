@@ -74,7 +74,6 @@ public class ExibicaoPonto extends Form implements CommandListener {
 			UIController.getInstance().setCurrent(
 					ExibicaoPonto.getInstance());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

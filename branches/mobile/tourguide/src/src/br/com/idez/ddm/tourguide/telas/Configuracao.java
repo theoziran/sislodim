@@ -97,7 +97,7 @@ public class Configuracao extends Form implements CommandListener {
 			}
 
 			System.out.println("Configurações salvas");
-			// TODO exibir mensagem de confirmaÃ§Ã£o
+			// TODO exibir mensagem de confirmação
 
 		} else if (cmd.equals(cmdVoltar)) {
 			System.out.println("VOLTAR selecionado");
