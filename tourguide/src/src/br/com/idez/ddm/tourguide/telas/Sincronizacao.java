@@ -20,7 +20,7 @@ public class Sincronizacao extends Form implements CommandListener {
 	public Sincronizacao(String title) {
 		super(title);
 
-		siTexto = new StringItem("Dejesa realmente iniciar a sincronização?",
+		siTexto = new StringItem("Deseja realmente iniciar a sincronização?",
 				null);
 
 		cmdCancelar = new Command("Cancelar", Command.CANCEL, 1);
@@ -69,7 +69,7 @@ public class Sincronizacao extends Form implements CommandListener {
 					}
 					try {
 						Thread.sleep(Integer
-								.parseInt(Record.getConfigMaxTime()) * 1000);
+								.parseInt(Record.getConfigMaxTime()) * 10000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}

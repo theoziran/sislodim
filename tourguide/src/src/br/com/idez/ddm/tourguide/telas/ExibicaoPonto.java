@@ -1,6 +1,7 @@
 package br.com.idez.ddm.tourguide.telas;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
@@ -9,6 +10,10 @@ import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.ImageItem;
 import javax.microedition.lcdui.StringItem;
+import javax.microedition.media.Manager;
+import javax.microedition.media.MediaException;
+import javax.microedition.media.Player;
+import javax.microedition.media.control.VideoControl;
 
 import br.com.idez.ddm.tourguide.PontoEstrategico;
 import br.com.idez.ddm.tourguide.core.Record;
@@ -76,5 +81,44 @@ public class ExibicaoPonto extends Form implements CommandListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void limparTela(){
+		instance = null;
+	}
+	
+	public void exibirVideo(){
+		InputStream is = getClass().getResourceAsStream("/video.mpg");
+		Player player = null;
+		try {
+			player = Manager.createPlayer(is, "video/mpeg");
+			player.realize();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		VideoControl vc = (VideoControl) player.getControl("VideoControl");
+		if (vc != null) {
+			vc.initDisplayMode(VideoControl.USE_DIRECT_VIDEO, this);
+			vc.setVisible(true);
+			try {
+				player.start();
+			} catch (MediaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void exibirImagem(){
+		
+	}
+	
+	public void tocarAudio(){
+		
 	}
 }

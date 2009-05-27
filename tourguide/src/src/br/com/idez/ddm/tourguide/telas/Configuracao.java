@@ -124,7 +124,7 @@ public class Configuracao extends Form implements CommandListener {
 		}
 
 		Alerta.getInstance().setTitle("Configurações");
-		Alerta.getInstance().setTexto("Configurções Salvas com sucesso");
+		Alerta.getInstance().setTexto("Configurações Salvas com sucesso");
 		Alerta.getInstance().setType(AlertType.INFO);
 	}
 
