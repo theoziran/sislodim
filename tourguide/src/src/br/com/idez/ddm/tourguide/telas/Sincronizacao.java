@@ -4,7 +4,6 @@ import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Form;
-import javax.microedition.lcdui.ImageItem;
 import javax.microedition.lcdui.StringItem;
 
 import br.com.idez.ddm.tourguide.core.UIController;
@@ -14,8 +13,7 @@ public class Sincronizacao extends Form implements CommandListener {
 	private static Sincronizacao instance;
 
 	private StringItem siTexto;
-	private ImageItem iiLoading;
-
+	
 	private Command cmdCancelar;
 
 	public Sincronizacao(String title) {
@@ -27,7 +25,7 @@ public class Sincronizacao extends Form implements CommandListener {
 		cmdCancelar = new Command("Cancelar", Command.CANCEL, 1);
 		addCommand(new Command("Sincronizar", Command.OK, 1));
 
-		this.append("Deseja realmente iniciar a sincronização?");
+		this.append(siTexto);
 
 		this.addCommand(cmdCancelar);
 
