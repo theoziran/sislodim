@@ -36,7 +36,7 @@ public class Configuracao extends Form implements CommandListener {
 			cgSons.setSelectedIndex(1, true);
 		}
 
-		cgSync = new ChoiceGroup("Sincronizaï¿½ï¿½o Automï¿½tica",
+		cgSync = new ChoiceGroup("Sincronização Automática",
 				ChoiceGroup.EXCLUSIVE);
 		cgSync.append("ON", null);
 		cgSync.append("OFF", null);
@@ -47,7 +47,7 @@ public class Configuracao extends Form implements CommandListener {
 			cgSync.setSelectedIndex(1, true);
 		}
 
-		cgMultimedia = new ChoiceGroup("Conteï¿½do Multimï¿½dia",
+		cgMultimedia = new ChoiceGroup("Conteúdo Multimídia",
 				ChoiceGroup.EXCLUSIVE);
 		cgMultimedia.append("ON", null);
 		cgMultimedia.append("OFF", null);
@@ -58,7 +58,7 @@ public class Configuracao extends Form implements CommandListener {
 			cgMultimedia.setSelectedIndex(1, true);
 		}
 
-		tfMaxTimeExecution = new TextField("Tempo Mï¿½ximo (segundos) ", null, 2,
+		tfMaxTimeExecution = new TextField("Tempo Máximo (segundos) ", null, 2,
 				TextField.NUMERIC);
 		tfMaxTimeExecution.setString(Record.getConfigMaxTime());
 
@@ -79,7 +79,7 @@ public class Configuracao extends Form implements CommandListener {
 
 	public static Configuracao getInstance() {
 		if (instance == null) {
-			instance = new Configuracao("Configuraï¿½ï¿½o");
+			instance = new Configuracao("Configuração");
 		}
 		return instance;
 	}
@@ -96,7 +96,7 @@ public class Configuracao extends Form implements CommandListener {
 				e.printStackTrace();
 			}
 
-			System.out.println("ConfiguraÃ§Ãµes salvas");
+			System.out.println("Configurações salvas");
 			// TODO exibir mensagem de confirmaÃ§Ã£o
 
 		} else if (cmd.equals(cmdVoltar)) {
@@ -123,8 +123,8 @@ public class Configuracao extends Form implements CommandListener {
 			e.printStackTrace();
 		}
 
-		Alerta.getInstance().setTitle("Configuraï¿½ï¿½es");
-		Alerta.getInstance().setTexto("Configuraï¿½ï¿½es Salvas com sucesso");
+		Alerta.getInstance().setTitle("Configurações");
+		Alerta.getInstance().setTexto("Configurções Salvas com sucesso");
 		Alerta.getInstance().setType(AlertType.INFO);
 	}
 

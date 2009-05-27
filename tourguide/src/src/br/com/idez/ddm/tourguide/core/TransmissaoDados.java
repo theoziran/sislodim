@@ -34,7 +34,7 @@ public class TransmissaoDados {
 			conexao.setRequestMethod(HttpConnection.GET);
 			stream = conexao.openDataInputStream();
 		} catch (Exception e) {
-
+			UIController.excessaoGenerica("Houve um problema com a conexão");
 		}
 		
 

@@ -6,6 +6,7 @@ import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.StringItem;
 
+import br.com.idez.ddm.tourguide.core.Record;
 import br.com.idez.ddm.tourguide.core.UIController;
 
 public class Sincronizacao extends Form implements CommandListener {
@@ -13,7 +14,7 @@ public class Sincronizacao extends Form implements CommandListener {
 	private static Sincronizacao instance;
 
 	private StringItem siTexto;
-	
+
 	private Command cmdCancelar;
 
 	public Sincronizacao(String title) {
@@ -42,7 +43,6 @@ public class Sincronizacao extends Form implements CommandListener {
 	public void commandAction(Command cmd, Displayable displayable) {
 		if (cmd.equals(cmdCancelar)) {
 			System.out.println("VOLTAR Selecionado");
-
 			try {
 				UIController.getInstance().voltar();
 			} catch (Exception e) {
@@ -60,11 +60,23 @@ public class Sincronizacao extends Form implements CommandListener {
 		new Thread(new Runnable() {
 
 			public void run() {
-				try {
-					UIController.getInstance().sincronizar();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				boolean automatica=false;
+				do {
+					try {
+						UIController.getInstance().sincronizar(automatica);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					try {
+						Thread.sleep(Integer
+								.parseInt(Record.getConfigMaxTime()) * 1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					automatica=true;
+				} while (Record.getConfigSync().equals("ON"));
+
 			}
 
 		}).start();

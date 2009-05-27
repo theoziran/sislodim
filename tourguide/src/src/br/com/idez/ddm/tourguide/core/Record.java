@@ -37,7 +37,7 @@ public class Record {
 
 	public static void destroy(String recordStore) {
 		try {
-			rs.deleteRecordStore(recordStore);
+			RecordStore.deleteRecordStore(recordStore);
 		} catch (RecordStoreNotFoundException e) {
 			e.printStackTrace();
 		} catch (RecordStoreException e) {
