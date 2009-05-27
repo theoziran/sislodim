@@ -24,11 +24,16 @@
 
 package org.kxml2.wap;
 
-import java.io.*;
-import java.util.Vector;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.util.Hashtable;
+import java.util.Vector;
 
-import org.xmlpull.v1.*;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
 
 public class WbxmlParser implements XmlPullParser {
@@ -69,7 +74,7 @@ public class WbxmlParser implements XmlPullParser {
     
     private Vector tables = new Vector();
     
-    private int version;
+    //private int version;
     private int publicIdentifierId;
     
     //    StartTag current;
@@ -429,7 +434,7 @@ public class WbxmlParser implements XmlPullParser {
         this.in = in;
         
         try {
-            version = readByte();
+            //version = readByte();
             publicIdentifierId = readInt();
             
             if (publicIdentifierId == 0)
@@ -639,8 +644,6 @@ public class WbxmlParser implements XmlPullParser {
     
     private final void nextImpl()
     throws IOException, XmlPullParserException {
-        
-        String s;
         
         if (type == END_TAG) {
             depth--;

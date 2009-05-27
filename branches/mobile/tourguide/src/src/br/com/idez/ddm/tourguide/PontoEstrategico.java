@@ -56,15 +56,17 @@ public class PontoEstrategico {
 
 	}
 
-	public static void addPonto(PontoEstrategico ponto) {
+	public static boolean addPonto(PontoEstrategico ponto) {
 		if (buscaPonto(ponto) == null) {
 			Record.addPontoEstrategico(ponto);
 			System.out.println("inserindo ponto: " + ponto.getId());
+			return true;
 		} else {
 			// TODO atualizar ponto
 			System.out.println("Ponto " + ponto.getId()
 					+ " já existe e será atualizado!");
 		}
+		return false;
 	}
 
 	private static PontoEstrategico buscaPonto(PontoEstrategico ponto) {
