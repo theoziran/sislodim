@@ -46,6 +46,7 @@ public class DAOFactory<T> {
 		return manager.find(classe, chave);
 	}
 
+	@SuppressWarnings("unchecked")
 	List<T> findAll(Class<T> classe) {
 		Query query = manager.createQuery("select a from "+classe.getSimpleName()+" a");
 		List<T> result = null;
@@ -53,12 +54,14 @@ public class DAOFactory<T> {
 		return  result;
 	}
 
+	@SuppressWarnings("unchecked")
 	List<T> findByField(Class<T> classe, String campo, String valor) {
 		Query query = manager.createQuery("select a from "+classe.getSimpleName()+" a " + "where a."
 				+ campo + " = \"" + valor + "\"");
 		return (List<T>) query.getResultList();
 	}	
 
+	@SuppressWarnings("unchecked")
 	List<T> findByField(Class<T> classe, String campo, String campo2, String valor, String valor2) {
 		Query query = manager.createQuery("select a from "+classe.getSimpleName()+" a " + "where a."
 				+ campo + " = \"" + valor + "\" and a."+ campo2 + " = \"" + valor2 + "\"");

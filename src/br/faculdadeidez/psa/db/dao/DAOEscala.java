@@ -11,23 +11,49 @@ import br.faculdadeidez.psa.db.entity.Viatura;
 import br.faculdadeidez.psa.vo.EscalaVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
+/**
+ * Classe que contém todos os métodos específicos de Escala
+ *
+ */
 public class DAOEscala extends DAOFactory<Escala> {
+	/**
+	 * Construtor default
+	 */
 	public DAOEscala() {
 		super();
 	}
-	
+	/**
+	 * Encapsulamento do método find genérico
+	 * Recebe a chave do objeto e procura a chave no banco de dados retornando uma entidade
+	 * @param chave int
+	 * @return EscalaVO
+	 */
 	public EscalaVO find(int chave){		
 		return Escala.VO(super.find(Escala.class, chave));
 	}
-	
+	/**
+	 * Encapsulamento do método findByField genérico
+	 * Recebe o nome do campo e o valor a ser pesquisado nele
+	 * @param campo String
+	 * @param valor String
+	 * @return List<EscalaVO>
+	 */
 	public List<EscalaVO> findByField(String campo, String valor){
 		return ConvertList(super.findByField(Escala.class, campo, valor));
 	}
-	
+	/**
+	 * Encapsulamento do método findAll genérico
+	 * Retorna todas as entidades como um select * from
+	 * @return List<EscalaVO>
+	 */
 	public List<EscalaVO> findAll(){
 		return ConvertList(super.findAll(Escala.class));
 	}
-	
+	/**
+	 * Método que retorna todas as escalas ativas
+	 * @return List<EscalaVO>
+	 */
+	@SuppressWarnings("unchecked")
 	public List<EscalaVO> findAllActivated(){
 		String strQuery = "SELECT e FROM Escala e WHERE e.ativo = 1";
 		EntityManager em = getManager();
@@ -38,14 +64,28 @@ public class DAOEscala extends DAOFactory<Escala> {
 		return resultList;
 	}
 		
+	/**
+	 * Encapsulamento do método update genérico
+	 * Atualiza a entidade no banco de dados
+	 * @param vo EscalaVO
+	 */
 	public void update(EscalaVO vo){		
 		super.update(new Escala(vo));
 	}
-	
+	/**
+	 * Encapsulamento do método persist genérico
+	 * Insere a entidade no banco de dados
+	 * @param vo EscalaVO
+	 */
 	public void persist(EscalaVO vo){		
 		super.persist(new Escala(vo));
 	}
 	
+	/**
+	 * Encapsulamento do método remove genérico
+	 * Remove a linha do banco de dados
+	 * @param vo EscalaVO
+	 */
 	public void remove(EscalaVO vo){	
 		super.remove(super.find(Escala.class, vo.getCodigo()));
 	}
@@ -55,6 +95,10 @@ public class DAOEscala extends DAOFactory<Escala> {
 	 * que estão entre o período inicial e final desta escala
 	 * @param vo
 	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	/**
+	 * Retorna se há viaturas em outras escalas
 	 */
 	public String verificaViaturasNoutrasEscalasComMesmoDia(EscalaVO vo) {
 		String strQuery = "SELECT v FROM Viatura v " + "JOIN v.escalas sv "
@@ -78,8 +122,10 @@ public class DAOEscala extends DAOFactory<Escala> {
 		return null;
 	}
 	
-	/*
-	 * Converte um List<Tipo1> para um List<Tipo2>
+	/**
+	 * Método que converte uma lista de entidades em Value Object
+	 * @param lista List<Escala>
+	 * @return List<EscalaVO>
 	 */
 	public List<EscalaVO> ConvertList(List<Escala> lista)
 	{
