@@ -25,6 +25,7 @@ public class DAOSetor extends DAOFactory<Setor> {
 		return ConvertList(super.findByField(Setor.class, campo, valor));
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<SetorVO> findByName(String nomeSetor){
 		String strQuery = "SELECT  s FROM Setor s WHERE s.nome like '%"+nomeSetor+"%'";
 		EntityManager em = getManager();
@@ -39,6 +40,7 @@ public class DAOSetor extends DAOFactory<Setor> {
 		return ConvertList(super.findAll(Setor.class));
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<SetorVO> findAllActivated(){
 		String strQuery = "SELECT  s FROM Setor s WHERE s.ativo = 1";
 		EntityManager em = getManager();

@@ -74,7 +74,7 @@ public class DAOCidade extends DAOFactory<Cidade> {
 	/**
 	 * Método que converte uma lista de entidades em Value Object
 	 * @param lista List<Cidade>
-	 * @return List<Cidade>
+	 * @return List<CidadeVO>
 	 */
 	public List<CidadeVO> ConvertList(List<Cidade> lista)
 	{
