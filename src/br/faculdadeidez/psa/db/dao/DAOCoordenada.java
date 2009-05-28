@@ -1,5 +1,6 @@
 package br.faculdadeidez.psa.db.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -85,4 +86,29 @@ public class DAOCoordenada extends DAOFactory<Coordenada> {
 
 		return cVO;
 	}
+	
+	
+	public List<CoordenadaVO> getCoordenadasPorViatura(String viatura, Boolean foraDeArea) {
+		List<CoordenadaVO> listaDeCoordenadas = new ArrayList<CoordenadaVO>();
+		
+		String strQuery = "SELECT c FROM Coordenada c " +
+				"WHERE c.viatura.codigo = '"
+				+ viatura + "' and c.foraDeArea = '"+foraDeArea+"'";
+
+		EntityManager em = getManager();
+		Query query = em.createQuery(strQuery);
+
+		List<Coordenada> resultList = query.getResultList();
+
+		if (resultList.isEmpty()){
+			return null;
+		}
+	
+		listaDeCoordenadas = ConvertList(resultList);
+		
+		return listaDeCoordenadas;
+			
+	}
+
+	
 }

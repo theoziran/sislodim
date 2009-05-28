@@ -188,8 +188,7 @@ public class RotaPercorridaBean extends GenericoBean {
 	 */
 	public List<RotaPercorridaVO> getRotas() {
 		rotas = new ArrayList<RotaPercorridaVO>();
-		rotas = getFachada()
-				.listarRotas(periodoInicio, periodoFim, foraDeSetor);
+		rotas = getFachada().listarRotas(periodoInicio, periodoFim, foraDeSetor, viatura);
 		return rotas;
 
 	}

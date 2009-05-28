@@ -26,7 +26,7 @@ import br.faculdadeidez.psa.vo.RotaPercorridaVO;
 
 public class RotaPercorridaBusinessLogic {
 
-	public List<RotaPercorridaVO> listar(Calendar dataInicio, Calendar dataFim, Boolean foraDeSetor){
+	public List<RotaPercorridaVO> listar(Calendar dataInicio, Calendar dataFim, Boolean foraDeSetor, String viatura){
 		Locale locBr = new Locale("pt","br");
 		DateFormat dtFormatData = DateFormat.getDateInstance(DateFormat.LONG, locBr);
 		DateFormat dtFormatHorario = new SimpleDateFormat("hh:MM:ss");
@@ -36,11 +36,15 @@ public class RotaPercorridaBusinessLogic {
 
 		dataFim.set(dataFim.get(Calendar.YEAR),dataFim.get(Calendar.MONTH),dataFim.get(Calendar.DAY_OF_MONTH),23,59);
 
+		if(viatura.equals("todas")){
 			if(foraDeSetor){
 				coordenadas = listarForaDoSetor();
 			}else if(!foraDeSetor){
 				coordenadas = listarNoSetor();
 			}
+		}else{
+			coordenadas = listarPorViaturas(viatura, foraDeSetor);
+		}
 			for (CoordenadaVO coordenadaVO : coordenadas) {
 				if ((coordenadaVO.getData().after(dataInicio))
 						&& (coordenadaVO.getData().before(dataFim))){
@@ -59,6 +63,11 @@ public class RotaPercorridaBusinessLogic {
 			
 	}	
 			
+	private List<CoordenadaVO> listarPorViaturas(String viatura, boolean foraDeArea) {
+		DAOCoordenada dCoordenada = new DAOCoordenada();
+		return dCoordenada.getCoordenadasPorViatura(viatura, foraDeArea);
+	}
+
 	public List<CoordenadaVO> listarForaDoSetor(){
 		DAOCoordenada dCoordenada = new DAOCoordenada();
 		return dCoordenada.findByField("foraDeArea", "true");
@@ -69,6 +78,12 @@ public class RotaPercorridaBusinessLogic {
 		return dCoordenada.findByField("foraDeArea", "false");
 	}
 
+	public List<CoordenadaVO> listarPorViatura(String viatura, Boolean foraDeArea){
+		DAOCoordenada dCoordenada = new DAOCoordenada();
+		return dCoordenada.getCoordenadasPorViatura(viatura, foraDeArea);
+	}
+
+	
 	private String getBairro(String latitude, String longitude) {
 		RetornaEndereco re = new RetornaEndereco(latitude, longitude);
 		return re.getBairro(re.PercorrerXml(re.receberXml()));
