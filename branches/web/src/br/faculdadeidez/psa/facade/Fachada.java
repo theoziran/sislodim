@@ -221,8 +221,8 @@ public class Fachada {
 	/*
 	 * Métodos para Relatório de Rotas Percorridas
 	 */
-	public List<RotaPercorridaVO> listarRotas(Calendar dataInicio, Calendar dataFim, Boolean foraDeSetor) {
-		return new RotaPercorridaBusinessLogic().listar(dataInicio, dataFim, foraDeSetor);
+	public List<RotaPercorridaVO> listarRotas(Calendar dataInicio, Calendar dataFim, Boolean foraDeSetor, String viatura) {
+		return new RotaPercorridaBusinessLogic().listar(dataInicio, dataFim, foraDeSetor, viatura);
 	}
 	
 	public String gerarRelatorio(List<RotaPercorridaVO> rotas, boolean foraDeArea){

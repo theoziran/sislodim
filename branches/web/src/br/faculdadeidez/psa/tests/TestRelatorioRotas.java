@@ -21,15 +21,15 @@ public class TestRelatorioRotas extends TestCase{
 		this.dataFinal.set(2009-1900,5-1,22,23,59);
 	}
 	
-	public void testGeraRelatorioViaturaNoSetorValidos(){
-		RotaPercorridaBusinessLogic rotasBl = new RotaPercorridaBusinessLogic();
+//	public void testGeraRelatorioViaturaNoSetorValidos(){
+//		RotaPercorridaBusinessLogic rotasBl = new RotaPercorridaBusinessLogic();
 		
-		List<RotaPercorridaVO> list = rotasBl.listar(this.dataInicial, this.dataFinal, true);
-		assertEquals(3, list.size());
-
-		list = rotasBl.listar(this.dataInicial, this.dataFinal, false);
-		assertEquals(1, list.size());
-	}
+////		List<RotaPercorridaVO> list = rotasBl.listar(this.dataInicial, this.dataFinal, true);
+//		assertEquals(3, list.size());
+//
+//		list = rotasBl.listar(this.dataInicial, this.dataFinal, false);
+//		assertEquals(1, list.size());
+//	}
 	
 	public void testListarCoordenadas() {
 		RotaPercorridaBusinessLogic rotasBL = new RotaPercorridaBusinessLogic();
