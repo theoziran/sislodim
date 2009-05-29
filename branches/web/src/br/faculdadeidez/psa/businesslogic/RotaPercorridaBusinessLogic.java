@@ -85,8 +85,13 @@ public class RotaPercorridaBusinessLogic {
 
 	
 	private String getBairro(String latitude, String longitude) {
-		RetornaEndereco re = new RetornaEndereco(latitude, longitude);
-		return re.getBairro(re.PercorrerXml(re.receberXml()));
+		try { 		
+			RetornaEndereco re = new RetornaEndereco(latitude, longitude);
+			return re.getBairro(re.PercorrerXml(re.receberXml()));
+		}
+		catch (Exception ex) { 
+			return "";
+		}
 	}
 
 	private String getDiretorioReal(String diretorio) { 

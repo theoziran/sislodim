@@ -171,7 +171,7 @@ public class CoordenadasBusinessLogic {
 			origem.append(coordenadaTemporaria.getLongitude());
 			gmaps = getDistancia(origem.toString(),destino.toString());
 			try {
-				distancia = Double.parseDouble( gmaps.getDistancia());
+				distancia = gmaps.getDistanciaReal();
 			} catch (Exception e) {
 				distancia = 999999999;
 			}
