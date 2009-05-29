@@ -217,6 +217,22 @@ public class GoogleMapsDistance {
                                 String[] split = res.split(" ");
                                 
                                 maps.setDistancia(split[0].replace(',', '.') + " " + split[1]);
+                                
+                                try {
+                                	int divisor = 1;
+                                	
+                                	if(split[1].toLowerCase().equals("km")) { 
+                                		divisor = 1;
+                                	} else if(split[1].toLowerCase().equals("m")) { 
+                                		divisor = 1000;
+                                	}            	
+                                	
+                                	maps.setDistanciaReal(Double.parseDouble(split[0].replace(',', '.')) / divisor);
+                                }
+                                catch(Exception exc) { 
+                                	maps.setDistanciaReal(0.0);
+                                }
+                                
                                 maps.setTempo(split[3] + " " + split[4]);
 
                         } catch (ParserConfigurationException e) {

@@ -5,6 +5,7 @@ import br.faculdadeidez.psa.vo.ViaturaVO;
 public class GoogleMaps {
 
 	private String distancia = null;
+	private Double distanciaReal;
 	private String tempo = null;
 	private ViaturaVO viatura;
 	
@@ -37,6 +38,13 @@ public class GoogleMaps {
 		
 	}
 	
+	public Double getDistanciaReal() { 
+		return distanciaReal;
+	}
+	
+	public void setDistanciaReal(Double distanciaReal) { 
+		this.distanciaReal = distanciaReal;
+	}
 	
 	public String getDistancia() {
 		return distancia;
