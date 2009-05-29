@@ -75,7 +75,7 @@
 				<m:map id="mapa" width="430px" height="400px" jsVariable="mapa" type="G_NORMAL_MAP" zoom="15" latitude="#{mapaSetorBean.ultimaCoordenada.latitude}" longitude="#{mapaSetorBean.ultimaCoordenada.longitude}">				
 				<t:dataList var="viatura" layout="simple" value="#{mapaSetorBean.listaCoordenadasDesocupadas}">				
 					<m:marker latitude="#{viatura.latitude}" longitude="#{viatura.longitude}" jsVariable="viatura#{viatura.viatura.codigo}" >
-						<m:htmlInformationWindow htmlText="Viatura: &lt;strong&gt;#{viatura.viatura.codigo}&lt;/strong&gt; &lt;br&gt;Última movimentação: #{viatura.data}" jsVariable="marker#{viatura.viatura.codigo}"/>
+						<m:htmlInformationWindow htmlText="Viatura: &lt;strong&gt;#{viatura.viatura.codigo}&lt;/strong&gt; &lt;br&gt;Última movimentação: #{viatura.data.time}" jsVariable="marker#{viatura.viatura.codigo}"/>
 						<m:icon imageURL="http://localhost:8080/Sislodim/images/icon-police.gif"/>
 					</m:marker>						
 				</t:dataList>				
