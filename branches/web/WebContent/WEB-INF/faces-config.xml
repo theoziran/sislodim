@@ -220,6 +220,13 @@
 	
 	<navigation-rule>
 		<navigation-case>
+			<from-outcome>exibeRelatorio</from-outcome>
+			<to-view-id>/pages/relPdf.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<navigation-case>
 			<from-outcome>paginaMapaSetor</from-outcome>
 			<to-view-id>/pages/mapaViaturasSetor.xhtml</to-view-id>
 		</navigation-case>
