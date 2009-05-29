@@ -43,7 +43,12 @@ public class RotaPercorridaBusinessLogic {
 				coordenadas = listarNoSetor();
 			}
 		}else{
-			coordenadas = listarPorViaturas(viatura, foraDeSetor);
+			DAOCoordenada dCoordenada = new DAOCoordenada();
+
+			if(dCoordenada.findByField("viatura.codigo", viatura)!=null){
+				coordenadas = listarPorViaturas(viatura, foraDeSetor);
+			}
+
 		}
 			for (CoordenadaVO coordenadaVO : coordenadas) {
 				if ((coordenadaVO.getData().after(dataInicio))
