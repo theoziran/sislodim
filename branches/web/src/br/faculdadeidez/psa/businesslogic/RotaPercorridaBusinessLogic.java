@@ -113,13 +113,13 @@ public class RotaPercorridaBusinessLogic {
 	
 	private String preenchePdf(JasperPrint print) throws JRException { 
 		// pega o caminho completo do PDF desde a raiz 
-		String saida = getDiretorioReal("/relatorio/Relatorio.pdf"); 
+		String saida = getDiretorioReal("/report/Relatorio.pdf"); 
 
 		// Exportar para PDF 
 		JasperExportManager.exportReportToPdfFile(print, saida); 
 		
 		//saida que será utilizada pelo bean para exibir o relatorio
-		saida = getContextPath() + "/relatorio/Relatorio.pdf";
+		saida = getContextPath() + "/report/Relatorio.pdf";
 
 		return saida;
 		
@@ -127,10 +127,12 @@ public class RotaPercorridaBusinessLogic {
 
 
 	public String geraRelatorio(List<RotaPercorridaVO> rotas, Boolean foraDeArea){
-		String jasper = getDiretorioReal("/relatorio/Relatorio.jasper"); 
-		String caminhoDoPDF = null;
+		String jasper = getDiretorioReal("/report/Relatorio.jasper"); 
 		
+		String logotipo = getDiretorioReal("/images/spoor.jpg"); 
 		String subTitulo = "Relatório com as rotas das viaturas";
+
+		String caminhoDoPDF = null;
 
 		if(foraDeArea){
 			subTitulo = "Relatório com as rotas das viaturas que estiveram fora de área";
@@ -139,7 +141,7 @@ public class RotaPercorridaBusinessLogic {
 		
 		try { 
 			Map<String, Serializable> map = new HashMap<String, Serializable>();
-			map.put("relatorio", jasper);
+			map.put("imagem", logotipo);
 			map.put("subTitulo", subTitulo);
 			//adição do vetor de rotas no data source
 			JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(rotas);
