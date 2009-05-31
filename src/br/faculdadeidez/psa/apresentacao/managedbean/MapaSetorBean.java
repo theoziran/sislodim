@@ -85,7 +85,6 @@ public class MapaSetorBean extends GenericoBean {
 	public List<SelectItem> getListBairros() {
 		SetorVO setor2 = Fachada.getFachada().pesquisaSetor(setor.getCodigo());
 		
-		List<String> listaAtuais = new ArrayList<String>();
 		List<BairroVO> bairros = setor2.getBairros();
 		
 		List<SelectItem> listBairros = new ArrayList<SelectItem>();

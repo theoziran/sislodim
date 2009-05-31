@@ -315,4 +315,22 @@ public class DAOViatura extends DAOFactory<Viatura> {
 
 		return null;
 	}
+
+	/**
+	 * Método que pesquisa por parte de codigo de uma viatura
+	 * @param codigo String
+	 * @return List<ViaturaVO>
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ViaturaVO> pesquisaViaturas(String codigo) {
+
+		String strQuery = "SELECT  v FROM Viatura v WHERE v.codigo like '%"
+				+ codigo + "%'";
+		EntityManager em = getManager();
+		Query query = em.createQuery(strQuery);
+
+		List<ViaturaVO> resultList = ConvertList(query.getResultList());
+
+		return resultList;
+	}
 }
