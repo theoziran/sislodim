@@ -79,10 +79,10 @@ public class ViaturaBusinessLogic {
 		return dViatura.findAllActivated();
 	}
 
-	public List<ViaturaVO> pesquisar(String valor) {
+	public List<ViaturaVO> pesquisar(String codigo) {
 
 		DAOViatura dViatura = new DAOViatura();
-		List<ViaturaVO> retorno = dViatura.findByField("codigo", valor);
+		List<ViaturaVO> retorno = dViatura.pesquisaViaturas(codigo);
 		return retorno;
 	}
 
