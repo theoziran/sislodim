@@ -1,0 +1,10 @@
+br.faculdadeidez.psa.apresentacao.managedbean
+br.faculdadeidez.psa.apresentacao.servlets
+br.faculdadeidez.psa.businesslogic
+br.faculdadeidez.psa.db.dao
+br.faculdadeidez.psa.db.entity
+br.faculdadeidez.psa.facade
+br.faculdadeidez.psa.instalacao
+br.faculdadeidez.psa.servico
+br.faculdadeidez.psa.tests
+br.faculdadeidez.psa.vo
