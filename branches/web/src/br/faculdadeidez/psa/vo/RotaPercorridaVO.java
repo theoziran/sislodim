@@ -27,6 +27,11 @@ public class RotaPercorridaVO implements Serializable{
 	private String data;
 	
 	/**
+	 * Propriedade privada bairro
+	 */
+	private String bairro;
+
+	/**
 	 * Propriedade privada horario
 	 */
 	private String horario;
@@ -48,11 +53,20 @@ public class RotaPercorridaVO implements Serializable{
 	}
 	
 	/**
-	 * Método getter da propriedade data
-	 * @return Date data
+	 * Método setter da propriedade data
+	 * @param String data
 	 */
 	public void setData(String string) {
 		this.data = string;
+	}
+
+	/**
+	 * Método setter da propriedade bairro
+	 * @param String bairro
+	 */
+
+	public void setBairro(String string) {
+		this.bairro = string;
 	}
 
 	/**
@@ -95,10 +109,20 @@ public class RotaPercorridaVO implements Serializable{
 		return data;
 	}
 	
+
+	/**
+	 * Método getter da propriedade privada bairro
+	 * @return String
+	 */
+	public String getBairro() {
+		return bairro;
+	}
+
 	/**
 	 * Método setter da propriedade privada horario
 	 * @param String horario 
 	 */
+
 	public void setHorario(String horario) {
 		this.horario = horario;
 	}
