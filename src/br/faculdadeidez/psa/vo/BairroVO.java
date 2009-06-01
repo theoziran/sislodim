@@ -9,6 +9,7 @@ import br.faculdadeidez.psa.db.entity.Setor;
  * entre as camadas.
  * 
  */
+@SuppressWarnings("serial")
 public class BairroVO implements Serializable {
 	/**
 	 * Propriedade privada codigo

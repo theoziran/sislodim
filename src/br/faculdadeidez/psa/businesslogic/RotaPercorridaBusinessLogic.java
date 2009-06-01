@@ -18,14 +18,24 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-
 import br.faculdadeidez.psa.db.dao.DAOCoordenada;
-import br.faculdadeidez.psa.servico.RetornaEndereco;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.RotaPercorridaVO;
 
+/**
+* Classe que implementa regras de negócio referente a Entidade RotaPercorrida
+* Abstrai a camada de persistencia JPA e realiza validações de negócio 
+*/
 public class RotaPercorridaBusinessLogic {
-
+	
+	/**
+	 * Método para listar rotas percorridas
+	 * @param Calendar dataInicio
+	 * @param Calendar dataFim
+	 * @param Boolean foraDeSetor
+	 * @param String viatura
+	 * @return List<RotaPercorridaVO>
+	 */
 	public List<RotaPercorridaVO> listar(Calendar dataInicio, Calendar dataFim, Boolean foraDeSetor, String viatura){
 		Locale locBr = new Locale("pt","br");
 		DateFormat dtFormatData = DateFormat.getDateInstance(DateFormat.LONG, locBr);
@@ -55,7 +65,6 @@ public class RotaPercorridaBusinessLogic {
 						&& (coordenadaVO.getData().before(dataFim))){
 					rota = new RotaPercorridaVO();
 					String horario = dtFormatHorario.format(coordenadaVO.getData().getTime()); 
-					rota.setBairro(getBairro(coordenadaVO.getLatitude(),coordenadaVO.getLongitude()));
 					rota.setViatura(coordenadaVO.getViatura());
 					rota.setData(dtFormatData.format(coordenadaVO.getData().getTime()));
 					rota.setHorario(horario);
@@ -67,50 +76,65 @@ public class RotaPercorridaBusinessLogic {
 			return rotas;
 			
 	}	
-			
+	
+	/**
+	 * Método para listar coordenadas percorridas por uma viatura
+	 * @param String viatura
+	 * @param boolen foraDeArea
+	 * @return List<CoordenadaVO>
+	 */
 	private List<CoordenadaVO> listarPorViaturas(String viatura, boolean foraDeArea) {
 		DAOCoordenada dCoordenada = new DAOCoordenada();
 		return dCoordenada.getCoordenadasPorViatura(viatura, foraDeArea);
 	}
-
+	
+	/**
+	 * Método para listar coordenadas fora do setor
+	 * @return List<CoordenadaVO>
+	 */
 	public List<CoordenadaVO> listarForaDoSetor(){
 		DAOCoordenada dCoordenada = new DAOCoordenada();
 		return dCoordenada.findByField("foraDeArea", "true");
 	}
 	
+	/**
+	 * Método para listar coordenadas dentro do setor
+	 * @return List<CoordenadaVO>
+	 */
 	public List<CoordenadaVO> listarNoSetor(){
 		DAOCoordenada dCoordenada = new DAOCoordenada();
 		return dCoordenada.findByField("foraDeArea", "false");
 	}
-
-	public List<CoordenadaVO> listarPorViatura(String viatura, Boolean foraDeArea){
-		DAOCoordenada dCoordenada = new DAOCoordenada();
-		return dCoordenada.getCoordenadasPorViatura(viatura, foraDeArea);
-	}
-
 	
-	private String getBairro(String latitude, String longitude) {
-		try { 		
-			RetornaEndereco re = new RetornaEndereco(latitude, longitude);
-			return re.getBairro(re.PercorrerXml(re.receberXml()));
-		}
-		catch (Exception ex) { 
-			return "";
-		}
-	}
+	
 
+	/**
+	 * Método que retornar o caminho real do diretorio  
+	 * @param String diretorio
+	 * @return String
+	 */
 	private String getDiretorioReal(String diretorio) { 
 		HttpSession session = (HttpSession) 
 		FacesContext.getCurrentInstance().getExternalContext().getSession(false); 
 		return session.getServletContext().getRealPath(diretorio); 
 	} 
 	
+	/**
+	 * Método que retorna o caminho do contexto atual
+	 * @return String
+	 */
 	private String getContextPath() { 
 		HttpSession session = (HttpSession) 
 		FacesContext.getCurrentInstance().getExternalContext().getSession(false); 
 		return session.getServletContext().getContextPath(); 
 	} 
 	
+	/**
+	 * Método para preencher o pdf
+	 * @param JasperPrint print
+	 * @return String
+	 * @throws JRException Exceção de run time ao prencher o relatório
+	 */
 	private String preenchePdf(JasperPrint print) throws JRException { 
 		// pega o caminho completo do PDF desde a raiz 
 		String saida = getDiretorioReal("/report/Relatorio.pdf"); 
@@ -125,7 +149,12 @@ public class RotaPercorridaBusinessLogic {
 		
 	}
 
-
+	/**
+	 * Método para gerar relatório das rotas percorridas
+	 * @param List<RotaPercorridaVO> rotas
+	 * @param boolean foraDeArea
+	 * @return String
+	 */
 	public String geraRelatorio(List<RotaPercorridaVO> rotas, Boolean foraDeArea){
 		String jasper = getDiretorioReal("/report/Relatorio.jasper"); 
 		

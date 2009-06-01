@@ -1,5 +1,6 @@
 package br.faculdadeidez.psa.businesslogic;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,16 @@ import br.faculdadeidez.psa.vo.EscalaVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
 
+/**
+* Classe que implementa regras de negócio referente a Entidade Escala
+* Abstrai a camada de persistencia JPA e realiza validações de negócio 
+*/
 public class EscalaBusinessLogic {
+	/**
+	 * Método para deletar um objeto Escala
+	 * @param EscalaVO vo -> objeto a ser removido do banco
+	 * @return String -> indica sucesso ou falha 
+	 */
 	public String delete(EscalaVO vo) {
 		try {
 			DAOEscala dEscala = new DAOEscala();
@@ -25,7 +35,12 @@ public class EscalaBusinessLogic {
 			return "problemaRemover";
 		}
 	}
-
+	
+	/**
+	 * Método para atualizar um objeto Escala
+	 * @param EscalaVo vo
+	 * @return String
+	 */
 	public String update(EscalaVO vo) {
 		try {
 			String validacoes = validacoes(vo);
@@ -43,7 +58,12 @@ public class EscalaBusinessLogic {
 			return "problemaAtualizar";
 		}
 	}
-
+	
+	/**
+	 * Método para criar um objeto Escala
+	 * @param EscalaVO vo
+	 * @return String
+	 */
 	public String create(EscalaVO escala) {
 		try {			
 			String validacoes = validacoes(escala);
@@ -66,14 +86,19 @@ public class EscalaBusinessLogic {
 		}
 	}
 	
+	/**
+	 * Método de validação;
+	 * -Certifica que não haverá uma mesma viatura com escalas diferentes;
+	 * -Garante que o periodo final da escala seja maior que o perido inicial
+	 * 		Ex:  se (dataInicial > dataFinal) retorna periodo de escala inválido
+	 * @param EscalaVO escala
+	 * @return String
+	 */
 	private String validacoes(EscalaVO escala) {
-		Date dataAtual = new Date();
-		dataAtual = new Date(dataAtual.getYear(), dataAtual.getMonth(), dataAtual.getDate());
-				
 		// verificação de datas
 		if(escala.getDataFinal().before(escala.getDataInicial())) {
 			return "datafim_ant_dataini";
-		} else if(escala.getDataInicial().before(dataAtual)) { 
+		} else if(escala.getDataInicial().before(new Date(Calendar.ZONE_OFFSET))) { 
 			return "dataini_ant_dataatual";
 		} else {
 			String noutraEscala = new DAOEscala().verificaViaturasNoutrasEscalasComMesmoDia(escala);
@@ -84,12 +109,21 @@ public class EscalaBusinessLogic {
 				return null;
 		}
 	}
-
+	
+	/**
+	 * Método para listar todos os Escala
+	 * @return List<EscalaVO>
+	 */
 	public List<EscalaVO> listar() {
 		DAOEscala dEscala = new DAOEscala();
 		return dEscala.findAllActivated();
 	}
 
+	/**
+	 * Método para buscar um objeto Escala id
+	 * @param int chave 
+	 * @return EscalaVO
+	 */
 	public List<EscalaVO> pesquisar(int valor) {
 		DAOEscala dEscala = new DAOEscala();
 		List<EscalaVO> retorno = dEscala.findByField("codigo", String
@@ -97,12 +131,22 @@ public class EscalaBusinessLogic {
 		return retorno;
 	}
 	
+	/**
+	 * Método que retorna viaturas referente a escala
+	 * @param EscalaVO escala 
+	 * @return List<ViaturaVO>
+	 */
 	public List<ViaturaVO> listarViaturasEscala(EscalaVO escala){
 		DAOViatura dViatura = new DAOViatura();
 		List<ViaturaVO> retorno = dViatura.findViaturasEscala(escala);
 		return retorno;
 	}
 	
+	/**
+	 * Método que retorna viaturas referente ao setor
+	 * @param int setor -> codigo do setor
+	 * @return List<ViaturaVO>
+	 */
 	public List<ViaturaVO> listarViaturasEscalaSetor(int setor){
 		DAOViatura dViatura = new DAOViatura();
 		List<ViaturaVO> retorno = dViatura.findViaturasEscalaSetor(setor);
@@ -115,7 +159,7 @@ public class EscalaBusinessLogic {
 	 * sistema e definir em qual turno a consulta foi efetuada, a partir disso
 	 * buscar no banco as viaturas que estão escaladas naquele turno.
 	 * 
-	 * @return
+	 * @return List<ViaturaVO>
 	 */
 	public List<ViaturaVO> getViaturasEscalaTurno() {
 		DAOViatura dViatura = new DAOViatura();

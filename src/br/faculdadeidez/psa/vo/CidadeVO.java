@@ -5,7 +5,9 @@ import java.io.Serializable;
  * Classe responsável por transportar objetoCidade
  * entre as camadas.
  */
+@SuppressWarnings("serial")
 public class CidadeVO implements Serializable {
+
 	/**
 	 * Propriedade privada codigo
 	 */
