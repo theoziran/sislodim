@@ -14,73 +14,137 @@ import javax.persistence.Table;
 
 import br.faculdadeidez.psa.vo.BairroVO;
 
+
 @SuppressWarnings("serial")
 @Entity 
 @Table (name="SIS_BAIRRO")
+/**
+ * Classe que abstrai uma linha da tabela SIS_BAIRRO
+ * -Objeto relacional Bairro
+ */
 public class Bairro implements Serializable {	
 		
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY) 
 	@Column (name="BAI_CODIGO")
+	/**
+	 * Propriedade privada codigo
+	 * Representa o identificador do registro na tabela
+	 */
 	private int codigo;
-	@Basic @Column (name="BAI_NOME", length=80, nullable=false) 
+	
+	@Basic @Column (name="BAI_NOME", length=80, nullable=false)
+	/**
+	 * Propriedade privada nome
+	 * Representa a coluna nome da tabela
+	 */
 	private String nome;
+	
 	@ManyToMany(mappedBy="bairros")
+	/**
+	 * Propriedade privada setores
+	 * Responsável por representar um relacionamento
+	 */
 	private List<Setor> setores;
 	
+	/**
+	 * Método getter da propriedade setores
+	 * @return List<Setor>
+	 */
 	public List<Setor> getSetores() {
 		return setores;
 	}
-
+	/**
+	 * Método setter da propriedade setores
+	 * @param List<Setor> setores
+	 */
 	public void setSetores(List<Setor> setores) {
 		this.setores = setores;
 	}
 	
 	
-	/*********************************************************/
-	/******** Conversão do objeto Bairro para o BairroVO *******/
-	/*********************************************************/
+
+	/**
+	 * Método de concersão do objeto BairroVO para Bairro
+	 * @param BairroVO vo
+	 */
 	public Bairro(BairroVO vo) {
 		this.codigo = vo.getCodigo();
 		this.nome = vo.getNome();
 	}
 	
+	/**
+	 * Método de conversão do objeto Bairro para BairroVO
+	 * @param Bairro obj
+	 * @return BairroVO
+	 */
 	public static BairroVO VO(Bairro obj){
 		return new BairroVO(obj.getCodigo(), obj.getNome());
 	}
-	/*********************************************************/
 	
+	/**
+	 * Construtor default da classe
+	 */
 	public Bairro() {
 		 
 	}
 	
+	/**
+	 * Sobrecarga do construtor padrão da classe
+	 * @param String nome 
+	 */
 	public Bairro(String nome)
 	{
 		setNome(nome);
 	}
 	
+	/**
+	 * Sobrecarga do construtor padrão da classe
+	 * @param int codigo
+	 */
 	public Bairro(int codigo)
 	{
 		setCodigo(codigo);
 	}
 	
+	/**
+	 * Sobrecarga do construtor padrão da classe
+	 * @param int codigo
+	 * @param String nome
+	 */
 	public Bairro(int codigo, String nome)
 	{
 		setCodigo(codigo);
 		setNome(nome);
 	}
-
+	
+	/**
+	 * Método getter da propriedade privada codigo
+	 * @return int 
+	 */
 	public int getCodigo() {
 		return codigo;
 	}
-
+	
+	/**
+	 * Método setter da propriedade privada codigo
+	 * @param int codigo
+	 */
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-
+	
+	/**
+	 * Método getter da propriedade privada nome
+	 * @return String
+	 */
 	public String getNome() {
 		return nome;
 	}
-
+	
+	/**
+	 * Método setter da propriedade privada nome
+	 * @param String nome
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}

@@ -1,14 +1,12 @@
 package br.faculdadeidez.psa.tests;
 
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 import java.util.Vector;
 
 import junit.framework.TestCase;
 import br.faculdadeidez.psa.businesslogic.RotaPercorridaBusinessLogic;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
-import br.faculdadeidez.psa.vo.RotaPercorridaVO;
 
 public class TestRelatorioRotas extends TestCase{
 	
