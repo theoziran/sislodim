@@ -1,21 +1,20 @@
 package br.faculdadeidez.psa.vo;
 
+import java.io.Serializable;
+
 
 /**
  * Classe responsável por transportar objetoRotasPercorrida
  * entre as camadas.
  */
-public class RotaPercorridaVO {
+@SuppressWarnings("serial")
+public class RotaPercorridaVO implements Serializable{
 	
 	/**
 	 * Propriedade privada eSetor
 	 */
 	private boolean eSetor;
 	
-	/**
-	 * Propriedade privada bairro
-	 */
-	private String bairro;
 	
 	/**
 	 * Responsável por referenciar um Objeto Viatura no banco
@@ -31,14 +30,6 @@ public class RotaPercorridaVO {
 	 * Propriedade privada horario
 	 */
 	private String horario;
-	
-	/**
-	 * Métdo setter da propriedade privada bairro
-	 * @param bairro
-	 */
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
 	
 	/**
 	 * Método getter da propriedade viatura

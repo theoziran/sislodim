@@ -2,7 +2,6 @@ package br.faculdadeidez.psa.businesslogic;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOViatura;
@@ -11,8 +10,16 @@ import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.MensagemValidacaoVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
-
+/**
+* Classe que implementa regras de negócio referente a Entidade Viatura
+* Abstrai a camada de persistencia JPA e realiza validações de negócio 
+*/
 public class ViaturaBusinessLogic {
+	/**
+	 * Método para deletar um objeto Viatura
+	 * @param ViaturaVO vo -> objeto a ser removido do banco
+	 * @return String -> indica sucesso ou falha 
+	 */
 	public String delete(ViaturaVO vo) {
 		try {
 			DAOViatura dViatura = new DAOViatura();
@@ -26,7 +33,12 @@ public class ViaturaBusinessLogic {
 			return "problemaRemover";
 		}
 	}
-
+	
+	/**
+	 * Método para atualizar um objeto Viatura
+	 * @param ViaturaVo vo
+	 * @return String
+	 */
 	public String update(ViaturaVO vo) {
 		try {
 			// valida os dados inseridos
@@ -49,7 +61,12 @@ public class ViaturaBusinessLogic {
 			return "problemaAtualizar";
 		}
 	}
-
+	
+	/**
+	 * Método para criar um objeto Viatura
+	 * @param ViaturaVO vo
+	 * @return String
+	 */
 	public String create(ViaturaVO vo) {
 		try {
 			// valida os dados inseridos
@@ -68,17 +85,30 @@ public class ViaturaBusinessLogic {
 			return "problemaInserir";
 		}
 	}
-
+	
+	/**
+	 * Método para listar todas Viaturas
+	 * @return List<ViaturaVO>
+	 */
 	public List<ViaturaVO> listar() {
 		DAOViatura dViatura = new DAOViatura();
 		return dViatura.findAll();
 	}
-
+	
+	/**
+	 * Método para listar todas Viaturas ativas
+	 * @return List<ViaturaVO>
+	 */
 	public List<ViaturaVO> listarAtivos() {
 		DAOViatura dViatura = new DAOViatura();
 		return dViatura.findAllActivated();
 	}
-
+	
+	/**
+	 * Método para listar todas Viaturas por codigo
+	 * @param String codigo
+	 * @return List<ViaturaVO>
+	 */
 	public List<ViaturaVO> pesquisar(String codigo) {
 
 		DAOViatura dViatura = new DAOViatura();
@@ -99,7 +129,12 @@ public class ViaturaBusinessLogic {
 						.getCodigo().matches("^[0-9]*$"))));
 		return erros;
 	}
-
+	
+	/**
+	 * Método para listar todas Viaturas ativas
+	 * @param String chave
+	 * @return List<ViaturaVO>
+	 */
 	public ViaturaVO find(String chave) {
 
 		return new DAOViatura().find(chave);
@@ -134,8 +169,6 @@ public class ViaturaBusinessLogic {
 		ViaturaVO viaturaMaisProxima = null;
 		double menorDistancia = 0;
 		GoogleMaps gmaps;
-		String destino = coordenadasDestino.getLatitude() + ","
-				+ coordenadasDestino.getLongitude();
 
 		for (ViaturaVO vtr : viaturasDesocupadas) {
 			CoordenadasBusinessLogic coordenadaBL = new CoordenadasBusinessLogic();
@@ -165,7 +198,12 @@ public class ViaturaBusinessLogic {
 
 		return viaturaMaisProxima;
 	}
-
+	
+	/**
+	 * Método que retorna a proxima viatura
+	 * @param CoordenadaVO coordenadasDestino
+	 * @return ViaturaVO
+	 */
 	public ViaturaVO getViaturaProxima(CoordenadaVO coordenadasDestino) {
 		return getViaturaProxima(getViaturasDesocupadas(), coordenadasDestino);
 	}

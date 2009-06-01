@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.faculdadeidez.psa.db.dao.DAOSetor;
-import br.faculdadeidez.psa.db.dao.DAOViatura;
 import br.faculdadeidez.psa.vo.MensagemValidacaoVO;
 import br.faculdadeidez.psa.vo.SetorVO;
-import br.faculdadeidez.psa.vo.ViaturaVO;
-
+/**
+* Classe que implementa regras de negócio referente a Entidade Setor
+* Abstrai a camada de persistencia JPA e realiza validações de negócio 
+*/
 public class SetorBusinessLogic {
+	/**
+	 * Método para deletar um objeto Setor
+	 * @param SetorVO vo -> objeto a ser removido do banco
+	 * @return String -> indica sucesso ou falha 
+	 */
 	public String delete(SetorVO vo){
 		try {
 			DAOSetor dSetor = new DAOSetor();
@@ -25,6 +31,11 @@ public class SetorBusinessLogic {
 		}
 	}
 	
+	/**
+	 * Método para atualizar um objeto Setor
+	 * @param SetorVo vo
+	 * @return String
+	 */
 	public String update(SetorVO vo){
 		try {
 			// valida os dados inseridos
@@ -46,6 +57,11 @@ public class SetorBusinessLogic {
 		}
 	}
 	
+	/**
+	 * Método para criar um objeto Setor
+	 * @param SetorVO vo
+	 * @return String
+	 */
 	public String create(SetorVO setor){
 		
 		try {
@@ -69,26 +85,52 @@ public class SetorBusinessLogic {
 		}
 	}
 	
+	/**
+	 * Método para buscar um objeto Setor id
+	 * @param int chave 
+	 * @return SetorVO
+	 */
 	public SetorVO find(int chave) {
 		return new DAOSetor().find(chave);
 	}
-
+	
+	/**
+	 * Método para listar todos os Setores
+	 * @return List<SetorVO>
+	 */
 	public List<SetorVO> listar(){
 		DAOSetor dSetor = new DAOSetor();
 		return dSetor.findAll();		
 	}
 	
+	/**
+	 * Método para listar todos setores ativos
+	 * @return List<SetorVO>
+	 */
 	public List<SetorVO> listarAtivos(){
 		DAOSetor dSetor = new DAOSetor();
 		return dSetor.findAllActivated();		
 	}
 	
+	/**
+	 * Método para listar setores por valor
+	 * @param String valor
+	 * @return List<SetorVO>
+	 */
 	public List<SetorVO> pesquisar(String valor){
 		DAOSetor dSetor = new DAOSetor();
 		List<SetorVO> retorno = dSetor.findByName(valor);
 		return retorno;
 	}
 	
+	/**
+	 * Método de validação;
+	 * -Garante que o nome não contém caracteres especiais
+	 * -Garante que o nome foi preenchido
+	 * -Garante que os bairros possuem setor 
+	 * @param Setorvo
+	 * @return List<MensagemValidacaoVO>
+	 */
 	private List<MensagemValidacaoVO> validaDados(SetorVO vo){
 		ArrayList<MensagemValidacaoVO> erros = new ArrayList<MensagemValidacaoVO>();
 		

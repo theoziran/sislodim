@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,13 +15,13 @@ import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
 import br.faculdadeidez.psa.vo.UsuarioVO;
 
 /**
- * Servlet implementation class Setup
+ * Classe responsavel por fazer a instalação do banco de dados e colocando o primeiro usuário
  */
+@SuppressWarnings("serial")
 public class Setup extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * Contrutor default
 	 */
 	public Setup() {
 		super();
@@ -30,8 +29,9 @@ public class Setup extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * Recebe os dados vindo por get
+	 * Configura o banco de dados
+	 * Cria o usuario admin
 	 */
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request,
@@ -41,9 +41,9 @@ public class Setup extends HttpServlet {
 		Map property = new HashMap();
 		property.put(EntityManagerFactoryProvider.DDL_GENERATION,
 				EntityManagerFactoryProvider.DROP_AND_CREATE);
+		Persistence.createEntityManagerFactory(
+                "sislodim", property);
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory(
-				"sislodim", property);
 
 		response.getWriter().println("Atualizando schema...<br/>");
 		UsuarioBusinessLogic bo = new UsuarioBusinessLogic();
@@ -57,42 +57,9 @@ public class Setup extends HttpServlet {
 		response.getWriter().println("Login: admin<br/>");
 		response.getWriter().println("Senha: 123<br/>");
 		response.getWriter().println("Nível: administrador<br/>");
-		//System.out.println(getResourceFileAsString("bairros.sql"));
-		
-		 /* EntityManager manager= emf.createEntityManager(); Query q =
-		  manager.createQuery(getResourceFileAsString("bairros.sql"));
-		 q.executeUpdate();*/
 		 
 		response.getWriter().println("Banco de dados configurado!<br/>");
 
 	}
-
-	/*private String getResourceFileAsString(String resourcefilename) throws IOException {
-		StringBuffer strB = new StringBuffer();
-		
-		 * InputStream in = getClass().getResourceAsStream(resourcefilename);
-		 * try { String str; while (in.available()) { str = in.readLine();
-		 * strB.append(str); } in.close(); } catch (IOException e) { } return
-		 * strB.toString(); }
-		 
-		InputStream in = getClass().getResourceAsStream(resourcefilename);
-		StringBuffer novoTexto = new StringBuffer();
-
-		BufferedReader mysqlReader = new BufferedReader(new InputStreamReader( 
-				in ));
-		try {
-			String linha = "";
-
-			while (linha != null) {
-				linha = mysqlReader.readLine();
-				if (linha != null) {
-					novoTexto.append(linha+"\n");
-				}
-			}
-		} finally {
-			mysqlReader.close();
-		}
-		return novoTexto.toString();
-	}*/
 
 }

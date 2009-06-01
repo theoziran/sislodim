@@ -16,50 +16,89 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-
+/**
+ * 
+ *Classe responsável por retornar a distância entre dois pontos 
+ */
 public class GoogleMapsDistance {
 
+	/**
+	 * Propriedade que guarda o valor da origem
+	 */
 	private String origem = null;
+	/**
+	 * Propriedade que guarda o valor do destino
+	 */
 	private String destino = null;
+	/**
+	 * URL do serviço da google
+	 */
 	private final String URL = "http://maps.google.com/maps?output=kml&&hl=pt-BR&f=d&source=s_d";
+	/**
+	 * Propriedade que representa o nome da variável passada por GET que guarda o valor da origem
+	 */
 	private final String SADDR = "&saddr=";
+	/**
+	 * Propriedade que representa o nome da variável passada por GET que guarda o valor da destino
+	 */
 	private final String DADDR = "&daddr=";
 
-	// private final String TYPE = "output=kml";
 
+	/**
+	 * Construtor da classe que recebe a origem e o destino a ser calculado
+	 * @param origem String
+	 * @param destino String
+	 */
 	public GoogleMapsDistance(String origem, String destino) {
 		this.setOrigem(origem);
 		this.setDestino(destino);
 	}
 
+	/**
+	 * Método getter do atributo origem
+	 * @return String
+	 */
 	public String getOrigem() {
 		return origem;
 	}
 
+	/**
+	 * Método setter do atributo origgem
+	 * @param origem String
+	 */
 	public void setOrigem(String origem) {
 		this.origem = origem.replace(" ", "+");
 	}
 
+	/**
+	 * Método getter do atributo destino
+	 * @return String
+	 */
 	public String getDestino() {
 		return destino;
 	}
 
+	/**
+	 * Método setter do atributo destino
+	 * @param destino String
+	 */
 	public void setDestino(String destino) {
 		this.destino = destino.replace(" ", "+");
 	}
 
+	/**
+	 * Método getter do atributo URL
+	 * @return String
+	 */
 	public String getURL() {
 		return URL;
 	}
 
-	public String getSADDR() {
-		return SADDR;
-	}
 
-	public String getDADDR() {
-		return DADDR;
-	}
-
+	/**
+	 * Método que retorna o xml com os dados da distância entre dois pontos
+	 * @return String
+	 */
 	private String getKmlDistance() {
 		URL url = null;
 		BufferedReader bf;
@@ -68,8 +107,8 @@ public class GoogleMapsDistance {
 		String linha;
 		try {
 
-			url = new URL(this.getURL() + this.getSADDR() + this.getOrigem()
-					+ this.getDADDR() + this.getDestino());
+			url = new URL(this.getURL() + this.SADDR + this.getOrigem()
+					+ this.DADDR + this.getDestino());
 			bf = new BufferedReader(new InputStreamReader(url.openStream()));
 			sb = new StringBuffer();
 
@@ -87,6 +126,10 @@ public class GoogleMapsDistance {
 		return res;
 	}
 
+	/**
+	 * Método que trata o xml recebido
+	 * @return GoogleMaps
+	 */
 	public GoogleMaps retornaDistancia() {
         GoogleMaps maps = new GoogleMaps();
         String kml = getKmlDistance();
@@ -252,25 +295,5 @@ public class GoogleMapsDistance {
 }
 
 
-	public static void main(String[] args) {
-		GoogleMapsDistance distance = new GoogleMapsDistance(
-				"rua praia de ponta negra, joão pessoa, paraiba",
-				"rua maria noemia de sousa holanda, joão pessoa, paraiba");
-		GoogleMaps maps = distance.retornaDistancia();
-		System.out.println(maps.getEnderecoCompletoDestino());
-		System.out.println(maps.getCepDestino());
-		System.out.println(maps.getPaisDestino());
-		System.out.println(maps.getMunicipioDestino());
-		System.out.println(maps.getLatitudeDestino());
-		System.out.println(maps.getLongitudeDestino());
-		System.out.println("---------------------------------");
-		System.out.println(maps.getPaisOrigem());
-		System.out.println(maps.getCepOrigem());
-		System.out.println(maps.getEnderecoCompletoOrigem());
-		System.out.println(maps.getMunicipioOrigem());
-		System.out.println(maps.getLatitudeOrigem());
-		System.out.println(maps.getLongitudeOrigem());
-		System.err.println(maps.getDistancia());
-		System.err.println(maps.getTempo());
-	}
+	
 }

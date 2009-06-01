@@ -7,11 +7,24 @@ import br.faculdadeidez.psa.servico.GoogleMaps;
 import br.faculdadeidez.psa.servico.GoogleMapsDistance;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
-
+/**
+ * Classe que implementa regras de negócio referente a Entidade Coordenadas
+ * Abstrai a camada de persistencia JPA e realiza validações de negócio 
+ */
 public class CoordenadasBusinessLogic {
-
+	
+	/**
+	 * Propriedade privada gmaps
+	 * Responsável por armazenar endereço completo da coordenada
+	 */
 	private GoogleMaps gmaps = null;
 	
+	
+	/**
+	 * Método para criar um objeto Coordenada
+	 * @param CoordenadaVO vo -> objeto a ser removido do banco
+	 * @return String -> indica sucesso ou falha
+	 */
 	public String create(CoordenadaVO vo) {
 		try {
 			DAOCoordenada dCoordenada = new DAOCoordenada();
@@ -22,7 +35,12 @@ public class CoordenadasBusinessLogic {
 			return "problemaInserir";
 		}
 	}
-
+	
+	/**
+	 * Método para atualizar um objeto Coordenada
+	 * @param Coordenada vo
+	 * @return String
+	 */
 	public String update(CoordenadaVO vo) {
 		try {
 			DAOCoordenada dCoordenada = new DAOCoordenada();
@@ -41,8 +59,7 @@ public class CoordenadasBusinessLogic {
 	 * Este método retorna a última coordenada enviada pela viatura durante o
 	 * seu percurso
 	 * 
-	 * @param viatura
-	 *            viatura a ser pesquisada
+	 * @param ViaturaVO -> viatura a ser pesquisada
 	 * @return CoordenadaVO
 	 */
 	public CoordenadaVO getUltimaCoordenadaViatura(ViaturaVO viatura) {
@@ -66,8 +83,8 @@ public class CoordenadasBusinessLogic {
 	/**
 	 * Retorna a última coordenada de uma viatura que faz parte da escala deste setor
 	 * 
-	 * @param setor
-	 * @return
+	 * @param int setor
+	 * @return CoordenadaVO
 	 */
 	public CoordenadaVO getUltimaCoordenadaViaturaSetor(int setor) {
 
@@ -86,7 +103,7 @@ public class CoordenadasBusinessLogic {
 	/**
 	 * Retorna uma CoordenadaVO por código
 	 * 
-	 * @param codigo
+	 * @param int codigo
 	 * @return CoordenadaVO
 	 */
 	public CoordenadaVO find(int codigo) { 
@@ -97,7 +114,7 @@ public class CoordenadasBusinessLogic {
 	/**
 	 * Transforma uma coordenada nula em uma coordenada padrão
 	 * 
-	 * @param coord
+	 * @param CoordenadaVO coord
 	 */
 	private void coordenadaDefault(CoordenadaVO coord) {
 
@@ -110,7 +127,7 @@ public class CoordenadasBusinessLogic {
 	 * Retorna uma lista das coordenadas que possuem viaturas que não foram verificadas se 
 	 * alguma saiu do seu setor
 	 * 	  
-	 * @return
+	 * @return List<CoordenadaVO>
 	 */
 	public List<CoordenadaVO> listarCoordenadasNaoVerificadas(){
 		DAOCoordenada dCoord = new DAOCoordenada();
@@ -121,11 +138,9 @@ public class CoordenadasBusinessLogic {
 	/**
 	 * Retorna a distancia em quilometros (Km) entre dois pontos
 	 * 
-	 * @param origem
-	 *            ponto de origem
-	 * @param destino
-	 *            ponto de destino
-	 * @return double
+	 * @param String origem -> ponto de origem
+	 * @param String destino -> ponto de destino
+	 * @return GoogleMaps
 	 */
 	private GoogleMaps getDistancia(String origem, String destino) {
 		GoogleMapsDistance distance = new GoogleMapsDistance(origem,destino);
@@ -142,14 +157,27 @@ public class CoordenadasBusinessLogic {
 		
 	}
 	
-	
+	/**
+	 * Método getter da propriedade privada gmaps
+	 * @return GoogleMaps
+	 */
 	public  GoogleMaps getGmaps(){
 		return gmaps;
 	}
-
+	
+	/**
+	 * Método setter da propriedade privada gmpas
+	 * @param GoogleMaps gmapsE
+	 */
 	public  void setGmaps(GoogleMaps gmapsE) {
 		gmaps = gmapsE;
 	}
+	
+	/**
+	 * Método para calcular a viatura mais proxima
+	 * @param String destino -> local da ocorrência
+	 * @return GoogleMaps -> endereço completo a ser mostrado no mapa
+	 */
 	public GoogleMaps calculaViaturaMaisProxima(String destino){
 		StringBuffer origem= new StringBuffer();
 		CoordenadaVO coordenadaTemporaria = new CoordenadaVO();

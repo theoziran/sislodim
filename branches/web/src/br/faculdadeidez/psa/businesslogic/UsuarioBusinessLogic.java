@@ -9,9 +9,18 @@ import javax.servlet.http.HttpSession;
 import br.faculdadeidez.psa.db.dao.DAOUsuario;
 import br.faculdadeidez.psa.vo.MensagemValidacaoVO;
 import br.faculdadeidez.psa.vo.UsuarioVO;
-
+/**
+* Classe que implementa regras de negÛcio referente a Entidade Usuario
+* Abstrai a camada de persistencia JPA e realiza validaÁıes de negÛcio 
+*/
 public class UsuarioBusinessLogic {
 
+	/**
+	 * MÈtodo que realiza logon do usu·rio ao sistema 
+	 * @param String login
+	 * @param String senha
+	 * @return String
+	 */
 	public String logon(String login, String senha) {
 		try {
 			ArrayList<Boolean> errosCamposEmBranco = new ArrayList<Boolean>();
@@ -48,7 +57,12 @@ public class UsuarioBusinessLogic {
 			return "naoEncontrado";
 		}
 	}
-
+	
+	/**
+	 * MÈtodo para deletar um objeto Usuario
+	 * @param UsuarioVO vo -> objeto a ser removido do banco
+	 * @return String -> indica sucesso ou falha 
+	 */
 	public String delete(int id) {
 		try {
 			DAOUsuario dUsuario = new DAOUsuario();
@@ -63,7 +77,12 @@ public class UsuarioBusinessLogic {
 			return "problemaRemover";
 		}
 	}
-
+	
+	/**
+	 * MÈtodo para atualizar um objeto Usuario
+	 * @param UsuarioVo vo
+	 * @return String
+	 */
 	public String update(UsuarioVO user) {
 		try {
 			if (user == null)
@@ -114,7 +133,12 @@ public class UsuarioBusinessLogic {
 			return "problemaAtualizar";
 		}
 	}
-
+	
+	/**
+	 * MÈtodo para criar um objeto Usuario
+	 * @param UsuarioVO vo
+	 * @return String
+	 */
 	public String create(UsuarioVO user) {
 
 		try {
@@ -146,19 +170,32 @@ public class UsuarioBusinessLogic {
 			return "problemaInserir";
 		}
 	}
-
+	
+	/**
+	 * MÈtodo para listar todos os Usuario
+	 * @return List<UsuarioVO>
+	 */
 	public List<UsuarioVO> listar() {
 		DAOUsuario dUsuario = new DAOUsuario();
 		List<UsuarioVO> usuarios = dUsuario.findAll();
 		return usuarios;
 
 	}
-
+	
+	/**
+	 * MÈtodo para listar todos os Usuario ativos
+	 * @return List<UsuarioVO>
+	 */
 	public List<UsuarioVO> listarAtivos() {
 		DAOUsuario dUsuario = new DAOUsuario();
 		return dUsuario.findAllActived();
 	}
 
+	/**
+	 * MÈtodo para listar Usuario por valor
+	 * @param String valor
+	 * @return List<UsuarioVO>
+	 */
 	public List<UsuarioVO> pesquisar(String valor) {
 		DAOUsuario dUsuario = new DAOUsuario();
 		List<UsuarioVO> retorno = dUsuario.findByField("nome", valor);
@@ -167,7 +204,13 @@ public class UsuarioBusinessLogic {
 		retorno.addAll(dUsuario.findByField("rg", valor));
 		return retorno;
 	}
-
+	
+	/**
+	 * MÈtodo de validaÁ„o;
+	 * -Garante que os campos obrigatÛrios foram preenchidos
+	 * @param UsuarioVO user
+	 * @return List<MensagemValidacaoVO>
+	 */
 	private List<MensagemValidacaoVO> validaDados(UsuarioVO user) {
 		ArrayList<MensagemValidacaoVO> erros = new ArrayList<MensagemValidacaoVO>();
 
@@ -198,7 +241,12 @@ public class UsuarioBusinessLogic {
 								"^[a-zA-Z¡¬√¿«… Õ”‘’⁄‹·‚„‡ÁÈÍÌÛÙı˙¸\\s]*$"))));
 		return erros;
 	}
-
+	
+	/**
+	 * MÈtodo para validar CPF
+	 * @param Stringcpf
+	 * @return boolean
+	 */
 	private boolean validaCpf(String cpf) {
 
 		if (cpf == null)

@@ -1,10 +1,13 @@
 package br.faculdadeidez.psa.vo;
 
+import java.io.Serializable;
+
 /**
  * Classe responsável por transportar objetoUsuario
  * entre as camadas.
  */
-public class UsuarioVO{
+@SuppressWarnings("serial")
+public class UsuarioVO implements Serializable{
 	/**
 	 * Propriedade privada id
 	 */

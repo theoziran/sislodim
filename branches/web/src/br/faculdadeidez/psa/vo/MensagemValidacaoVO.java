@@ -1,10 +1,13 @@
 package br.faculdadeidez.psa.vo;
 
+import java.io.Serializable;
+
 /**
  * Classe responsável por transportar objetoMensagemValidacao
  * entre as camadas.
  */
-public class MensagemValidacaoVO {
+@SuppressWarnings("serial")
+public class MensagemValidacaoVO implements Serializable{
 	
 	/**
 	 * Propriedade provada campo

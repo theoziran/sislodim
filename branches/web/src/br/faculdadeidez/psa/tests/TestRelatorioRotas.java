@@ -8,7 +8,7 @@ import junit.framework.TestCase;
 import br.faculdadeidez.psa.businesslogic.RotaPercorridaBusinessLogic;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 
-public class TestRelatorioRotas extends TestCase{
+public class testRelatorioRotas extends TestCase{
 	
 	protected Calendar dataInicial = Calendar.getInstance(new Locale("pt","br"));
 	protected Calendar dataFinal = Calendar.getInstance(new Locale("pt","br"));

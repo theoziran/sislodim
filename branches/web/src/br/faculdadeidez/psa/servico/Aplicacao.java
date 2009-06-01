@@ -4,7 +4,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import br.faculdadeidez.psa.businesslogic.CoordenadasBusinessLogic;
-import br.faculdadeidez.psa.businesslogic.EscalaBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
 import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
@@ -18,7 +17,7 @@ public class Aplicacao {
         timer.schedule(new ServicoVerificaCoordenadas(), 0, tempo*1000);
 	}
 	
-	public static void main(String[] args) throws ComparacaoDistanciaException {
+	public static void main(String[] args) {
 		System.out.println("Iniciando serviços...");		
 		new Aplicacao(5);
 	}
@@ -27,7 +26,6 @@ public class Aplicacao {
         public void run() {
         	CoordenadasBusinessLogic coord = new CoordenadasBusinessLogic();
     		ViaturaBusinessLogic via = new ViaturaBusinessLogic();
-    		EscalaBusinessLogic esc = new EscalaBusinessLogic();
     		
     		System.out.println("Iniciando serviço de verificação de viaturas fora de setor");
     				
