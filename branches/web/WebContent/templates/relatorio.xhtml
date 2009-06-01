@@ -15,48 +15,52 @@
 			<f:facet name="infoMarker">
 			</f:facet>
 		</rich:messages>
-		<rich:panel>
-			<h:panelGrid class="lista" columns="1" width="520">
-				<rich:dataTable
-					onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
-					onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
-					cellpadding="0" cellspacing="0" width="518" border="0" rows="10"
-					var="elementoDaVez" value="#{atualBean.rotas}" id="generica">
+		<a4j:form>
+			<rich:panel style="width:545px;float:left">
+				<h:panelGrid class="lista" columns="1" width="520">
+					<rich:dataTable
+						onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+						onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+						cellpadding="0" cellspacing="0" width="518" border="0" rows="10"
+						var="elementoDaVez" value="#{atualBean.rotas}" id="generica">
 
-					<f:facet name="header">
+						<f:facet name="header">
+							<rich:columnGroup>
+								<ui:insert name="tituloTabela" />
+
+								<rich:column breakBefore="true">
+									<ui:insert name="campo1"></ui:insert>
+								</rich:column>
+
+								<rich:column>
+									<ui:insert name="campo2"></ui:insert>
+								</rich:column>
+
+								<ui:insert name="colunasAdicionaisTitulos" />
+							</rich:columnGroup>
+						</f:facet>
 						<rich:columnGroup>
-							<ui:insert name="tituloTabela" />
-
 							<rich:column breakBefore="true">
-								<ui:insert name="campo1"></ui:insert>
+								<ui:insert name="campo11" id="campo11"></ui:insert>
 							</rich:column>
 
 							<rich:column>
-								<ui:insert name="campo2"></ui:insert>
+								<ui:insert name="campo21" id="campo21"></ui:insert>
 							</rich:column>
 
-							<ui:insert name="colunasAdicionaisTitulos" />
+							<ui:insert name="colunasAdicionaisValores" />
 						</rich:columnGroup>
-					</f:facet>
-					<rich:columnGroup>
-						<rich:column breakBefore="true">
-							<ui:insert name="campo11" id="campo11"></ui:insert>
-						</rich:column>
+					</rich:dataTable>
+					<rich:datascroller align="left" for="generica" id="datascroller" />
+					<rich:spacer height="30" />
+					<h:panelGrid columns="2" width="520">
+						<rich:spacer width="310" />
+						<ui:insert name="imprimir"></ui:insert>
+					</h:panelGrid>
+				</h:panelGrid>
+			</rich:panel>
+		</a4j:form>
 
-						<rich:column>
-							<ui:insert name="campo21" id="campo21"></ui:insert>
-						</rich:column>
-
-						<ui:insert name="colunasAdicionaisValores" />
-					</rich:columnGroup>
-				</rich:dataTable>
-				<rich:spacer height="25" />
-			</h:panelGrid>
-			<h:panelGrid columns="2" width="520">
-				<rich:spacer width="530" />
-				<ui:insert name="imprimir"></ui:insert>
-			</h:panelGrid>
-		</rich:panel>
 	</ui:define>
 </ui:composition>
 
