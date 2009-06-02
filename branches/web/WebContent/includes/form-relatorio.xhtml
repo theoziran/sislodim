@@ -7,43 +7,45 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition>
+	<a4j:form>
+		<rich:panel style="width:545px;float:left">
 
-	<h3>Relatório de Rotas</h3>
-	<div class="form">
-		<h:form>
-			<h5>Selecione os filtros do relatório:</h5>
-			<hr />
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Viatura" />
-			<h:selectOneMenu id="setor" value="#{rotaPercorridaBean.viatura}"
-				rendered="true">
-				<f:selectItems value="#{rotaPercorridaBean.listaViaturas}" />
-			</h:selectOneMenu>
-		</h:panelGrid>
-		<hr />
-		<h:panelGrid columns="2">
-			<h:outputLabel value="*Data inicial:" />
-			<rich:calendar id="periodoInicio" datePattern="dd/MM/yyyy"
-				value="#{rotaPercorridaBean.periodoInicio.time}" required="true">
-			</rich:calendar>
-			<h:outputLabel value="*Data final:" />
-			<rich:calendar id="periodoFim" datePattern="dd/MM/yyyy"
-				value="#{rotaPercorridaBean.periodoFim.time}" required="true">
-			</rich:calendar>
-		</h:panelGrid>
-			<hr />
-			<br />
-			<br />
-		<h:panelGrid columns="2">
-			<h:commandButton action="#{rotaPercorridaBean.viaturaNoSetor}"
-				value="Rotas Percorridas" />
-			<h:commandButton action="#{rotaPercorridaBean.viaturaForaDoSetor}"
-				value="Viaturas fora de área" />
-		</h:panelGrid>
-
-
-	</h:form></div>
+			<h3>Relatório de Rotas</h3>
+			<div class="form"><h:form>
+				<h5>Selecione os filtros do relatório:</h5>
+				<hr />
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Viatura" />
+					<h:selectOneMenu id="setor" value="#{rotaPercorridaBean.viatura}"
+						rendered="true">
+						<f:selectItems value="#{rotaPercorridaBean.listaViaturas}" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+				<hr />
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Data inicial:" />
+					<rich:calendar id="periodoInicio" datePattern="dd/MM/yyyy"
+						value="#{rotaPercorridaBean.periodoInicio.time}" required="true">
+					</rich:calendar>
+					<h:outputLabel value="Data final:" />
+					<rich:calendar id="periodoFim" datePattern="dd/MM/yyyy"
+						value="#{rotaPercorridaBean.periodoFim.time}" required="true">
+					</rich:calendar>
+				</h:panelGrid>
+				<hr />
+				<br />
+				<br />
+				<h:panelGrid columns="2">
+					<h:commandButton action="#{rotaPercorridaBean.viaturaNoSetor}"
+						value="Rotas Percorridas" />
+					<h:commandButton action="#{rotaPercorridaBean.viaturaForaDoSetor}"
+						value="Viaturas fora de área" />
+				</h:panelGrid>
 
 
+			</h:form></div>
+
+		</rich:panel>
+	</a4j:form>
 </ui:composition>
 </html>
