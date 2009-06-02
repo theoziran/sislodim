@@ -10,7 +10,6 @@
 
 <ui:composition template="/templates/generico.xhtml">
 	<ui:define name="conteudo">
-	<ui:define name="head"><meta http-equiv="refresh" content="10"/> </ui:define>
 		<rich:messages style="width:500px" layout="table" globalOnly="true"
 			showSummary="true" infoClass="informacao">
 			<f:facet name="infoMarker">
@@ -23,27 +22,47 @@
 			src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAAnP7CvtbK0B6uGXcc2TLFNBQNPSG1CbDoZtsh_iahoSxMN1Ni0xQiLeWpgqnQng6nlXxjgUevDh9ljA"
 			type="text/javascript"></script>
 		<h:form id="form">
-		<h:panelGrid columns="4">
-		<h:outputLabel value="Escolha a viatura" for="viatura" />
-			<h:selectOneMenu id="viatura" value="#{viaturaBean.viatura.codigo}"
-				rendered="true" onchange="submit()">
-				<f:selectItem itemLabel="" itemValue=""/>
-				<f:selectItems value="#{escalaBean.listaViaturas}" />
-				<!-- a4j:support event="onchange" action="submit()" reRender="mapa"/-->
-			</h:selectOneMenu>
-			<h:commandLink action="viaturaProxima" value="Viatura mais próxima da ocorrência" />
+			<h:panelGrid columns="4">
+				<h:outputLabel value="Escolha a viatura" for="viatura" />
+				<h:selectOneMenu id="viatura" value="#{viaturaBean.viatura.codigo}"
+					rendered="true" onchange="submit()">
+					<f:selectItem itemLabel="" itemValue="" />
+					<f:selectItems value="#{escalaBean.listaViaturas}" />
+
+				</h:selectOneMenu>
+				<h:commandLink action="viaturaProxima"
+					value="Viatura mais próxima da ocorrência" />
 			</h:panelGrid>
 		</h:form>
-		<rich:panel name="mapa" id="mapa" style="width:600px;float:left">
-			<m:map width="600px" height="600px" type="G_NORMAL_MAP" zoom="15"
-				latitude="#{viaturaBean.ultimaCoordenada.latitude}"
-				longitude="#{viaturaBean.ultimaCoordenada.longitude}">
-				<m:marker latitude="#{viaturaBean.ultimaCoordenada.latitude}"
-					longitude="#{viaturaBean.ultimaCoordenada.longitude}" />
-					<m:mapControl name="GLargeMapControl" position="G_ANCHOR_BOTTOM_RIGHT"/>
-				<m:htmlInformationWindow htmlText="Localização da viatura #{viaturaBean.ultimaCoordenada.viatura.codigo}" />
-			</m:map>
-		</rich:panel>
+		<h:form>
+			<a4j:push id="push" interval="10000" reRender="mapa,push"
+				eventProducer="#{atualizaMapaBean.addListener}"
+				enabled="#{atualizaMapaBean.enabled}" />
+
+			<h:panelGrid columns="2" id="monitoramento">
+				<h:panelGroup>
+					<a4j:commandButton value="Monitorando... Parar monitoramento"
+						action="#{atualizaMapaBean.stop}" ajaxSingle="true"
+						rendered="#{atualizaMapaBean.enabled}" reRender="monitoramento,push" />
+					<a4j:commandButton value="Monitorar"
+						action="#{atualizaMapaBean.start}" ajaxSingle="true"
+						rendered="#{!atualizaMapaBean.enabled}" reRender="monitoramento,push" />
+				</h:panelGroup>
+			</h:panelGrid>
+
+			<h:panelGroup name="mapa" id="mapa" style="width:600px;float:left">
+				<m:map width="600px" height="600px" type="G_NORMAL_MAP" zoom="15"
+					latitude="#{viaturaBean.ultimaCoordenada.latitude}"
+					longitude="#{viaturaBean.ultimaCoordenada.longitude}" renderOnWindowLoad="false">
+					<m:marker latitude="#{viaturaBean.ultimaCoordenada.latitude}"
+						longitude="#{viaturaBean.ultimaCoordenada.longitude}" />
+					<m:mapControl name="GLargeMapControl"
+						position="G_ANCHOR_BOTTOM_RIGHT" />
+					<m:htmlInformationWindow
+						htmlText="Localização da viatura #{viaturaBean.ultimaCoordenada.viatura.codigo}" />
+				</m:map>
+			</h:panelGroup>
+		</h:form>
 		</body>
 	</ui:define>
 
