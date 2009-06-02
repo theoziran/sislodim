@@ -82,6 +82,13 @@
 		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>atualizaMapaBean</managed-bean-name>
+		<managed-bean-class>
+			br.faculdadeidez.psa.apresentacao.servlets.AtualizaMapa
+		</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<!-- Navegação global -->
 	<lifecycle>
 		<phase-listener>br.faculdadeidez.psa.apresentacao.servlets.GerenciadorAutorizacao</phase-listener>

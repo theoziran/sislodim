@@ -188,5 +188,6 @@ public class ViaturaBean extends GenericoBean {
 	public CoordenadaVO getUltimaCoordenada() {
 		return getFachada().getUltimaCoordenadaViatura(viatura);
 	}
+	
 
 }

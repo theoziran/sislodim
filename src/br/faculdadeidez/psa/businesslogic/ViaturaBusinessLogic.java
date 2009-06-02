@@ -77,6 +77,7 @@ public class ViaturaBusinessLogic {
 
 			DAOViatura dViatura = new DAOViatura();
 			if (dViatura.findByField("codigo", vo.getCodigo()).isEmpty()) {
+				vo.setAtivo(true);
 				dViatura.persist(vo);
 				return "inserido";
 			} else
