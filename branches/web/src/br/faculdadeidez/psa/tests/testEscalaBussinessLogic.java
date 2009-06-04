@@ -4,35 +4,52 @@
 package br.faculdadeidez.psa.tests;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
-import junit.framework.TestCase;
 import br.faculdadeidez.psa.businesslogic.EscalaBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.SetorBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
 import br.faculdadeidez.psa.vo.EscalaVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 import br.faculdadeidez.psa.vo.ViaturaVO;
+import junit.framework.TestCase;
 
 /**
- * @author Edmilson Ferreira
- * @author Mario Dias
- * @author Pablo Trajano
- *
+ * Classe de teste responsável por garantir o funcionamento de EscalaBusinessLogic
  */
 public class testEscalaBussinessLogic extends TestCase {
 	
+	/**
+	 * Objeto utilizado para garantir os testes 
+	 */
 	private SetorBusinessLogic sbl = new SetorBusinessLogic();
-
+	
+	/**
+	 * Objeto utilizado para garantir os testes 
+	 */
 	private Vector<SetorVO> listSetores = (Vector<SetorVO>) sbl.listar();
 	
+	/**
+	 * Objeto utilizado para garantir os testes 
+	 */
 	private ViaturaBusinessLogic vbl = new ViaturaBusinessLogic();
-
+	
+	/**
+	 * Objeto utilizado para garantir os testes 
+	 */
 	private Vector<ViaturaVO> listViaturas = (Vector<ViaturaVO>) vbl.listar();
 	
+	/**
+	 * Objeto utilizado para garantir os testes 
+	 */
 	private EscalaVO e;
+	
+	/**
+	 * Resposável por simular o funcionamento dos testes
+	 */
 	private EscalaBusinessLogic ebl = new EscalaBusinessLogic();
 
 	private List<EscalaVO> listEscalasValidos = new ArrayList<EscalaVO>();
@@ -68,7 +85,6 @@ public class testEscalaBussinessLogic extends TestCase {
 	 * 
 	 * Test Case - TC 10.1.4 (Testando valores inválidos)
 	 */
-	@SuppressWarnings("deprecation")
 	public void testCreateInvalido() {
 		/**
 		 * boolean Ativo
@@ -164,7 +180,6 @@ public class testEscalaBussinessLogic extends TestCase {
 	 * 
 	 * Test Case - TC 
 	 */
-	@SuppressWarnings("deprecation")
 	public void testUpdateValido() {
 	   e = listEscalasValidos.get(0);
 	   e.setSetor(listSetores.get(1));
@@ -186,7 +201,6 @@ public class testEscalaBussinessLogic extends TestCase {
 	/**
 	 * Test method for {@link br.faculdadeidez.psa.businesslogic.EscalaBusinessLogic#update(br.faculdadeidez.psa.vo.EscalaVO)}.
 	 */
-	@SuppressWarnings("deprecation")
 	public void testUpdateInvalido() {
 		Date data = new Date();
 		data.setDate(data.getDate()-1);

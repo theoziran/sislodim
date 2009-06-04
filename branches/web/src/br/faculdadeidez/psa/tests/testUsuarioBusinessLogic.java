@@ -7,12 +7,33 @@ import junit.framework.TestCase;
 import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
 import br.faculdadeidez.psa.vo.UsuarioVO;
 
+/**
+ * Classe de teste responsável por garantir o funcionamento de UsuarioBusinessLogic
+ */
 public class testUsuarioBusinessLogic extends TestCase {
+	/**
+	 * Objeto utilizado para garantir os testes 
+	 */
 	UsuarioVO u;
+	/**
+	 * Objeto utilizado para garantir os testes 
+	 */
 	UsuarioVO usuarioInvalido;
+	
+	/**
+	 * Resposável por simular o funcionamento dos testes
+	 */
 	UsuarioBusinessLogic ubl = new UsuarioBusinessLogic();
+	
+	/**
+	 * Objeto utilizado para garantir os testes 
+	 */
 	List<UsuarioVO> listUsuariosValidos = new ArrayList<UsuarioVO>();
-
+	
+	
+	/**
+	 * Método para intanciar as propriedades
+	 */
 	@Override
 	protected void setUp() throws Exception {
 
@@ -67,22 +88,22 @@ public class testUsuarioBusinessLogic extends TestCase {
 		usuarioInvalido.setTipoPermissao((short) 1);
 
 	}
-
+	
+	/**
+	 * Test case - TC1.1.1 - Valores Válidos
+	 */
 	public void testCreateValido() {
-		/**
-		 * Test case - TC1.1.1 - Valores Vï¿½lidos
-		 **/
 
 		assertEquals("inserido", ubl.create(listUsuariosValidos.get(0)));
 		assertEquals("inserido", ubl.create(listUsuariosValidos.get(1)));
 		assertEquals("inserido", ubl.create(listUsuariosValidos.get(2)));
 
 	}
-
+	
+	/**
+	 * Test case - TC1.1.2 - Valores Nulos
+	 */
 	public void testCreateNulos() {
-		/**
-		 * Test case - TC1.1.2 - Valores Nulos
-		 **/
 
 		u = usuarioInvalido;
 
@@ -116,12 +137,11 @@ public class testUsuarioBusinessLogic extends TestCase {
 		assertEquals("problemaInserir", ubl.create(u));
 
 	}
-
+	
+	/**
+	 * Test case - TC1.1.3 - Valores Existentes
+	 */
 	public void testCreateValoresExistentes() {
-		/**
-		 * Test case - TC1.1.3 - Valores Existentes
-		 **/
-
 		u = usuarioInvalido;
 
 		// login duplicado
@@ -139,12 +159,11 @@ public class testUsuarioBusinessLogic extends TestCase {
 		u.setOrgExpeditor("SSP-PB");
 		assertEquals("rgExistente", ubl.create(u));
 	}
-
+	
+	/**
+	 * Test case - TC1.1.4
+	 */
 	public void testCreateInvalidos() {
-		/**
-		 * Test case - TC1.1.4
-		 **/
-
 		u = usuarioInvalido;
 
 		// login inválido
@@ -218,14 +237,21 @@ public class testUsuarioBusinessLogic extends TestCase {
 		u.setTipoPermissao((short) 0);
 		assertEquals("dadoInvalido", ubl.create(u));
 	}
-
+	
+	
+	/**
+	 * Testa o método delete do UsuarioBusinessLogic
+	 */
 	public void testDelete() {
 		List<UsuarioVO> u = ubl.pesquisar(listUsuariosValidos.get(1).getLogin());
 		listUsuariosValidos.get(1).setId(u.get(0).getId());
 		assertEquals("removido", ubl.delete(listUsuariosValidos.get(1).getId()));
 		assertEquals("usuarioInexistente", ubl.delete(usuarioInvalido.getId()));
 	}
-
+	
+	/**
+	 * Testa o método update do UsuarioBusinessLogic
+	 */
 	public void testUpdate() {
 		List<UsuarioVO> ls;
 
@@ -392,7 +418,10 @@ public class testUsuarioBusinessLogic extends TestCase {
 			assertEquals("dadoInvalido", ubl.update(u));
 		}
 	}
-
+	
+	/**
+	 * Testa o método listar do UsuarioBusinessLogic
+	 */
 	public void testListar() {
 		assertTrue(listUsuariosValidos.size() == ubl.listar().size());
 	}
@@ -410,7 +439,10 @@ public class testUsuarioBusinessLogic extends TestCase {
 		assertEquals(0, ls.size());
 
 	}
-
+	
+	/**
+	 * Testa o método logon do UsuarioBusinessLogic
+	 */
 	public void testLogon() {
 		assertEquals("logado", ubl.logon("testLogin1", "testPassword1"));
 		assertEquals("naoEncontrado", ubl.logon("testLogin3", "testPassword3"));
