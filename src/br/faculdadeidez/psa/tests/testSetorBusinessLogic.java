@@ -9,33 +9,58 @@ import br.faculdadeidez.psa.businesslogic.SetorBusinessLogic;
 import br.faculdadeidez.psa.vo.BairroVO;
 import br.faculdadeidez.psa.vo.SetorVO;
 
+/**
+ * Classe de teste responsável por garantir o funcionamento de SetorBusinessLogic
+ */
 public class testSetorBusinessLogic extends TestCase{
+	/**
+	 * Objeto utilizado para garantir os testes 
+	 */
 	private SetorVO s;
+	
+	/**
+	 * Resposável por simular o funcionamento dos testes
+	 */
 	private SetorBusinessLogic sbl = new SetorBusinessLogic();
+	
+	/**
+	 * Objeto utilizado para garantir os testes 
+	 */
 	private ArrayList<SetorVO> listSetoresValidos = new ArrayList<SetorVO>();
 	
+	/**
+	 * Objeto utilizado para garantir os testes 
+	 */
 	private BairroBusinessLogic bbl = new BairroBusinessLogic();
+	
+	/**
+	 * Objeto utilizado para garantir os testes 
+	 */
 	private Vector<BairroVO> listBairros = (Vector<BairroVO>) bbl.listar();
-		
+	
+	/**
+	 * Método para intanciar as propriedades
+	 */
+	@Override
 	protected void setUp() throws Exception {
 		this.listSetoresValidos.add(new SetorVO("Setor Tal", true, listBairros));
 		this.listSetoresValidos.add(new SetorVO("Outro Setor", true, listBairros));
 		this.listSetoresValidos.add(new SetorVO("Setor N Ativo", true, listBairros));
 	}
 	
+	/**
+	 * Test case - TC1.1.1 - Valores Válidos
+	 */
 	public void testCreateValidos() {
-		/**
-		 * Test case - TC1.1.1 - Valores Válidos
-		 **/
 		assertEquals("inserido", sbl.create(this.listSetoresValidos.get(0)));
 		assertEquals("inserido", sbl.create(this.listSetoresValidos.get(1)));
 		assertEquals("inserido", sbl.create(this.listSetoresValidos.get(2)));
 	}
 	
+	/**
+	 * Test case - TC1.1.2 - Valores Nulos
+	 */
 	public void testCreateNulos() {
-		/**
-		 * Test case - TC1.1.2 - Valores Nulos
-		 **/
 		// nome nulo
 		s = new SetorVO(null,true, new ArrayList<BairroVO>());
 		assertEquals("problemaInserir", sbl.create(s));
@@ -44,20 +69,20 @@ public class testSetorBusinessLogic extends TestCase{
 		s = new SetorVO("Setor teste",true, null);
 		assertEquals("problemaInserir", sbl.create(s));
 	}
-
+	
+	/**
+	 * Test case - TC1.1.3 - Valores Existentes
+	 */
 	public void testCreateValoresExistentes() {
-		/**
-		 * Test case - TC1.1.3 - Valores Existentes
-		 **/
 		// nome duplicado
 		s = new SetorVO("Setor Tal",true, listBairros);
 		assertEquals("setorExistente", sbl.create(s));
 	}
 	
+	/**
+	 * Test case - TC1.1.4
+	 */
 	public void testCreateInvalidos() {
-		/**
-		 * Test case - TC1.1.4
-		 **/
 		// nome inválido
 		// String vazia 
 		s = new SetorVO("", true, listBairros);
@@ -74,9 +99,10 @@ public class testSetorBusinessLogic extends TestCase{
 		assertEquals("O setor não possui bairros", sbl.create(s));
 	}
 	
-	//delete faz setAtivo(false)
-	//deleta pelo código
-	//pesquisar() foi usado para retornar o código
+
+	/**
+	 * Testa o método delete do SetorBusinessLogic
+	 */
 	public void testDelete() {
 		List<SetorVO> ls; 
 		ls = sbl.pesquisar("Outro Setor");
@@ -86,8 +112,9 @@ public class testSetorBusinessLogic extends TestCase{
 		assertEquals("setorInexistente", sbl.delete(s));
 	}
 
-	//update pelo codigo
-	//pesquisar() foi usado para retornar o código
+	/**
+	 * Testa o método update do SetorBusinessLogic
+	 */
 	public void testUpdate() {
 		List<SetorVO> ls;
 
@@ -157,11 +184,17 @@ public class testSetorBusinessLogic extends TestCase{
 		}
 	}
 	
+	/**
+	 * Testa os métodos de listagem do SetorBusinessLogic
+	 */
 	public void testListar() {
 		assertEquals(2, sbl.listarAtivos().size());
 		assertEquals(3, sbl.listar().size());
 	}
-
+	
+	/**
+	 * Testa o método pesquisar do SetorBusinessLogic
+	 */
 	public void testPesquisar() {
 		List<SetorVO> ls;
 		
@@ -171,7 +204,7 @@ public class testSetorBusinessLogic extends TestCase{
 		ls = sbl.pesquisar("Setor que n existe");
 		assertEquals(0, ls.size());
 	}
-
+	
 	public void tearDown()
 	{
 		//nao exitem metodos qe apaguem os dados do banco
