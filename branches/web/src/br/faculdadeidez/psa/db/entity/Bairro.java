@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.faculdadeidez.psa.vo.BairroVO;
@@ -42,19 +45,23 @@ public class Bairro implements Serializable {
 	@ManyToMany(mappedBy="bairros")
 	/**
 	 * Propriedade privada setores
-	 * Responsável por representar um relacionamento
+	 * Responsï¿½vel por representar um relacionamento
 	 */
 	private List<Setor> setores;
 	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="BAR_CIDADE", unique=true, nullable=false, updatable=false)
+	private Cidade cidade;
+	
 	/**
-	 * Método getter da propriedade setores
+	 * Mï¿½todo getter da propriedade setores
 	 * @return List<Setor>
 	 */
 	public List<Setor> getSetores() {
 		return setores;
 	}
 	/**
-	 * Método setter da propriedade setores
+	 * Mï¿½todo setter da propriedade setores
 	 * @param List<Setor> setores
 	 */
 	public void setSetores(List<Setor> setores) {
@@ -64,7 +71,7 @@ public class Bairro implements Serializable {
 	
 
 	/**
-	 * Método de concersão do objeto BairroVO para Bairro
+	 * Mï¿½todo de concersï¿½o do objeto BairroVO para Bairro
 	 * @param BairroVO vo
 	 */
 	public Bairro(BairroVO vo) {
@@ -73,7 +80,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Método de conversão do objeto Bairro para BairroVO
+	 * Mï¿½todo de conversï¿½o do objeto Bairro para BairroVO
 	 * @param Bairro obj
 	 * @return BairroVO
 	 */
@@ -89,7 +96,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Sobrecarga do construtor padrão da classe
+	 * Sobrecarga do construtor padrï¿½o da classe
 	 * @param String nome 
 	 */
 	public Bairro(String nome)
@@ -98,7 +105,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Sobrecarga do construtor padrão da classe
+	 * Sobrecarga do construtor padrï¿½o da classe
 	 * @param int codigo
 	 */
 	public Bairro(int codigo)
@@ -107,7 +114,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Sobrecarga do construtor padrão da classe
+	 * Sobrecarga do construtor padrï¿½o da classe
 	 * @param int codigo
 	 * @param String nome
 	 */
@@ -117,8 +124,16 @@ public class Bairro implements Serializable {
 		setNome(nome);
 	}
 	
+	public Cidade getCidade() {
+		return cidade;
+	}
+	
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}	
+	
 	/**
-	 * Método getter da propriedade privada codigo
+	 * Mï¿½todo getter da propriedade privada codigo
 	 * @return int 
 	 */
 	public int getCodigo() {
@@ -126,7 +141,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Método setter da propriedade privada codigo
+	 * Mï¿½todo setter da propriedade privada codigo
 	 * @param int codigo
 	 */
 	public void setCodigo(int codigo) {
@@ -134,7 +149,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Método getter da propriedade privada nome
+	 * Mï¿½todo getter da propriedade privada nome
 	 * @return String
 	 */
 	public String getNome() {
@@ -142,7 +157,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Método setter da propriedade privada nome
+	 * Mï¿½todo setter da propriedade privada nome
 	 * @param String nome
 	 */
 	public void setNome(String nome) {
