@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.faculdadeidez.psa.vo.BairroVO;
+import br.faculdadeidez.psa.vo.CidadeVO;
 
 
 @SuppressWarnings("serial")
@@ -85,7 +86,7 @@ public class Bairro implements Serializable {
 	 * @return BairroVO
 	 */
 	public static BairroVO VO(Bairro obj){
-		return new BairroVO(obj.getCodigo(), obj.getNome());
+		return new BairroVO(obj.getCodigo(), obj.getNome(),Cidade.VO(obj.getCidade()));
 	}
 	
 	/**
