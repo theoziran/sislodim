@@ -1,44 +1,4 @@
-﻿-- MySQL Administrator dump 1.4
---
--- ------------------------------------------------------
--- Server version	5.0.51b-community-nt
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
-
---
--- Create schema sislodim
---
-
-CREATE DATABASE IF NOT EXISTS sislodim;
-USE sislodim;
-
---
--- Definition of table `sis_bairro`
---
-
-DROP TABLE IF EXISTS `sis_bairro`;
-CREATE TABLE `sis_bairro` (
-  `BAI_CODIGO` int(11) NOT NULL auto_increment,
-  `BAI_NOME` varchar(255) collate latin1_general_ci default NULL,
-  `BAI_CIDADE` int(11) NOT NULL, 
-  PRIMARY KEY  (`BAI_CODIGO`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
-
---
--- Dumping data for table `sis_bairro`
---
-
-/*!40000 ALTER TABLE `sis_bairro` DISABLE KEYS */;
-INSERT INTO `sis_bairro` (`BAI_CODIGO`,`BAI_NOME`,`BAI_CIDADE`) VALUES 
+﻿INSERT INTO `sis_bairro` (`BAI_CODIGO`,`BAI_NOME`,`BAI_CIDADE`) VALUES 
  (1,'Água Fria',1),
  (2,'Altiplano Cabo Branco',1),
  (3,'Alto do Mateus',1),
@@ -92,15 +52,3 @@ INSERT INTO `sis_bairro` (`BAI_CODIGO`,`BAI_NOME`,`BAI_CIDADE`) VALUES
  (51,'Cidade dos Colibris',1),
  (52,'Cuiá',1),
  (53,'João Paulo II',1);
-/*!40000 ALTER TABLE `sis_bairro` ENABLE KEYS */;
-
-
-
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
