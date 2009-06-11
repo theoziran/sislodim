@@ -53,7 +53,11 @@
 				<h2>Localizar viatura para uma ocorrência</h2>
 			
 				<h:form>
-					<h:panelGrid columns="2">
+					<h:panelGrid columns="4">
+					<h:outputLabel value="Cidade" for="cidade" />
+				 	<h:selectOneMenu value="#{coordenadaBean.cidade.nome}" id="cidade">
+						<f:selectItems value="#{cidadeBean.listCidades}" />
+					</h:selectOneMenu>
 						<h:outputLabel value="Bairro do setor: " for="bairro" />
 						<h:selectOneMenu value="#{coordenadaBean.bairro}" id="bairro">
 							<f:selectItems value="#{mapaSetorBean.listBairros}"/>
