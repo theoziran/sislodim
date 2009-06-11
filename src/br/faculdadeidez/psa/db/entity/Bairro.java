@@ -55,14 +55,14 @@ public class Bairro implements Serializable {
 	private Cidade cidade;
 	
 	/**
-	 * Mï¿½todo getter da propriedade setores
+	 * Método getter da propriedade setores
 	 * @return List<Setor>
 	 */
 	public List<Setor> getSetores() {
 		return setores;
 	}
 	/**
-	 * Mï¿½todo setter da propriedade setores
+	 * Método setter da propriedade setores
 	 * @param List<Setor> setores
 	 */
 	public void setSetores(List<Setor> setores) {
@@ -72,7 +72,7 @@ public class Bairro implements Serializable {
 	
 
 	/**
-	 * Mï¿½todo de concersï¿½o do objeto BairroVO para Bairro
+	 * Método de conversão do objeto BairroVO para Bairro
 	 * @param BairroVO vo
 	 */
 	public Bairro(BairroVO vo) {
@@ -81,7 +81,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Mï¿½todo de conversï¿½o do objeto Bairro para BairroVO
+	 * Método de conversão do objeto Bairro para BairroVO
 	 * @param Bairro obj
 	 * @return BairroVO
 	 */
@@ -97,7 +97,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Sobrecarga do construtor padrï¿½o da classe
+	 * Sobrecarga do construtor padrão da classe
 	 * @param String nome 
 	 */
 	public Bairro(String nome)
@@ -106,7 +106,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Sobrecarga do construtor padrï¿½o da classe
+	 * Sobrecarga do construtor padrão da classe
 	 * @param int codigo
 	 */
 	public Bairro(int codigo)
@@ -115,7 +115,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Sobrecarga do construtor padrï¿½o da classe
+	 * Sobrecarga do construtor padrão da classe
 	 * @param int codigo
 	 * @param String nome
 	 */
@@ -134,7 +134,7 @@ public class Bairro implements Serializable {
 	}	
 	
 	/**
-	 * Mï¿½todo getter da propriedade privada codigo
+	 * Método getter da propriedade privada codigo
 	 * @return int 
 	 */
 	public int getCodigo() {
@@ -142,7 +142,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Mï¿½todo setter da propriedade privada codigo
+	 * Método setter da propriedade privada codigo
 	 * @param int codigo
 	 */
 	public void setCodigo(int codigo) {
@@ -150,7 +150,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Mï¿½todo getter da propriedade privada nome
+	 * Método getter da propriedade privada nome
 	 * @return String
 	 */
 	public String getNome() {
@@ -158,7 +158,7 @@ public class Bairro implements Serializable {
 	}
 	
 	/**
-	 * Mï¿½todo setter da propriedade privada nome
+	 * Método setter da propriedade privada nome
 	 * @param String nome
 	 */
 	public void setNome(String nome) {
