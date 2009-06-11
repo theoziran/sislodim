@@ -2,10 +2,10 @@ package br.faculdadeidez.psa.apresentacao.managedbean;
 
 import br.faculdadeidez.psa.servico.GoogleMaps;
 import br.faculdadeidez.psa.vo.BairroVO;
+import br.faculdadeidez.psa.vo.CidadeVO;
 
 /**
  * ManagedBean de coordenada
- * @author Samuel
  *
  */
 public class CoordenadaBean extends GenericoBean{
@@ -14,6 +14,13 @@ public class CoordenadaBean extends GenericoBean{
 	 * Responsável por armazenar o nome do bairro
 	 */
 	private String bairro="";
+	
+	/**
+	 * Responsável por armazenar o atributos de cidade
+	 */
+	private CidadeVO cidade = new CidadeVO();
+	
+	
 	/**
 	 * Responsável por armazenar o nome da rua
 	 */
@@ -67,7 +74,7 @@ public class CoordenadaBean extends GenericoBean{
 		destino.append(",");
 		destino.append(this.bairro);
 		destino.append(",");
-		destino.append("João Pessoa");
+		destino.append(this.cidade.getNome());
 		this.gmaps=getFachada().calculaViaturaMaisProxima(destino.toString());
 		if (this.gmaps.getMsgErro()!=null){
 			if (gmaps.getMsgErro().equals("ViaturasOcupadas"))
@@ -107,6 +114,22 @@ public class CoordenadaBean extends GenericoBean{
 	 */
 	public String getNumero() {
 		return numero;
+	}
+	
+	/**
+	 * Método setter do atributo cidade
+	 * @param cidade CidadeVO
+	 */
+	public void setCidade(CidadeVO cidade) {
+		this.cidade = cidade;
+	}
+	
+	/**
+	 * Método getter do atributo cidade
+	 * @return CidadeVO
+	 */
+	public CidadeVO getCidade() {
+		return cidade;
 	}
 
 }

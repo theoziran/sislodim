@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import br.faculdadeidez.psa.businesslogic.BairroBusinessLogic;
+import br.faculdadeidez.psa.businesslogic.CidadeBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.CoordenadasBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.EscalaBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.RotaPercorridaBusinessLogic;
@@ -12,6 +13,7 @@ import br.faculdadeidez.psa.businesslogic.UsuarioBusinessLogic;
 import br.faculdadeidez.psa.businesslogic.ViaturaBusinessLogic;
 import br.faculdadeidez.psa.servico.GoogleMaps;
 import br.faculdadeidez.psa.vo.BairroVO;
+import br.faculdadeidez.psa.vo.CidadeVO;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.EscalaVO;
 import br.faculdadeidez.psa.vo.RotaPercorridaVO;
@@ -391,6 +393,13 @@ public class Fachada {
 		return caminhoDoPDF;
 		
 		
+	}
+	/**
+	 * Método que retorna todas as cidades cadastradas
+	 * @return List<CidadeVO>
+	 */
+	public List<CidadeVO> listarCidades(){
+		return new CidadeBusinessLogic().listar();
 	}
 
 }
