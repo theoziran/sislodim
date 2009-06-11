@@ -50,7 +50,7 @@ public class Bairro implements Serializable {
 	private List<Setor> setores;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="BAR_CIDADE", unique=true, nullable=false, updatable=false)
+	@JoinColumn(name="BAR_CIDADE", nullable=false, updatable=false)
 	private Cidade cidade;
 	
 	/**
