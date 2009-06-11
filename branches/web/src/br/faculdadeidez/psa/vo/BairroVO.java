@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.faculdadeidez.psa.db.entity.Setor;
 /**
- * Classe responsável por transportar objetoBairro
+ * Classe responsï¿½vel por transportar objetoBairro
  * entre as camadas.
  * 
  */
@@ -24,6 +24,8 @@ public class BairroVO implements Serializable {
 	 */
 	private List<Setor> setores;
 	
+	private CidadeVO cidade;
+	
 	/**
 	 * Construtor da classe
 	 */
@@ -32,7 +34,7 @@ public class BairroVO implements Serializable {
 	}
 	
 	/**
-	 * Método getter da propriedade setores
+	 * Mï¿½todo getter da propriedade setores
 	 * @return List<Setor>
 	 */
 	public List<Setor> getSetores() {
@@ -40,7 +42,7 @@ public class BairroVO implements Serializable {
 	}
 	
 	/**
-	 * Método setter da propriedade setores
+	 * Mï¿½todo setter da propriedade setores
 	 * @param List<Setor> setores
 	 */
 	public void setSetores(List<Setor> setores) {
@@ -48,17 +50,18 @@ public class BairroVO implements Serializable {
 	}
 	
 	/**
-	 * Sobrecarga do contrutor padrão
+	 * Sobrecarga do contrutor padrï¿½o
 	 * @param int codigo
 	 * @param String nome
 	 */
-	public BairroVO(int codigo, String nome) {
+	public BairroVO(int codigo, String nome, CidadeVO cidade) {
 		this.codigo = codigo;
 		this.nome = nome;
+		this.cidade = cidade;
 	}
 	
 	/**
-	 * Método getter da propriedade codigo
+	 * Mï¿½todo getter da propriedade codigo
 	 * @return int codigo
 	 */
 	public int getCodigo() {
@@ -66,15 +69,23 @@ public class BairroVO implements Serializable {
 	}
 	
 	/**
-	 * Método setter da propriedade codigo
+	 * Mï¿½todo setter da propriedade codigo
 	 * @param codigo
 	 */
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 	
+	public void setCidade(CidadeVO cidade){
+		this.cidade = cidade;
+	}
+	
+	public CidadeVO getCidade(){
+		return this.cidade;
+	}
+	
 	/**
-	 * Método getter da propriedade nome
+	 * Mï¿½todo getter da propriedade nome
 	 * @return String nome
 	 */
 	public String getNome() {
@@ -82,7 +93,7 @@ public class BairroVO implements Serializable {
 	}
 	
 	/**
-	 * Método setter da propriedade nome
+	 * Mï¿½todo setter da propriedade nome
 	 * @param String nome
 	 */
 	public void setNome(String nome) {
