@@ -86,7 +86,7 @@ public class Bairro implements Serializable {
 	 * @return BairroVO
 	 */
 	public static BairroVO VO(Bairro obj){
-		return new BairroVO(obj.getCodigo(), obj.getNome(),Cidade.VO(obj.getCidade()));
+		return new BairroVO(obj.getCodigo(), obj.getNome(),obj.getCidade());
 	}
 	
 	/**
@@ -125,12 +125,12 @@ public class Bairro implements Serializable {
 		setNome(nome);
 	}
 	
-	public Cidade getCidade() {
-		return cidade;
+	public CidadeVO getCidade() {
+		return Cidade.VO(this.cidade);
 	}
 	
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
+	public void setCidade(CidadeVO cidade) {
+		this.cidade = new Cidade(cidade);
 	}	
 	
 	/**
