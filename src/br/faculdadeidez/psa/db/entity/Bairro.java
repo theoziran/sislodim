@@ -46,12 +46,17 @@ public class Bairro implements Serializable {
 	@ManyToMany(mappedBy="bairros")
 	/**
 	 * Propriedade privada setores
-	 * Responsï¿½vel por representar um relacionamento
+	 * Responsável por representar um relacionamento
 	 */
 	private List<Setor> setores;
 	
+	
+	/**
+	 * Propriedade privada cidade
+	 * Representa um relacionamento com a tabela de cidades
+	 */
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="BAR_CIDADE", nullable=false, updatable=false)
+	@JoinColumn(name="BAI_CIDADE", nullable=false, updatable=false)
 	private Cidade cidade;
 	
 	/**
@@ -125,10 +130,18 @@ public class Bairro implements Serializable {
 		setNome(nome);
 	}
 	
+	/**
+	 * Método getter da propriedade private cidade
+	 * @return CidadeVO
+	 */
 	public CidadeVO getCidade() {
 		return Cidade.VO(this.cidade);
 	}
 	
+	/**
+	 * Método setter da propriedade private cidade
+	 * @param cidade
+	 */
 	public void setCidade(CidadeVO cidade) {
 		this.cidade = new Cidade(cidade);
 	}	
