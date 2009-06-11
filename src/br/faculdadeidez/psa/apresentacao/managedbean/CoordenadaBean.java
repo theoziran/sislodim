@@ -75,7 +75,7 @@ public class CoordenadaBean extends GenericoBean{
 			else
 				adicionarMensagemErro("Endereço não encontrado");
 		}else{
-			adicionarMensagem("A viatura " +this.gmaps.getViatura().getCodigo()+" sairá do ponto A ("+this.gmaps.getEnderecoCompletoOrigem()+") para o ponto B ("+this.gmaps.getEnderecoCompletoDestino()+")");
+			adicionarMensagem("A viatura " +this.gmaps.getViatura().getCodigo()+" sairá do ponto A ("+this.gmaps.getEnderecoCompletoOrigem()+") para o ponto B ("+this.gmaps.getEnderecoCompletoDestino()+")"+" percorrendo "+this.gmaps.getDistancia()+" em "+this.gmaps.getTempo());
 		}
 		
 		return "viaturaProxima";
