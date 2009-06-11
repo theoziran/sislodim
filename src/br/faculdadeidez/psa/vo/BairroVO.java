@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.faculdadeidez.psa.db.entity.Setor;
 /**
- * Classe responsï¿½vel por transportar objetoBairro
+ * Classe responsável por transportar objetoBairro
  * entre as camadas.
  * 
  */
@@ -34,7 +34,7 @@ public class BairroVO implements Serializable {
 	}
 	
 	/**
-	 * Mï¿½todo getter da propriedade setores
+	 * Método getter da propriedade setores
 	 * @return List<Setor>
 	 */
 	public List<Setor> getSetores() {
@@ -42,7 +42,7 @@ public class BairroVO implements Serializable {
 	}
 	
 	/**
-	 * Mï¿½todo setter da propriedade setores
+	 * Método setter da propriedade setores
 	 * @param List<Setor> setores
 	 */
 	public void setSetores(List<Setor> setores) {
@@ -50,7 +50,7 @@ public class BairroVO implements Serializable {
 	}
 	
 	/**
-	 * Sobrecarga do contrutor padrï¿½o
+	 * Sobrecarga do contrutor padrão
 	 * @param int codigo
 	 * @param String nome
 	 */
@@ -61,7 +61,7 @@ public class BairroVO implements Serializable {
 	}
 	
 	/**
-	 * Mï¿½todo getter da propriedade codigo
+	 * Método getter da propriedade codigo
 	 * @return int codigo
 	 */
 	public int getCodigo() {
@@ -69,7 +69,7 @@ public class BairroVO implements Serializable {
 	}
 	
 	/**
-	 * Mï¿½todo setter da propriedade codigo
+	 * Método setter da propriedade codigo
 	 * @param codigo
 	 */
 	public void setCodigo(int codigo) {
@@ -85,7 +85,7 @@ public class BairroVO implements Serializable {
 	}
 	
 	/**
-	 * Mï¿½todo getter da propriedade nome
+	 * Método getter da propriedade nome
 	 * @return String nome
 	 */
 	public String getNome() {
@@ -93,7 +93,7 @@ public class BairroVO implements Serializable {
 	}
 	
 	/**
-	 * Mï¿½todo setter da propriedade nome
+	 * Método setter da propriedade nome
 	 * @param String nome
 	 */
 	public void setNome(String nome) {
