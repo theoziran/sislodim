@@ -159,9 +159,9 @@ public class CoordenadaVO implements Serializable {
 	 * Método setter da propridade data
 	 * @param Date data
 	 */
-	@SuppressWarnings("deprecation")
 	public void setData(Date data) {
-		this.data.set(data.getYear(), data.getMonth(), data.getDate(), data.getHours(),data.getMinutes());
+		this.data.setTime(data);
+		//	this.data.set(data.getYear(), data.getMonth(), data.getDate(), data.getHours(),data.getMinutes());
 	}
 	
 	/**

@@ -19,6 +19,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import br.faculdadeidez.psa.db.dao.DAOCoordenada;
+import br.faculdadeidez.psa.servico.RetornaEndereco;
 import br.faculdadeidez.psa.vo.CoordenadaVO;
 import br.faculdadeidez.psa.vo.RotaPercorridaVO;
 
@@ -60,6 +61,9 @@ public class RotaPercorridaBusinessLogic {
 			}
 
 		}
+		
+		int i = 0; 
+		
 			for (CoordenadaVO coordenadaVO : coordenadas) {
 				if ((coordenadaVO.getData().after(dataInicio))
 						&& (coordenadaVO.getData().before(dataFim))){
@@ -67,15 +71,30 @@ public class RotaPercorridaBusinessLogic {
 					String horario = dtFormatHorario.format(coordenadaVO.getData().getTime()); 
 					rota.setViatura(coordenadaVO.getViatura());
 					rota.setData(dtFormatData.format(coordenadaVO.getData().getTime()));
+					rota.setBairro(getBairro(coordenadaVO.getLatitude(),coordenadaVO.getLongitude()));
 					rota.setHorario(horario);
 					rotas.add(rota);
+					
+					if(i == 20)
+						break;
 
+					i++;
 				}
 			}
 
 			return rotas;
 			
 	}	
+	
+	private String getBairro(String latitude, String longitude) {
+        try {           
+	                RetornaEndereco re = new RetornaEndereco(latitude, longitude);
+	                return re.getBairro(re.PercorrerXml(re.receberXml()));
+	        }
+	        catch (Exception ex) { 
+	                return "";
+	        }
+	}
 	
 	/**
 	 * Método para listar coordenadas percorridas por uma viatura
