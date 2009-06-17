@@ -1,19 +1,26 @@
 package br.com.faculdadeidez.ddm.streetrunner;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Stack;
 
 import javax.microedition.lcdui.Alert;
 import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Displayable;
+import javax.microedition.media.Manager;
+import javax.microedition.media.MediaException;
+import javax.microedition.media.Player;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
 import br.com.faculdadeidez.ddm.streetrunner.telas.Alerta;
 
+
 public class UIController {
 
 	private static UIController instance;
 
+	private boolean atravessou=false;
 	private MIDlet midlet;
 	private static Display display;
 
@@ -120,5 +127,64 @@ public class UIController {
 		alertaMensagem.setTexto(mensagem);
 		UIController.telas.push(alertaMensagem);
 		UIController.display.setCurrent(alertaMensagem);
+	}
+
+	public void setAtravessou(boolean atravessou) {
+		this.atravessou = atravessou;
+	}
+
+	public boolean isAtravessou() {
+		return atravessou;
+	}
+	
+	public void ronaldo(){
+		Thread som = new Thread(new Runnable(){
+
+			public void run() {
+				Player player;
+				InputStream is = getClass().getResourceAsStream("/ronaldo.wav"); 
+		        try {
+		        	System.out.println(Manager.getSupportedContentTypes(null));
+					player = Manager.createPlayer(is,"audio/x-wav");
+					 player.realize();
+				        player.prefetch();
+				        player.start(); 
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (MediaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+				
+			}});
+		som.start();
+       
+	}
+
+	public void qbeleza() {
+		Thread som = new Thread(new Runnable(){
+
+			public void run() {
+				Player player;
+				InputStream is = getClass().getResourceAsStream("/qbeleza.wav"); 
+		        try {
+		        	System.out.println(Manager.getSupportedContentTypes(null));
+					player = Manager.createPlayer(is,"audio/x-wav");
+					 player.realize();
+				        player.prefetch();
+				        player.start(); 
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (MediaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+				
+			}});
+		som.start();
 	}
 }
