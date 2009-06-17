@@ -56,8 +56,7 @@ public class Inicial extends Form implements CommandListener {
 	public void commandAction(Command cmd, Displayable displayable) {
 		if (cmd.equals(cmdMenu)) {
 			try {
-				UIController.getInstance().setCurrent(
-						Menu.getInstance());
+				UIController.getInstance().setCurrent(Menu.getInstance());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
