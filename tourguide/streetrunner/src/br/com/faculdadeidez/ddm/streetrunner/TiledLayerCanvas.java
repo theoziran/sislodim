@@ -19,41 +19,41 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 	private static final int LARGURA_VEICULO = 32;
 	private static final int ALTURA_VEICULO = 32;
 	private static final String[] PERSONAGENS = { "chinchilla", "donkey",
-		"penguin", "skunk", "squirrel", "walrus" };
+			"penguin", "skunk", "squirrel", "walrus" };
 
 	private final LayerManager manager;
 	private final Graphics g;
-	
+
 	private TiledLayer background;
 	private Sprite personagem;
-	private Sprite car;
-	private Sprite moto;
 	private Sprite rua;
 
 	private static String personagemDaVez;
 	private static int velocidade = 2;
-	
-	public static int getVelocidade() {
-		return velocidade;
-	}
 
-	public static void setVelocidade(int velocidade) {
-		TiledLayerCanvas.velocidade = velocidade;
-	}
+	private Pista pista1;
+	private Pista pista2;
+	private Pista pista3;
 
 	protected TiledLayerCanvas(boolean suppressKeyEvents) {
 		super(suppressKeyEvents);
 		manager = new LayerManager();
 		g = getGraphics();
 
-		try {
-			criarPersonagem();
-			criarCarro();
-			criarRua();
-			criarMoto();
+		pista1 = new Pista(Pista.DIREITA_ESQUERDA, LARGURA_VEICULO, getWidth());
+		pista1.setTimer(10);
 
-			manager.append(car);
-			manager.append(moto);
+		pista2 = new Pista(Pista.DIREITA_ESQUERDA, LARGURA_VEICULO, getWidth());
+		pista2.setTimer(7);
+
+		pista3 = new Pista(Pista.ESQUERDA_DIREITA, LARGURA_VEICULO, getWidth());
+		pista3.setTimer(12);
+
+		try {
+			criarVeiculos();
+			criarPersonagem();
+			criarRua();
+
 			manager.append(personagem);
 			manager.append(rua);
 
@@ -64,7 +64,9 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 
 	public void run() {
 		Thread currentThread = UIController.getInstance().getGameThread();
-
+		pista1.start();
+		pista2.start();
+		pista3.start();
 		while (currentThread == UIController.getInstance().getGameThread()) {
 			manager.paint(g, 0, 0);
 			// checarcolisao
@@ -80,18 +82,64 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		}
 	}
 
-	private void criarCarro() throws IOException {
-		Image img = Image.createImage("/car.png");
-		this.car = new Sprite(img, LARGURA_VEICULO, ALTURA_VEICULO);
-		this.car.setRefPixelPosition(getWidth() - LARGURA_VEICULO,
-				(getHeight() / 2) - 10);
+	private void criarVeiculos() throws IOException {
+		Sprite veiculo = criarVeiculo("car");
+		manager.append(veiculo);
+		pista1.addVeiculo(veiculo);
+
+		veiculo = criarVeiculo("car");
+		manager.append(veiculo);
+		pista1.addVeiculo(veiculo);
+
+		veiculo = criarVeiculo("motorbike");
+		manager.append(veiculo);
+		pista1.addVeiculo(veiculo);
+
+		veiculo = criarVeiculo("car");
+		manager.append(veiculo);
+		pista1.addVeiculo(veiculo);
+
+		veiculo = criarVeiculo("car");
+		manager.append(veiculo);
+		pista2.addVeiculo(veiculo);
+
+		veiculo = criarVeiculo("car");
+		manager.append(veiculo);
+		pista2.addVeiculo(veiculo);
+
+		veiculo = criarVeiculo("motorbike");
+		manager.append(veiculo);
+		pista2.addVeiculo(veiculo);
+
+		veiculo = criarVeiculo("car");
+		manager.append(veiculo);
+		pista2.addVeiculo(veiculo);
+
+		veiculo = criarVeiculo("car");
+		manager.append(veiculo);
+		pista3.addVeiculo(veiculo);
+
+		veiculo = criarVeiculo("car");
+		manager.append(veiculo);
+		pista3.addVeiculo(veiculo);
+
+		veiculo = criarVeiculo("motorbike");
+		manager.append(veiculo);
+		pista3.addVeiculo(veiculo);
+
+		veiculo = criarVeiculo("car");
+		manager.append(veiculo);
+		pista3.addVeiculo(veiculo);
+
 	}
 
-	private void criarMoto() throws IOException {
-		Image img = Image.createImage("/motorbike.png");
-		this.moto = new Sprite(img, LARGURA_VEICULO, ALTURA_VEICULO);
-		this.moto.setRefPixelPosition(getWidth() - LARGURA_VEICULO,
-				(getHeight() / 2) + 25);
+	private Sprite criarVeiculo(String tipo) throws IOException {
+		Image img = Image.createImage("/" + tipo + ".png");
+
+		Sprite veiculo = new Sprite(img, LARGURA_VEICULO, ALTURA_VEICULO);
+		veiculo.setRefPixelPosition(getWidth() - LARGURA_VEICULO,
+				(getHeight() / 2) - 10);
+		return veiculo;
 	}
 
 	private void criarRua() throws IOException {
@@ -163,17 +211,24 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 	}
 
 	private void transito() {
-		int carX, motoX;
-		carX = this.car.getX();
-		motoX = this.moto.getX();
-		if ((carX + LARGURA_VEICULO) < 0) {
-			carX = getWidth();
-		}
-		if ((motoX + LARGURA_VEICULO) < 0) {
-			motoX = getWidth();
-		}
-	
-		this.car.setPosition(carX - getVelocidade(), this.car.getY());
-		this.moto.setPosition(motoX - 1, this.moto.getY());
+		// int carX, motoX;
+		// carX = this.car.getX();
+		// if ((carX + LARGURA_VEICULO) < 0) {
+		// carX = getWidth();
+		// }
+		// if ((motoX + LARGURA_VEICULO) < 0) {
+		// motoX = getWidth();
+		// }
+		//
+		// this.car.setPosition(carX - getVelocidade(), this.car.getY());
 	}
+
+	public static int getVelocidade() {
+		return velocidade;
+	}
+
+	public static void setVelocidade(int velocidade) {
+		TiledLayerCanvas.velocidade = velocidade;
+	}
+
 }

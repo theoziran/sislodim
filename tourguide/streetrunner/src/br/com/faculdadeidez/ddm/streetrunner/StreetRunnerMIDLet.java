@@ -6,14 +6,11 @@ import javax.microedition.midlet.MIDletStateChangeException;
 
 import br.com.faculdadeidez.ddm.streetrunner.telas.Splash;
 
-
-
 public class StreetRunnerMIDLet extends MIDlet {
 
 	private boolean started = false;
 	private UIController controller = null;
-	
-	
+
 	public StreetRunnerMIDLet() {
 		Record.init("STREETRUNNER");
 		System.out.println("Construindo MIDlet");

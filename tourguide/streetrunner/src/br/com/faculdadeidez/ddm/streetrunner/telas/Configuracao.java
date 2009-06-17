@@ -37,7 +37,6 @@ public class Configuracao extends Form implements CommandListener {
 		cmdVoltar = new Command("Voltar", Command.BACK, 1);
 
 		this.append(cgSons);
-		
 
 		this.addCommand(cmdSalvar);
 		this.addCommand(cmdVoltar);
@@ -80,10 +79,10 @@ public class Configuracao extends Form implements CommandListener {
 	}
 
 	private void saveConfigs() {
-		String  sound;
+		String sound;
 		sound = cgSons.getString(cgSons.getSelectedIndex());
 		try {
-			UIController.getInstance().saveConfigs( sound);
+			UIController.getInstance().saveConfigs(sound);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -96,6 +95,5 @@ public class Configuracao extends Form implements CommandListener {
 	public ChoiceGroup getCgSons() {
 		return cgSons;
 	}
-
 
 }

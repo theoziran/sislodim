@@ -11,18 +11,15 @@ import br.com.faculdadeidez.ddm.streetrunner.UIController;
 public class Menu extends List implements CommandListener {
 
 	private static Menu instance;
-	private Command cmdVoltar;
 	private Command cmdOk;
 
 	private Menu(String title, int listType) {
 		super(title, listType);
-		this.cmdVoltar = new Command("Voltar", Command.BACK, 1);
 		this.cmdOk = new Command("OK", Command.OK, 1);
 		this.append("Iniciar Jogo", null);
 		this.append("Continuar Jogo", null);
 		this.append("Configurações", null);
 		this.append("Sair", null);
-		this.addCommand(cmdVoltar);
 		this.addCommand(cmdOk);
 		this.setCommandListener(this);
 	}
@@ -36,18 +33,13 @@ public class Menu extends List implements CommandListener {
 
 	public void commandAction(Command cmd, Displayable displayable) {
 		try {
-			if (cmd.equals(cmdVoltar)) {
-				// vai no UIController e volta a tela
-				System.out.println("VOLTAR selecionado");
-				UIController.getInstance().voltar();
-			} else if (cmd.equals(cmdOk)) {
+			if (cmd.equals(cmdOk)) {
 				if (displayable instanceof Menu) {
 					Menu menu = (Menu) displayable;
 					switch (menu.getSelectedIndex()) {
 					case 0: {
 						UIController.getInstance().iniciarJogo();
 						System.out.println("Iniciar selecionado");
-
 						break;
 					}
 					case 1: {
@@ -62,7 +54,7 @@ public class Menu extends List implements CommandListener {
 					}
 					case 3: {
 						System.out.println("Sair selecionado");
-
+						UIController.getInstance().sair();
 						break;
 					}
 					default: {
@@ -74,7 +66,5 @@ public class Menu extends List implements CommandListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }

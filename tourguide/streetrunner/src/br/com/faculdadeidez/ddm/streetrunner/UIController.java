@@ -55,8 +55,8 @@ public class UIController {
 		return instance;
 	}
 
-	/*MÉTODOS DE CONTROLE DAS TELAS*/
-	
+	/* MÉTODOS DE CONTROLE DAS TELAS */
+
 	public void setCurrent(Displayable displayable) {
 		UIController.telas.push(displayable);
 		UIController.display.setCurrent(displayable);
@@ -92,8 +92,8 @@ public class UIController {
 		}
 	}
 
-	/*MÉTODOS DE ACESSO A RECORD STORE*/
-	
+	/* MÉTODOS DE ACESSO A RECORD STORE */
+
 	public void saveConfigs(String sound) {
 		Record.setConfigSound(sound);
 	}
@@ -102,8 +102,8 @@ public class UIController {
 		Record.setLevel(String.valueOf(getLevel()));
 	}
 
-	/*MÉTODOS DE CONTROLE DO JOGO*/
-	
+	/* MÉTODOS DE CONTROLE DO JOGO */
+
 	public void iniciarJogo() {
 		TiledLayerCanvas canvas = new TiledLayerCanvas(true);
 		gameThread = new Thread(canvas);

@@ -6,7 +6,6 @@ import javax.microedition.lcdui.Alert;
 import javax.microedition.lcdui.AlertType;
 import javax.microedition.lcdui.Image;
 
-
 public class Alerta extends Alert {
 
 	private static Alerta instance;
@@ -21,7 +20,8 @@ public class Alerta extends Alert {
 		super.setString(texto);
 	}
 
-	 private Alerta(String title, String alertText, Image alertImage,AlertType alertType) {
+	private Alerta(String title, String alertText, Image alertImage,
+			AlertType alertType) {
 		super(title, alertText, alertImage, alertType);
 	}
 
@@ -35,7 +35,7 @@ public class Alerta extends Alert {
 		}
 		return instance;
 	}
-	
+
 	public static Alerta getInstance(String title, String alertText) {
 		if (instance == null) {
 			try {
@@ -47,5 +47,5 @@ public class Alerta extends Alert {
 		}
 		return instance;
 	}
-	
+
 }
