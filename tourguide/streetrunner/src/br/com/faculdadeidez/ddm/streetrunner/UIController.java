@@ -15,12 +15,10 @@ import javax.microedition.midlet.MIDletStateChangeException;
 
 import br.com.faculdadeidez.ddm.streetrunner.telas.Alerta;
 
-
 public class UIController {
 
 	private static UIController instance;
 
-	private boolean atravessou=false;
 	private MIDlet midlet;
 	private static Display display;
 
@@ -28,7 +26,17 @@ public class UIController {
 
 	/* GAME PROPERTIES */
 	private static Thread gameThread = null;
-	private static int level = 0;
+	private int level = 0;
+	private boolean atravessou = false;
+	private static boolean ganhou = false;
+
+	public boolean isGanhou() {
+		return ganhou;
+	}
+
+	public void setGanhou(boolean ganhou) {
+		UIController.ganhou = ganhou;
+	}
 
 	public Thread getGameThread() {
 		return gameThread;
@@ -38,8 +46,9 @@ public class UIController {
 		return level;
 	}
 
-	private void setLevel(int level) {
-		UIController.level = level;
+	public void setLevel(int level) {
+		this.level = level;
+		System.out.println("novo level: " + level);
 	}
 
 	private UIController(MIDlet midlet) {
@@ -136,55 +145,50 @@ public class UIController {
 	public boolean isAtravessou() {
 		return atravessou;
 	}
-	
-	public void ronaldo(){
-		Thread som = new Thread(new Runnable(){
 
+	public void ronaldo() {
+		Thread som = new Thread(new Runnable() {
 			public void run() {
 				Player player;
-				InputStream is = getClass().getResourceAsStream("/ronaldo.wav"); 
-		        try {
-		        	System.out.println(Manager.getSupportedContentTypes(null));
-					player = Manager.createPlayer(is,"audio/x-wav");
-					 player.realize();
-				        player.prefetch();
-				        player.start(); 
+				InputStream is = getClass().getResourceAsStream("/ronaldo.wav");
+				try {
+					player = Manager.createPlayer(is, "audio/x-wav");
+					player.realize();
+					player.prefetch();
+					player.start();
 
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (MediaException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} 
-				
-			}});
+				}
+
+			}
+		});
 		som.start();
-       
+
 	}
 
 	public void qbeleza() {
-		Thread som = new Thread(new Runnable(){
+		Thread som = new Thread(new Runnable() {
 
 			public void run() {
 				Player player;
-				InputStream is = getClass().getResourceAsStream("/qbeleza.wav"); 
-		        try {
-		        	System.out.println(Manager.getSupportedContentTypes(null));
-					player = Manager.createPlayer(is,"audio/x-wav");
-					 player.realize();
-				        player.prefetch();
-				        player.start(); 
+				InputStream is = getClass().getResourceAsStream("/qbeleza.wav");
+				try {
+					player = Manager.createPlayer(is, "audio/x-wav");
+					player.realize();
+					player.prefetch();
+					player.start();
 
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (MediaException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} 
-				
-			}});
+				}
+
+			}
+		});
 		som.start();
 	}
 }

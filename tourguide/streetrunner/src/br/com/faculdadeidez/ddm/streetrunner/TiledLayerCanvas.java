@@ -8,7 +8,6 @@ import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.GameCanvas;
 import javax.microedition.lcdui.game.LayerManager;
 import javax.microedition.lcdui.game.Sprite;
-import javax.microedition.lcdui.game.TiledLayer;
 
 import br.com.faculdadeidez.ddm.streetrunner.telas.MenuJogo;
 
@@ -24,7 +23,6 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 	private final LayerManager manager;
 	private final Graphics g;
 
-	private TiledLayer background;
 	private Sprite personagem;
 	private Sprite rua;
 
@@ -34,22 +32,26 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 	private Pista pista2;
 	private Pista pista3;
 
+	private int timerPista1 = 10;
+	private int timerPista2 = 10;
+	private int timerPista3 = 10;
+
+	private boolean finalizado = false;
+
 	protected TiledLayerCanvas(boolean suppressKeyEvents) {
 		super(suppressKeyEvents);
+
+		finalizado = false;
+
 		manager = new LayerManager();
 		g = getGraphics();
 
 		pista1 = new Pista(Pista.DIREITA_ESQUERDA, LARGURA_VEICULO, getWidth(),
 				getHeight() / 2 - 10);
-		pista1.setTimer(10);
-
 		pista2 = new Pista(Pista.DIREITA_ESQUERDA, LARGURA_VEICULO, getWidth(),
 				getHeight() / 2 + 25);
-		pista2.setTimer(7);
-
 		pista3 = new Pista(Pista.ESQUERDA_DIREITA, LARGURA_VEICULO, getWidth(),
 				getHeight() / 2 + 65);
-		pista3.setTimer(12);
 
 		try {
 			criarVeiculos();
@@ -66,15 +68,26 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 
 	public void run() {
 		Thread currentThread = UIController.getInstance().getGameThread();
+
+		definirTimer();
+
+		pista1.setTimer(timerPista1);
+		pista2.setTimer(timerPista2);
+		pista3.setTimer(timerPista3);
+
 		pista1.start();
 		pista2.start();
 		pista3.start();
-		while (currentThread == UIController.getInstance().getGameThread()) {
+
+		while ((currentThread == UIController.getInstance().getGameThread())
+				&& (!finalizado)) {
 			manager.paint(g, 0, 0);
 
 			movimentarPersonagem();
-			if (foiAtropelado() || ganhou())
+			if (ganhou() || foiAtropelado()) {
 				break;
+			}
+
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
@@ -82,18 +95,39 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 			}
 			flushGraphics();
 		}
+		if (UIController.getInstance().isGanhou()) {
+			if (UIController.getInstance().getLevel() < 3) {
+				UIController.getInstance().setLevel(
+						UIController.getInstance().getLevel() + 1);
+				UIController.getInstance().setAtravessou(false);
+				UIController.getInstance().iniciarJogo();
+			} else {
+				System.out.println("ganhou mané");
+			}
+		} else {
+			UIController.getInstance().setAtravessou(false);
+			UIController.getInstance().iniciarJogo();
+		}
+	}
+
+	private void finalizarPistas() {
+		pista1.setFinalizado(true);
+		pista2.setFinalizado(true);
+		pista3.setFinalizado(true);
 	}
 
 	private boolean ganhou() {
 		if (UIController.getInstance().isAtravessou()) {
-			if (this.personagem.getY() >= 219) {
+			if (this.personagem.getY() >= 245) {
+				finalizarPistas();
+				this.finalizado = true;
 				System.out.println("Ganhou animal");
-
+				UIController.getInstance().setGanhou(true);
 				UIController.getInstance().qbeleza();
 				return true;
 			}
 		}
-		if (this.personagem.getY() <= 99)
+		if (this.personagem.getY() <= 105)
 			UIController.getInstance().setAtravessou(true);
 		return false;
 	}
@@ -103,28 +137,37 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		for (i = 0; i < this.pista1.getVeiculos().size(); i++) {
 			if (((Sprite) this.pista1.getVeiculos().elementAt(i)).collidesWith(
 					this.personagem, true)) {
+				finalizarPistas();
+				this.finalizado = true;
+
 				System.out.println("ronaldo");
+				UIController.getInstance().setGanhou(false);
 				UIController.getInstance().ronaldo();
 				return true;
-
 			}
 		}
 		for (i = 0; i < this.pista2.getVeiculos().size(); i++) {
 			if (((Sprite) this.pista2.getVeiculos().elementAt(i)).collidesWith(
 					this.personagem, true)) {
+				finalizarPistas();
+				this.finalizado = true;
+
 				System.out.println("ronaldo");
+				UIController.getInstance().setGanhou(false);
 				UIController.getInstance().ronaldo();
 				return true;
-
 			}
 		}
 		for (i = 0; i < this.pista3.getVeiculos().size(); i++) {
 			if (((Sprite) this.pista3.getVeiculos().elementAt(i)).collidesWith(
 					this.personagem, true)) {
+				finalizarPistas();
+				this.finalizado = true;
+
 				System.out.println("ronaldo");
+				UIController.getInstance().setGanhou(false);
 				UIController.getInstance().ronaldo();
 				return true;
-
 			}
 		}
 		return false;
@@ -187,25 +230,9 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 	private void criarPersonagem() throws IOException {
 		escolherPersonagem();
 		Image img = Image.createImage("/" + personagemDaVez + ".png");
-		this.personagem = new Sprite(img, LARGURA_VEICULO, ALTURA_VEICULO);
-		this.personagem.setRefPixelPosition((getWidth() - LARGURA_VEICULO) / 2,
+		this.personagem = new Sprite(img, 24, 24);
+		this.personagem.setRefPixelPosition((getWidth() - 24) / 2,
 				getHeight() - 45);
-	}
-
-	private void criaBackground() throws IOException {
-		Image img = Image.createImage("/tiledlayer1.png");
-		this.background = new TiledLayer(5, 8, img, 320, 290);
-
-		int[] cells = { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1,
-				1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-				2 };
-		for (int i = 0; i < cells.length; i++) {
-			int column = i % 5;
-			int row = (i - column) / 5;
-			this.background.setCell(column, row, cells[i]);
-		}
-
-		this.background.setPosition(getWidth() / 10, getHeight() / 10);
 	}
 
 	public void keyPressed(int keyCode) {
@@ -224,7 +251,6 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		Random random = new Random();
 		random.setSeed(System.currentTimeMillis());
 		int i = Math.abs(random.nextInt()) % PERSONAGENS.length;
-		System.out.println(i);
 		personagemDaVez = PERSONAGENS[i];
 	}
 
@@ -243,5 +269,19 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 				&& (x + LARGURA_VEICULO < getWidth())) {
 			this.personagem.setPosition(x + MV_HORIZONTAL, y);
 		}
+	}
+
+	private void definirTimer() {
+		int level = UIController.getInstance().getLevel();
+
+		int timerBase = 40 - 10 * level;
+
+		timerPista1 = timerBase - 5;
+		timerPista2 = timerBase - 9;
+		timerPista3 = timerBase - 3;
+
+		System.out.println("pista1:" + timerPista1);
+		System.out.println("pista2:" + timerPista2);
+		System.out.println("pista3:" + timerPista3);
 	}
 }

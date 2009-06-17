@@ -38,6 +38,7 @@ public class Menu extends List implements CommandListener {
 					Menu menu = (Menu) displayable;
 					switch (menu.getSelectedIndex()) {
 					case 0: {
+						UIController.getInstance().setLevel(1);
 						UIController.getInstance().iniciarJogo();
 						System.out.println("Iniciar selecionado");
 						break;
