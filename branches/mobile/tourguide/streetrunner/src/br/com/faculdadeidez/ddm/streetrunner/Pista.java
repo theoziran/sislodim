@@ -103,4 +103,8 @@ public class Pista extends Thread {
 			}
 		}
 	}
+	
+	public Vector getVeiculos(){
+		return this.veiculos;
+	}
 }

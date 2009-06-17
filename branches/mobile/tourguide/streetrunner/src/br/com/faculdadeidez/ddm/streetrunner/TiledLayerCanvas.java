@@ -2,6 +2,7 @@ package br.com.faculdadeidez.ddm.streetrunner;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.Vector;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
@@ -72,6 +73,8 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 			// checarcolisao
 
 			movimentarPersonagem();
+			if (foiAtropelado() || ganhou())
+				break;
 			transito();
 			try {
 				Thread.sleep(10);
@@ -80,6 +83,52 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 			}
 			flushGraphics();
 		}
+	}
+
+	private boolean ganhou() {
+		if (UIController.getInstance().isAtravessou()) {
+			if (this.personagem.getY() >= 219) {
+				System.out.println("Ganhou animal");
+				
+				UIController.getInstance().qbeleza();
+				return true;
+			}
+		}
+		if (this.personagem.getY() <= 99)
+			UIController.getInstance().setAtravessou(true);
+		return false;
+	}
+
+	private boolean foiAtropelado() {
+		int i;
+		for (i = 0; i < this.pista1.getVeiculos().size(); i++) {
+			if (((Sprite) this.pista1.getVeiculos().elementAt(i)).collidesWith(
+					this.personagem, true)) {
+				System.out.println("ronaldo");
+				UIController.getInstance().ronaldo();
+				return true;
+				
+			}
+		}
+		for (i = 0; i < this.pista1.getVeiculos().size(); i++) {
+			if (((Sprite) this.pista1.getVeiculos().elementAt(i)).collidesWith(
+					this.personagem, true)) {
+				System.out.println("ronaldo");
+				UIController.getInstance().ronaldo();
+				return true;
+				
+			}
+		}
+		for (i = 0; i < this.pista1.getVeiculos().size(); i++) {
+			if (((Sprite) this.pista1.getVeiculos().elementAt(i)).collidesWith(
+					this.personagem, true)) {
+				System.out.println("ronaldo");
+				UIController.getInstance().ronaldo();
+				return true;
+				
+			}
+		}
+		return false;
 	}
 
 	private void criarVeiculos() throws IOException {
@@ -196,7 +245,6 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		int keyStates = getKeyStates();
 		int x = this.personagem.getX();
 		int y = this.personagem.getY();
-
 		if ((keyStates == UP_PRESSED) && (y > 80)) {
 			this.personagem.setPosition(x, y - MV_VERTICAL);
 		} else if ((keyStates == LEFT_PRESSED) && (x > 0)) {
