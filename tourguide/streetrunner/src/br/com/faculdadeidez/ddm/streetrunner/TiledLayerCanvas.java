@@ -41,13 +41,13 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		manager = new LayerManager();
 		g = getGraphics();
 
-		pista1 = new Pista(Pista.DIREITA_ESQUERDA, LARGURA_VEICULO, getWidth());
+		pista1 = new Pista(Pista.DIREITA_ESQUERDA, LARGURA_VEICULO, getWidth(), getHeight() / 2 - 10);
 		pista1.setTimer(10);
 
-		pista2 = new Pista(Pista.DIREITA_ESQUERDA, LARGURA_VEICULO, getWidth());
+		pista2 = new Pista(Pista.DIREITA_ESQUERDA, LARGURA_VEICULO, getWidth(), getHeight() / 2 + 25);
 		pista2.setTimer(7);
 
-		pista3 = new Pista(Pista.ESQUERDA_DIREITA, LARGURA_VEICULO, getWidth());
+		pista3 = new Pista(Pista.ESQUERDA_DIREITA, LARGURA_VEICULO, getWidth(), getHeight() / 2 + 65);
 		pista3.setTimer(12);
 
 		try {
@@ -136,10 +136,6 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		manager.append(veiculo);
 		pista1.addVeiculo(veiculo);
 
-		veiculo = criarVeiculo("car");
-		manager.append(veiculo);
-		pista1.addVeiculo(veiculo);
-
 		veiculo = criarVeiculo("motorbike");
 		manager.append(veiculo);
 		pista1.addVeiculo(veiculo);
@@ -147,10 +143,6 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		veiculo = criarVeiculo("car");
 		manager.append(veiculo);
 		pista1.addVeiculo(veiculo);
-
-		veiculo = criarVeiculo("car");
-		manager.append(veiculo);
-		pista2.addVeiculo(veiculo);
 
 		veiculo = criarVeiculo("car");
 		manager.append(veiculo);
@@ -164,19 +156,15 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		manager.append(veiculo);
 		pista2.addVeiculo(veiculo);
 
-		veiculo = criarVeiculo("car");
+		veiculo = criarVeiculo("car2");
 		manager.append(veiculo);
 		pista3.addVeiculo(veiculo);
 
-		veiculo = criarVeiculo("car");
+		veiculo = criarVeiculo("motorbike2");
 		manager.append(veiculo);
 		pista3.addVeiculo(veiculo);
 
-		veiculo = criarVeiculo("motorbike");
-		manager.append(veiculo);
-		pista3.addVeiculo(veiculo);
-
-		veiculo = criarVeiculo("car");
+		veiculo = criarVeiculo("car2");
 		manager.append(veiculo);
 		pista3.addVeiculo(veiculo);
 
