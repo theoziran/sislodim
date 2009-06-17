@@ -13,19 +13,22 @@ public class Pista extends Thread {
 	private int timer;
 	private int larguraVeiculo;
 	private int larguraTela;
+	private int altura;
 
 	public Pista() {
 		veiculos = new Vector();
 		this.sentido = ESQUERDA_DIREITA;
 		this.larguraTela = 320;
 		this.larguraVeiculo = 32;
+		this.altura = 120;
 	}
 
-	public Pista(int sentido, int larguraVeiculo, int larguraTela) {
+	public Pista(int sentido, int larguraVeiculo, int larguraTela, int altura) {
 		veiculos = new Vector();
 		this.sentido = sentido;
 		this.larguraTela = larguraTela;
 		this.larguraVeiculo = larguraVeiculo;
+		this.altura = altura;
 	}
 
 	public int getLarguraVeiculo() {
@@ -45,6 +48,17 @@ public class Pista extends Thread {
 	}
 
 	public void addVeiculo(Sprite veiculo) {
+		int qtdVeiculos = veiculos.size();
+		if (qtdVeiculos > 0) {
+			Sprite ultimoVeiculo = (Sprite) veiculos.elementAt(qtdVeiculos - 1);
+			if (sentido == Pista.DIREITA_ESQUERDA) {
+				int x = ultimoVeiculo.getX() + larguraVeiculo + 70;
+				veiculo.setPosition(x, altura);
+			} else if (sentido == Pista.ESQUERDA_DIREITA) {
+				int x = ultimoVeiculo.getX() - 70 - larguraVeiculo;
+				veiculo.setPosition(x, altura);
+			}
+		}
 		veiculos.addElement(veiculo);
 	}
 
@@ -87,7 +101,7 @@ public class Pista extends Thread {
 					x = larguraTela;
 				}
 
-				veiculo.setPosition(x - 1, veiculo.getY());
+				veiculo.setPosition(x - 1, altura);
 			}
 		} else if (this.sentido == ESQUERDA_DIREITA) {
 			for (int i = 0; i < veiculos.size(); i++) {
@@ -99,7 +113,7 @@ public class Pista extends Thread {
 					x = 0;
 				}
 
-				veiculo.setPosition(x + 1, veiculo.getY());
+				veiculo.setPosition(x + 1, altura);
 			}
 		}
 	}
