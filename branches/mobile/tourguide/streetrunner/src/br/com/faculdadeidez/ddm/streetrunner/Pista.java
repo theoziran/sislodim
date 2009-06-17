@@ -14,9 +14,11 @@ public class Pista extends Thread {
 	private int larguraVeiculo;
 	private int larguraTela;
 	private int altura;
+	private boolean finalizado = false;
 
 	public Pista() {
 		veiculos = new Vector();
+		this.finalizado = false;
 		this.sentido = ESQUERDA_DIREITA;
 		this.larguraTela = 320;
 		this.larguraVeiculo = 32;
@@ -25,6 +27,7 @@ public class Pista extends Thread {
 
 	public Pista(int sentido, int larguraVeiculo, int larguraTela, int altura) {
 		veiculos = new Vector();
+		this.finalizado = false;
 		this.sentido = sentido;
 		this.larguraTela = larguraTela;
 		this.larguraVeiculo = larguraVeiculo;
@@ -62,6 +65,14 @@ public class Pista extends Thread {
 		veiculos.addElement(veiculo);
 	}
 
+	public boolean isFinalizado() {
+		return finalizado;
+	}
+
+	public void setFinalizado(boolean finalizado) {
+		this.finalizado = finalizado;
+	}
+
 	public int getSentido() {
 		return sentido;
 	}
@@ -79,7 +90,7 @@ public class Pista extends Thread {
 	}
 
 	public void run() {
-		while (true) {
+		while (!finalizado) {
 			atualizarPosicoes();
 			try {
 				sleep(timer);
@@ -117,8 +128,8 @@ public class Pista extends Thread {
 			}
 		}
 	}
-	
-	public Vector getVeiculos(){
+
+	public Vector getVeiculos() {
 		return this.veiculos;
 	}
 }
