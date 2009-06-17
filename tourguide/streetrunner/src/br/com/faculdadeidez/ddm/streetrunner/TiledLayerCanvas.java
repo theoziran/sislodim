@@ -2,7 +2,6 @@ package br.com.faculdadeidez.ddm.streetrunner;
 
 import java.io.IOException;
 import java.util.Random;
-import java.util.Vector;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
@@ -30,7 +29,6 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 	private Sprite rua;
 
 	private static String personagemDaVez;
-	private static int velocidade = 2;
 
 	private Pista pista1;
 	private Pista pista2;
@@ -41,13 +39,16 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		manager = new LayerManager();
 		g = getGraphics();
 
-		pista1 = new Pista(Pista.DIREITA_ESQUERDA, LARGURA_VEICULO, getWidth(), getHeight() / 2 - 10);
+		pista1 = new Pista(Pista.DIREITA_ESQUERDA, LARGURA_VEICULO, getWidth(),
+				getHeight() / 2 - 10);
 		pista1.setTimer(10);
 
-		pista2 = new Pista(Pista.DIREITA_ESQUERDA, LARGURA_VEICULO, getWidth(), getHeight() / 2 + 25);
+		pista2 = new Pista(Pista.DIREITA_ESQUERDA, LARGURA_VEICULO, getWidth(),
+				getHeight() / 2 + 25);
 		pista2.setTimer(7);
 
-		pista3 = new Pista(Pista.ESQUERDA_DIREITA, LARGURA_VEICULO, getWidth(), getHeight() / 2 + 65);
+		pista3 = new Pista(Pista.ESQUERDA_DIREITA, LARGURA_VEICULO, getWidth(),
+				getHeight() / 2 + 65);
 		pista3.setTimer(12);
 
 		try {
@@ -70,12 +71,10 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		pista3.start();
 		while (currentThread == UIController.getInstance().getGameThread()) {
 			manager.paint(g, 0, 0);
-			// checarcolisao
 
 			movimentarPersonagem();
 			if (foiAtropelado() || ganhou())
 				break;
-			transito();
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
@@ -89,7 +88,7 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		if (UIController.getInstance().isAtravessou()) {
 			if (this.personagem.getY() >= 219) {
 				System.out.println("Ganhou animal");
-				
+
 				UIController.getInstance().qbeleza();
 				return true;
 			}
@@ -107,25 +106,25 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 				System.out.println("ronaldo");
 				UIController.getInstance().ronaldo();
 				return true;
-				
+
 			}
 		}
-		for (i = 0; i < this.pista1.getVeiculos().size(); i++) {
-			if (((Sprite) this.pista1.getVeiculos().elementAt(i)).collidesWith(
+		for (i = 0; i < this.pista2.getVeiculos().size(); i++) {
+			if (((Sprite) this.pista2.getVeiculos().elementAt(i)).collidesWith(
 					this.personagem, true)) {
 				System.out.println("ronaldo");
 				UIController.getInstance().ronaldo();
 				return true;
-				
+
 			}
 		}
-		for (i = 0; i < this.pista1.getVeiculos().size(); i++) {
-			if (((Sprite) this.pista1.getVeiculos().elementAt(i)).collidesWith(
+		for (i = 0; i < this.pista3.getVeiculos().size(); i++) {
+			if (((Sprite) this.pista3.getVeiculos().elementAt(i)).collidesWith(
 					this.personagem, true)) {
 				System.out.println("ronaldo");
 				UIController.getInstance().ronaldo();
 				return true;
-				
+
 			}
 		}
 		return false;
@@ -245,26 +244,4 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 			this.personagem.setPosition(x + MV_HORIZONTAL, y);
 		}
 	}
-
-	private void transito() {
-		// int carX, motoX;
-		// carX = this.car.getX();
-		// if ((carX + LARGURA_VEICULO) < 0) {
-		// carX = getWidth();
-		// }
-		// if ((motoX + LARGURA_VEICULO) < 0) {
-		// motoX = getWidth();
-		// }
-		//
-		// this.car.setPosition(carX - getVelocidade(), this.car.getY());
-	}
-
-	public static int getVelocidade() {
-		return velocidade;
-	}
-
-	public static void setVelocidade(int velocidade) {
-		TiledLayerCanvas.velocidade = velocidade;
-	}
-
 }
