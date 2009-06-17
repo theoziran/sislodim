@@ -1,0 +1,9 @@
+**implementar os niveis (o primeiro nivel tem q ser mais lento)
+**completar a exibicao do video
+**salvar o jogo
+**reiniciar um jogo salvo
+**colocar som de transito
+**no fim do terceiro nivel uma msg vc ganhou seu imbecil
+**criar um sobre
+**criar um splash
+**diminuir bonecos (24x24)
