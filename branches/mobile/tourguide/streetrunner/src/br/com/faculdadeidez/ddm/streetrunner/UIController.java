@@ -141,7 +141,7 @@ public class UIController {
 		return atravessou;
 	}
 
-	public synchronized void ronaldo() {
+	public void ronaldo() {
 		Thread som = new Thread(new Runnable() {
 			public void run() {
 				Player player = null;
@@ -170,7 +170,7 @@ public class UIController {
 
 	}
 
-	public synchronized void qbeleza() {
+	public void qbeleza() {
 		Thread som = new Thread(new Runnable() {
 
 			public void run() {
