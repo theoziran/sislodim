@@ -121,7 +121,6 @@ public class UIController {
 	/* MÉTODOS DE CONTROLE DO JOGO */
 
 	public void iniciarJogo() {
-		System.gc();
 		TiledLayerCanvas canvas = new TiledLayerCanvas(true);
 		gameThread = new Thread(canvas);
 		setCurrent(canvas);
