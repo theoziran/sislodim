@@ -110,6 +110,7 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 				UIController.getInstance().iniciarJogo();
 			}
 		}
+		currentThread = null;
 		System.gc();
 	}
 
