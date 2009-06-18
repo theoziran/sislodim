@@ -99,6 +99,7 @@ public class Pista extends Thread {
 				e.printStackTrace();
 			}
 		}
+		this.veiculos=null;
 	}
 
 	private void atualizarPosicoes() {
@@ -127,6 +128,7 @@ public class Pista extends Thread {
 				veiculo.setPosition(x + 1, altura);
 			}
 		}
+		
 	}
 
 	public Vector getVeiculos() {
