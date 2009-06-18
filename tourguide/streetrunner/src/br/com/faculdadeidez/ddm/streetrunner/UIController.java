@@ -28,6 +28,8 @@ public class UIController {
 	private boolean atravessou = false;
 	private static boolean ganhou = false;
 
+	
+	
 	public boolean isGanhou() {
 		return ganhou;
 	}
@@ -119,10 +121,12 @@ public class UIController {
 	/* MÉTODOS DE CONTROLE DO JOGO */
 
 	public void iniciarJogo() {
+		System.gc();
 		TiledLayerCanvas canvas = new TiledLayerCanvas(true);
 		gameThread = new Thread(canvas);
 		setCurrent(canvas);
 		gameThread.start();
+		canvas=null;
 	}
 
 	public void pararJogo() {
@@ -137,7 +141,7 @@ public class UIController {
 		return atravessou;
 	}
 
-	public void ronaldo() {
+	public synchronized void ronaldo() {
 		Thread som = new Thread(new Runnable() {
 			public void run() {
 				Player player = null;
@@ -158,6 +162,7 @@ public class UIController {
 				} finally {
 					player.deallocate();
 					player.close();
+					player=null;
 				}
 			}
 		});
@@ -165,7 +170,7 @@ public class UIController {
 
 	}
 
-	public void qbeleza() {
+	public synchronized void qbeleza() {
 		Thread som = new Thread(new Runnable() {
 
 			public void run() {
@@ -187,6 +192,7 @@ public class UIController {
 				} finally {
 					player.deallocate();
 					player.close();
+					player=null;
 				}
 
 			}

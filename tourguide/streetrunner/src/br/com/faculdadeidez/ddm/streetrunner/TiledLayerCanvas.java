@@ -109,9 +109,8 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 				UIController.getInstance().setAtravessou(false);
 				UIController.getInstance().iniciarJogo();
 			}
+			this.personagem=null;
 		}
-		currentThread = null;
-		System.gc();
 	}
 
 	private void finalizarPistas() {
@@ -223,6 +222,8 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		Sprite veiculo = new Sprite(img, LARGURA_VEICULO, ALTURA_VEICULO);
 		veiculo.setRefPixelPosition(getWidth() - LARGURA_VEICULO,
 				(getHeight() / 2) - 10);
+		img = null;
+		System.gc();
 		return veiculo;
 	}
 
@@ -230,6 +231,8 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		Image img = Image.createImage("/rua.png");
 		this.rua = new Sprite(img, 320, 290);
 		this.rua.setRefPixelPosition(0, 0);
+		img = null;
+		System.gc();
 	}
 
 	private void criarPersonagem() throws IOException {
@@ -238,6 +241,8 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		this.personagem = new Sprite(img, 24, 24);
 		this.personagem.setRefPixelPosition((getWidth() - 24) / 2,
 				getHeight() - 45);
+		img = null;
+		System.gc();
 	}
 
 	public void keyPressed(int keyCode) {
