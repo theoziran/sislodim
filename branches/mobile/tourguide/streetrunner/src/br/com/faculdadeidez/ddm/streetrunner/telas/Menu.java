@@ -5,7 +5,9 @@ import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.List;
+import javax.microedition.rms.RecordStore;
 
+import br.com.faculdadeidez.ddm.streetrunner.Record;
 import br.com.faculdadeidez.ddm.streetrunner.UIController;
 
 public class Menu extends List implements CommandListener {
@@ -18,7 +20,6 @@ public class Menu extends List implements CommandListener {
 		this.cmdOk = new Command("OK", Command.OK, 1);
 		this.append("Iniciar Jogo", null);
 		this.append("Continuar Jogo", null);
-		this.append("Configurações", null);
 		this.append("Sair", null);
 		this.addCommand(cmdOk);
 		this.setCommandListener(this);
@@ -45,15 +46,13 @@ public class Menu extends List implements CommandListener {
 					}
 					case 1: {
 						System.out.println("Continuar jogo selecionado");
+						UIController.getInstance().setLevel(
+								Integer.parseInt((Record.getLevel())));
+						UIController.getInstance().iniciarJogo();
 
 						break;
 					}
 					case 2: {
-						System.out.println("Configurações selecionado");
-
-						break;
-					}
-					case 3: {
 						System.out.println("Sair selecionado");
 						UIController.getInstance().sair();
 						break;

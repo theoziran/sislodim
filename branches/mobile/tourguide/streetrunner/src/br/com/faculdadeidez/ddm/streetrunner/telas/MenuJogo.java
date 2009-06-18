@@ -46,6 +46,7 @@ public class MenuJogo extends List implements CommandListener {
 					case 0: {
 						UIController.getInstance().saveLevel();
 						UIController.getInstance().voltar();
+						UIController.getInstance().iniciarJogo();
 						break;
 					}
 					case 1: {
