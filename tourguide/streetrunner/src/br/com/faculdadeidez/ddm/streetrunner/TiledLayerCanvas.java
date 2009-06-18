@@ -95,25 +95,29 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 			}
 			flushGraphics();
 		}
-		if (UIController.getInstance().isGanhou()) {
-			if (UIController.getInstance().getLevel() < 3) {
-				UIController.getInstance().setLevel(
-						UIController.getInstance().getLevel() + 1);
+		if (finalizado) {
+			if (UIController.getInstance().isGanhou()) {
+				if (UIController.getInstance().getLevel() < 3) {
+					UIController.getInstance().setLevel(
+							UIController.getInstance().getLevel() + 1);
+					UIController.getInstance().setAtravessou(false);
+					UIController.getInstance().iniciarJogo();
+				} else {
+					System.out.println("ganhou mané");
+				}
+			} else {
 				UIController.getInstance().setAtravessou(false);
 				UIController.getInstance().iniciarJogo();
-			} else {
-				System.out.println("ganhou mané");
 			}
-		} else {
-			UIController.getInstance().setAtravessou(false);
-			UIController.getInstance().iniciarJogo();
 		}
+		System.gc();
 	}
 
 	private void finalizarPistas() {
 		pista1.setFinalizado(true);
 		pista2.setFinalizado(true);
 		pista3.setFinalizado(true);
+		
 	}
 
 	private boolean ganhou() {
@@ -172,7 +176,7 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		}
 		return false;
 	}
-
+	
 	private void criarVeiculos() throws IOException {
 		Sprite veiculo = criarVeiculo("car");
 		manager.append(veiculo);
@@ -277,8 +281,8 @@ public class TiledLayerCanvas extends GameCanvas implements Runnable {
 		int timerBase = 40 - 10 * level;
 
 		timerPista1 = timerBase - 5;
-		timerPista2 = timerBase - 9;
-		timerPista3 = timerBase - 3;
+		timerPista2 = timerBase - 7;
+		timerPista3 = timerBase - 2;
 
 		System.out.println("pista1:" + timerPista1);
 		System.out.println("pista2:" + timerPista2);

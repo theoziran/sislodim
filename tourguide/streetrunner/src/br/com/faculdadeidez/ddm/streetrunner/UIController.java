@@ -13,8 +13,6 @@ import javax.microedition.media.Player;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
-import br.com.faculdadeidez.ddm.streetrunner.telas.Alerta;
-
 public class UIController {
 
 	private static UIController instance;
@@ -131,13 +129,6 @@ public class UIController {
 		gameThread = null;
 	}
 
-	public static void excessaoGenerica(String mensagem) {
-		Alerta alertaMensagem = Alerta.getInstance();
-		alertaMensagem.setTexto(mensagem);
-		UIController.telas.push(alertaMensagem);
-		UIController.display.setCurrent(alertaMensagem);
-	}
-
 	public void setAtravessou(boolean atravessou) {
 		this.atravessou = atravessou;
 	}
@@ -149,20 +140,25 @@ public class UIController {
 	public void ronaldo() {
 		Thread som = new Thread(new Runnable() {
 			public void run() {
-				Player player;
+				Player player = null;
 				InputStream is = getClass().getResourceAsStream("/ronaldo.wav");
 				try {
 					player = Manager.createPlayer(is, "audio/x-wav");
 					player.realize();
 					player.prefetch();
 					player.start();
-
+					Thread.sleep(3000);
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (MediaException e) {
 					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally {
+					player.deallocate();
+					player.close();
 				}
-
 			}
 		});
 		som.start();
@@ -173,18 +169,24 @@ public class UIController {
 		Thread som = new Thread(new Runnable() {
 
 			public void run() {
-				Player player;
+				Player player = null;
 				InputStream is = getClass().getResourceAsStream("/qbeleza.wav");
 				try {
 					player = Manager.createPlayer(is, "audio/x-wav");
 					player.realize();
 					player.prefetch();
 					player.start();
-
+					Thread.sleep(3000);
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (MediaException e) {
 					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally {
+					player.deallocate();
+					player.close();
 				}
 
 			}

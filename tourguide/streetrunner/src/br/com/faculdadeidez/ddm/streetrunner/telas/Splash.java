@@ -17,7 +17,7 @@ public class Splash extends Canvas implements Runnable {
 	public Splash() {
 		setFullScreenMode(true);
 		try {
-			imagem = Image.createImage("/idez.png");
+			imagem = Image.createImage("/splash.png");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,16 +38,11 @@ public class Splash extends Canvas implements Runnable {
 		g.setColor(0x00FFFFFF);
 		g.fillRect(0, 0, width, height);
 
-		/*
-		 * g.setColor(0x00FF0000); // red g.drawRect(1, 1, width-3, height-3);
-		 * // red border one pixel from edge
-		 */
+
 		if (imagem != null) {
 			g.drawImage(imagem, width / 2, height / 2, Graphics.VCENTER
 					| Graphics.HCENTER);
 			imagem = null;
-			// inicia o midlet
-			// midlet.splashScreenPainted();
 		}
 
 	}
